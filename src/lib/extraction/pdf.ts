@@ -1,11 +1,17 @@
 import { PDFParse } from 'pdf-parse';
 import type { ExtractedContent, ExtractedSection } from '../types';
+import { assessTextQuality } from './pdf-quality';
+import { ocrPdf } from './ocr';
 
 /** Minimum characters of extracted text before we consider the PDF "scanned" */
 const MIN_TEXT_CHARS = 100;
 
 /**
  * Extract text and structured sections from a PDF buffer.
+ *
+ * Quality gate: after native extraction, assess text quality. If poor,
+ * fall back to OCR. Partial quality proceeds with a needs_review flag.
+ * Poor OCR output is quarantined but still returned (never discarded).
  */
 export async function extractPdf(
   buffer: Buffer,
@@ -36,18 +42,26 @@ export async function extractPdf(
       // Info extraction is non-critical
     }
 
-    // OCR detection: if very little text was extracted, it's likely a scanned PDF
-    if (fullText.trim().length < MIN_TEXT_CHARS) {
-      return handleScannedPdf(fullText, filename, pageCount);
-    }
-
     // Split text by page markers
     const pages = splitByPages(fullText);
+
+    // --- Quality gate ---
+    // If very little text: skip quality scoring, go straight to OCR
+    if (fullText.trim().length < MIN_TEXT_CHARS) {
+      return handleLowTextFallback(buffer, filename, fullText, pageCount);
+    }
+
+    const quality = assessTextQuality(fullText, pages, 'native_extraction');
+
+    if (quality.tier === 'poor') {
+      // Native extraction is poor — attempt OCR
+      return handleOcrFallback(buffer, filename, pageCount, quality);
+    }
 
     // Detect sections across all pages
     const sections = detectSections(pages);
 
-    return {
+    const result: ExtractedContent = {
       text: fullText,
       sections,
       metadata: {
@@ -55,8 +69,18 @@ export async function extractPdf(
         pages: pageCount,
         title,
         author,
+        extraction_method: 'native',
+        text_quality_score: Math.round(quality.score * 1000) / 1000,
+        text_quality_tier: quality.tier,
+        quality_score_source: quality.source,
       },
     };
+
+    if (quality.tier === 'partial') {
+      result.metadata.needs_review = true;
+    }
+
+    return result;
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
     return {
@@ -80,43 +104,110 @@ export async function extractPdf(
 }
 
 // ---------------------------------------------------------------------------
-// Scanned / OCR path
+// OCR fallback paths
 // ---------------------------------------------------------------------------
 
-function handleScannedPdf(
-  text: string,
+/**
+ * Called when native text extraction is below MIN_TEXT_CHARS threshold.
+ * Attempts OCR directly without quality scoring the (near-empty) native text.
+ */
+async function handleLowTextFallback(
+  buffer: Buffer,
   filename: string,
-  pages: number,
-): ExtractedContent {
-  const ocrEnabled = process.env.OCR_ENABLED === 'true';
+  nativeText: string,
+  pageCount: number,
+): Promise<ExtractedContent> {
+  const ocrResult = await ocrPdf(buffer, filename);
+  const ocrText = ocrResult.text;
+  const ocrPages = ocrText ? splitByPages(ocrText) : [];
 
-  if (ocrEnabled) {
-    // TODO: integrate tesseract.js here when OCR support is ready
+  const ocrQuality = assessTextQuality(
+    ocrText || '',
+    ocrPages,
+    'ocr_output',
+  );
+
+  if (ocrQuality.tier === 'poor') {
+    // OCR also poor — quarantine but still return
     return {
-      text,
-      sections: [],
+      ...ocrResult,
       metadata: {
-        filename,
-        pages,
-        ocr_used: false,
-        ocr_needed: true,
-        error: 'Scanned PDF requires OCR. Tesseract integration deferred.',
+        ...ocrResult.metadata,
+        pages: pageCount,
+        quarantine: true,
+        needs_review: true,
+        text_quality_score: Math.round(ocrQuality.score * 1000) / 1000,
+        text_quality_tier: ocrQuality.tier,
+        quality_score_source: ocrQuality.source,
+        extraction_method: 'ocr',
+        native_text_length: nativeText.trim().length,
       },
-      ocr_used: false,
     };
   }
 
   return {
-    text,
-    sections: [],
+    ...ocrResult,
     metadata: {
-      filename,
-      pages,
-      ocr_used: false,
-      ocr_needed: true,
-      error: 'Scanned PDF requires OCR. OCR_ENABLED=false.',
+      ...ocrResult.metadata,
+      pages: pageCount,
+      text_quality_score: Math.round(ocrQuality.score * 1000) / 1000,
+      text_quality_tier: ocrQuality.tier,
+      quality_score_source: ocrQuality.source,
+      extraction_method: 'ocr',
+      needs_review: ocrQuality.tier === 'partial' ? true : undefined,
     },
-    ocr_used: false,
+  };
+}
+
+/**
+ * Called when native text quality is scored as 'poor'.
+ * Attempts OCR and re-assesses quality on the OCR output.
+ */
+async function handleOcrFallback(
+  buffer: Buffer,
+  filename: string,
+  pageCount: number,
+  nativeQuality: ReturnType<typeof assessTextQuality>,
+): Promise<ExtractedContent> {
+  const ocrResult = await ocrPdf(buffer, filename);
+  const ocrText = ocrResult.text;
+  const ocrPages = ocrText ? splitByPages(ocrText) : [];
+
+  const ocrQuality = assessTextQuality(
+    ocrText || '',
+    ocrPages,
+    'ocr_output',
+  );
+
+  if (ocrQuality.tier === 'poor') {
+    // Both native and OCR are poor — quarantine
+    return {
+      ...ocrResult,
+      metadata: {
+        ...ocrResult.metadata,
+        pages: pageCount,
+        quarantine: true,
+        needs_review: true,
+        text_quality_score: Math.round(ocrQuality.score * 1000) / 1000,
+        text_quality_tier: ocrQuality.tier,
+        quality_score_source: ocrQuality.source,
+        extraction_method: 'ocr',
+        native_quality_score: Math.round(nativeQuality.score * 1000) / 1000,
+      },
+    };
+  }
+
+  return {
+    ...ocrResult,
+    metadata: {
+      ...ocrResult.metadata,
+      pages: pageCount,
+      text_quality_score: Math.round(ocrQuality.score * 1000) / 1000,
+      text_quality_tier: ocrQuality.tier,
+      quality_score_source: ocrQuality.source,
+      extraction_method: 'ocr',
+      needs_review: ocrQuality.tier === 'partial' ? true : undefined,
+    },
   };
 }
 
