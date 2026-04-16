@@ -103,9 +103,11 @@ For documents with Poor quality extraction.
 
 ### 4.3 Existing extractors
 
-DOCX, XLSX, TXT extractors remain as-is. They gain:
+DOCX, XLSX, and TXT extractors are treated as good by default in v2, unless future evidence suggests file-specific quality checks are needed. They gain:
 - `extraction_method` set to `native_docx` | `native_xlsx` | `native_txt`
-- `text_quality_tier` set to `good` (these formats extract reliably)
+- `text_quality_tier` set to `good`
+- `quality_score_source` set to `native_extraction` (explicit, not left null)
+- `ocr_used` set to `false`
 
 ## 5. Stage 2: Normalise (new)
 
@@ -254,6 +256,10 @@ If excluded content needs to be searchable later, it can be selectively embedded
 - `skipped_excluded` — stored but not embedded (excluded or boilerplate)
 - `failed` — embedding attempted but failed
 
+**Embedding invariant:** A chunk marked `retrieval_excluded = true` must never transition to `embedding_status = 'embedded'` in the normal v2 pipeline. This is enforced in application code and tested explicitly.
+
+**FTS/trigram indexing for excluded chunks:** All stored chunks populate `search_text` regardless of exclusion status. Normal retrieval queries filter out excluded chunks, but the data is present for future admin/debug search modes and for rebuild auditability. No separate regeneration needed if exclusion policy changes.
+
 ## 7. Schema Changes
 
 ### 7.1 Migration: `002_v2_data_quality.sql`
@@ -270,6 +276,18 @@ ALTER TABLE documents ADD COLUMN needs_review BOOLEAN NOT NULL DEFAULT false;
 ALTER TABLE documents ADD COLUMN excluded_chunk_count INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE documents ADD COLUMN boilerplate_chunk_count INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE documents ADD COLUMN downranked_chunk_count INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE documents ADD COLUMN quarantined BOOLEAN NOT NULL DEFAULT false;
+
+-- ocr_used already exists in v1 schema, no change needed
+-- updated_at already exists in v1 schema, no change needed
+
+-- CHECK constraints for string-state columns
+ALTER TABLE documents ADD CONSTRAINT chk_documents_text_quality_tier
+  CHECK (text_quality_tier IS NULL OR text_quality_tier IN ('good', 'partial', 'poor'));
+ALTER TABLE documents ADD CONSTRAINT chk_documents_extraction_method
+  CHECK (extraction_method IS NULL OR extraction_method IN ('native_pdf', 'ocr', 'native_docx', 'native_xlsx', 'native_txt'));
+ALTER TABLE documents ADD CONSTRAINT chk_documents_quality_score_source
+  CHECK (quality_score_source IS NULL OR quality_score_source IN ('native_extraction', 'ocr_output'));
 ```
 
 **chunks — add columns:**
@@ -286,6 +304,17 @@ ALTER TABLE chunks ADD COLUMN normalisation_reason JSONB;
 
 -- Make embedding nullable for excluded chunks that aren't embedded
 ALTER TABLE chunks ALTER COLUMN embedding DROP NOT NULL;
+
+-- CHECK constraints for string-state columns
+ALTER TABLE chunks ADD CONSTRAINT chk_chunks_embedding_status
+  CHECK (embedding_status IN ('pending', 'embedded', 'skipped_excluded', 'failed'));
+ALTER TABLE chunks ADD CONSTRAINT chk_chunks_section_type
+  CHECK (section_type IS NULL OR section_type IN (
+    'heading', 'paragraph', 'procedure_step', 'instruction_block',
+    'table', 'warning', 'note',
+    'revision_history', 'appendix', 'metadata_only',
+    'footer_header', 'form_stub', 'boilerplate'
+  ));
 ```
 
 **boilerplate_fingerprints table (new):**
@@ -312,6 +341,8 @@ The `chunks.normalisation_reason` JSONB column stores traceability for normalisa
 ```
 
 Not required on every row — populated when a non-trivial normalisation decision is made (exclusion, merge, dedup, protection override).
+
+**Size discipline:** `normalisation_reason` is for concise traceability of non-trivial decisions, not for storing full intermediate payloads or large section bodies. Keep values under 500 bytes.
 
 **Update retrieval indexes:**
 
@@ -410,6 +441,22 @@ This is a clean-slate rebuild executed as a controlled operational sequence:
 
 This approach gives a rollback path: if v2 is worse, reactivate v1 documents and delete v2.
 
+**Invariant:** Activation and rollback must preserve the constraint that only one active document version exists per source path. The `ux_documents_active_source_path` unique index enforces this — deactivate one version before activating another.
+
+### 10.1 Ingest run v2 metrics
+
+Extend `ingest_runs` to capture v2-specific counts:
+
+```sql
+ALTER TABLE ingest_runs ADD COLUMN ocr_routed_count INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE ingest_runs ADD COLUMN quarantined_count INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE ingest_runs ADD COLUMN excluded_chunk_count INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE ingest_runs ADD COLUMN downranked_chunk_count INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE ingest_runs ADD COLUMN embedded_chunk_count INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE ingest_runs ADD COLUMN skipped_embedding_count INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE ingest_runs ADD COLUMN pipeline_version TEXT NOT NULL DEFAULT 'v2';
+```
+
 ## 11. Acceptance Criteria
 
 ### Data shape
@@ -440,6 +487,8 @@ This approach gives a rollback path: if v2 is worse, reactivate v1 documents and
 - Per-document quality metrics visible in dashboard (tier, score, needs_review)
 - Per-document chunk counts: total, excluded, boilerplate, downranked
 - Pipeline version tracked on all documents
+- **Quarantined documents count** visible in health dashboard (poor OCR docs that completed but are excluded from retrieval)
+- Ingest run summaries include v2-specific counts (OCR routed, quarantined, excluded, embedded, skipped)
 
 ## 12. Out of Scope for V2
 
