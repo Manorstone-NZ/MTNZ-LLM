@@ -41,6 +41,52 @@ export async function insertChunks(
   });
 }
 
+export async function insertChunksWithEmbeddings(
+  documentId: string,
+  chunks: PreparedChunk[],
+  embeddings: number[][]
+): Promise<void> {
+  const BATCH_SIZE = 50;
+
+  await sql.begin(async (tx) => {
+    for (let i = 0; i < chunks.length; i += BATCH_SIZE) {
+      const batch = chunks.slice(i, i + BATCH_SIZE);
+      const batchEmbeddings = embeddings.slice(i, i + BATCH_SIZE);
+
+      for (let j = 0; j < batch.length; j++) {
+        const chunk = batch[j];
+        const embeddingVector = `[${batchEmbeddings[j].join(',')}]`;
+
+        await tx`
+          INSERT INTO chunks (
+            document_id, content, content_preview, chunk_index, chunk_hash,
+            token_count, page_number, section_title, sheet_name, range_ref,
+            citation_label, metadata, search_text, embedding
+          ) VALUES (
+            ${documentId},
+            ${chunk.content},
+            ${chunk.content_preview},
+            ${chunk.chunk_index},
+            ${chunk.chunk_hash},
+            ${chunk.token_count},
+            ${chunk.page_number},
+            ${chunk.section_title},
+            ${chunk.sheet_name},
+            ${chunk.range_ref},
+            ${chunk.citation_label},
+            ${sql.json(chunk.metadata as Record<string, string | number | boolean | null>)},
+            setweight(to_tsvector('english', coalesce(${chunk.citation_label}, '')), 'A') ||
+            setweight(to_tsvector('english', coalesce(${chunk.section_title}, '')), 'A') ||
+            setweight(to_tsvector('english', coalesce(${chunk.sheet_name}, '')), 'B') ||
+            setweight(to_tsvector('english', ${chunk.content}), 'C'),
+            ${embeddingVector}::vector
+          )
+        `;
+      }
+    }
+  });
+}
+
 export async function deleteChunksByDocumentId(documentId: string): Promise<void> {
   await sql`
     DELETE FROM chunks WHERE document_id = ${documentId}
