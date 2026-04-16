@@ -12,7 +12,24 @@ export interface ExtractedSection {
   content: string;
   page?: number;
   level?: number;
-  type: 'heading' | 'paragraph' | 'table' | 'list' | 'revision_block' | 'appendix';
+  type: 'heading' | 'paragraph' | 'table' | 'list' | 'revision_block' | 'appendix' | 'instruction_block';
+}
+
+// V2 section classification types
+export type SectionType =
+  | 'heading' | 'paragraph' | 'procedure_step' | 'instruction_block'
+  | 'table' | 'warning' | 'note'
+  | 'revision_history' | 'appendix' | 'metadata_only'
+  | 'footer_header' | 'form_stub' | 'boilerplate';
+
+export interface NormalisedSection extends ExtractedSection {
+  section_type: SectionType;
+  section_type_confidence: number;
+  retrieval_excluded: boolean;
+  retrieval_downranked: boolean;
+  is_boilerplate: boolean;
+  boilerplate_hash: string | null;
+  normalisation_reason: Record<string, unknown> | null;
 }
 
 // Chunk output — common across all chunkers
@@ -28,6 +45,14 @@ export interface PreparedChunk {
   range_ref: string | null;
   citation_label: string;
   metadata: Record<string, unknown>;
+  // V2 fields (optional for backward compatibility)
+  section_type?: SectionType | null;
+  is_boilerplate?: boolean;
+  retrieval_excluded?: boolean;
+  retrieval_downranked?: boolean;
+  boilerplate_hash?: string | null;
+  normalisation_reason?: Record<string, unknown> | null;
+  embedding_status?: 'pending' | 'embedded' | 'skipped_excluded' | 'failed';
 }
 
 // Retrieval result
@@ -88,6 +113,17 @@ export interface DocumentRow {
   processed_at: string | null;
   created_at: string;
   updated_at: string;
+  // V2 fields
+  pipeline_version?: string;
+  extraction_method?: string | null;
+  text_quality_score?: number | null;
+  text_quality_tier?: 'good' | 'partial' | 'poor' | null;
+  quality_score_source?: 'native_extraction' | 'ocr_output' | null;
+  needs_review?: boolean;
+  excluded_chunk_count?: number;
+  boilerplate_chunk_count?: number;
+  downranked_chunk_count?: number;
+  quarantined?: boolean;
 }
 
 // Health metrics for dashboard
@@ -103,6 +139,9 @@ export interface HealthMetrics {
   db_size_mb: number;
   source_missing_count: number;
   ocr_used_count: number;
+  // V2 fields
+  quarantined_count?: number;
+  needs_review_count?: number;
 }
 
 // Ingest run result
@@ -112,4 +151,11 @@ export interface IngestRunResult {
   processed: number;
   failed: number;
   skipped: number;
+  // V2 fields
+  ocr_routed?: number;
+  quarantined?: number;
+  excluded_chunks?: number;
+  downranked_chunks?: number;
+  embedded_chunks?: number;
+  skipped_embeddings?: number;
 }
