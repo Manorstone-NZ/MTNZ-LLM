@@ -1,0 +1,16 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: idd-knowledge-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: idd_knowledge
+      POSTGRES_USER: damian
+      POSTGRES_PASSWORD: localdev
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  pgdata:
