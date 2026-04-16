@@ -92,7 +92,12 @@ For documents with Poor quality extraction.
 - OCR each page individually
 - Stitch results with page numbers preserved
 - Run quality scoring on OCR output
-- If OCR output also poor → `extraction_status: 'failed'`
+- If OCR output also poor:
+  - Store the OCR output anyway (do not discard)
+  - Set `text_quality_tier: 'poor'`, `needs_review: true`
+  - Mark all chunks from this document as `retrieval_excluded: true`
+  - Set `extraction_status: 'completed'` (not 'failed' — the document is visible but quarantined)
+  - This ensures: document is visible in dashboard, not polluting retrieval, can be reprocessed later
 
 **V2 scope:** Whole-document OCR (all pages). Page-level mixed mode (native text for good pages, OCR for bad pages) is deferred to v3.
 
@@ -113,6 +118,7 @@ Classify every `ExtractedSection` into a canonical type:
 | `heading` | Section headers | Include |
 | `paragraph` | Body text | Include |
 | `procedure_step` | Numbered/lettered steps in a procedure | Include (preserve intact) |
+| `instruction_block` | Imperative instructions not strictly step-numbered ("Ensure the sample is mixed", "Record results in LIMS") | Include (preserve intact) |
 | `table` | Tabular data | Include (preserve intact) |
 | `warning` | WARNING, CAUTION, NOTE, IMPORTANT blocks | Include (preserve intact) |
 | `note` | Informational notes | Include |
@@ -158,6 +164,17 @@ A block is marked boilerplate ONLY if BOTH conditions are met:
 
 This two-part test prevents legitimate controls that appear across many documents from being falsely suppressed.
 
+**Protected content override (hard rule):**
+
+A block must NEVER be marked boilerplate — regardless of frequency or pattern match — if it contains ANY of:
+- Numeric constraints (temperatures, times, thresholds, concentrations)
+- Equipment identifiers (instrument names, model numbers)
+- Test codes or method IDs
+- Chemical or biological terms
+- Measurable conditions ("incubate at 37°C for 24h", "centrifuge at 3000 rpm", "hold at 4°C")
+
+This override takes precedence over both rule-based and fingerprint-based suppression. It ensures that repeated compliance-critical instructions with specific technical content are never suppressed.
+
 **Fingerprinting method:**
 1. Normalise: lowercase, collapse whitespace, strip dates/page numbers/version stamps
 2. SHA-256 the normalised text
@@ -197,8 +214,29 @@ Existing prose and spreadsheet chunkers remain the base implementation. They are
 - `table` sections: remain atomic (existing behaviour, preserved)
 - `revision_history`, `appendix`, `metadata_only`: chunk normally but mark chunks with `retrieval_downranked: true`
 - `footer_header`, `form_stub`, `boilerplate`: chunk and store but mark `retrieval_excluded: true`
+- `instruction_block`: treat like `procedure_step` — never merge into unrelated text
 
-### 6.2 Embedding policy
+### 6.2 Post-compose guardrail
+
+After compose, apply a final minimum chunk size check:
+- Drop chunks under 30 tokens UNLESS `section_type` is one of: `table`, `procedure_step`, `instruction_block`, `warning`, `note`
+- This catches edge cases where compose still produces tiny fragments
+
+### 6.3 Post-normalisation sanity check
+
+Before compose, run a document-level sanity check:
+- If >80% of sections are excluded → flag document `needs_review: true`
+- If total remaining sections < 3 → flag document `needs_review: true`
+- If average section token count < 15 → flag document `needs_review: true`
+
+This catches bad extraction or misclassification early.
+
+### 6.4 Hard cap on chunk size
+
+- Hard maximum: 1,000 tokens — chunks exceeding this must be split regardless of structure
+- Soft target: 150–300 tokens for typical prose chunks
+
+### 6.5 Embedding policy
 
 **Only embed chunks where `retrieval_excluded = false`.**
 
@@ -211,6 +249,7 @@ Excluded/archive material is stored without embeddings. This gives:
 If excluded content needs to be searchable later, it can be selectively embedded or queried via FTS/trigram only.
 
 **Embedding status tracked per chunk:**
+- `pending` — not yet processed (default for new rows)
 - `embedded` — has a valid embedding vector
 - `skipped_excluded` — stored but not embedded (excluded or boilerplate)
 - `failed` — embedding attempted but failed
@@ -242,11 +281,37 @@ ALTER TABLE chunks ADD COLUMN is_boilerplate BOOLEAN NOT NULL DEFAULT false;
 ALTER TABLE chunks ADD COLUMN retrieval_excluded BOOLEAN NOT NULL DEFAULT false;
 ALTER TABLE chunks ADD COLUMN retrieval_downranked BOOLEAN NOT NULL DEFAULT false;
 ALTER TABLE chunks ADD COLUMN boilerplate_hash TEXT;
-ALTER TABLE chunks ADD COLUMN embedding_status TEXT NOT NULL DEFAULT 'embedded';
+ALTER TABLE chunks ADD COLUMN embedding_status TEXT NOT NULL DEFAULT 'pending';
+ALTER TABLE chunks ADD COLUMN normalisation_reason JSONB;
 
 -- Make embedding nullable for excluded chunks that aren't embedded
 ALTER TABLE chunks ALTER COLUMN embedding DROP NOT NULL;
 ```
+
+**boilerplate_fingerprints table (new):**
+
+```sql
+CREATE TABLE boilerplate_fingerprints (
+  hash TEXT PRIMARY KEY,
+  sample_text TEXT,              -- first 200 chars of the normalised block
+  occurrence_count INTEGER NOT NULL DEFAULT 0,
+  is_confirmed_boilerplate BOOLEAN NOT NULL DEFAULT false,
+  last_seen_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+```
+
+**normalisation_reason column:**
+
+The `chunks.normalisation_reason` JSONB column stores traceability for normalisation decisions. Examples:
+
+```json
+{"classification": "footer_header", "excluded": true, "reason": "matched_pattern: CONTROLLED_COPY"}
+{"classification": "paragraph", "merged_with": [3, 4], "reason": "adjacent_small_sections"}
+{"classification": "boilerplate", "excluded": true, "reason": "corpus_fingerprint: hash=abc123, count=45"}
+{"classification": "procedure_step", "protected": true, "reason": "contains_measurable_condition"}
+```
+
+Not required on every row — populated when a non-trivial normalisation decision is made (exclusion, merge, dedup, protection override).
 
 **Update retrieval indexes:**
 
@@ -276,9 +341,38 @@ WHERE d.is_active = true
 ```
 
 **Down-ranked content handling:**
-If `retrieval_downranked = true`, apply a score penalty (multiply score by 0.5) rather than excluding. This means revision history and appendices can appear in results but only when other evidence is sparse or the query directly targets them.
+If `retrieval_downranked = true`, apply a configurable score penalty (multiply score by `DOWNRANK_PENALTY`, default 0.5) rather than excluding. This means revision history and appendices can appear in results but only when other evidence is sparse or the query directly targets them.
 
-## 8. New File Structure
+Add to `.env.local`:
+```
+DOWNRANK_PENALTY=0.5
+```
+
+## 8. Type Definitions
+
+**NormalisedSection** (new type, extends ExtractedSection):
+
+```typescript
+interface NormalisedSection extends ExtractedSection {
+  section_type: SectionType;
+  section_type_confidence: number;
+  retrieval_excluded: boolean;
+  retrieval_downranked: boolean;
+  is_boilerplate: boolean;
+  boilerplate_hash: string | null;
+  normalisation_reason: Record<string, unknown> | null;
+}
+
+type SectionType =
+  | 'heading' | 'paragraph' | 'procedure_step' | 'instruction_block'
+  | 'table' | 'warning' | 'note'
+  | 'revision_history' | 'appendix' | 'metadata_only'
+  | 'footer_header' | 'form_stub' | 'boilerplate';
+```
+
+This type is explicitly defined in `src/lib/types.ts` and is the interface between Stage 2 (normalise) and Stage 3 (compose).
+
+## 9. New File Structure
 
 ```
 src/lib/
@@ -301,19 +395,22 @@ src/lib/
 └── ...existing files...
 ```
 
-## 9. Migration Approach (Controlled)
+## 10. Migration Approach (Controlled)
 
 This is a clean-slate rebuild executed as a controlled operational sequence:
 
 1. **Add schema changes** — run `002_v2_data_quality.sql` (additive, non-breaking)
 2. **Snapshot current metrics** — record: total docs, total chunks, chunk size distribution, status breakdown
 3. **Disable normal ingest** — prevent accidental ingestion during rebuild
-4. **Truncate chunks and documents tables** — clean slate
-5. **Re-ingest with v2 pipeline** — full corpus, all documents
-6. **Compare metrics** — against v1 snapshot, verify acceptance criteria
-7. **Resume normal use** — re-enable ingest controls
+4. **Mark all current documents** as `pipeline_version = 'v1'`, `is_active = false`
+5. **Re-ingest with v2 pipeline** — full corpus, all documents ingested as `pipeline_version = 'v2'`
+6. **Compare metrics** — v2 corpus against v1 snapshot, verify acceptance criteria
+7. **If satisfied** — purge v1 documents and their chunks (`DELETE WHERE pipeline_version = 'v1'`)
+8. **Resume normal use** — re-enable ingest controls
 
-## 10. Acceptance Criteria
+This approach gives a rollback path: if v2 is worse, reactivate v1 documents and delete v2.
+
+## 11. Acceptance Criteria
 
 ### Data shape
 - Less than 15% of retrieval-eligible chunks under 50 tokens
@@ -337,13 +434,14 @@ This is a clean-slate rebuild executed as a controlled operational sequence:
 - Excluded chunks never appear in normal retrieval results
 - Down-ranked chunks appear only when evidence is otherwise sparse or directly relevant
 - Vector search only queries embedded chunks
+- **Retrieval density:** at least 80% of top-10 retrieved chunks have `token_count > 100` for typical procedural queries
 
 ### Observability
 - Per-document quality metrics visible in dashboard (tier, score, needs_review)
 - Per-document chunk counts: total, excluded, boilerplate, downranked
 - Pipeline version tracked on all documents
 
-## 11. Out of Scope for V2
+## 12. Out of Scope for V2
 
 - Page-level mixed-mode OCR (native + OCR per page)
 - Glossary-based query expansion (next improvement after rebuild)
