@@ -148,10 +148,24 @@ function isAllCapsHeading(line: string): boolean {
   return letters === letters.toUpperCase() && /[A-Z]/.test(letters);
 }
 
+/** Lines that look like headings but are actually noise (watermarks, footers) */
+const NOISE_PATTERNS = [
+  /CONTROLLED COPY/i,
+  /IF THIS LINE IS GREEN/i,
+  /THIS DOCUMENT IS UNCONTROLLED/i,
+  /PAGE \d+ OF \d+/i,
+  /^\s*\d+\s*$/,  // page numbers only
+];
+
+function isNoiseLine(line: string): boolean {
+  return NOISE_PATTERNS.some(p => p.test(line.trim()));
+}
+
 /** Detect if a line is a heading */
 function isHeading(line: string): boolean {
   const trimmed = line.trim();
   if (!trimmed) return false;
+  if (isNoiseLine(trimmed)) return false;
   if (isAllCapsHeading(trimmed)) return true;
   if (NUMBERED_HEADING_RE.test(trimmed)) return true;
   return false;
