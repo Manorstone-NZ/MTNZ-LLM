@@ -2,54 +2,79 @@
 
 import { useState } from 'react';
 import type { CitedChunk } from '@/lib/types';
+import { groupChunksByDocument } from '@/lib/citations';
 
 interface SourceCardProps {
   sources: CitedChunk[];
 }
 
 export default function SourceCard({ sources }: SourceCardProps) {
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   if (!sources.length) return null;
 
+  const groups = groupChunksByDocument(sources);
+
+  // Single-source optimisation: keep this visible and low-friction.
+  if (groups.length === 1) {
+    const group = groups[0];
+    return (
+      <div className="mt-2 text-xs text-slate-400">
+        <span className="text-slate-500">Source: </span>
+        <span className="text-slate-300">{group.doc_title}</span>
+        {group.section_title && (
+          <>
+            <span className="mx-1 text-slate-600">-</span>
+            <span className="text-slate-400">{group.section_title}</span>
+          </>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-2 flex flex-wrap gap-2">
-      {sources.map((source) => {
-        const isExpanded = expandedId === source.chunk_id;
-        return (
-          <div key={source.chunk_id} className="inline-block">
-            <button
-              onClick={() => setExpandedId(isExpanded ? null : source.chunk_id)}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs border transition-colors ${
-                isExpanded
-                  ? 'bg-slate-700 border-slate-500 text-slate-100'
-                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:border-slate-500 hover:text-slate-100'
-              }`}
+    <div className="mt-2">
+      <button
+        onClick={() => setIsOpen((open) => !open)}
+        aria-expanded={isOpen}
+        aria-label={`${isOpen ? 'Collapse' : 'Expand'} sources (${groups.length} documents)`}
+        className="inline-flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-2.5 py-1 text-xs text-slate-400 transition-colors hover:border-slate-500 hover:text-slate-200"
+      >
+        <span>Sources ({groups.length})</span>
+        <svg
+          className={`h-3 w-3 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        >
+          <path d="M2 4l4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div className="mt-1.5 space-y-1.5">
+          {groups.map((group) => (
+            <div
+              key={group.groupKey}
+              className="rounded-md border border-slate-700 bg-slate-800 px-3 py-2 text-xs"
             >
-              <span className="font-semibold text-blue-400">{source.citation_label}</span>
-              <span className="text-slate-400">|</span>
-              <span className="truncate max-w-[180px]">{source.doc_title}</span>
-              {source.folder && (
-                <>
-                  <span className="text-slate-500">/</span>
-                  <span className="text-slate-400">{source.folder}</span>
-                </>
-              )}
-            </button>
-            {isExpanded && (
-              <div className="mt-1 p-2.5 rounded-md bg-slate-800 border border-slate-700 text-xs text-slate-300 max-w-md">
-                {source.section_title && (
-                  <div className="font-medium text-slate-200 mb-1">{source.section_title}</div>
+              <div className="flex flex-wrap items-baseline gap-1.5">
+                <span className="font-semibold text-slate-200">{group.doc_title}</span>
+                {group.folder && (
+                  <span className="text-[10px] text-slate-500">{group.folder}</span>
                 )}
-                {source.page !== null && (
-                  <div className="text-slate-500 mb-1">Page {source.page}</div>
-                )}
-                <p className="whitespace-pre-wrap leading-relaxed">{source.content_preview}</p>
               </div>
-            )}
-          </div>
-        );
-      })}
+              {group.section_title && (
+                <div className="mt-0.5 text-slate-400">{group.section_title}</div>
+              )}
+              {group.preview && (
+                <p className="mt-1 leading-relaxed text-slate-500">{group.preview}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
