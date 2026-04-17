@@ -194,8 +194,19 @@ async function ocrImageTesseractJs(
   imageBuffer: Buffer,
   pageNum: number,
 ): Promise<OcrPageResult> {
-  const Tesseract = await import('tesseract.js');
-  const { data } = await Tesseract.recognize(imageBuffer, 'eng');
+  const tesseractMod = await import('tesseract.js');
+  // tesseract.js module shape differs across versions/build targets.
+  // Support both named and default-exported recognize APIs.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const recognize = (tesseractMod.default as any)?.recognize
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ?? (tesseractMod as any).recognize;
+
+  if (typeof recognize !== 'function') {
+    throw new Error('Tesseract recognize API unavailable');
+  }
+
+  const { data } = await recognize(imageBuffer, 'eng');
 
   return {
     page: pageNum,
@@ -308,6 +319,56 @@ function detectOcrSections(
   }
 
   return sections;
+}
+
+/**
+ * Run OCR on a single image buffer.
+ *
+ * Prefers native Tesseract binary if available, falls back to tesseract.js.
+ */
+export async function ocrImage(
+  buffer: Buffer,
+  filename: string,
+): Promise<ExtractedContent> {
+  try {
+    const nativePath = findNativeTesseract();
+    const pageResult = nativePath
+      ? await ocrImageNative(buffer, nativePath, 1)
+      : await ocrImageTesseractJs(buffer, 1);
+
+    const sections = detectOcrSections([pageResult]);
+    const confidence = Math.round(pageResult.confidence * 100) / 100;
+
+    return {
+      text: pageResult.text,
+      sections,
+      metadata: {
+        filename,
+        pages: 1,
+        ocr_used: true,
+        ocr_confidence: confidence,
+        ocr_engine: nativePath ? 'native_tesseract' : 'tesseract_js',
+        extraction_method: 'ocr_image',
+      },
+      ocr_used: true,
+      ocr_confidence: confidence,
+    };
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    return {
+      text: '',
+      sections: [],
+      metadata: {
+        filename,
+        pages: 1,
+        ocr_used: true,
+        error: `Image OCR failed: ${message}`,
+        extraction_method: 'ocr_image',
+      },
+      ocr_used: true,
+      ocr_confidence: 0,
+    };
+  }
 }
 
 // ---------------------------------------------------------------------------

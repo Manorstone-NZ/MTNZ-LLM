@@ -9,6 +9,7 @@ import { extractPdf } from './extraction/pdf';
 import { extractDocx } from './extraction/docx';
 import { extractXlsx } from './extraction/xlsx';
 import { extractTxt } from './extraction/txt';
+import { extractImage } from './extraction/image';
 
 import { chunkProse } from './chunking/prose';
 import { chunkSpreadsheet } from './chunking/spreadsheet';
@@ -31,8 +32,21 @@ import {
 
 import { insertChunksV2, deleteChunksByDocumentId } from './repositories/chunks';
 
-const SUPPORTED_EXTENSIONS = new Set(['.pdf', '.docx', '.xlsx', '.txt']);
-const UNSUPPORTED_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.svg', '.webp', '.mp3', '.mp4', '.wav', '.avi', '.mov']);
+const SUPPORTED_EXTENSIONS = new Set([
+  '.pdf',
+  '.docx',
+  '.xlsx',
+  '.txt',
+  '.png',
+  '.jpg',
+  '.jpeg',
+  '.gif',
+  '.bmp',
+  '.webp',
+  '.tif',
+  '.tiff',
+]);
+const UNSUPPORTED_EXTENSIONS = new Set(['.svg', '.mp3', '.mp4', '.wav', '.avi', '.mov']);
 
 interface FileEntry {
   absolutePath: string;
@@ -344,6 +358,15 @@ async function extractFile(file: FileEntry, buffer: Buffer): Promise<ExtractedCo
       return extractXlsx(buffer, file.filename);
     case '.txt':
       return extractTxt(buffer.toString('utf-8'), file.filename);
+    case '.png':
+    case '.jpg':
+    case '.jpeg':
+    case '.gif':
+    case '.bmp':
+    case '.webp':
+    case '.tif':
+    case '.tiff':
+      return extractImage(buffer, file.filename);
     default:
       throw new Error(`Unsupported file type: ${file.extension}`);
   }
