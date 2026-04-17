@@ -1,5 +1,5 @@
 import type { CitedChunk } from './types';
-import { groupChunksByDocument } from './citations';
+import { groupChunksByDocument, shouldShowSources } from './citations';
 
 let passed = 0;
 let failed = 0;
@@ -140,6 +140,20 @@ function testStableOrdering(): void {
   assert(result[0].doc_title === 'Doc A', 'orders groups by chunk count first');
 }
 
+function testNoEvidenceHidesSources(): void {
+  const chunks = [makeChunk({ chunk_id: 'a' })];
+  const answer = 'No grounded evidence found in the document corpus for this question.';
+  const show = shouldShowSources(answer, chunks);
+  assert(show === false, 'hides sources when answer is no-evidence message');
+}
+
+function testNormalAnswerShowsSources(): void {
+  const chunks = [makeChunk({ chunk_id: 'a' })];
+  const answer = 'FT3 is a spectrometer used for dairy component analysis.';
+  const show = shouldShowSources(answer, chunks);
+  assert(show === true, 'shows sources for normal grounded answer');
+}
+
 function main(): void {
   console.log('=== citations grouping tests ===');
   testGroupsSameDocument();
@@ -154,6 +168,8 @@ function main(): void {
   testFallbackPreviewWhenEmpty();
   testUnknownDocumentFallback();
   testStableOrdering();
+  testNoEvidenceHidesSources();
+  testNormalAnswerShowsSources();
 
   console.log(`\n=== Results: ${passed} passed, ${failed} failed ===`);
   if (failed > 0) {

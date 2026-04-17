@@ -3,6 +3,7 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import type { CitedChunk } from '@/lib/types';
+import { shouldShowSources } from '@/lib/citations';
 import SourceCard from './SourceCard';
 
 interface MessageBubbleProps {
@@ -53,6 +54,7 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
 
   // Assistant message
   const processedContent = renderContentWithBadges(content);
+  const showSources = shouldShowSources(content, sources);
 
   return (
     <div className="flex justify-start mb-4">
@@ -87,7 +89,7 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
             <span className="inline-block w-2 h-4 ml-0.5 bg-blue-400 animate-pulse rounded-sm" />
           )}
         </div>
-        {sources && sources.length > 0 && <SourceCard sources={sources} />}
+        {showSources && <SourceCard sources={sources!} />}
       </div>
     </div>
   );

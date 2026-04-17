@@ -87,8 +87,29 @@ export async function POST(request: NextRequest) {
           modelTier
         );
 
+        let fullAnswer = '';
+
         for await (const text of tokenStream) {
+          fullAnswer += text;
           push('token', { text });
+        }
+
+        // Enforce a minimum citation floor when the model omits citations.
+        const citationMatches = fullAnswer.match(/\[Source:\s*[^\]]+\]/g) ?? [];
+        const normalizedAnswer = fullAnswer.trim();
+        if (citationMatches.length === 0 && !normalizedAnswer.includes(NO_EVIDENCE_MESSAGE)) {
+          const uniqueDocs = new Set(citedChunks.map((chunk) => `${chunk.doc_title}|||${chunk.folder}`));
+          const requiredCount = uniqueDocs.size > 1 ? 2 : 1;
+          const uniqueLabels = Array.from(new Set(citedChunks.map((chunk) => chunk.citation_label))).slice(
+            0,
+            requiredCount
+          );
+          if (uniqueLabels.length > 0) {
+            const citationSuffix = `\n\n${uniqueLabels
+              .map((label) => `[Source: ${label}]`)
+              .join(' ')}`;
+            push('token', { text: citationSuffix });
+          }
         }
 
         push('done', { ok: true });

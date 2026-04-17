@@ -11,6 +11,14 @@ export interface GroupedSource {
 
 const PREVIEW_MAX_CHARS = 280;
 const PREVIEW_MAX_SNIPPETS = 3;
+const NO_EVIDENCE_TEXT = 'No grounded evidence found in the document corpus for this question.';
+
+export function shouldShowSources(answer: string, sources?: CitedChunk[]): boolean {
+  if (!sources || sources.length === 0) return false;
+  const normalizedAnswer = answer.trim();
+  if (!normalizedAnswer) return true;
+  return !normalizedAnswer.includes(NO_EVIDENCE_TEXT);
+}
 
 function deriveFamilyKey(citationLabel: string): string {
   const prefixRegex = /^([A-Z]+(?:-[A-Z]+)?\s*\d{3}\s*(?:\(?V\d+\)?))/i;
