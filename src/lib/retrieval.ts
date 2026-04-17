@@ -88,6 +88,7 @@ export async function hybridSearch(query: string): Promise<ScoredChunk[]> {
     results.push({
       id: entry.id,
       document_id: entry.document_id,
+      source_type: entry.source_type,
       content: entry.content,
       content_preview: entry.content_preview,
       citation_label: entry.citation_label,

@@ -100,6 +100,8 @@ export function groupChunksByDocument(chunks: CitedChunk[]): GroupedSource[] {
 export function formatChunksForPrompt(chunks: ScoredChunk[]): CitedChunk[] {
   return chunks.map(chunk => ({
     chunk_id: chunk.id,
+    document_id: chunk.document_id,
+    source_type: chunk.source_type,
     citation_label: chunk.citation_label,
     doc_title: chunk.doc_title,
     folder: chunk.folder,
@@ -114,6 +116,8 @@ export function formatChunksWithContent(chunks: ScoredChunk[]): Array<CitedChunk
   // Same as above but includes the full content field for the answer model
   return chunks.map(chunk => ({
     chunk_id: chunk.id,
+    document_id: chunk.document_id,
+    source_type: chunk.source_type,
     citation_label: chunk.citation_label,
     doc_title: chunk.doc_title,
     folder: chunk.folder,

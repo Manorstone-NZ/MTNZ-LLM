@@ -251,6 +251,7 @@ export async function vectorSearch(
     SELECT
       c.id,
       c.document_id,
+      d.source_type,
       c.content,
       c.content_preview,
       c.citation_label,
@@ -282,6 +283,7 @@ export async function fullTextSearch(
     SELECT
       c.id,
       c.document_id,
+      d.source_type,
       c.content,
       c.content_preview,
       c.citation_label,
@@ -313,6 +315,7 @@ export async function trigramSearch(
     SELECT
       c.id,
       c.document_id,
+      d.source_type,
       c.content,
       c.content_preview,
       c.citation_label,

@@ -59,6 +59,7 @@ export interface PreparedChunk {
 export interface ScoredChunk {
   id: string;
   document_id: string;
+  source_type?: string;
   content: string;
   content_preview: string;
   citation_label: string;
@@ -83,6 +84,8 @@ export type ChatSSEEvent =
 
 export interface CitedChunk {
   chunk_id: string;
+  document_id?: string;
+  source_type?: string;
   citation_label: string;
   doc_title: string;
   folder: string;

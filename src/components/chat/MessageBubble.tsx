@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import type { CitedChunk } from '@/lib/types';
 import { shouldShowSources } from '@/lib/citations';
 import { formatAssistantContent } from './messageFormatting';
+import { buildInlineImagePreviews } from './imagePreview';
 import SourceCard from './SourceCard';
 
 interface MessageBubbleProps {
@@ -61,6 +62,7 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
   // Assistant message
   const processedContent = formatAssistantContent(content);
   const showSources = shouldShowSources(content, sources);
+  const imagePreviews = buildInlineImagePreviews(sources);
 
   return (
     <div className="flex justify-start mb-4">
@@ -76,6 +78,32 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
           >
             {processedContent}
           </ReactMarkdown>
+          {imagePreviews.length > 0 && (
+            <div className="mt-3 space-y-2">
+              {imagePreviews.map((preview) => (
+                <figure
+                  key={preview.documentId}
+                  className="rounded-lg border border-slate-700/70 bg-slate-900/60 overflow-hidden"
+                >
+                  <img
+                    src={preview.previewUrl}
+                    alt={preview.title}
+                    className="w-full h-auto max-h-80 object-contain bg-slate-950"
+                    loading="lazy"
+                  />
+                  <figcaption className="px-3 py-2 text-xs text-slate-400 border-t border-slate-700/70">
+                    <span className="text-slate-300">{preview.title}</span>
+                    {preview.sectionTitle ? (
+                      <>
+                        <span className="mx-1 text-slate-600">-</span>
+                        <span>{preview.sectionTitle}</span>
+                      </>
+                    ) : null}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
           {isStreaming && (
             <span className="inline-block w-2 h-4 ml-0.5 bg-blue-400 animate-pulse rounded-sm" />
           )}
