@@ -36,7 +36,7 @@ function getCurrentHeading(sections: NormalisedSection[], index: number): string
 
 export function mergeAdjacentTinySections(
   sections: NormalisedSection[],
-  maxTokens: number = 150
+  maxTokens: number = 50
 ): NormalisedSection[] {
   if (sections.length === 0) return [];
 

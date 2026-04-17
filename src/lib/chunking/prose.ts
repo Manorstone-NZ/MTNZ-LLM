@@ -220,7 +220,7 @@ function applyGuardrails(
   overlapTokens: number,
 ): PreparedChunk[] {
   const MAX_GUARDRAIL_TOKENS = 1000;
-  const MIN_GUARDRAIL_TOKENS = 50;
+  const MIN_GUARDRAIL_TOKENS = 30;
   const result: PreparedChunk[] = [];
 
   for (const chunk of chunks) {
