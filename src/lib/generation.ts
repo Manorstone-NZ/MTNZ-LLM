@@ -1,22 +1,112 @@
 import OpenAI from 'openai';
+import Anthropic from '@anthropic-ai/sdk';
 import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 
-const client = new OpenAI({
+// ---------------------------------------------------------------------------
+// Provider detection
+// ---------------------------------------------------------------------------
+
+function useAnthropicProvider(): boolean {
+  return Boolean(process.env.ANTHROPIC_API_KEY);
+}
+
+// ---------------------------------------------------------------------------
+// LM Studio (OpenAI-compatible) client
+// ---------------------------------------------------------------------------
+
+const lmStudioClient = new OpenAI({
   baseURL: process.env.LMSTUDIO_URL! + '/v1',
   apiKey: 'lm-studio',
 });
 
+// ---------------------------------------------------------------------------
+// Anthropic client (lazy — only constructed when key is present)
+// ---------------------------------------------------------------------------
+
+let _anthropicClient: Anthropic | null = null;
+function getAnthropicClient(): Anthropic {
+  if (!_anthropicClient) {
+    _anthropicClient = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+  }
+  return _anthropicClient;
+}
+
 export type ModelTier = 'default' | 'quality';
 
 function getModelId(tier: ModelTier): string {
+  if (useAnthropicProvider()) {
+    return tier === 'quality'
+      ? (process.env.ANTHROPIC_QUALITY_MODEL ?? 'claude-opus-4-5')
+      : (process.env.ANTHROPIC_DEFAULT_MODEL ?? 'claude-sonnet-4-5');
+  }
   return tier === 'quality'
     ? process.env.QUALITY_ANSWER_MODEL!
     : process.env.DEFAULT_ANSWER_MODEL!;
 }
 
+// ---------------------------------------------------------------------------
+// Anthropic streaming path
+// ---------------------------------------------------------------------------
+
+async function* generateStreamAnthropic(
+  systemPrompt: string,
+  userMessage: string,
+  conversationHistory: ChatCompletionMessageParam[],
+  model: string,
+): AsyncIterable<string> {
+  const client = getAnthropicClient();
+
+  const messages = [
+    ...conversationHistory.filter((m) => m.role !== 'system').map((m) => ({
+      role: m.role as 'user' | 'assistant',
+      content: typeof m.content === 'string' ? m.content : '',
+    })),
+    { role: 'user' as const, content: userMessage },
+  ];
+
+  const stream = client.messages.stream({
+    model,
+    system: systemPrompt,
+    messages,
+    max_tokens: 4096,
+  });
+
+  for await (const event of stream) {
+    if (
+      event.type === 'content_block_delta' &&
+      event.delta.type === 'text_delta'
+    ) {
+      yield event.delta.text;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Anthropic non-streaming path
+// ---------------------------------------------------------------------------
+
+async function generateSyncAnthropic(
+  systemPrompt: string,
+  userMessage: string,
+  model: string,
+): Promise<string> {
+  const client = getAnthropicClient();
+  const response = await client.messages.create({
+    model,
+    system: systemPrompt,
+    messages: [{ role: 'user', content: userMessage }],
+    max_tokens: 4096,
+  });
+
+  return response.content
+    .filter((block) => block.type === 'text')
+    .map((block) => (block as { type: 'text'; text: string }).text)
+    .join('');
+}
+
 /**
  * Streaming chat completion. Returns an async iterable of text chunks.
- * Falls back to a single non-streaming call if streaming fails.
+ * Routes to Anthropic when ANTHROPIC_API_KEY is set, otherwise LM Studio.
  */
 export async function* generateStream(
   systemPrompt: string,
@@ -25,6 +115,12 @@ export async function* generateStream(
   tier: ModelTier = 'default'
 ): AsyncIterable<string> {
   const model = getModelId(tier);
+
+  if (useAnthropicProvider()) {
+    yield* generateStreamAnthropic(systemPrompt, userMessage, conversationHistory, model);
+    return;
+  }
+
   const messages: ChatCompletionMessageParam[] = [
     { role: 'system', content: systemPrompt },
     ...conversationHistory,
@@ -32,7 +128,7 @@ export async function* generateStream(
   ];
 
   try {
-    const stream = await client.chat.completions.create({
+    const stream = await lmStudioClient.chat.completions.create({
       model,
       messages,
       stream: true,
@@ -46,7 +142,7 @@ export async function* generateStream(
     }
   } catch {
     // Fallback: retry once without streaming
-    const response = await client.chat.completions.create({
+    const response = await lmStudioClient.chat.completions.create({
       model,
       messages,
       stream: false,
@@ -61,7 +157,7 @@ export async function* generateStream(
 
 /**
  * Non-streaming chat completion. Returns the full response text.
- * Used for query rewrite, validation, and other non-interactive passes.
+ * Routes to Anthropic when ANTHROPIC_API_KEY is set, otherwise LM Studio.
  */
 export async function generateSync(
   systemPrompt: string,
@@ -69,12 +165,17 @@ export async function generateSync(
   tier: ModelTier = 'default'
 ): Promise<string> {
   const model = getModelId(tier);
+
+  if (useAnthropicProvider()) {
+    return generateSyncAnthropic(systemPrompt, userMessage, model);
+  }
+
   const messages: ChatCompletionMessageParam[] = [
     { role: 'system', content: systemPrompt },
     { role: 'user', content: userMessage },
   ];
 
-  const response = await client.chat.completions.create({
+  const response = await lmStudioClient.chat.completions.create({
     model,
     messages,
     stream: false,
