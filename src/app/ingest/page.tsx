@@ -26,6 +26,17 @@ interface DocumentRow {
   processed_at: string | null;
   created_at: string;
   updated_at: string;
+  // V2 fields
+  pipeline_version?: string;
+  extraction_method?: string | null;
+  text_quality_score?: number | null;
+  text_quality_tier?: 'good' | 'partial' | 'poor' | null;
+  quality_score_source?: 'native_extraction' | 'ocr_output' | null;
+  needs_review?: boolean;
+  excluded_chunk_count?: number;
+  boilerplate_chunk_count?: number;
+  downranked_chunk_count?: number;
+  quarantined?: boolean;
 }
 
 interface HealthMetrics {
@@ -40,6 +51,12 @@ interface HealthMetrics {
   db_size_mb: number;
   source_missing_count: number;
   ocr_used_count: number;
+  // V2 fields
+  quarantined_count: number;
+  needs_review_count: number;
+  quality_good: number;
+  quality_partial: number;
+  quality_poor: number;
 }
 
 interface ProgressEvent {

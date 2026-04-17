@@ -23,6 +23,17 @@ interface DocumentRow {
   processed_at: string | null;
   created_at: string;
   updated_at: string;
+  // V2 fields
+  pipeline_version?: string;
+  extraction_method?: string | null;
+  text_quality_score?: number | null;
+  text_quality_tier?: 'good' | 'partial' | 'poor' | null;
+  quality_score_source?: 'native_extraction' | 'ocr_output' | null;
+  needs_review?: boolean;
+  excluded_chunk_count?: number;
+  boilerplate_chunk_count?: number;
+  downranked_chunk_count?: number;
+  quarantined?: boolean;
 }
 
 type SortKey = 'title' | 'folder' | 'source_type' | 'extraction_status' | 'chunk_count' | 'processed_at';
@@ -44,6 +55,28 @@ function StatusBadge({ status }: { status: string }) {
     default:
       return <span className={`${base} bg-slate-700 text-slate-300`}>{status}</span>;
   }
+}
+
+function QualityBadge({ tier }: { tier: 'good' | 'partial' | 'poor' | null | undefined }) {
+  if (!tier) return <span className="text-slate-600 text-xs">--</span>;
+  const base = 'inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium';
+  switch (tier) {
+    case 'good':
+      return <span className={`${base} bg-green-900/50 text-green-300`}>Good</span>;
+    case 'partial':
+      return <span className={`${base} bg-amber-900/50 text-amber-300`}>Partial</span>;
+    case 'poor':
+      return <span className={`${base} bg-red-900/50 text-red-300`}>Poor</span>;
+  }
+}
+
+function ExtractionMethodLabel({ method }: { method: string | null | undefined }) {
+  if (!method) return <span className="text-slate-600 text-xs">--</span>;
+  return (
+    <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-700/80 text-slate-300">
+      {method}
+    </span>
+  );
 }
 
 function formatDate(dateStr: string | null): string {
@@ -102,6 +135,7 @@ export default function DocumentTable({
   };
 
   const thClass = 'px-3 py-2 text-left text-xs font-medium text-slate-400 uppercase tracking-wider cursor-pointer hover:text-slate-200 select-none whitespace-nowrap';
+  const thStatic = 'px-3 py-2 text-left text-xs font-medium text-slate-400 uppercase tracking-wider whitespace-nowrap';
 
   return (
     <div>
@@ -138,34 +172,42 @@ export default function DocumentTable({
               <th className={thClass} onClick={() => handleSort('title')}>Title{sortIndicator('title')}</th>
               <th className={thClass} onClick={() => handleSort('folder')}>Folder{sortIndicator('folder')}</th>
               <th className={thClass} onClick={() => handleSort('source_type')}>Type{sortIndicator('source_type')}</th>
+              <th className={thStatic}>Extraction</th>
+              <th className={thStatic}>Quality</th>
               <th className={thClass} onClick={() => handleSort('extraction_status')}>Status{sortIndicator('extraction_status')}</th>
               <th className={thClass} onClick={() => handleSort('chunk_count')}>Chunks{sortIndicator('chunk_count')}</th>
               <th className={thClass} onClick={() => handleSort('processed_at')}>Processed{sortIndicator('processed_at')}</th>
-              <th className="px-3 py-2 text-left text-xs font-medium text-slate-400 uppercase tracking-wider whitespace-nowrap">Active</th>
-              <th className="px-3 py-2 text-left text-xs font-medium text-slate-400 uppercase tracking-wider whitespace-nowrap">Missing</th>
+              <th className={thStatic}>Flags</th>
               <th className="px-3 py-2 text-right text-xs font-medium text-slate-400 uppercase tracking-wider whitespace-nowrap">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-700/40">
             {sorted.length === 0 && (
               <tr>
-                <td colSpan={9} className="px-3 py-8 text-center text-slate-500">
+                <td colSpan={10} className="px-3 py-8 text-center text-slate-500">
                   No documents found
                 </td>
               </tr>
             )}
             {sorted.map((doc) => {
-              const rowBorder = doc.extraction_status === 'failed'
-                ? 'border-l-4 border-l-red-500'
-                : doc.source_missing
-                  ? 'border-l-4 border-l-amber-500'
-                  : 'border-l-4 border-l-transparent';
+              const isQuarantined = doc.quarantined === true;
+              const needsReview = doc.needs_review === true;
 
-              const rowBg = doc.extraction_status === 'failed'
-                ? 'bg-red-950/20'
-                : doc.source_missing
-                  ? 'bg-amber-950/20'
-                  : '';
+              const rowBorder = isQuarantined
+                ? 'border-l-4 border-l-red-600'
+                : doc.extraction_status === 'failed'
+                  ? 'border-l-4 border-l-red-500'
+                  : doc.source_missing
+                    ? 'border-l-4 border-l-amber-500'
+                    : 'border-l-4 border-l-transparent';
+
+              const rowBg = isQuarantined
+                ? 'bg-red-950/30'
+                : doc.extraction_status === 'failed'
+                  ? 'bg-red-950/20'
+                  : doc.source_missing
+                    ? 'bg-amber-950/20'
+                    : '';
 
               return (
                 <tr
@@ -182,20 +224,34 @@ export default function DocumentTable({
                   </td>
                   <td className="px-3 py-2 text-slate-300">{doc.folder}</td>
                   <td className="px-3 py-2 text-slate-300 uppercase">{doc.source_type}</td>
+                  <td className="px-3 py-2">
+                    <ExtractionMethodLabel method={doc.extraction_method} />
+                  </td>
+                  <td className="px-3 py-2">
+                    <QualityBadge tier={doc.text_quality_tier} />
+                  </td>
                   <td className="px-3 py-2"><StatusBadge status={doc.extraction_status} /></td>
                   <td className="px-3 py-2 text-slate-300 tabular-nums">{doc.chunk_count}</td>
                   <td className="px-3 py-2 text-slate-400 whitespace-nowrap">{formatDate(doc.processed_at)}</td>
-                  <td className="px-3 py-2">
-                    {doc.is_active ? (
-                      <span className="text-green-400" title="Active">&#x2713;</span>
-                    ) : (
-                      <span className="text-slate-600" title="Inactive">&#x2717;</span>
-                    )}
-                  </td>
-                  <td className="px-3 py-2">
-                    {doc.source_missing && (
-                      <span className="text-amber-400" title="Source file missing">&#x26A0;</span>
-                    )}
+                  <td className="px-3 py-2 whitespace-nowrap">
+                    <span className="inline-flex items-center gap-1">
+                      {isQuarantined && (
+                        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-red-900/60 text-red-300" title="All chunks excluded from retrieval">
+                          Quarantined
+                        </span>
+                      )}
+                      {needsReview && (
+                        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-900/50 text-amber-300" title="Flagged for manual review">
+                          Review
+                        </span>
+                      )}
+                      {doc.source_missing && (
+                        <span className="text-amber-400" title="Source file missing">&#x26A0;</span>
+                      )}
+                      {!isQuarantined && !needsReview && !doc.source_missing && (
+                        <span className="text-slate-600 text-xs">--</span>
+                      )}
+                    </span>
                   </td>
                   <td className="px-3 py-2 text-right whitespace-nowrap">
                     <button

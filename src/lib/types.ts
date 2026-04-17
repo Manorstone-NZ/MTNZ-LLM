@@ -141,8 +141,11 @@ export interface HealthMetrics {
   source_missing_count: number;
   ocr_used_count: number;
   // V2 fields
-  quarantined_count?: number;
-  needs_review_count?: number;
+  quarantined_count: number;
+  needs_review_count: number;
+  quality_good: number;
+  quality_partial: number;
+  quality_poor: number;
 }
 
 // Ingest run result
