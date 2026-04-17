@@ -220,7 +220,7 @@ function applyGuardrails(
   overlapTokens: number,
 ): PreparedChunk[] {
   const MAX_GUARDRAIL_TOKENS = 1000;
-  const MIN_GUARDRAIL_TOKENS = 30;
+  const MIN_GUARDRAIL_TOKENS = 50;
   const result: PreparedChunk[] = [];
 
   for (const chunk of chunks) {
@@ -280,6 +280,7 @@ export function chunkProse(
   let bufferPage: number | null = null;
   let bufferSectionTitle: string | null = null;
   let bufferSections: NormalisedSection[] = [];
+  let bufferType: string | null = null;
 
   function bufferV2() {
     if (bufferSections.length === 0) {
@@ -319,6 +320,7 @@ export function chunkProse(
     bufferTokens = 0;
     bufferPage = null;
     bufferSectionTitle = null;
+    bufferType = null;
     bufferSections = [];
   }
 
@@ -362,10 +364,11 @@ export function chunkProse(
       continue;
     }
 
-    // Break-before types: procedure_step/instruction_block must start a new chunk
-    if (BREAK_BEFORE_TYPES.has(sType)) {
+    // Break-before types: procedure_step/instruction_block must not merge with
+    // unrelated content. But adjacent same-type sections CAN merge.
+    if (BREAK_BEFORE_TYPES.has(sType) && bufferType !== sType) {
       flushBuffer();
-      // Fall through to normal buffering — but buffer is now empty so it starts fresh
+      // Fall through to normal buffering — buffer is now empty so it starts fresh
     }
 
     // Excluded sections must not merge with non-excluded content (and vice versa)
@@ -439,6 +442,7 @@ export function chunkProse(
     }
     bufferSections.push(section);
     bufferTokens = countTokens(buffer);
+    if (bufferType === null) bufferType = sType;
 
     // Update buffer metadata - keep first page, update section title
     if (bufferPage === null) {

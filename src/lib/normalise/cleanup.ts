@@ -36,7 +36,7 @@ function getCurrentHeading(sections: NormalisedSection[], index: number): string
 
 export function mergeAdjacentTinySections(
   sections: NormalisedSection[],
-  maxTokens: number = 50
+  maxTokens: number = 150
 ): NormalisedSection[] {
   if (sections.length === 0) return [];
 
@@ -66,9 +66,13 @@ export function mergeAdjacentTinySections(
         // Stop conditions
         if (next.section_type === 'heading') break;
         if (nextTokens >= maxTokens) break;
-        if (next.section_type !== current.section_type) break;
         if (next.retrieval_excluded !== current.retrieval_excluded) break;
         if (nextHeading !== currentHeading) break;
+        // Types that can merge with each other (prose-like content)
+        const MERGEABLE_TYPES = new Set(['paragraph', 'instruction_block', 'procedure_step', 'note']);
+        if (!MERGEABLE_TYPES.has(current.section_type) || !MERGEABLE_TYPES.has(next.section_type)) break;
+        // Never merge across table or warning boundaries
+        if (next.section_type === 'table' || next.section_type === 'warning') break;
 
         // Merge
         mergedContent = mergedContent + '\n\n' + next.content;
