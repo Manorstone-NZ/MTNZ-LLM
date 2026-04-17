@@ -83,15 +83,115 @@ export async function extractPdf(
     return result;
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
-    return {
-      text: '',
-      sections: [],
-      metadata: {
-        filename,
-        error: `PDF parse failed: ${message}`,
-        pages: 0,
-      },
-    };
+
+    // Retry native parse once — transient server-side resource failures are common
+    // for large PDFs and this PDF is known to parse correctly in isolation.
+    try {
+      const retryParser = new PDFParse({ data: new Uint8Array(buffer) });
+      try {
+        const retryResult = await retryParser.getText({
+          pageJoiner: '\n---PAGE_BREAK---\n',
+        });
+        const retryText = retryResult.text;
+        const retryPages = splitByPages(retryText);
+
+        if (retryText.trim().length >= MIN_TEXT_CHARS) {
+          const quality = assessTextQuality(retryText, retryPages, 'native_extraction');
+          if (quality.tier !== 'poor') {
+            const sections = detectSections(retryPages);
+            const retryRes: ExtractedContent = {
+              text: retryText,
+              sections,
+              metadata: {
+                filename,
+                pages: retryResult.total,
+                title: null,
+                author: null,
+                extraction_method: 'native',
+                text_quality_score: Math.round(quality.score * 1000) / 1000,
+                text_quality_tier: quality.tier,
+                quality_score_source: quality.source,
+              },
+            };
+            if (quality.tier === 'partial') retryRes.metadata.needs_review = true;
+            return retryRes;
+          }
+        }
+      } finally {
+        try { await retryParser.destroy(); } catch { /* ignore */ }
+      }
+    } catch {
+      // Retry also failed — fall through to pdfjs-dist fallback
+    }
+
+    // pdfjs-dist fallback: pure text extraction without rendering (no canvas needed)
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const pdfjsLib: any = await import('pdfjs-dist/legacy/build/pdf.mjs');
+      const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(buffer) });
+      const pdfDoc = await loadingTask.promise;
+      const pageTexts: string[] = [];
+      for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+        const page = await pdfDoc.getPage(pageNum);
+        const content = await page.getTextContent();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        pageTexts.push(content.items.map((item: any) => item.str).join(' '));
+      }
+      const pdfjsText = pageTexts.join('\n---PAGE_BREAK---\n');
+      if (pdfjsText.trim().length >= MIN_TEXT_CHARS) {
+        const pdfPages = splitByPages(pdfjsText);
+        const quality = assessTextQuality(pdfjsText, pdfPages, 'native_extraction');
+        const sections = detectSections(pdfPages);
+        const pdfRes: ExtractedContent = {
+          text: pdfjsText,
+          sections,
+          metadata: {
+            filename,
+            pages: pdfDoc.numPages,
+            title: null,
+            author: null,
+            extraction_method: 'native_pdfjs',
+            text_quality_score: Math.round(quality.score * 1000) / 1000,
+            text_quality_tier: quality.tier,
+            quality_score_source: quality.source,
+          },
+        };
+        if (quality.tier === 'partial') pdfRes.metadata.needs_review = true;
+        return pdfRes;
+      }
+    } catch {
+      // pdfjs-dist fallback failed — fall through to OCR
+    }
+
+    // PDF parse threw and all native fallbacks failed — attempt OCR
+    try {
+      const ocrResult = await ocrPdf(buffer, filename);
+      const ocrPages = ocrResult.text ? splitByPages(ocrResult.text) : [];
+      const ocrQuality = assessTextQuality(ocrResult.text || '', ocrPages, 'ocr_output');
+      return {
+        ...ocrResult,
+        metadata: {
+          ...ocrResult.metadata,
+          extraction_method: 'ocr',
+          text_quality_score: Math.round(ocrQuality.score * 1000) / 1000,
+          text_quality_tier: ocrQuality.tier,
+          quality_score_source: ocrQuality.source,
+          needs_review: ocrQuality.tier !== 'good' ? true : undefined,
+          quarantine: ocrQuality.tier === 'poor' ? true : undefined,
+          parse_error: `PDF parse failed: ${message}`,
+        },
+      };
+    } catch {
+      return {
+        text: '',
+        sections: [],
+        metadata: {
+          filename,
+          error: `PDF parse failed: ${message}`,
+          pages: 0,
+        },
+      };
+    }
   } finally {
     if (parser) {
       try {

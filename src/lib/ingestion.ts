@@ -406,7 +406,8 @@ async function processFileV2(
 
     // Step 2a: Check extraction result
     if (!extracted.sections || extracted.sections.length === 0) {
-      await updateExtractionStatus(newDoc.id, 'failed', 'No content extracted');
+      const extractionError = (extracted.metadata?.error as string | undefined) ?? 'No content extracted';
+      await updateExtractionStatus(newDoc.id, 'failed', extractionError);
       return true;
     }
 
