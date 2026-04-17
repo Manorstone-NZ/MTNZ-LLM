@@ -1,6 +1,6 @@
 import { createHash } from 'crypto';
 import { get_encoding } from 'tiktoken';
-import type { ExtractedSection, PreparedChunk } from '@/lib/types';
+import type { ExtractedSection, NormalisedSection, PreparedChunk, SectionType } from '@/lib/types';
 
 const enc = get_encoding('cl100k_base');
 
@@ -30,14 +30,34 @@ function buildCitationLabel(
 }
 
 /**
+ * Extract v2 fields from a section, with backward-compatible defaults.
+ */
+function extractV2Fields(section: Partial<NormalisedSection>) {
+  const ns = section as NormalisedSection;
+  const excluded = ns.retrieval_excluded ?? false;
+  return {
+    section_type: (ns.section_type ?? 'table') as SectionType,
+    is_boilerplate: ns.is_boilerplate ?? false,
+    retrieval_excluded: excluded,
+    retrieval_downranked: ns.retrieval_downranked ?? false,
+    boilerplate_hash: ns.boilerplate_hash ?? null,
+    normalisation_reason: ns.normalisation_reason ?? null,
+    embedding_status: (excluded ? 'skipped_excluded' : 'pending') as PreparedChunk['embedding_status'],
+  };
+}
+
+/**
  * Spreadsheet-aware chunker for XLSX extracted content.
  *
  * - Each section from XLSX extraction is a candidate chunk
  * - Large sections are split by row groups, preserving column headers
  * - Sheet name and range references are tracked in metadata
+ * - V2 fields (section_type, retrieval flags) are passed through
+ *
+ * Accepts NormalisedSection[] (v2) or ExtractedSection[] (backward-compatible).
  */
 export function chunkSpreadsheet(
-  sections: ExtractedSection[],
+  sections: (NormalisedSection | ExtractedSection)[],
   docTitle: string,
   options?: { maxTokens?: number },
 ): PreparedChunk[] {
@@ -45,12 +65,13 @@ export function chunkSpreadsheet(
   const chunks: PreparedChunk[] = [];
 
   for (const section of sections) {
-    const meta = (section as ExtractedSection & { metadata?: Record<string, unknown> }).metadata ?? {};
+    const meta = (section as NormalisedSection & { metadata?: Record<string, unknown> }).metadata ?? {};
     const sheetName = (meta.sheet_name as string) ?? section.title ?? null;
     const rangeRef = (meta.range_ref as string) ?? null;
     const columnHeaders = (meta.column_headers as string) ?? null;
     const formulaPresent = (meta.formula_present as boolean) ?? false;
 
+    const v2 = extractV2Fields(section);
     const sectionTokens = countTokens(section.content);
 
     if (sectionTokens <= maxTokens) {
@@ -71,6 +92,13 @@ export function chunkSpreadsheet(
           ...(columnHeaders ? { column_headers: columnHeaders } : {}),
           formula_present: formulaPresent,
         },
+        section_type: v2.section_type,
+        is_boilerplate: v2.is_boilerplate,
+        retrieval_excluded: v2.retrieval_excluded,
+        retrieval_downranked: v2.retrieval_downranked,
+        boilerplate_hash: v2.boilerplate_hash,
+        normalisation_reason: v2.normalisation_reason,
+        embedding_status: v2.embedding_status,
       });
       continue;
     }
@@ -110,6 +138,13 @@ export function chunkSpreadsheet(
             ...(columnHeaders ? { column_headers: columnHeaders } : {}),
             formula_present: formulaPresent,
           },
+          section_type: v2.section_type,
+          is_boilerplate: v2.is_boilerplate,
+          retrieval_excluded: v2.retrieval_excluded,
+          retrieval_downranked: v2.retrieval_downranked,
+          boilerplate_hash: v2.boilerplate_hash,
+          normalisation_reason: v2.normalisation_reason,
+          embedding_status: v2.embedding_status,
         });
         currentLines = [];
         currentTokens = 0;
@@ -141,6 +176,13 @@ export function chunkSpreadsheet(
           ...(columnHeaders ? { column_headers: columnHeaders } : {}),
           formula_present: formulaPresent,
         },
+        section_type: v2.section_type,
+        is_boilerplate: v2.is_boilerplate,
+        retrieval_excluded: v2.retrieval_excluded,
+        retrieval_downranked: v2.retrieval_downranked,
+        boilerplate_hash: v2.boilerplate_hash,
+        normalisation_reason: v2.normalisation_reason,
+        embedding_status: v2.embedding_status,
       });
     }
   }
