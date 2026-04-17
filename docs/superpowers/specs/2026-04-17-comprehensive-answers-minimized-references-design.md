@@ -40,29 +40,47 @@ Expected response shape:
 
 ### 2) Citation style
 
-Use lighter inline citations:
-- Cite key factual anchors (definitions, thresholds, procedural requirements, role responsibilities, and document-specific policy claims).
-- Prefer paragraph/section-level citations over per-sentence repetition.
-- Avoid repeating identical citation labels in adjacent lines unless needed for disambiguation.
+Use lighter inline citations with a hard floor:
+
+Must cite:
+- Every procedural claim, threshold, numeric value, or rule.
+- Definitions and formal terms introduced for the first time.
+- Document-specific responsibilities or policy claims.
+
+May omit citation for:
+- Contextual sentences that restate the same already-cited fact.
+- Pure connective prose between cited claims.
+
+Minimum citation density floor:
+- At least 1 citation per logical section of the answer.
+- At least 2 citations total for any answer that draws on multiple documents.
 
 Examples:
 - Cite: "FT3 refers to the MilkoScan FT3 instrument used for dairy component analysis." (definition claim)
-- Cite: "LOP-QM 005 section 7.4.2 covers MilkoScan Cream (FT3) uncertainty handling." (document-specific claim)
+- Cite: "LOP-QM 005 section 7.4.2 covers MilkoScan Cream (FT3) uncertainty handling." (procedural section claim)
 - Do not repeat the same citation on two adjacent sentences that restate the same fact.
 
 ### 3) Source UI
 
-Replace multi-badge strip with one `Sources (N)` accordion per assistant message.
+Replace multi-badge strip with one `Sources (N)` accordion per assistant message, with single-source optimisation.
 
-Accordion behavior:
+Single-source rule (N == 1):
+- Show an inline compact source line instead of a full accordion.
+- Format: `Source: <doc_title> — <section_title if present>`.
+- No toggle needed; always visible.
+
+Multi-source rule (N > 1):
 - Collapsed by default.
-- Header shows total number of unique documents referenced.
+- Header shows total number of unique documents referenced, e.g. `Sources (3)`.
 - Expand to reveal one row per document.
 
 Document row content:
 - Document title.
-- Best-matching section title from highest relevance chunk in the group.
+- Best-matching section title (see selection rules below).
 - Short merged preview from matched chunks in that document.
+
+Future enhancement (v2, not in scope now):
+- "Show detailed citations" toggle to expand inline references in the answer body for audit/traceability use cases.
 
 ## Data and Aggregation Rules
 
@@ -83,9 +101,10 @@ Notes:
 - This design does not change SSE payload shape for v1.
 
 Aggregation key:
-- Primary: `doc_title + folder` tuple.
-- Collision guard: if two groups share `doc_title + folder` but appear to reference different document families, split by citation family key.
-- Fallback: `doc_title` if folder is unavailable.
+- Primary: `doc_title + folder + citation_family_key` triple.
+- Merge only when all three align, or when confidence is high that the entries represent the same document version.
+- Fallback: `doc_title + citation_family_key` if folder is unavailable.
+- Do not merge on `doc_title` alone.
 
 Citation family key derivation:
 - Prefer regex prefix match from `citation_label` using `^[A-Z]+(?:-[A-Z]+)?\s*\d{3}\s*\(V\d+\)|^[A-Z]+(?:-[A-Z]+)?\s*\d{3}\s*V\d+`.
@@ -95,17 +114,22 @@ Citation family key derivation:
 Safety rule:
 - If family key cannot be derived reliably, do not merge ambiguous groups; keep separate entries to avoid false joins.
 
+Version collision rule:
+- `LOP-MC 001 (V1)` and `LOP-MC 001 (V2)` must never merge — version suffix is part of the family key.
+
 Validation requirement:
 - During implementation verification, sample at least 50 grouped source sets from golden queries and confirm no false merges across distinct manuals.
 
 Per-document selection:
-- Best section: first non-empty `section_title` in grouped arrival order.
-- Tie-break rule: if none has section title, omit section line.
-- Preview: merge unique `content_preview` snippets from grouped chunks, normalize whitespace, join with ` | ` separator, and clamp to `280` characters with ellipsis.
+- Best section: choose `section_title` from the chunk with the longest `content_preview` in the group, as a proxy for most informative chunk.
+- Tie-break: if two chunks have equal preview length, choose the one with more unique tokens (distinct words).
+- Fallback: if no chunk has a non-empty `section_title`, omit section line.
+- Preview: take the top 2–3 most distinct `content_preview` snippets from the group, prioritising longest and most unique. Join with `…` separator, clamp total to `280` characters with trailing ellipsis if needed.
 
 De-duplication:
 - Remove exact duplicate `content_preview` values within each grouped document.
 - Matching is case-insensitive after whitespace normalization.
+- Remove any snippet that is a full substring of another snippet already selected.
 
 ## API/Contract Impact
 
@@ -127,9 +151,11 @@ Prompt changes should preserve these grounding constraints:
 
 Target prompt text update (replace current RULES block intent with equivalent wording):
 - "Provide a comprehensive, structured answer when evidence supports it: direct answer, key details, operational context, and caveats."
-- "Cite key factual anchors using `[Source: <exact label>]` (definitions, thresholds, required steps, responsibilities, and document-specific claims)."
-- "Do not repeat the same citation on adjacent sentences when the claim is unchanged; prefer paragraph-level citation placement where clear."
-- "If sources are incomplete, explicitly say the available sources do not fully cover the topic."
+- "Every procedural claim, threshold, numeric value, or rule MUST have a citation using `[Source: <exact label>]`."
+- "Definitions and context claims should be cited on first use; do not repeat the same citation on adjacent sentences for the same fact."
+- "Include at least 1 citation per logical section of your answer. If the answer draws on multiple documents, include at least 2 citations total."
+- "If coverage is partial, explicitly state: 'Based on available sources…' or 'The available sources do not fully cover…'. Do not imply completeness when evidence is limited."
+- "Do not fabricate references or use prior knowledge outside the provided chunks."
 
 ### Chat UI layer
 
@@ -165,9 +191,10 @@ No expected changes to message transport flow.
 
 Unit tests:
 - Grouping function groups chunks by document and deduplicates previews.
-- Best section selection behaves correctly with missing section titles.
-- Preview merge respects max length.
+- Best section selection chooses chunk with longest preview, not first in arrival order.
+- Preview merge selects top 2–3 distinct snippets and respects max length.
 - Collision guard splits same-title groups with different citation families.
+- Version collision test: `LOP-MC 001 (V1)` and `LOP-MC 001 (V2)` chunks are never merged into one group.
 
 UI tests (component-level, if available):
 - Collapsed default state.
@@ -198,11 +225,16 @@ Mitigation:
 ## Acceptance Criteria
 
 - Assistant answers are materially more detailed for evidence-rich prompts.
-- Inline citations are visibly less repetitive.
-- Source area under each answer shows one `Sources (N)` control.
+- Every procedural claim, threshold, and rule in the answer body has an inline citation.
+- Minimum citation density met: at least 1 per logical section; at least 2 for multi-document answers.
+- Inline citations are visibly less repetitive (no repeated label on adjacent sentences for same fact).
+- Source area under each answer shows a single `Sources (N)` accordion (or inline compact source for N == 1).
 - Expanded source view contains one row per document, not one row per chunk.
-- Rows include document title, best section label (if present), and merged short preview.
+- Rows include document title, best section label (if present), and top 2–3 merged distinct previews.
+- No increase in hallucinated or weakly supported claims across golden queries (grounding quality check).
+- Documents sharing title but different versions (e.g. V1 vs V2) appear as separate grouped rows.
 - No regression to retrieval grounding behavior.
 
 Definition of pass for grounding regression:
 - For sampled golden queries, no factual anchor appears without at least one matching source citation in the answer body or source accordion context.
+- Grounding quality is assessed manually by comparing pre/post answer accuracy on the same query set, not just presence of citation markers.
