@@ -1,0 +1,9 @@
+[
+  { "query": "What is the MADCAP sample selection process?", "expected_docs": ["2.0-Sample Selection", "LOP-MC 001"], "type": "procedural" },
+  { "query": "Describe the Mycoplasma bovis testing procedure", "expected_docs": ["LOP-AH 002"], "type": "procedural" },
+  { "query": "How does result release work?", "expected_docs": ["LOP-RR 001"], "type": "procedural" },
+  { "query": "BactoScan configuration and operation", "expected_docs": ["EOP", "BactoScan"], "type": "equipment" },
+  { "query": "IANZ accreditation requirements", "expected_docs": ["LOP-QM"], "type": "compliance" },
+  { "query": "What is the CEO birthday?", "expected_behaviour": "no_evidence", "type": "grounded_refusal" },
+  { "query": "LOP-MC 001", "expected_docs": ["LOP-MC 001"], "type": "exact_match" }
+]
