@@ -1,9 +1,11 @@
 'use client';
 
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import type { CitedChunk } from '@/lib/types';
 import { shouldShowSources } from '@/lib/citations';
+import { formatAssistantContent } from './messageFormatting';
 import SourceCard from './SourceCard';
 
 interface MessageBubbleProps {
@@ -21,24 +23,28 @@ function SourceBadge({ label }: { label: string }) {
   );
 }
 
-/** Replace [Source: X] patterns with badge components */
-function renderContentWithBadges(content: string) {
-  // Split on [Source: ...] patterns
-  const parts = content.split(/(\[Source:\s*[^\]]+\])/g);
-  if (parts.length === 1) return content;
+function renderFormattedNodes(children: React.ReactNode): React.ReactNode {
+  return React.Children.map(children, (child, index) => {
+    if (typeof child === 'string') {
+      const parts = child.split(/(<source-badge label="[^"]*" \/>|<line-break \/>)/g);
+      return parts.map((part, partIndex) => {
+        if (!part) return null;
 
-  const processed = parts
-    .map((part) => {
-      const match = part.match(/^\[Source:\s*([^\]]+)\]$/);
-      if (match) {
-        // Replace with a placeholder that won't be parsed as markdown
-        return `<source-badge label="${match[1].trim()}" />`;
-      }
-      return part;
-    })
-    .join('');
+        const badgeMatch = part.match(/^<source-badge label="([^"]*)" \/>$/);
+        if (badgeMatch) {
+          return <SourceBadge key={`${index}-${partIndex}`} label={badgeMatch[1]} />;
+        }
 
-  return processed;
+        if (part === '<line-break />') {
+          return <br key={`${index}-${partIndex}`} />;
+        }
+
+        return part;
+      });
+    }
+
+    return child;
+  });
 }
 
 export default function MessageBubble({ role, content, sources, isStreaming }: MessageBubbleProps) {
@@ -53,7 +59,7 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
   }
 
   // Assistant message
-  const processedContent = renderContentWithBadges(content);
+  const processedContent = formatAssistantContent(content);
   const showSources = shouldShowSources(content, sources);
 
   return (
@@ -63,24 +69,9 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              // Custom renderer to handle source badges
-              p: ({ children, ...props }) => {
-                if (typeof children === 'string' && children.includes('<source-badge')) {
-                  const parts = children.split(/(<source-badge label="[^"]*" \/>)/g);
-                  return (
-                    <p {...props}>
-                      {parts.map((part, i) => {
-                        const match = part.match(/^<source-badge label="([^"]*)" \/>$/);
-                        if (match) {
-                          return <SourceBadge key={i} label={match[1]} />;
-                        }
-                        return part;
-                      })}
-                    </p>
-                  );
-                }
-                return <p {...props}>{children}</p>;
-              },
+              p: ({ children, ...props }) => <p {...props}>{renderFormattedNodes(children)}</p>,
+              td: ({ children, ...props }) => <td {...props}>{renderFormattedNodes(children)}</td>,
+              li: ({ children, ...props }) => <li {...props}>{renderFormattedNodes(children)}</li>,
             }}
           >
             {processedContent}
