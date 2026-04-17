@@ -71,6 +71,7 @@ export interface ScoredChunk {
   vector_score?: number;
   fts_score?: number;
   trigram_score?: number;
+  retrieval_downranked?: boolean;
 }
 
 // SSE event types for chat streaming

@@ -7,6 +7,7 @@ async function main() {
 
   const args = process.argv.slice(2);
   const force = args.includes('--force');
+  const rebuild = args.includes('--rebuild');
   const fileIdx = args.indexOf('--file');
   const singleFile = fileIdx >= 0 ? args[fileIdx + 1] : undefined;
 
@@ -18,12 +19,14 @@ async function main() {
 
   console.log(`Ingesting from: ${sourcePath}`);
   if (force) console.log('  --force: reprocessing all files');
+  if (rebuild) console.log('  --rebuild: two-pass mode enabled');
   if (singleFile) console.log(`  --file: ${singleFile}`);
 
   const result = await ingestDocuments({
     sourcePath,
     forceReprocess: force,
     singleFile,
+    rebuild,
     onProgress: (e) => console.log(`[${e.status}] ${e.file} (${e.processed}/${e.total})`),
   });
 
@@ -32,6 +35,16 @@ async function main() {
   console.log(`  Processed: ${result.processed}`);
   console.log(`  Failed: ${result.failed}`);
   console.log(`  Skipped: ${result.skipped}`);
+
+  // V2 metrics
+  if (result.embedded_chunks !== undefined) {
+    console.log(`\nV2 pipeline metrics:`);
+    console.log(`  Quarantined docs: ${result.quarantined ?? 0}`);
+    console.log(`  Embedded chunks: ${result.embedded_chunks}`);
+    console.log(`  Excluded chunks: ${result.excluded_chunks ?? 0}`);
+    console.log(`  Downranked chunks: ${result.downranked_chunks ?? 0}`);
+    console.log(`  Skipped embeddings: ${result.skipped_embeddings ?? 0}`);
+  }
 
   process.exit(0);
 }

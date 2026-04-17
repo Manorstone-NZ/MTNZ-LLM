@@ -24,6 +24,7 @@ export async function hybridSearch(query: string): Promise<ScoredChunk[]> {
   const wVec = parseFloat(process.env.VECTOR_WEIGHT || '0.5');
   const wFts = parseFloat(process.env.FTS_WEIGHT || '0.3');
   const wTrgm = parseFloat(process.env.TRIGRAM_WEIGHT || '0.2');
+  const downrankPenalty = parseFloat(process.env.DOWNRANK_PENALTY || '0.5');
 
   // Embed query and run all three searches in parallel
   const queryEmbedding = await embedText(query);
@@ -76,8 +77,13 @@ export async function hybridSearch(query: string): Promise<ScoredChunk[]> {
   // Compute fusion score and populate final fields
   const results: ScoredChunk[] = [];
   for (const entry of merged.values()) {
-    const fusionScore =
+    let fusionScore =
       wVec * entry._vecNorm + wFts * entry._ftsNorm + wTrgm * entry._trgNorm;
+
+    // Apply downrank penalty for chunks flagged as low-quality but not excluded
+    if (entry.retrieval_downranked) {
+      fusionScore *= downrankPenalty;
+    }
 
     results.push({
       id: entry.id,
@@ -94,6 +100,7 @@ export async function hybridSearch(query: string): Promise<ScoredChunk[]> {
       vector_score: entry._vecNorm || undefined,
       fts_score: entry._ftsNorm || undefined,
       trigram_score: entry._trgNorm || undefined,
+      retrieval_downranked: entry.retrieval_downranked,
     });
   }
 

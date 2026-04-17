@@ -8,11 +8,24 @@ interface CreateDocumentInput {
   folder: string;
   source_type: string;
   version_hash: string;
+  // V2 fields
+  pipeline_version?: string;
+  extraction_method?: string | null;
+  text_quality_score?: number | null;
+  text_quality_tier?: 'good' | 'partial' | 'poor' | null;
+  quality_score_source?: 'native_extraction' | 'ocr_output' | null;
+  needs_review?: boolean;
+  quarantined?: boolean;
 }
 
 export async function createDocument(doc: CreateDocumentInput): Promise<DocumentRow> {
   const [row] = await sql<DocumentRow[]>`
-    INSERT INTO documents (title, filename, source_path, folder, source_type, version_hash, search_text, title_normalized)
+    INSERT INTO documents (
+      title, filename, source_path, folder, source_type, version_hash,
+      search_text, title_normalized,
+      pipeline_version, extraction_method, text_quality_score, text_quality_tier,
+      quality_score_source, needs_review, quarantined
+    )
     VALUES (
       ${doc.title},
       ${doc.filename},
@@ -23,7 +36,14 @@ export async function createDocument(doc: CreateDocumentInput): Promise<Document
       setweight(to_tsvector('english', ${doc.title}), 'A') ||
       setweight(to_tsvector('english', ${doc.filename}), 'A') ||
       setweight(to_tsvector('english', ${doc.folder}), 'B'),
-      lower(regexp_replace(${doc.title}, '[^a-zA-Z0-9 ]', '', 'g'))
+      lower(regexp_replace(${doc.title}, '[^a-zA-Z0-9 ]', '', 'g')),
+      ${doc.pipeline_version ?? 'v2'},
+      ${doc.extraction_method ?? null},
+      ${doc.text_quality_score ?? null},
+      ${doc.text_quality_tier ?? null},
+      ${doc.quality_score_source ?? null},
+      ${doc.needs_review ?? false},
+      ${doc.quarantined ?? false}
     )
     RETURNING *
   `;
@@ -92,6 +112,30 @@ export async function markCompleted(id: string): Promise<void> {
   `;
 }
 
+export async function updateDocumentNormStats(id: string, stats: {
+  excluded_chunk_count: number;
+  boilerplate_chunk_count: number;
+  downranked_chunk_count: number;
+}): Promise<void> {
+  await sql`
+    UPDATE documents
+    SET excluded_chunk_count = ${stats.excluded_chunk_count},
+        boilerplate_chunk_count = ${stats.boilerplate_chunk_count},
+        downranked_chunk_count = ${stats.downranked_chunk_count},
+        updated_at = now()
+    WHERE id = ${id}
+  `;
+}
+
+export async function setQuarantined(id: string): Promise<void> {
+  await sql`
+    UPDATE documents
+    SET quarantined = true,
+        updated_at = now()
+    WHERE id = ${id}
+  `;
+}
+
 export async function getDocumentInventory(
   filters?: { folder?: string; status?: string; type?: string }
 ): Promise<DocumentRow[]> {
@@ -108,7 +152,7 @@ export async function getDocumentInventory(
 
 export async function getHealthMetrics(): Promise<HealthMetrics> {
   const [counts] = await sql<
-    { total_active: string; total_inactive: string; total_failed: string; total_chunks: string; zero_text_docs: string; avg_chunks: string; source_missing_count: string; ocr_used_count: string }[]
+    { total_active: string; total_inactive: string; total_failed: string; total_chunks: string; zero_text_docs: string; avg_chunks: string; source_missing_count: string; ocr_used_count: string; quarantined_count: string; needs_review_count: string }[]
   >`
     SELECT
       count(*) FILTER (WHERE is_active = true) AS total_active,
@@ -118,7 +162,9 @@ export async function getHealthMetrics(): Promise<HealthMetrics> {
       count(*) FILTER (WHERE chunk_count = 0 AND extraction_status = 'completed') AS zero_text_docs,
       coalesce(avg(chunk_count) FILTER (WHERE is_active = true AND chunk_count > 0), 0) AS avg_chunks,
       count(*) FILTER (WHERE source_missing = true) AS source_missing_count,
-      count(*) FILTER (WHERE ocr_used = true) AS ocr_used_count
+      count(*) FILTER (WHERE ocr_used = true) AS ocr_used_count,
+      count(*) FILTER (WHERE quarantined = true AND is_active = true) AS quarantined_count,
+      count(*) FILTER (WHERE needs_review = true AND is_active = true) AS needs_review_count
     FROM documents
   `;
 
@@ -144,5 +190,7 @@ export async function getHealthMetrics(): Promise<HealthMetrics> {
     db_size_mb: Number(dbSize.size_mb),
     source_missing_count: Number(counts.source_missing_count),
     ocr_used_count: Number(counts.ocr_used_count),
+    quarantined_count: Number(counts.quarantined_count),
+    needs_review_count: Number(counts.needs_review_count),
   };
 }
