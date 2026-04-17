@@ -42,7 +42,7 @@ export const SYSTEM_PROMPT = `You are an IDD knowledge assistant for the MTNZ LI
 
 RULES:
 - Answer ONLY from the provided source chunks. Do not use prior knowledge.
-- Provide a comprehensive, structured answer when evidence supports it: direct answer, key details, operational context, and caveats.
+- Provide a comprehensive, structured answer when evidence supports it: direct answer, key details, operational context, and caveats. Be comprehensive but avoid unnecessary repetition or filler.
 - Every procedural claim, threshold, numeric value, or rule MUST have a citation using the format [Source: <exact label>].
 - Definitions and context claims should be cited on first use. Do not repeat the same citation on adjacent sentences for the same unchanged fact.
 - Include at least one citation per logical section of your answer. If your answer draws on multiple documents, include at least two citations total.
@@ -87,7 +87,7 @@ export interface GroupedSource {
 
 ```typescript
 function deriveFamilyKey(citationLabel: string): string {
-  const prefixRegex = /^([A-Z]+(?:-[A-Z]+)?\s*\d{3}\s*(?:\(V\d+\)|V\d+))/i;
+  const prefixRegex = /^([A-Z]+(?:-[A-Z]+)?\s*\d{3}\s*(?:\(?V\d+\)?))/i;
   const match = citationLabel.match(prefixRegex);
   if (match) return match[1].trim();
   const commaIdx = citationLabel.indexOf(',');
@@ -109,27 +109,34 @@ export function groupChunksByDocument(chunks: CitedChunk[]): GroupedSource[] {
     groups.set(groupKey, [...existing, chunk]);
   }
 
-  return Array.from(groups.entries()).map(([groupKey, groupChunks]) => {
+  return Array.from(groups.entries())
+  .map(([groupKey, groupChunks]) => {
     const first = groupChunks[0];
+    // cap processing to 10 chunks max per group before sorting
+    const cappedChunks = groupChunks.slice(0, 10);
 
     // Best section: chunk with longest content_preview (proxy for most informative)
-    const bestChunk = groupChunks.reduce((a, b) =>
+    const bestChunk = cappedChunks.reduce((a, b) =>
       (b.content_preview?.length ?? 0) > (a.content_preview?.length ?? 0) ? b : a
     );
     const section_title = bestChunk.section_title ?? null;
 
     // Preview: top 2-3 distinct snippets, clamped to 280 chars
-    const preview = buildPreview(groupChunks);
+    const preview = buildPreview(cappedChunks);
 
     return {
       groupKey,
-      doc_title: first.doc_title,
+      doc_title: first.doc_title || 'Unknown document',
       folder: first.folder,
       section_title,
       preview,
       chunks: groupChunks,
     };
-  });
+  })
+  .sort((a, b) =>
+    b.chunks.length - a.chunks.length ||
+    b.preview.length - a.preview.length
+  );
 }
 
 const PREVIEW_MAX_CHARS = 280;
@@ -138,10 +145,10 @@ const PREVIEW_MAX_SNIPPETS = 3;
 function buildPreview(chunks: CitedChunk[]): string {
   const normalise = (s: string) => s.replace(/\s+/g, ' ').trim().toLowerCase();
 
-  // Sort by preview length descending (most informative first)
-  const sorted = [...chunks].sort(
-    (a, b) => (b.content_preview?.length ?? 0) - (a.content_preview?.length ?? 0)
-  );
+  // Sort by preview length descending (most informative first), cap at 10 before processing
+  const sorted = [...chunks]
+    .sort((a, b) => (b.content_preview?.length ?? 0) - (a.content_preview?.length ?? 0))
+    .slice(0, 10);
 
   const selected: string[] = [];
   for (const chunk of sorted) {
@@ -156,6 +163,7 @@ function buildPreview(chunks: CitedChunk[]): string {
   }
 
   const joined = selected.join(' … ');
+  if (!joined.trim()) return 'No preview available from matched sections.';
   if (joined.length <= PREVIEW_MAX_CHARS) return joined;
   return joined.slice(0, PREVIEW_MAX_CHARS - 1) + '…';
 }
@@ -257,6 +265,27 @@ test('deduplicates exact duplicate previews', () => {
   const result = groupChunksByDocument(chunks);
   expect(result[0].preview).toBe('Same content.');
 });
+
+test('does NOT merge chunks from same title but different folders', () => {
+  const chunks = [
+    makeChunk({ chunk_id: 'a', folder: 'LOP' }),
+    makeChunk({ chunk_id: 'b', folder: 'EOP' }),
+  ];
+  const result = groupChunksByDocument(chunks);
+  expect(result).toHaveLength(2);
+});
+
+test('returns fallback preview text when all previews are empty', () => {
+  const chunks = [makeChunk({ chunk_id: 'a', content_preview: '' })];
+  const result = groupChunksByDocument(chunks);
+  expect(result[0].preview).toBe('No preview available from matched sections.');
+});
+
+test('uses Unknown document fallback when doc_title is missing', () => {
+  const chunks = [makeChunk({ chunk_id: 'a', doc_title: '' })];
+  const result = groupChunksByDocument(chunks);
+  expect(result[0].doc_title).toBe('Unknown document');
+});
 ```
 
 - [ ] **Step 2.2: Run tests — expect failures**
@@ -265,7 +294,7 @@ test('deduplicates exact duplicate previews', () => {
 cd /Users/damian/Projects/Claude\ Cowork/idd-knowledge-chat && npx tsx --test src/lib/citations.grouping.test.ts
 ```
 
-Expected: all tests fail (functions not yet defined).
+Expected: all tests fail (functions not yet defined). If any pass, the function already exists — investigate before proceeding.
 
 - [ ] **Step 2.3: Add GroupedSource type and helper to citations.ts**
 
@@ -284,7 +313,7 @@ Use exact implementations shown above in Task 2 description.
 cd /Users/damian/Projects/Claude\ Cowork/idd-knowledge-chat && npx tsx --test src/lib/citations.grouping.test.ts
 ```
 
-Expected: all 8 tests pass, 0 failures.
+Expected: all 12 tests pass, 0 failures.
 
 - [ ] **Step 2.5: Commit**
 
@@ -465,7 +494,19 @@ Expected result:
 - Answer says no grounded evidence.
 - No source control rendered.
 
-- [ ] **Step 4.5: Commit verification note**
+- [ ] **Step 4.6: Run a cross-document synthesis query**
+
+Ask:
+
+> "Compare the MADCAP sample selection and result release process"
+
+Expected result:
+- Answer draws from multiple documents.
+- Each cross-document claim is explicitly cited.
+- Answer does not silently stitch claims from different manuals — cross-references are explicit.
+- Sources accordion shows multiple grouped rows.
+
+- [ ] **Step 4.6: Commit verification note**
 
 ```bash
 git commit --allow-empty -m "chore: manual verification passed for accordion + single-source UX"
