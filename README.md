@@ -55,6 +55,10 @@ bash scripts/db-setup.sh
 3. Set environment variables (example):
 
 ```bash
+# Database + corpus
+DATABASE_URL=postgres://damian:password@localhost:5432/idd_knowledge
+SOURCE_PATH=/absolute/path/to/your-corpus
+
 # Model provider routing
 ANTHROPIC_API_KEY=<optional-if-using-claude>
 LMSTUDIO_URL=http://localhost:1234/v1
@@ -102,12 +106,29 @@ From `/ingest`, available actions include:
 
 Progress streams live via SSE and updates dashboard/table states.
 
+### Ingesting into a different database/corpus
+
+This app is already profile-driven:
+
+- Database target is controlled by `DATABASE_URL`
+- Default ingest corpus root is controlled by `SOURCE_PATH`
+
+To switch to a different knowledge base:
+
+1. Point `DATABASE_URL` to the new Postgres database.
+2. Run migrations for that database.
+3. Point `SOURCE_PATH` to the new content directory (or pass a one-off `sourcePath` in the `/api/ingest` request body).
+4. Run `Full Rebuild` from `/ingest` to populate the new database.
+5. Query in chat normally; retrieval will operate over the currently configured database.
+
 ## Useful Scripts
 
 - `npm run dev` - start development server
 - `npm run build` - production build
 - `npm run start` - run production server
 - `npm run lint` - lint codebase
+- `npm run test:core` - run core unit tests
+- `npm run ci:core` - lint + core unit tests (same checks as CI)
 - `npm run audit:pdf` - PDF completeness audit
 - `npm run repair:section-titles` - repair section title quality
 - `npm run rescue:pdf` - rescue active PDFs

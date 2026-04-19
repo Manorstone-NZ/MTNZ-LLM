@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { stat } from 'fs/promises';
 import { ingestDocuments } from '@/lib/ingestion';
 import { deactivateDocument } from '@/lib/repositories/documents';
 import sql from '@/lib/db';
@@ -9,10 +10,11 @@ function sseEvent(event: string, data: unknown): string {
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { action, documentId, confirm } = body as {
+  const { action, documentId, confirm, sourcePath } = body as {
     action?: string;
     documentId?: string;
     confirm?: string;
+    sourcePath?: string;
   };
 
   if (!action) {
@@ -64,7 +66,36 @@ export async function POST(request: NextRequest) {
       };
 
       try {
-        const sourcePath = process.env.SOURCE_PATH!;
+        const requestedSourcePath = sourcePath?.trim();
+        const ingestSourcePath = requestedSourcePath || process.env.SOURCE_PATH;
+
+        if (!ingestSourcePath) {
+          push('error', {
+            message: 'SOURCE_PATH is not configured and no sourcePath override was provided',
+            code: 'CONFIG_ERROR',
+          });
+          controller.close();
+          return;
+        }
+
+        try {
+          const sourceStats = await stat(ingestSourcePath);
+          if (!sourceStats.isDirectory()) {
+            push('error', {
+              message: `Ingest source path is not a directory: ${ingestSourcePath}`,
+              code: 'INVALID_SOURCE_PATH',
+            });
+            controller.close();
+            return;
+          }
+        } catch {
+          push('error', {
+            message: `Ingest source path does not exist: ${ingestSourcePath}`,
+            code: 'INVALID_SOURCE_PATH',
+          });
+          controller.close();
+          return;
+        }
 
         if (action === 'full_rebuild') {
           // Delete all documents and chunks, then run full ingest
@@ -90,7 +121,7 @@ export async function POST(request: NextRequest) {
         }
 
         const result = await ingestDocuments({
-          sourcePath,
+          sourcePath: ingestSourcePath,
           forceReprocess: action === 'reprocess_one' || action === 'full_rebuild',
           singleFile,
           onProgress: (event) => {

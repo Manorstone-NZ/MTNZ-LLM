@@ -73,6 +73,19 @@ Available operations:
 
 Ingest operations stream progress events and refresh dashboard/table when complete.
 
+### 5.1 Using a different database and different content set
+
+To run the same app against another knowledge base:
+
+1. Update `DATABASE_URL` to point to the target Postgres database.
+2. Run migrations against that target database.
+3. Set `SOURCE_PATH` to the target corpus directory.
+4. Run `Full Rebuild` from `/ingest`.
+5. Ask chat questions as normal; results come from the currently configured database.
+
+Advanced option:
+- `/api/ingest` accepts an optional `sourcePath` body field to override `SOURCE_PATH` for a specific ingest run.
+
 ## 6. Ingest Dashboard Interpretation
 
 Top cards are scoped by active corpus unless explicitly marked historical.
@@ -135,6 +148,7 @@ This report should show:
 ## 10. Best Practices
 
 - Keep provider on `Auto` for normal operations
+- Keep one env profile per corpus/database pair to avoid accidental cross-ingest
 - Use `Quality` for interaction-heavy and synthesis-heavy questions
 - Validate after significant retrieval/prompt/ingest pipeline changes
 - Keep architecture and validation docs up to date with each phase

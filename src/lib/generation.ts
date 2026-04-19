@@ -6,7 +6,7 @@ import type { ChatCompletionMessageParam } from 'openai/resources/chat/completio
 // Provider detection
 // ---------------------------------------------------------------------------
 
-function useAnthropicProvider(): boolean {
+function isAnthropicProviderAvailable(): boolean {
   return Boolean(process.env.ANTHROPIC_API_KEY);
 }
 
@@ -14,7 +14,7 @@ export type ModelProviderMode = 'auto' | 'anthropic' | 'lmstudio';
 
 export function resolveProviderMode(
   requestedMode: ModelProviderMode = 'auto',
-  anthropicAvailable: boolean = useAnthropicProvider(),
+  anthropicAvailable: boolean = isAnthropicProviderAvailable(),
 ): 'anthropic' | 'lmstudio' {
   if (requestedMode === 'anthropic') {
     return anthropicAvailable ? 'anthropic' : 'lmstudio';
