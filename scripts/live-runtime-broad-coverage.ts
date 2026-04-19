@@ -72,6 +72,7 @@ function buildInteractionDiagnostics(
   }>,
 ): InteractionDiagnostics {
   const pair = extractInteractionEntityPair(question);
+  const hasPair = Boolean(pair?.systemA && pair?.systemB);
   const uniqueDocs = new Set<string>();
   let tier1Count = 0;
   let tier2Count = 0;
@@ -96,7 +97,7 @@ function buildInteractionDiagnostics(
 
     if (hasA && hasB) {
       tier1Count += 1;
-    } else if (hasMechanism && (hasA || hasB)) {
+    } else if (hasMechanism && (!hasPair || hasA || hasB)) {
       tier2Count += 1;
     } else {
       tier3Count += 1;

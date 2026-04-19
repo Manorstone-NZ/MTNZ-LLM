@@ -59,3 +59,23 @@ test('validation set: rules/validation class routes to synthesis_rules', () => {
   const out = classifyQueryIntent('Summarise validation criteria, entry conditions, and release rules across procedures.');
   assert.equal(out.intent, 'synthesis_rules');
 });
+
+test('classifies cross-system billing flow as interaction_explanation', () => {
+  const out = classifyQueryIntent('How does MADCAP interact with SAP B1 for billing?');
+  assert.equal(out.intent, 'interaction_explanation');
+});
+
+test('classifies decision-logic-between query as interaction_explanation', () => {
+  const out = classifyQueryIntent('Where is the decision logic between selection and sorting?');
+  assert.equal(out.intent, 'interaction_explanation');
+});
+
+test('classifies pattern integration query as interaction_explanation', () => {
+  const out = classifyQueryIntent('Which integrations use a web service or API mechanism?');
+  assert.equal(out.intent, 'interaction_explanation');
+});
+
+test('classifies failure-path interaction query as interaction_explanation', () => {
+  const out = classifyQueryIntent('What happens if the integration between MADCAP and WSO2 fails?');
+  assert.equal(out.intent, 'interaction_explanation');
+});

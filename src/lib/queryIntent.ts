@@ -30,13 +30,16 @@ const WHAT_EXISTS_REGEX = /\bwhat\b.*\b(are there|exist|exists|supported|tests?|
 // Matches questions about how two systems/components interact.
 // Requires both an interaction verb AND two identifiable entities (at least 2 words).
 const INTERACTION_VERB_REGEX =
-  /\b(interact(?:s|ion)?\s+with|connect(?:s|ion)?\s+to|integrat(?:e|es|ion)\s+with|send(?:s)?\s+data\s+to|work(?:s)?\s+with|flow(?:s)?\s+(?:between|from|to)|how\s+do(?:es)?\s+(?:results?|data|messages?)\s+get\s+(?:from|to|into)|relationship\s+between|communication\s+between|interface\s+(?:between|with)|how\s+(?:does|do|is|are).*(?:interact|connect|integrate|communicate|talk\s+to|link(?:ed)?\s+to|feed(?:s)?\s+into|trigger|exchange))\b/i;
+  /\b(interact(?:s|ion)?\s+with|connect(?:s|ion)?\s+to|integrat(?:e|es|ion)\s+with|integration\s+between|send(?:s)?\s+data\s+to|work(?:s)?\s+with|flow(?:s)?\s+(?:between|from|to)|data\s+flow\s+from|how\s+do(?:es)?\s+(?:results?|data|messages?)\s+get\s+(?:from|to|into)|relationship\s+between|communication\s+between|interface\s+(?:between|with)|decision\s+logic\s+between|fallback\s+(?:path|manual\s+path)|what\s+happens\s+if.*fails?|fail(?:ure|s)?\s+(?:between|in)|which\s+integrations?\s+use|how\s+(?:does|do|is|are).*(?:interact|connect|integrate|communicate|talk\s+to|link(?:ed)?\s+to|feed(?:s)?\s+into|trigger|exchange|fail|fallback))\b/i;
 
 const INTERACTION_ENTITY_PAIR_REGEX =
   /\b[A-Za-z][A-Za-z0-9_-]+\b.*\b(?:and|with|to|between|from)\b.*\b[A-Za-z][A-Za-z0-9_-]+\b/i;
 
 const NON_INTERACTION_QUERY_REGEX =
   /^\s*(what\s+is\b|define\b|list\b|show\b|show\s+me\b|what\s+tests?\b|what\s+test\s+types?\b|what\s+codes?\b)/i;
+
+const INTERACTION_PATTERN_QUERY_REGEX =
+  /\b(which\s+integrations?\s+use|web\s*service|api\s+mechanism|file[-\s]*based\s+exchange|manual\s+override|event[-\s]*driven)\b/i;
 
 const SYSTEM_ALIASES: Array<{ regex: RegExp; canonical: string }> = [
   { regex: /\bmadcap\b/i, canonical: 'MADCAP' },
@@ -45,6 +48,8 @@ const SYSTEM_ALIASES: Array<{ regex: RegExp; canonical: string }> = [
   { regex: /\bcolony\s+counter\b/i, canonical: 'Colony Counter' },
   { regex: /\btitan\b/i, canonical: 'TITAN' },
   { regex: /\bods\b/i, canonical: 'ODS' },
+  { regex: /\bqlik\b/i, canonical: 'Qlik' },
+  { regex: /\bsap\s*b1\b|\bsap\s+business\s+one\b/i, canonical: 'SAP B1' },
   { regex: /\bsap\b/i, canonical: 'SAP' },
   { regex: /\bwso2\b/i, canonical: 'WSO2' },
   { regex: /\banalyser\b|\banalyzer\b/i, canonical: 'Analyser' },
@@ -126,7 +131,11 @@ export function classifyQueryIntent(input: string): QueryIntentResult {
   const hasEntityPair = INTERACTION_ENTITY_PAIR_REGEX.test(q);
   const extractedInteractionPair = extractInteractionEntityPair(q);
   const hasNegativeInteractionPattern = NON_INTERACTION_QUERY_REGEX.test(q);
-  const isInteractionQuery = !hasNegativeInteractionPattern && hasInteractionVerb && (hasEntityPair || Boolean(extractedInteractionPair));
+  const hasInteractionPatternQuery = INTERACTION_PATTERN_QUERY_REGEX.test(q);
+  const isInteractionQuery =
+    !hasNegativeInteractionPattern
+    && hasInteractionVerb
+    && (hasEntityPair || Boolean(extractedInteractionPair) || hasInteractionPatternQuery);
 
   const signals: string[] = [];
   if (hasStructuralWord) signals.push('structural_word');
@@ -135,6 +144,7 @@ export function classifyQueryIntent(input: string): QueryIntentResult {
   if (hasCanonicalLanguage) signals.push('canonical_language');
   if (hasWhatExistsPattern) signals.push('what_exists_pattern');
   if (hasRulesLanguage) signals.push('rules_query');
+  if (hasInteractionPatternQuery) signals.push('interaction_pattern_query');
   if (isInteractionQuery) signals.push('interaction_query');
   if (hasNegativeInteractionPattern) signals.push('non_interaction_pattern');
 

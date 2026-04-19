@@ -176,6 +176,7 @@ function classifyInteractionTier(
   hasTransferVerb: boolean;
   hasSetupSignal: boolean;
 } {
+  const hasPair = Boolean(systemA?.trim() && systemB?.trim());
   const hasA = entityMentioned(corpus, systemA);
   const hasB = entityMentioned(corpus, systemB);
   const hasIntegration = INTERACTION_MECHANISM_REGEX.test(corpus);
@@ -192,7 +193,9 @@ function classifyInteractionTier(
     };
   }
 
-  if (hasIntegration && (hasA || hasB)) {
+  // If no explicit entity pair is available (pattern/generic interaction prompts),
+  // allow mechanism-bearing chunks to rank as Tier 2.
+  if (hasIntegration && (!hasPair || hasA || hasB)) {
     return {
       tier: 'tier2_integrated',
       hasBothEntities: false,
