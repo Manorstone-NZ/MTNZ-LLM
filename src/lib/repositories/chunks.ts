@@ -277,8 +277,46 @@ export async function vectorSearch(
 
 export async function fullTextSearch(
   query: string,
-  limit: number
+  limit: number,
+  sectionRefs: string[] = [],
+  documentRefs: string[] = []
 ): Promise<ScoredChunk[]> {
+  const sectionLikePatterns = sectionRefs.map((ref) => `%${ref}%`);
+  const docLikePatterns = documentRefs.map((ref) => `%${ref}%`);
+
+  if (sectionLikePatterns.length > 0 || docLikePatterns.length > 0) {
+    const rows = await sql<ScoredChunk[]>`
+      SELECT
+        c.id,
+        c.document_id,
+        d.source_type,
+        c.content,
+        c.content_preview,
+        c.citation_label,
+        c.section_title,
+        c.sheet_name,
+        c.page_number,
+        c.retrieval_downranked,
+        d.title AS doc_title,
+        d.folder,
+        ts_rank(c.search_text, plainto_tsquery('english', ${query})) AS score,
+        ts_rank(c.search_text, plainto_tsquery('english', ${query})) AS fts_score
+      FROM chunks c
+      JOIN documents d ON c.document_id = d.id
+      WHERE (
+        c.search_text @@ plainto_tsquery('english', ${query})
+        OR coalesce(c.section_title, '') ILIKE ANY(${sql.array(sectionLikePatterns)}::text[])
+        OR d.title ILIKE ANY(${sql.array(docLikePatterns)}::text[])
+      )
+        AND d.is_active = true
+        AND c.retrieval_excluded = false
+      ORDER BY fts_score DESC
+      LIMIT ${limit}
+    `;
+
+    return rows;
+  }
+
   const rows = await sql<ScoredChunk[]>`
     SELECT
       c.id,
@@ -309,8 +347,56 @@ export async function fullTextSearch(
 
 export async function trigramSearch(
   query: string,
-  limit: number
+  limit: number,
+  sectionRefs: string[] = [],
+  documentRefs: string[] = []
 ): Promise<ScoredChunk[]> {
+  const sectionLikePatterns = sectionRefs.map((ref) => `%${ref}%`);
+  const docLikePatterns = documentRefs.map((ref) => `%${ref}%`);
+
+  if (sectionLikePatterns.length > 0 || docLikePatterns.length > 0) {
+    const rows = await sql<ScoredChunk[]>`
+      SELECT
+        c.id,
+        c.document_id,
+        d.source_type,
+        c.content,
+        c.content_preview,
+        c.citation_label,
+        c.section_title,
+        c.sheet_name,
+        c.page_number,
+        c.retrieval_downranked,
+        d.title AS doc_title,
+        d.folder,
+        greatest(
+          similarity(c.content, ${query}),
+          similarity(c.citation_label, ${query}),
+          similarity(coalesce(c.section_title, ''), ${query})
+        ) AS score,
+        greatest(
+          similarity(c.content, ${query}),
+          similarity(c.citation_label, ${query}),
+          similarity(coalesce(c.section_title, ''), ${query})
+        ) AS trigram_score
+      FROM chunks c
+      JOIN documents d ON c.document_id = d.id
+      WHERE d.is_active = true
+        AND c.retrieval_excluded = false
+        AND (
+          c.content % ${query}
+          OR c.citation_label % ${query}
+          OR coalesce(c.section_title, '') % ${query}
+          OR coalesce(c.section_title, '') ILIKE ANY(${sql.array(sectionLikePatterns)}::text[])
+          OR d.title ILIKE ANY(${sql.array(docLikePatterns)}::text[])
+        )
+      ORDER BY score DESC
+      LIMIT ${limit}
+    `;
+
+    return rows;
+  }
+
   const rows = await sql<ScoredChunk[]>`
     SELECT
       c.id,
@@ -343,6 +429,168 @@ export async function trigramSearch(
         c.content % ${query}
         OR c.citation_label % ${query}
         OR coalesce(c.section_title, '') % ${query}
+      )
+    ORDER BY score DESC
+    LIMIT ${limit}
+  `;
+
+  return rows;
+}
+
+export async function findChunksBySectionRefs(
+  sectionRefs: string[],
+  limit: number = 20,
+): Promise<ScoredChunk[]> {
+  if (sectionRefs.length === 0) return [];
+
+  const sectionLikePatterns = sectionRefs.flatMap((ref) => [
+    `%${ref}%`,
+    `%appendix ${ref}%`,
+    `%section ${ref}%`,
+  ]);
+  const appendixPatterns = ['%appendix%', '%test codes%'];
+
+  const rows = await sql<ScoredChunk[]>`
+    SELECT
+      c.id,
+      c.document_id,
+      d.source_type,
+      c.content,
+      c.content_preview,
+      c.citation_label,
+      c.section_title,
+      c.sheet_name,
+      c.page_number,
+      c.retrieval_downranked,
+      d.title AS doc_title,
+      d.folder,
+      CASE
+        WHEN coalesce(c.section_title, '') ILIKE ANY(${sql.array(sectionLikePatterns)}::text[]) THEN 1.0
+        WHEN coalesce(c.section_title, '') ILIKE '%test codes%' THEN 0.95
+        WHEN coalesce(c.section_title, '') ILIKE ANY(${sql.array(appendixPatterns)}::text[]) THEN 0.9
+        ELSE 0.8
+      END AS score,
+      CASE
+        WHEN coalesce(c.section_title, '') ILIKE ANY(${sql.array(sectionLikePatterns)}::text[]) THEN 1.0
+        WHEN coalesce(c.section_title, '') ILIKE '%test codes%' THEN 0.95
+        WHEN coalesce(c.section_title, '') ILIKE ANY(${sql.array(appendixPatterns)}::text[]) THEN 0.9
+        ELSE 0.8
+      END AS fts_score
+    FROM chunks c
+    JOIN documents d ON c.document_id = d.id
+    WHERE d.is_active = true
+      AND c.retrieval_excluded = false
+      AND c.section_title IS NOT NULL
+      AND (
+        coalesce(c.section_title, '') ILIKE ANY(${sql.array(sectionLikePatterns)}::text[])
+        OR coalesce(c.section_title, '') ILIKE '%test codes%'
+        OR coalesce(c.section_title, '') ILIKE ANY(${sql.array(appendixPatterns)}::text[])
+      )
+    ORDER BY score DESC
+    LIMIT ${limit}
+  `;
+
+  return rows;
+}
+
+export async function findListPriorityChunks(
+  limit: number = 20,
+): Promise<ScoredChunk[]> {
+  const listPatterns = ['%test code%', '%test codes%', '%test type%', '%test types%'];
+
+  const rows = await sql<ScoredChunk[]>`
+    SELECT
+      c.id,
+      c.document_id,
+      d.source_type,
+      c.content,
+      c.content_preview,
+      c.citation_label,
+      c.section_title,
+      c.sheet_name,
+      c.page_number,
+      c.retrieval_downranked,
+      d.title AS doc_title,
+      d.folder,
+      CASE
+        WHEN coalesce(c.section_title, '') ILIKE '%test codes%' THEN 1.0
+        WHEN c.content ILIKE '%test code%' THEN 0.95
+        WHEN c.content ILIKE '%test type%' THEN 0.92
+        ELSE 0.85
+      END AS score,
+      CASE
+        WHEN coalesce(c.section_title, '') ILIKE '%test codes%' THEN 1.0
+        WHEN c.content ILIKE '%test code%' THEN 0.95
+        WHEN c.content ILIKE '%test type%' THEN 0.92
+        ELSE 0.85
+      END AS fts_score
+    FROM chunks c
+    JOIN documents d ON c.document_id = d.id
+    WHERE d.is_active = true
+      AND c.retrieval_excluded = false
+      AND (
+        c.content ILIKE ANY(${sql.array(listPatterns)}::text[])
+        OR coalesce(c.section_title, '') ILIKE ANY(${sql.array(listPatterns)}::text[])
+      )
+    ORDER BY score DESC
+    LIMIT ${limit}
+  `;
+
+  return rows;
+}
+
+export async function findAuthoritativeChunks(
+  query: string,
+  limit: number = 24,
+  sectionRefs: string[] = [],
+): Promise<ScoredChunk[]> {
+  const titlePatterns = ['%list%', '%code%', '%appendix%', '%matrix%', '%mapping%', '%register%', '%reference%', '%catalog%', '%catalogue%', '%lookup%'];
+  const sectionPatterns = ['%code%', '%test type%', '%appendix%', '%criteria%', '%rule%', '%release%', '%interpretation%', '%form%', '%mapping%', '%register%', '%reference%'];
+  const sectionRefPatterns = sectionRefs.map((ref) => `%${ref}%`);
+
+  const rows = await sql<ScoredChunk[]>`
+    SELECT
+      c.id,
+      c.document_id,
+      d.source_type,
+      c.content,
+      c.content_preview,
+      c.citation_label,
+      c.section_title,
+      c.sheet_name,
+      c.page_number,
+      c.retrieval_downranked,
+      d.title AS doc_title,
+      d.folder,
+      CASE
+        WHEN lower(coalesce(d.source_type, '')) IN ('xlsx', 'csv') THEN 1.0
+        WHEN d.title ILIKE ANY(${sql.array(titlePatterns)}::text[]) THEN 0.96
+        WHEN coalesce(c.section_title, '') ILIKE ANY(${sql.array(sectionPatterns)}::text[]) THEN 0.93
+        WHEN c.search_text @@ plainto_tsquery('english', ${query}) THEN 0.9
+        ELSE 0.82
+      END AS score,
+      CASE
+        WHEN lower(coalesce(d.source_type, '')) IN ('xlsx', 'csv') THEN 1.0
+        WHEN d.title ILIKE ANY(${sql.array(titlePatterns)}::text[]) THEN 0.96
+        WHEN coalesce(c.section_title, '') ILIKE ANY(${sql.array(sectionPatterns)}::text[]) THEN 0.93
+        WHEN c.search_text @@ plainto_tsquery('english', ${query}) THEN 0.9
+        ELSE 0.82
+      END AS fts_score
+    FROM chunks c
+    JOIN documents d ON c.document_id = d.id
+    WHERE d.is_active = true
+      AND c.retrieval_excluded = false
+      AND (
+        lower(coalesce(d.source_type, '')) IN ('xlsx', 'csv')
+        OR d.title ILIKE ANY(${sql.array(titlePatterns)}::text[])
+        OR coalesce(c.section_title, '') ILIKE ANY(${sql.array(sectionPatterns)}::text[])
+        OR (${sectionRefPatterns.length > 0 ? sql`coalesce(c.section_title, '') ILIKE ANY(${sql.array(sectionRefPatterns)}::text[])` : sql`false`})
+      )
+      AND (
+        c.search_text @@ plainto_tsquery('english', ${query})
+        OR c.content ILIKE ${`%${query}%`}
+        OR c.citation_label ILIKE ${`%${query}%`}
+        OR lower(coalesce(d.source_type, '')) IN ('xlsx', 'csv')
       )
     ORDER BY score DESC
     LIMIT ${limit}

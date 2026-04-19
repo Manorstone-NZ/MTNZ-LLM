@@ -20,6 +20,18 @@ function normaliseText(text: string): string {
   return text.toLowerCase().trim().replace(/\s+/g, ' ');
 }
 
+function isStructuralHeadingLikeContent(content: string): boolean {
+  const firstLine = (content ?? '').split('\n')[0]?.trim() ?? '';
+  if (!firstLine) return false;
+
+  // Numbered heading patterns like "13.2.1 MICROBIOLOGY TEST CODES" or "3 QUALITY CONTROL"
+  if (/^\d+(\.\d+)*\s+\S/.test(firstLine)) return true;
+  // Keyword heading patterns
+  if (/^(appendix|table|figure|schedule|annex)\b/i.test(firstLine)) return true;
+
+  return false;
+}
+
 /** Track the "current heading" while walking sections. */
 function getCurrentHeading(sections: NormalisedSection[], index: number): string | null {
   for (let i = index - 1; i >= 0; i--) {
@@ -198,6 +210,7 @@ const SHORT_EXEMPT_TYPES = new Set([
   'instruction_block',
   'warning',
   'note',
+  'appendix',   // Appendix chunks are structurally important even when short (tables, codes)
 ]);
 
 export function applyShortContentPolicy(sections: NormalisedSection[]): NormalisedSection[] {
@@ -207,6 +220,7 @@ export function applyShortContentPolicy(sections: NormalisedSection[]): Normalis
     if (section.retrieval_excluded) return section;
     if (section.section_type === 'heading') return section;
     if (SHORT_EXEMPT_TYPES.has(section.section_type)) return section;
+    if (isStructuralHeadingLikeContent(section.content)) return section;
 
     const tokens = countTokens(section.content);
     if (tokens >= MIN_TOKENS) return section;

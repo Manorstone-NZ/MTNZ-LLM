@@ -28,9 +28,11 @@ import {
   markCompleted,
   updateDocumentNormStats,
   setQuarantined,
+  updateCompletenessAudit,
 } from './repositories/documents';
 
 import { insertChunksV2, deleteChunksByDocumentId } from './repositories/chunks';
+import { auditPdfCompleteness } from './pdfCompleteness';
 
 const SUPPORTED_EXTENSIONS = new Set([
   '.pdf',
@@ -65,13 +67,27 @@ export async function ingestDocuments(options: {
 }): Promise<IngestRunResult> {
   const { sourcePath, forceReprocess = false, singleFile, rebuild = false, onProgress } = options;
   const concurrency = parseInt(process.env.INGEST_FILE_CONCURRENCY || '2');
+  const lockTtlMinutes = parseInt(process.env.INGEST_LOCK_TTL_MINUTES || '180', 10);
+  const lockTtlMs = lockTtlMinutes * 60 * 1000;
 
   // --- Run locking ---
-  const [existingRun] = await sql<{ id: string }[]>`
-    SELECT id FROM ingest_runs WHERE status = 'running' LIMIT 1
+  const [existingRun] = await sql<{ id: string; started_at: string }[]>`
+    SELECT id, started_at FROM ingest_runs WHERE status = 'running' LIMIT 1
   `;
   if (existingRun) {
-    throw new Error(`Ingest already running (run_id: ${existingRun.id})`);
+    const ageMs = Date.now() - new Date(existingRun.started_at).getTime();
+    if (Number.isFinite(ageMs) && ageMs > lockTtlMs) {
+      await sql`
+        UPDATE ingest_runs
+        SET status = 'failed',
+            finished_at = now(),
+            notes = ${`Auto-cleared stale ingest lock after ${Math.floor(ageMs / 60000)} minutes (TTL ${lockTtlMinutes}m)`}
+        WHERE id = ${existingRun.id}
+      `;
+      console.log(`  [lock] Cleared stale ingest lock ${existingRun.id}`);
+    } else {
+      throw new Error(`Ingest already running (run_id: ${existingRun.id})`);
+    }
   }
 
   const [run] = await sql<{ id: string }[]>`
@@ -435,12 +451,18 @@ async function processFileV2(
     }
 
     // Step 2b: Store extraction metadata on document
-    const extractionMethod = extracted.ocr_used ? 'ocr' : 'native_' + sourceType;
+    const metadataExtractionMethod = typeof extracted.metadata?.extraction_method === 'string'
+      ? String(extracted.metadata.extraction_method)
+      : null;
+    const extractionMethod = metadataExtractionMethod === 'native'
+      ? `native_${sourceType}`
+      : (metadataExtractionMethod ?? (extracted.ocr_used ? 'ocr' : 'native_' + sourceType));
     const textQualityScore = (extracted.metadata?.text_quality_score as number) ?? null;
     const textQualityTier = (extracted.metadata?.text_quality_tier as 'good' | 'partial' | 'poor') ?? null;
     const qualityScoreSource = extracted.ocr_used
       ? 'ocr_output' as const
       : 'native_extraction' as const;
+    const extractionNeedsReview = (extracted.metadata?.needs_review as boolean) ?? false;
 
     await sql`
       UPDATE documents
@@ -449,9 +471,14 @@ async function processFileV2(
           extraction_method = ${extractionMethod},
           text_quality_score = ${textQualityScore},
           text_quality_tier = ${textQualityTier},
-          quality_score_source = ${qualityScoreSource}
+          quality_score_source = ${qualityScoreSource},
+          needs_review = (needs_review OR ${extractionNeedsReview})
       WHERE id = ${newDoc.id}
     `;
+
+    if (extractionMethod === 'native_pdfjs' || extractionMethod === 'ocr') {
+      console.log(`  [fallback] ${file.relativePath} -> ${extractionMethod}`);
+    }
 
     if (extracted.ocr_used) {
       // Track OCR routing
@@ -470,7 +497,20 @@ async function processFileV2(
     const normResult = await normalise(extracted.sections, docTitle, mode);
 
     // Step 3a: Handle sanity warning
-    if (normResult.sanity_warning) {
+    // Keep needs_review focused on genuinely risky extraction cases:
+    // - only PDF pipeline sanity warnings
+    // - skip tiny clean PDFs (often relationship/reference stubs) that are structurally small by design
+    const isTinyCleanPdf =
+      file.extension === '.pdf' &&
+      normResult.stats.total_output <= 10 &&
+      normResult.stats.excluded === 0;
+
+    const shouldFlagNeedsReviewFromSanity =
+      normResult.sanity_warning &&
+      file.extension === '.pdf' &&
+      !isTinyCleanPdf;
+
+    if (shouldFlagNeedsReviewFromSanity) {
       await sql`UPDATE documents SET needs_review = true WHERE id = ${newDoc.id}`;
       console.log(`  [needs_review] ${file.relativePath} — sanity warning from normalisation`);
     }
@@ -555,6 +595,52 @@ async function processFileV2(
 
     // Step 9: Mark completed — only after chunks stored and embedding states finalised
     await markCompleted(newDoc.id);
+
+    // Step 9a: Run PDF completeness trust audit from extracted chunks.
+    if (file.extension === '.pdf') {
+      const audit = auditPdfCompleteness(
+        {
+          title: docTitle,
+          source_path: file.relativePath,
+          extraction_method: extractionMethod,
+          text_quality_tier: textQualityTier,
+          text_quality_score: textQualityScore,
+          needs_review: Boolean(normResult.sanity_warning),
+          quarantined: shouldQuarantine,
+          chunk_count: totalChunks,
+        },
+        chunks.map((chunk) => ({
+          page_number: chunk.page_number ?? null,
+          section_title: chunk.section_title ?? null,
+          content: chunk.content,
+        })),
+      );
+
+      const completenessStatus = audit.risk === 'high'
+        ? 'suspect'
+        : audit.risk === 'medium'
+          ? 'partial'
+          : 'complete';
+
+      await updateCompletenessAudit(
+        newDoc.id,
+        completenessStatus,
+        audit.risk_score,
+        audit.reasons,
+        audit.missing_referenced_appendices,
+      );
+
+      // If completeness audit indicates the document is complete and low risk,
+      // clear noisy review flags from earlier sanity heuristics.
+      if (completenessStatus === 'complete' && audit.risk_score <= 1 && textQualityTier !== 'poor') {
+        await sql`
+          UPDATE documents
+          SET needs_review = false,
+              updated_at = now()
+          WHERE id = ${newDoc.id}
+        `;
+      }
+    }
 
     console.log(
       `  [done] ${file.relativePath} → ${totalChunks} chunks ` +

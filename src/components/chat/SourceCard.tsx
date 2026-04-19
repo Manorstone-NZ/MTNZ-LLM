@@ -22,11 +22,42 @@ export default function SourceCard({ sources }: SourceCardProps) {
       <div className="mt-2 text-xs text-slate-400">
         <span className="text-slate-500">Source: </span>
         <span className="text-slate-300">{group.doc_title}</span>
+        {group.preview_image_url && (
+          <span className="ml-2 rounded bg-sky-900/50 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-sky-300">
+            Image
+          </span>
+        )}
         {group.section_title && (
           <>
             <span className="mx-1 text-slate-600">-</span>
             <span className="text-slate-400">{group.section_title}</span>
           </>
+        )}
+        {group.preview_image_url && (
+          <div className="mt-2 max-w-xs overflow-hidden rounded-md border border-slate-700 bg-slate-900">
+            <a
+              href={group.preview_image_url}
+              target="_blank"
+              rel="noreferrer"
+              className="block"
+            >
+              <img
+                src={group.preview_image_url}
+                alt={group.doc_title}
+                className="max-h-40 w-full object-contain bg-slate-950"
+              />
+            </a>
+            <div className="border-t border-slate-800 px-2 py-1">
+              <a
+                href={group.preview_image_url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[11px] text-sky-400 hover:text-sky-300"
+              >
+                Open image preview
+              </a>
+            </div>
+          </div>
         )}
       </div>
     );
@@ -61,6 +92,11 @@ export default function SourceCard({ sources }: SourceCardProps) {
             >
               <div className="flex flex-wrap items-baseline gap-1.5">
                 <span className="font-semibold text-slate-200">{group.doc_title}</span>
+                {group.preview_image_url && (
+                  <span className="rounded bg-sky-900/50 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-sky-300">
+                    Image
+                  </span>
+                )}
                 {group.folder && (
                   <span className="text-[10px] text-slate-500">{group.folder}</span>
                 )}
@@ -70,6 +106,32 @@ export default function SourceCard({ sources }: SourceCardProps) {
               )}
               {group.preview && (
                 <p className="mt-1 leading-relaxed text-slate-500">{group.preview}</p>
+              )}
+              {group.preview_image_url && (
+                <div className="mt-2 max-w-xs overflow-hidden rounded-md border border-slate-700 bg-slate-900">
+                  <a
+                    href={group.preview_image_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block"
+                  >
+                    <img
+                      src={group.preview_image_url}
+                      alt={group.doc_title}
+                      className="max-h-40 w-full object-contain bg-slate-950"
+                    />
+                  </a>
+                  <div className="border-t border-slate-800 px-2 py-1">
+                    <a
+                      href={group.preview_image_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[11px] text-sky-400 hover:text-sky-300"
+                    >
+                      Open image preview
+                    </a>
+                  </div>
+                </div>
               )}
             </div>
           ))}

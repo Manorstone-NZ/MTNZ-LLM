@@ -82,6 +82,19 @@ const testSections: NormalisedSection[] = [
     retrieval_excluded: false, retrieval_downranked: false,
     is_boilerplate: false, boilerplate_hash: null, normalisation_reason: null,
   },
+  {
+    title: 'APPENDIX', content: 'Appendix', type: 'heading',
+    section_type: 'heading', section_type_confidence: 0.95,
+    retrieval_excluded: false, retrieval_downranked: false,
+    is_boilerplate: false, boilerplate_hash: null, normalisation_reason: null,
+  },
+  // Structural heading-like tiny section (must be retained)
+  {
+    title: null, content: '13.2.1 MICROBIOLOGY TEST CODES', type: 'paragraph',
+    section_type: 'paragraph', section_type_confidence: 0.5,
+    retrieval_excluded: false, retrieval_downranked: false,
+    is_boilerplate: false, boilerplate_hash: null, normalisation_reason: null,
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -150,6 +163,9 @@ assert(
 // Warning should NOT be excluded by short content policy
 const warningAfter = sections.find(s => s.content === 'WARNING: Hot surfaces.');
 assert(warningAfter?.retrieval_excluded === false, 'Warning NOT excluded by short content policy');
+
+const structuralAfter = sections.find(s => s.content === '13.2.1 MICROBIOLOGY TEST CODES');
+assert(structuralAfter?.retrieval_excluded === false, 'Structural heading-like content NOT excluded by short content policy');
 
 console.log(`\n=== Results: ${pass} passed, ${fail} failed ===\n`);
 

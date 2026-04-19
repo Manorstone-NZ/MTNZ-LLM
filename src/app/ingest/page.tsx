@@ -57,6 +57,11 @@ interface HealthMetrics {
   quality_good: number;
   quality_partial: number;
   quality_poor: number;
+  fallback_extraction_count: number;
+  fallback_extraction_percent: number;
+  excluded_chunks_total: number;
+  excluded_chunk_percent: number;
+  docs_with_structural_headings: number;
 }
 
 interface ProgressEvent {

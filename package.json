@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "audit:pdf": "tsx scripts/audit-pdf-completeness.ts",
+    "repair:section-titles": "tsx scripts/repair-section-titles.ts",
+    "rescue:pdf": "tsx scripts/rescue-active-pdfs.ts --type=pdf",
+    "rescue:docs": "tsx scripts/rescue-active-pdfs.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.90.0",

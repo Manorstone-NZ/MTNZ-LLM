@@ -1,0 +1,2284 @@
+[
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 239,
+    "section_title": "APPENDIX A: SAMPLE LOGIN AND IDENTIFICATION",
+    "retrieval_excluded": false,
+    "preview": "APPENDIX A: SAMPLE LOGIN AND IDENTIFICATION\n\nAccuracy Checks Logged into TITAN® using the RFID tag data.\nCRV Accuracy Logged into TITAN® using Barcode number and supply\ndate.\nReference Materials Sample ID, calibration batch number (i.e., Skim\n\nCS2504"
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 240,
+    "section_title": "APPENDIX A: SAMPLE LOGIN AND IDENTIFICATION",
+    "retrieval_excluded": true,
+    "preview": "Analytical Procedures Manual\nCONTROLLED COPY IF THIS LINE IS GREEN\nAuthorized by Quality Manager\nV27 / Apr 2025 Appendix B – Test Limits and Calculations Summary Page 1 of 2"
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 241,
+    "section_title": "APPENDIX B: TEST LIMITS AND CALCULATIONS SUMMARY",
+    "retrieval_excluded": false,
+    "preview": "APPENDIX B: TEST LIMITS AND CALCULATIONS SUMMARY\n\n1. Duplicate Test Limits\n\nSample Type Protein\n(%)\nLactose\n(%)\nTotal Solids\n(%)\nNon-Casein\nNitrogen\n(%)\nNon-Protein\nNitrogen (%)\nWhole Milk 0.038 0.06 0.05 0.004 0.003\nSkim Milk 0.038 0.06 0.05 0."
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 248,
+    "section_title": "APPENDIX C: BALANCE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "APPENDIX C: BALANCE CALIBRATION\n\nREFERENCES"
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 249,
+    "section_title": "APPENDIX C: BALANCE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "• Laboratory Balances, Calibration Requirements, IANZ Technical Guide No 2: 2002.\n• The Calibration of Balances, D.B. Prowse, CSIRO.\n• Specific Criteria for accreditation No. 9 – Dairy Testing Laboratories, IANZ."
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 250,
+    "section_title": "APPENDIX C: BALANCE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "RESPONSIBILITY\n\nA trained technician shall be responsible for the calibration of all balances.\nTechnicians performing tests shall be responsible for ensuring that all balances used are\ncalibrated.\n\nFREQUENCY\n\nAll balances must have an annual service "
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 263,
+    "section_title": "APPENDIX D: TEMPERATURE SPATIAL DISTRIBUTION",
+    "retrieval_excluded": false,
+    "preview": "APPENDIX D: TEMPERATURE SPATIAL DISTRIBUTION\n\nSCOPE\n\nThis calibration method can be used on ovens, incubators, waterbaths and the coolroom.\n\nREFERENCES"
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 264,
+    "section_title": "APPENDIX D: TEMPERATURE SPATIAL DISTRIBUTION",
+    "retrieval_excluded": false,
+    "preview": "An Introduction to Temperature Measurement, Traceable Temperatures, and Calibration. JV\nNicolas – DR White 1994.\nSpecific Criteria for accreditation No. 9 – Dairy Testing Laboratories, IANZ\nDataTaker User Manual."
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 265,
+    "section_title": "APPENDIX D: TEMPERATURE SPATIAL DISTRIBUTION",
+    "retrieval_excluded": false,
+    "preview": "RESPONSIBILITY\n\nThe Specialty Technician i responsible for ensuring spatial distribution checks are performed\nat the appropriate time. They are also responsible for checking the results of the spatial data.\nThe trained technician shall be responsible"
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 266,
+    "section_title": "APPENDIX D: TEMPERATURE SPATIAL DISTRIBUTION",
+    "retrieval_excluded": false,
+    "preview": "A spatial distribution check of temperatures shall be performed every 2 years on all ovens,\nincubators, waterbaths and the coolroom, and when any maintenance performed may affect\nthe spatial distribution.\n\nLIMITS\n\nThe range of temperatures within the"
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 297,
+    "section_title": "APPENDIX E: VOLUMETRIC EQUIPMENT CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "APPENDIX E: VOLUMETRIC EQUIPMENT CALIBRATION\n\nNOTE:"
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 298,
+    "section_title": "APPENDIX E: VOLUMETRIC EQUIPMENT CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "All glassware must be checked for gross errors on receipt and if accepted, must have a unique\nidentification attached."
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 299,
+    "section_title": "APPENDIX E: VOLUMETRIC EQUIPMENT CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "• ISO 4787 - Laboratory Glassware, Volumetric Glassware, Methods for use and testing\n\ncapacity; 1984.\n\n• BS 1797 - Tables for use in the Calibration of Volumetric Glassware; 1987.\n• Specific Criteria for accreditation No. 9 – Dairy Testing Laboratori"
+  },
+  {
+    "title": "Analytical Procedures Manual (V27)",
+    "chunk_index": 300,
+    "section_title": "APPENDIX E: VOLUMETRIC EQUIPMENT CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "RESPONSIBILITY\n\nA trained technician shall be responsible for the checking of all volumetric equipment\nreceived at the laboratory for gross errors before placing it in the store. They shall also be\nresponsible for calibrating volumetric equipment whi"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 31,
+    "section_title": "Appendix - Internal Development Landscape",
+    "retrieval_excluded": true,
+    "preview": "Key aspects of the current internal development landscape include:"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 32,
+    "section_title": "Appendix - Internal Development Landscape > 1. Heavy Reliance on Excel Workbook Applications",
+    "retrieval_excluded": false,
+    "preview": "- Microsoft Excel is frequently used as a user interface (UI) for performing functions that extend beyond the capabilities of Madcap, Titan, or SAP Business One. These Excel workbooks include complex macros that directly interact with production data"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 33,
+    "section_title": "Appendix - Internal Development Landscape > 2. SQL Stored Procedures and Database Duplication",
+    "retrieval_excluded": false,
+    "preview": "- Custom SQL stored procedures are extensively used within the production environment to perform tasks that current systems cannot handle. Many of these procedures are developed and deployed directly to the production databases, which presents securi"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 34,
+    "section_title": "Appendix - Internal Development Landscape > 3. Script-Based Automation and Data Transfer",
+    "retrieval_excluded": false,
+    "preview": "3. Script-Based Automation and Data Transfer"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 35,
+    "section_title": "Appendix - Internal Development Landscape > 3. Script-Based Automation and Data Transfer",
+    "retrieval_excluded": false,
+    "preview": "- To facilitate data exchange between systems, internal teams have developed custom scripts that automate tasks such as file transfers via FTP/SFTP and data transformations. These scripts operate on schedules and are managed through Windows Task Sche"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 36,
+    "section_title": "Appendix - Internal Development Landscape > 4. Lack of Standard Development Practices",
+    "retrieval_excluded": false,
+    "preview": "- No documented requirements and scope, risking misalignment between solutions and business needs, scope creep, and project delays.\n- Development at MilkTest NZ lacks foundational best practices such as code repositories, version control, and peer re"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 37,
+    "section_title": "Appendix - Internal Development Landscape > 5. High Dependency on Key Individuals",
+    "retrieval_excluded": false,
+    "preview": "- The development of internal tools and macros has been led by a few key personnel with specialised knowledge. However, with some of these individuals approaching retirement and minimal documentation of their work, MilkTest NZ faces a significant kno"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 38,
+    "section_title": "Appendix - Internal Development Landscape > 6. Compliance and Security Risks",
+    "retrieval_excluded": false,
+    "preview": "- The lack of structured development practices and documentation exposes MilkTest NZ to compliance risks. With macros, SQL procedures, and scripts directly interacting with production data, there is minimal oversight on data integrity, auditability, "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 39,
+    "section_title": "Appendix - Process Overview of Routine and Casual Testing",
+    "retrieval_excluded": false,
+    "preview": "MilkTest NZ conducts two primary categories of testing: routine and casual. Routine testing involves high-volume, standardised processes, mainly for consistent and frequent customer requirements. Casual testing, on the other hand, encompasses special"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 40,
+    "section_title": "Appendix - Process Overview of Routine and Casual Testing > 1. Routine Testing",
+    "retrieval_excluded": false,
+    "preview": "Routine testing includes component testing, which MilkTest NZ performs regularly to fulfil ongoing customer needs. This process is largely automated but still requires several manual steps to prepare data for downstream use.\n\nFigure  - Routine Testin"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 41,
+    "section_title": "Appendix - Process Overview of Routine and Casual Testing > 1. Routine Testing",
+    "retrieval_excluded": false,
+    "preview": "Sample Collection and Preparation\n---\nFrequency | Samples are collected as often as twice daily during the milking season.\nCollection Method | Tankers and silos transport samples from farms, with each sample assigned a barcode or RFID tag. Two sample"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 42,
+    "section_title": "Appendix - Process Overview of Routine and Casual Testing > 1. Routine Testing",
+    "retrieval_excluded": true,
+    "preview": "- Additional resources:Sorting and Splitting\n- Madcap Testing Inhibs"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 43,
+    "section_title": "Appendix - Process Overview of Routine and Casual Testing > 2. Casual Testing",
+    "retrieval_excluded": false,
+    "preview": "2. Casual Testing\n\nCasual testing includes specialised, ad-hoc requests that vary in complexity and customer-specific requirements. It is subdivided into several categories: Analytical/Specialised, Micro, Component, and CRV.\n\nFigure 8 - Casual Testin"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 44,
+    "section_title": "Appendix - Process Overview of Routine and Casual Testing > 2. Casual Testing",
+    "retrieval_excluded": false,
+    "preview": "Sample Submission and Processing\n---\nSubmission Method | Casual samples are sent by courier, along with paper submission forms. The submission forms, often PDFs that customers fill out and print, are included with the sample in transit.\nReception and"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 45,
+    "section_title": "Appendix - Process Overview of Routine and Casual Testing > 3. Data Consolidation and Challenges",
+    "retrieval_excluded": false,
+    "preview": "Category | Description\n---\nMultiple Transformations | Data often passes through several stages of transformation—extracted from LIMS systems, processed with macros in Excel, and formatted to meet invoicing requirements. Each stage introduces potentia"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 46,
+    "section_title": "Appendix - GAP Analysis",
+    "retrieval_excluded": false,
+    "preview": "The following GAP analysis identifies key disparities between MilkTest NZ’s current practices and the optimal state of operations across finance, testing workflows, data management, and compliance. These gaps highlight areas requiring improvement to "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 47,
+    "section_title": "Appendix - GAP Analysis > 1. System Integration and Data Flow",
+    "retrieval_excluded": false,
+    "preview": "- Current State:Key systems (Madcap, Titan, SAP Business One) are not integrated, necessitating extensive manual data manipulation to consolidate and prepare data for invoicing and reporting.\n- Data is exchanged via email, file shares, and OneDrive, "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 48,
+    "section_title": "Appendix - GAP Analysis > 1. System Integration and Data Flow",
+    "retrieval_excluded": false,
+    "preview": "- A fully integrated system where LIMS (Madcap and Titan) seamlessly communicate with SAP Business One, automating data flow from testing to invoicing.\n- A centralised data-sharing platform (e.g., SharePoint or a secure database) to enable real-time "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 49,
+    "section_title": "Appendix - GAP Analysis > 2. Reliance on Manual Processes",
+    "retrieval_excluded": false,
+    "preview": "- Current State:Data from multiple sources must be manually transformed and consolidated before invoicing. Each data source requires significant manual intervention, including data cleaning, reformatting, and validation.\n- The invoicing process heavi"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 50,
+    "section_title": "Appendix - GAP Analysis > 3. LIMS System Limitations",
+    "retrieval_excluded": false,
+    "preview": "- Current State:Madcap and Titan have limited configurability, leading to Excel-based workarounds for data tracking, reporting, and invoicing.\n- Some tests require manual entry, while specific functionalities, such as tracking for third-party invoici"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 51,
+    "section_title": "Appendix - GAP Analysis > 3. LIMS System Limitations",
+    "retrieval_excluded": false,
+    "preview": "- Configurable LIMS systems that meet all operational needs, with the ability to handle customer-specific invoicing requirements and integrate directly with SAP for automated reporting and invoicing.\n- Digital tracking and reporting capabilities with"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 52,
+    "section_title": "Appendix - GAP Analysis > 4. Lack of Standardised Development and Documentation Practices",
+    "retrieval_excluded": false,
+    "preview": "- Current State:Custom development within MilkTest NZ lacks standardised practices, with no version control, code repositories, or structured peer reviews. Many critical tools are undocumented, and custom scripts and macros are deployed without forma"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 53,
+    "section_title": "Appendix - GAP Analysis > 4. Lack of Standardised Development and Documentation Practices",
+    "retrieval_excluded": false,
+    "preview": "- A formalised development process that includes code repositories, version control, peer reviews, and detailed documentation for all tools, macros, and scripts.\n- Proper change management and documentation practices to ensure continuity and scalabil"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 54,
+    "section_title": "Appendix - GAP Analysis > 5. Compliance and Auditability",
+    "retrieval_excluded": false,
+    "preview": "- Current State:Many invoicing and testing workflows are non-compliant with best practices for data security and auditability. Data handling and modifications occur outside controlled environments, and key processes lack audit trails.\n- There is mini"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 55,
+    "section_title": "Appendix - GAP Analysis > 5. Compliance and Auditability",
+    "retrieval_excluded": false,
+    "preview": "- Compliance with industry best practices, including secure and auditable data flows, version control, and automated logging of key actions within systems.\n- All critical workflows documented and standardised, with audit trails to track changes and e"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 56,
+    "section_title": "Appendix - GAP Analysis > 6. Data Consistency and Validation",
+    "retrieval_excluded": false,
+    "preview": "- Current State:Inconsistent formats across multiple data sources lead to discrepancies in unit prices, batch numbers, and PO numbers. Data requires multiple transformations, which introduce errors and inconsistencies.\n- Manual validations are perfor"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 57,
+    "section_title": "Appendix - GAP Analysis > 6. Data Consistency and Validation",
+    "retrieval_excluded": false,
+    "preview": "- A master data management system that enforces data consistency across all sources, with automated validation rules applied at data entry points.\n- Standardised templated data models for all operational and financial data, ensuring alignment with SA"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 58,
+    "section_title": "Appendix - GAP Analysis > 7. Customer-Specific Invoicing Requirements",
+    "retrieval_excluded": false,
+    "preview": "- Current State:The finance team must manually adapt invoices to meet customer-specific requirements, such as adding custom notes, grouping by unique identifiers, or adjusting based on test completion rather than sample submission.\n- These manual cus"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 59,
+    "section_title": "Appendix - GAP Analysis > 8. Inventory and PO Number Management",
+    "retrieval_excluded": false,
+    "preview": "- Current State:Inventory management is inconsistent, with large fluctuations in stock levels, leading to under- or over-stocking.\n- PO number tracking is handled manually in Excel, leading to issues with customer-specific PO requirements.\n- Multiple"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 60,
+    "section_title": "Appendix - Risk Assessment > Risk Rating Definitions",
+    "retrieval_excluded": false,
+    "preview": "Risk Level | Description\n---\nCritical | Immediate attention required. The risk poses a significant threat to business continuity, compliance, or reputation.\nHigh | High potential for negative impact, requiring prompt mitigation. The risk can disrupt "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 61,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": true,
+    "preview": "Detailed Risk Assessment"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 62,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": false,
+    "preview": "Attribute | Details\n---\nDescription | Key systems (Madcap, Titan, and SAP Business One) operate independently, requiring extensive manual intervention for data transfers and consolidation.\nImpact | High – System isolation increases the potential for "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 63,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": true,
+    "preview": "2. Reliance on Manual Processes"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 64,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": false,
+    "preview": "Attribute | Details\n---\nDescription | Many data processing steps, especially within finance and invoicing workflows, are manual. This includes data consolidation, validation, and transformation.\nImpact | Critical – Manual processes are error-prone, l"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 65,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": false,
+    "preview": "Attribute | Details\n---\nDescription | Critical workflows rely on custom Excel macros and SQL procedures developed by a few key individuals who may be approaching retirement.\nImpact | High – Knowledge loss from retiring personnel could disrupt critica"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 66,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": false,
+    "preview": "Attribute | Details\n---\nDescription | Lack of code repositories, version control, and peer review processes increases security vulnerabilities and risks of data integrity issues.\nImpact | High – Absence of these standards creates a high risk of data "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 67,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": false,
+    "preview": "Attribute | Details\n---\nDescription | Data from different sources lacks standardisation, requiring multiple manual transformations and validations, which introduces inconsistency.\nImpact | Moderate – Data inconsistencies lead to inefficiencies and in"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 68,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": false,
+    "preview": "Attribute | Details\n---\nDescription | Manual data entry in Excel and reliance on non-auditable tools creates gaps in traceability and compliance, increasing the risk of regulatory breaches.\nImpact | Critical – Non-compliance with data handling and se"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 69,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": false,
+    "preview": "Attribute | Details\n---\nDescription | Madcap and Titan have limited configurability, leading to Excel-based workarounds and additional manual data entry requirements.\nImpact | High – Limited LIMS functionality slows down workflows and increases opera"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 70,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": false,
+    "preview": "Attribute | Details\n---\nDescription | Customer-specific invoicing requirements create additional manual handling to meet customised needs, such as grouping by specific identifiers or adding notes.\nImpact | Moderate – The added complexity increases in"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 71,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": false,
+    "preview": "Attribute | Details\n---\nDescription | Inventory fluctuations and manual PO tracking in Excel lead to inefficiencies and compliance risks, particularly around customer-specific PO requirements.\nImpact | Moderate – Poor inventory and PO management affe"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 72,
+    "section_title": "Appendix - Risk Assessment > Detailed Risk Assessment",
+    "retrieval_excluded": false,
+    "preview": "Attribute | Details\n---\nDescription | Custom scripts and Excel macros interact directly with production data, lacking secure controls, change management, or audit trails.\nImpact | High – This poses a significant risk for data breaches, unauthorised c"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 73,
+    "section_title": "Appendix - LIMS Data and Export Review",
+    "retrieval_excluded": false,
+    "preview": "Appendix - LIMS Data and Export Review\n\nMilkTest NZ uses two main Laboratory Information Management Systems (LIMS): Madcap and Titan. Both systems handle specific aspects of laboratory data management, sample tracking, and test results. However, due "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 74,
+    "section_title": "Appendix - LIMS Data and Export Review > 1. Madcap LIMS",
+    "retrieval_excluded": false,
+    "preview": "Data Challenges\n---\nLimited Flexibility | Madcap’s rigid structure makes it difficult to customise for specific customer requirements, limiting its utility for diverse testing workflows. Data in Madcap lacks SAP-specific codes, instead relying on int"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 75,
+    "section_title": "Appendix - LIMS Data and Export Review > 1. Madcap LIMS",
+    "retrieval_excluded": false,
+    "preview": "Table  - Madcap Review Summary\n\n2. Titan LIMS\n\nOverview\nTitan is the more configurable LIMS solution, designed to handle specialised and complex testing procedures. It supports custom methods, SAP codes, and more detailed sample state tracking, makin"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 76,
+    "section_title": "Appendix - LIMS Data and Export Review > 2. Titan LIMS",
+    "retrieval_excluded": false,
+    "preview": "Data Challenges\n---\nPerformance Under Load | Titan experiences performance inefficiencies when handling high volumes of data, particularly during peak processing times. This affects data export speeds and can delay workflows.\nUnderutilised Capabiliti"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 77,
+    "section_title": "Appendix - LIMS Data and Export Review > 3. Data Consistency and Validation Issues",
+    "retrieval_excluded": false,
+    "preview": "Issue | Description\n---\nInconsistent Formatting | The exported data often includes inconsistent formatting, such as varying decimal places or extra spaces, which require manual correction.\nLack of Standardised Codes | Neither Madcap nor Titan integra"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 78,
+    "section_title": "Appendix - LIMS Data and Export Review > 4. Reliance on Manual Data Processing Tools",
+    "retrieval_excluded": false,
+    "preview": "Issue | Description\n---\nManual Data Cleaning | Complex manual processes and steps are used to remove unnecessary rows, add SAP codes, apply customer-specific adjustments, and prepare the data for invoicing. These manual processes are time-consuming a"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 79,
+    "section_title": "Appendix - LIMS Data and Export Review > 5. Impact on Efficiency and Accuracy",
+    "retrieval_excluded": false,
+    "preview": "Category | Description\n---\nTime-Consuming Processes | The multiple steps required to extract, clean, reformat, and validate data slow down the invoicing and reporting cycles. This affects the timeliness of invoicing and leads to delays in financial r"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 80,
+    "section_title": "Appendix - Review of PO Number Complexities",
+    "retrieval_excluded": false,
+    "preview": "Appendix - Review of PO Number Complexities\n\nPurchase Order (PO) management at MilkTest NZ is a multifaceted process involving numerous stakeholders, data sources, and formats. This complexity arises from varying customer requirements, inconsistent t"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 81,
+    "section_title": "Appendix - Review of PO Number Complexities > 1. Customer-Specific Requirements for PO Numbers",
+    "retrieval_excluded": false,
+    "preview": "Issue | Description\n---\nConditional Payment Requirements | Some customers will not process payment if the PO number is missing, incorrect, or improperly formatted. This requires careful tracking and accuracy in applying POs to ensure invoices are acc"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 82,
+    "section_title": "Appendix - Review of PO Number Complexities > 1. Customer-Specific Requirements for PO Numbers",
+    "retrieval_excluded": false,
+    "preview": "Impact:\nThis diversity in PO requirements complicates the invoicing process, as the finance team must tailor each invoice to meet these specific needs. Without a streamlined system, ensuring the accuracy of POs becomes a labour-intensive and error-pr"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 83,
+    "section_title": "Appendix - Review of PO Number Complexities > 2. Multiple Stakeholders Managing POs",
+    "retrieval_excluded": false,
+    "preview": "Team | Role and Description\n---\nFinance Team | Uses PO numbers for invoicing purposes, ensuring that each invoice has the correct PO attached to meet customer requirements.\nOperations Team | Often receives and logs POs during sample collection and pr"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 84,
+    "section_title": "Appendix - Review of PO Number Complexities > 2. Multiple Stakeholders Managing POs",
+    "retrieval_excluded": false,
+    "preview": "Impact:\nThe lack of centralised responsibility for PO management leads to miscommunication, inconsistencies, and duplication of efforts. Each team relies on its own approach to tracking, often in Excel, increasing the risk of errors, delays, and misa"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 85,
+    "section_title": "Appendix - Review of PO Number Complexities > 3. Manual Tracking of PO Numbers in Excel",
+    "retrieval_excluded": false,
+    "preview": "Issue | Description\n---\nDuplication of Efforts | Each stakeholder manually records PO numbers in separate files, leading to duplication, data inconsistencies, and a lack of a single source of truth.\nError-Prone Processes | Manual entry increases the "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 86,
+    "section_title": "Appendix - Review of PO Number Complexities > 3. Manual Tracking of PO Numbers in Excel",
+    "retrieval_excluded": false,
+    "preview": "Impact:\nManual tracking in Excel creates inefficiencies and compromises data accuracy. Without real-time visibility or a standardised system for PO management, it is challenging to ensure that all invoices align with the latest customer requirements."
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 87,
+    "section_title": "Appendix - Review of PO Number Complexities > 4. Multiple Files for Single Customers",
+    "retrieval_excluded": false,
+    "preview": "Issue | Description\n---\nRoutine vs. Ad-Hoc Requests | Routine testing services may use a different PO number from one-off or ad-hoc testing requests, necessitating careful tracking to avoid mix-ups.\nTest Types and Line Items | Individual test types ("
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 88,
+    "section_title": "Appendix - Review of PO Number Complexities > 4. Multiple Files for Single Customers",
+    "retrieval_excluded": false,
+    "preview": "Impact:\nMultiple PO files for each customer create an additional workload for the finance team, increasing the potential for inconsistencies and invoice rejection if the incorrect PO is applied.\n\n5. Complex Management of PO Numbers Across Organisatio"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 89,
+    "section_title": "Appendix - Review of PO Number Complexities > 5. Complex Management of PO Numbers Across Organisational Layers",
+    "retrieval_excluded": false,
+    "preview": "Issue | Description\n---\nFarms, Dairy Companies, and Subsidiaries | POs may need to be tracked at the farm level but billed to a parent dairy company or subsidiary. This requires finance to map each PO number to the correct organisational layer for ac"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 90,
+    "section_title": "Appendix - Review of PO Number Complexities > 5. Complex Management of PO Numbers Across Organisational Layers",
+    "retrieval_excluded": false,
+    "preview": "Impact:\nThe layered structure of PO management complicates the billing process and increases the risk of misallocation. This complexity can delay invoicing if PO numbers must be manually validated and mapped to the correct entities within the custome"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 91,
+    "section_title": "Appendix - Review of PO Number Complexities > 6. Challenges with Real-Time PO Updates",
+    "retrieval_excluded": false,
+    "preview": "Issue | Description\n---\nDelayed Access to PO Changes | When customers update or issue new PO numbers, finance may not receive these updates promptly, leading to invoices being submitted with outdated or incorrect POs.\nHigh Risk of Payment Delays | In"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 92,
+    "section_title": "Appendix - Review of PO Number Complexities > 6. Challenges with Real-Time PO Updates",
+    "retrieval_excluded": false,
+    "preview": "Impact:\nThe inability to manage real-time PO updates results in inefficiencies and increases the risk of payment delays, as finance staff must track down the latest PO numbers and reissue invoices.\n\nAppendix - Solution and Mitigation Approach with In"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 93,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 1. Integration Solution for Automation and Centralised Data Management",
+    "retrieval_excluded": false,
+    "preview": "Integration Layer and Middleware\n---\nMiddleware Platform | Utilise an Enterprise Service Bus (ESB) or Integration Platform as middleware to enable standardised connections between LIMS, SAP Business One, the Operational Data Store (ODS), and any futu"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 94,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 2. Implementing an Operational Data Store (ODS)",
+    "retrieval_excluded": false,
+    "preview": "2. Implementing an Operational Data Store (ODS)\n\nThe ODS will act as the unified data layer, receiving and consolidating data from LIMS, SAP, and other sources. With integration in place, the ODS will be updated automatically and used as the central "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 95,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 2. Implementing an Operational Data Store (ODS)",
+    "retrieval_excluded": false,
+    "preview": "Category | Description\n---\nReal-Time Data Ingestion | With middleware in place, data from LIMS, SAP, and other systems can flow into the ODS in real time, providing a single source of truth for operations, finance, and compliance teams.\nEnhanced Data"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 96,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 3. Data Standardisation with Data Models, Dictionaries, and Catalogues",
+    "retrieval_excluded": false,
+    "preview": "Category | Description\n---\nStandardised Data Models | Define and implement data models across LIMS, SAP, and ODS, standardising entities (e.g., samples, tests, invoices) and relationships to ensure compatibility between systems.\nData Dictionary and C"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 97,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 3. Data Standardisation with Data Models, Dictionaries, and Catalogues",
+    "retrieval_excluded": true,
+    "preview": "Expected Benefits:"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 98,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 4. Automated Data Transformation and Enrichment",
+    "retrieval_excluded": false,
+    "preview": "Automated data transformation will take place in the integration layer, ensuring that data from LIMS is formatted to meet SAP and ODS requirements. This removes the need for manual reformatting and improves data reliability."
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 99,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 4. Automated Data Transformation and Enrichment",
+    "retrieval_excluded": false,
+    "preview": "Category | Description\n---\nOn-the-Fly Transformation | Data transformation rules in the middleware will automate data formatting, enrichment (e.g., adding SAP codes), and validation, reducing human intervention.\nData Enrichment | Enhance raw data by "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 100,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 5. Data Architecture for Analytics and Reporting",
+    "retrieval_excluded": false,
+    "preview": "Operational Reporting\n---\nReal-Time Dashboards | Implement dashboards that pull real-time data from the ODS to monitor operational metrics (e.g., sample collection, test completion rates) for immediate decision-making.\nCustomisable Views | Create cus"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 101,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 6. Automated PO Management and Tracking",
+    "retrieval_excluded": false,
+    "preview": "Automating PO management is critical to reduce PO complexities and ensure accurate invoicing."
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 102,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 6. Automated PO Management and Tracking",
+    "retrieval_excluded": false,
+    "preview": "Category | Description\n---\nCentralised PO Repository | The ODS will host a centralised repository for PO numbers, tracking customer-specific requirements, formatting rules, and associated entities. The integration layer will synchronise POs with SAP "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 103,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 7. Future Application Development Support",
+    "retrieval_excluded": false,
+    "preview": "The integration layer and standardised data models will facilitate future application developments and ensure new tools can be incorporated with minimal disruption."
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 104,
+    "section_title": "Appendix - Solution and Mitigation Approach with Integration Solution > 7. Future Application Development Support",
+    "retrieval_excluded": false,
+    "preview": "Category | Description\n---\nModular API-Based Architecture | APIs will allow new applications to connect with existing systems easily, supporting additional tools such as customer portals, mobile apps, or advanced analytics platforms.\nData Governance "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 105,
+    "section_title": "Appendix – Phased Work Outline",
+    "retrieval_excluded": false,
+    "preview": "- Objectives: Review current lab processes, systems, and tools; develop LIMS conceptual data models for integration with the ODS; identify transformation rules.\n- Deliverables:Two LIMS Conceptual Data Models.\n- Documentation of transformation rules f"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 106,
+    "section_title": "Appendix – Phased Work Outline",
+    "retrieval_excluded": false,
+    "preview": "- Milestones: Completion of data models, POCs, and system integration requirements.\n- Stakeholder Approvals: Key stakeholders review and approve deliverables at each phase.\n- POC Validation: Successful POC demonstrations confirming feasibility.\n- Ope"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 107,
+    "section_title": "Appendix – Phased Work Outline",
+    "retrieval_excluded": false,
+    "preview": "- Stakeholder Review: Present the roadmap to key stakeholders for review and feedback.\n- Confirm Dependencies: Confirm finance system and integration tools availability.\n- Initiate Phase 1: Begin Phase 1 activities, including joint business analysis "
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 108,
+    "section_title": "Appendix – System process and Flows",
+    "retrieval_excluded": false,
+    "preview": "Appendix – System process and Flows\n\nSorting and Splitting\n\nSplitting samples involves a process where the Sorting Robot selects and sets aside samples for splitting. The team then takes the tray with these selected samples to the Splitting Robot for"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 109,
+    "section_title": "Appendix – System process and Flows > Madcap Testing Inhibs",
+    "retrieval_excluded": false,
+    "preview": "Inhibitor testing in Madcap is an example of where samples are split, but also highlights a lack of support during the testing process compared to Titan. The team uses a paper template to record the matrix of samples, marking tests manually on the fo"
+  },
+  {
+    "title": "CSA GAP analysis and Process review v0.2",
+    "chunk_index": 110,
+    "section_title": "Appendix – System process and Flows > Casuals Titan",
+    "retrieval_excluded": false,
+    "preview": "Casual samples and the completed paper submission form are sent via courier, where the reception team records the temperature and date on the form before distributing the samples between labs and systems. In Titan, the team creates a job, scans the p"
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 56,
+    "section_title": "13 APPENDIX 1 – SOFTWARE OVERVIEW",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX 1 – SOFTWARE OVERVIEW\n\nThe MilkoScan FT3 can be operated using both the touch screen and the Nova software.\nA screenshot of the instrument touch screen is shown in Figure 2.\nFigure 2. MilkoScan FT3 Touch Screen\nFrom the touch screen, the "
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 57,
+    "section_title": "13 APPENDIX 1 – SOFTWARE OVERVIEW",
+    "retrieval_excluded": false,
+    "preview": "• See the presence of system events, shown by the icon. Errors are shown in yellow and"
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 58,
+    "section_title": "13 APPENDIX 1 – SOFTWARE OVERVIEW",
+    "retrieval_excluded": false,
+    "preview": "Warnings are shown in red."
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 59,
+    "section_title": "13 APPENDIX 1 – SOFTWARE OVERVIEW",
+    "retrieval_excluded": false,
+    "preview": "• Perform a clean by pressing the icon.\n• Perform a zero setting by pressing the icon.\n• Check the instrument status e.g. ready, measuring etc.\n• Start or stop analysis using the icon.\n• Display the currently selected product and change product to on"
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 60,
+    "section_title": "13 APPENDIX 1 – SOFTWARE OVERVIEW",
+    "retrieval_excluded": false,
+    "preview": "icon.\n\nEOP 001"
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 61,
+    "section_title": "13 APPENDIX 1 – SOFTWARE OVERVIEW",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV3 / Nov 2025 Authorised by Quality Manager Page 10 of 12\nA screenshot of the Nova software is shown in Figure 3.\nThis screen shows the most recent results in analysis time order. To add comments, change sample\nI"
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 62,
+    "section_title": "13 APPENDIX 1 – SOFTWARE OVERVIEW",
+    "retrieval_excluded": false,
+    "preview": "1. System events indicator. Errors are shown in yellow and warnings are shown in red. Click to open\n\nthe System events menu.\n\n2. System events menu. Detailed description of errors and warnings. Click the Reset button to\n\nacknowledge the event."
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 63,
+    "section_title": "13 APPENDIX 1 – SOFTWARE OVERVIEW",
+    "retrieval_excluded": false,
+    "preview": "3. Clean icon. Click to begin clean.\n4. Zero icon. Shows how long since the last zero setting was performed. Click to begin zero setting.\n5. Instrument status i.e. Ready, Measuring etc.\n6. Select Product button. Shows the current selected product. Cl"
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 64,
+    "section_title": "13 APPENDIX 1 – SOFTWARE OVERVIEW",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV3 / Nov 2025 Authorised by Quality Manager Page 11 of 12"
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 65,
+    "section_title": "14 APPENDIX 2 – PIPETTE LIGHT",
+    "retrieval_excluded": false,
+    "preview": "14 APPENDIX 2 – PIPETTE LIGHT\n\nThe pipette is equipped with an LED which changes colour depending on the current instrument\nstatus:"
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 66,
+    "section_title": "14 APPENDIX 2 – PIPETTE LIGHT",
+    "retrieval_excluded": false,
+    "preview": "• Red – Error state and not possible to perform measurement.\n• Orange – Intake in progress.\n• Yellow – Descaling and not possible to perform measurement.\n• Purple – Cleaning and not possible to perform measurement.\n• Green – Ready for analysis.\n• Gre"
+  },
+  {
+    "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+    "chunk_index": 67,
+    "section_title": "14 APPENDIX 2 – PIPETTE LIGHT",
+    "retrieval_excluded": false,
+    "preview": "Blue – Zero Setting"
+  },
+  {
+    "title": "EOP 003 (V8) TRAW Manual",
+    "chunk_index": 99,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "EOP 005 (V1) Plate Washer Manual",
+    "chunk_index": 42,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "EOP 007 (V7) Mediaclave Manual",
+    "chunk_index": 69,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 TROUBLESHOOTING MEDIACLAVE PROBLEMS"
+  },
+  {
+    "title": "EOP 008 (V2) RFID Aerial Table Manual",
+    "chunk_index": 19,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "EOP 009 (V2) pH Meter Manual",
+    "chunk_index": 46,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "EOP 009 (V2) pH Meter Manual",
+    "chunk_index": 47,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": true,
+    "preview": "N/A"
+  },
+  {
+    "title": "EOP 010 (V1) Infrared Thermometer Manual",
+    "chunk_index": 25,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 DISTANCE FROM TARGET TO INFRARED THERMOMETER\n\nThe proper distance to spot ratio (D:S Ratio) must be used when measuring temperature using the\ninfrared thermometer. Further detail of this can be found in the respective user manuals.\n"
+  },
+  {
+    "title": "EOP 011 (V1) Autoclave Manual",
+    "chunk_index": 54,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 TROUBLESHOOTING\n\nIf issues arise during operation of the Autoclave, follow 2383 Operator Manual, Section 5 found in the\nTITAN® Asset Register for the potential resolution of issues.\nMore information on the TITAN® Asset Register can "
+  },
+  {
+    "title": "EOP 012 (V1) Thermoduric Pasteurisation Bath Manual",
+    "chunk_index": 38,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 APPENDIX 1 – PILOT SAMPLES\n\nA pilot sample must be created to include in every pasteurisation bath run.\n\n13.1.1 BUNG CREATION"
+  },
+  {
+    "title": "EOP 013 (V8) Pipette Manual",
+    "chunk_index": 96,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 TROUBLESHOOTING"
+  },
+  {
+    "title": "EOP 014 (V1) CombiFoss Manual",
+    "chunk_index": 315,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 TROUBLESHOOTING\n\nTable 18: Troubleshooting\nProblem Possible Resolution\nInstrument units not coming online\n(device initialisation failed error)\nPossible UA Interface error."
+  },
+  {
+    "title": "EOP 015 (V1) Thermometer Manual",
+    "chunk_index": 57,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "EOP 016 (V1) Centrifuge Manual",
+    "chunk_index": 35,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 TROUBLESHOOTING\n\nIf issues arise during operation of the Centrifuge, follow the appropriate User Manual found in the\nTITAN® Asset Register for the potential resolution of issues.\nMore information on the TITAN® Asset Register can be "
+  },
+  {
+    "title": "EOP 017 (V1) Timer Manual",
+    "chunk_index": 44,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "EOP 018 (V1) Colony Counter Manual",
+    "chunk_index": 42,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 TROUBLESHOOTING"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 149,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 150,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "13.1 APPENDIX 1 – PIPETTE CALIBRATION"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 151,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "1. Dispense RO water into four 37mL vials labelled A, B, C and D and leave on the bench to"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 152,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "equilibrate to room temperature."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 153,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "2. Record the pipette ID’s in the Plating Robot Pipette Calibration spreadsheet.\n3. Using a thermometer, measure the RO water temperature of each vial and record in EQ025\n\nPlating Robot Pipette Calibration.\n\n4. Place each of the four 37mL vials in th"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 154,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "19 and feed the four racks into their respective lines so that the vials are in the sampling position."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 155,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "5. Label four petri dishes A, B, C and D. Petri dishes should only be handled using clean gloves during"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 156,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "this process to prevent residue from hands altering affecting the weight."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 157,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "6. Weigh the four petri dishes and record in the Plating Robot Pipette Calibration spreadsheet.\n7. Place the four petri dishes in the dispensing area in the corresponding line according to Figure\n\n40.\nFigure 40: Petri dish placement for pipette calib"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 158,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "8. Close all safety doors in zones 1 and 2 and perform a safety reset."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 159,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV1 / May 2025 Authorised By: Quality Manager Page 37 of 45"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 160,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "9. Navigate to Overview > Pipette Calibration.\n• Select which pipettes to use in the Line Enable area. Enabled lines are highlighted in green.\n• Set the Sample Volume for each line to low, high or auto, depending on the volume of RO"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 161,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "water in the vials.\n\n• Ensure the Dishes Present, Vials Present and Racks Present photo eyes are active\n\n(highlighted green) on the enabled lines. If not, it indicates the racks or petri dishes are not\npositioned correctly."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 162,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "• Select which type of pipettes are used – thermoduric (50μL) or coliforms (100μL).\n10. Press the start button to begin.\n11. Once the robot has dispensed water into the petri dishes and reached an idle state, open"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 163,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "safety door 2 and carefully remove the petri dishes. Weigh each petri dish and record on the\nEQ025 Plating Robot Pipette Calibration spreadsheet."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 164,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "12. Repeat Steps 6 to 10 for a total of ten measurements. After the 3 – 4 measurements check"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 165,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "the average volume is within limits before continuing.\nIf any adjustments are necessary, using a spanner, carefully loosen the top nut, then rotate\nthe bolt clockwise to increase volume or anticlockwise to decrease volume. It is recommended\nthat only"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 166,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV1 / May 2025 Authorised By: Quality Manager Page 38 of 45"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 167,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "13. Repeat another 3 measurements to verify the adjustments made have brought the average\n\nvolume within limits. If not make further adjustments as necessary and repeat. A total of 10\nconsecutive measurements must be taken on each line after any adju"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 168,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "volume and standard deviation is within limits. If the average volume is rejected, then it means\nfurther adjustments are necessary. If the relative standard is rejected, it can indicate there is an\noutlier – if so remove the offending measurement and"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 169,
+    "section_title": "13.1 APPENDIX 1 – PIPETTE CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "15. The spreadsheet must be checked by a second trained technician. Save the spreadsheet in\n\nG:\\1Calibration\\Pipettes\\Plating Robot Pipette Calibrations as both a pdf and xlsx file and name\nas the pipette type and date of calibration."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 172,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 173,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "1. Prepare 3L of milk agar and ringers according to the media preparation section.\n2. Label 4 petri dishes A, B, C and D.\n3. Weigh each petri dish and calculate the average petri dish weight. Record in the Agar Volume &"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 174,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "Temperature Calibration Template spreadsheet."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 175,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "4. Navigate to the Overview > Main Correction/Overlay Correction.\n• Enter the average petri dish weight into the Petri Dish Tare Weight field.\n• In the Required Agar field enter 13g.\n• In the Required Ringers field enter 3g.\n5. Place the 4 petri dish"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 176,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "line."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 177,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "6. Close all safety doors in zones 1 and 2 and perform a safety reset.\n7. Press the Agar One Shot or Ringers One Shot button. The robot will dispense one aliquot of"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 178,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "agar/ringers into each petri dish."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 179,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "8. Once complete, remove the 4 petri dishes from the robot and weigh. Update the Resulting Dish"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 180,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "Weight fields and press the Calculate Agar or Calculate Ringers button. This will calculate the run\ntime required to achieve the specified agar weight.\nAssess whether the adjustment should be accepted. Generally, if the calculated corrected run\ntime "
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 181,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "9. Label 10 petri dishes for each line A, B, C and D (40 in total). Dispense one shot of agar or ringers"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 182,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": false,
+    "preview": "into each petri dish – see steps 5 to 7. Record the petri dish weights in the PC016 Agar Volume &\nTemperature Calibration template spreadsheet. The spreadsheet will calculate whether the\nweights are acceptable. If it is outside of the allowable limit"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 183,
+    "section_title": "13.2 APPENDIX 2 – AGAR PUMP CALIBRATION",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV1 / May 2025 Authorised By: Quality Manager Page 40 of 45\nIf any adjustments are made, then repeat the 10 measurements until they are within the\nacceptable limits."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 192,
+    "section_title": "13.3 APPENDIX 3 – TUBING ASSEMBLY",
+    "retrieval_excluded": false,
+    "preview": "13.3 APPENDIX 3 – TUBING ASSEMBLY\n\nAgar tubing should be assessed before each use. If any wear or damage is identified, then tubing is to\nbe replaced following the below steps. Additionally, if any set of agar tubing is identified or suspected\nto be "
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 193,
+    "section_title": "13.3 APPENDIX 3 – TUBING ASSEMBLY",
+    "retrieval_excluded": false,
+    "preview": "1. Cut the tubing to the appropriate length according to Table 2 using a tube cutter, ensuring the"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 194,
+    "section_title": "13.3 APPENDIX 3 – TUBING ASSEMBLY",
+    "retrieval_excluded": false,
+    "preview": "ends are straight to make it easier to attach the connectors and dispensing nozzles. The materials\nneeded for each type of tubing is outlined in Table 2.\n\n2. Scrub the exterior of the metal connectors and dispensing nozzles thoroughly with detergent"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 200,
+    "section_title": "13.4 APPENDIX 4 – REFERENCE VIAL PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "13.4 APPENDIX 4 – REFERENCE VIAL PREPARATION\n\nReference vials need to be prepared in advance. Once the vials start to get low (2 racks of each type\nof reference vial) more vials need to be prepared. These are stored near the main panel of the plating"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 201,
+    "section_title": "13.4 APPENDIX 4 – REFERENCE VIAL PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "• Coliform blank reference vials use the string: “R9942”\n• Thermoduric blank reference vials use the string: “R9952”\n• E.coli positive reference vials use the string: “E.COLI+VE”\n• Bacillus positive reference vials use the string: “BACILLUS+VE”"
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 202,
+    "section_title": "13.4 APPENDIX 4 – REFERENCE VIAL PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "To set up each reference vial for use through the plating robot prepare vials accordingly:\n\n• Thermoduric reference vials: prepare around 30 vials, filling each vial with 6-10ml of sterile\n\nwater."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 203,
+    "section_title": "13.4 APPENDIX 4 – REFERENCE VIAL PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "• Coliform reference vials: prepare 8 vials, filling each vial with 30ml of sterile water."
+  },
+  {
+    "title": "EOP 019 (V1) Plating Robot Operation Manual",
+    "chunk_index": 204,
+    "section_title": "13.4 APPENDIX 4 – REFERENCE VIAL PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "Note: thermoduric reference vials can only be used once to reduce the risk of contaminating the sterile\nwater. Coliform reference vials can be used multiple times, using a set of 4 per run."
+  },
+  {
+    "title": "EOP 020 (V2) BactoScan FC Manual",
+    "chunk_index": 178,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 COMMON ISSUES AND TROUBLESHOOTING"
+  },
+  {
+    "title": "EOP 021 (V1) DT80 Data Logger Manual",
+    "chunk_index": 38,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 TROUBLESHOOTING"
+  },
+  {
+    "title": "EOP 022 (V1) ILAS3200 Operation Manual",
+    "chunk_index": 108,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 TROUBLESHOOTING\n\nCommon ILAS3200 issues and corrective actions are listed in the table below. For full procedure,\nrefer to the associated section in this document.\nTable 1: Common issues\nIssue / Alert Cause Operator Action Refer to "
+  },
+  {
+    "title": "EOP 022 (V1) ILAS3200 Operation Manual",
+    "chunk_index": 135,
+    "section_title": "13.2 POWERING OFF THE MACHINE",
+    "retrieval_excluded": false,
+    "preview": "• If running, press Pause and wait until the machine is in an idle state.\n• Press the shutdown button in the top right of the screen and confirm.\n• Turn off the electrical isolator switch (red, mounted below machine screen) after waiting at"
+  },
+  {
+    "title": "EOP 022 (V1) ILAS3200 Operation Manual",
+    "chunk_index": 136,
+    "section_title": "13.2 POWERING OFF THE MACHINE",
+    "retrieval_excluded": false,
+    "preview": "least 20s for all components to power down.\n\n• Turn off the pneumatic isolator valve (red, below electrical isolator switch)\n\nWait at least 30 seconds before turning the machine on again.\n\n13.3 MANUAL ROBOT MOVEMENT (DRAG MODE)\n\nWhen the robot cannot"
+  },
+  {
+    "title": "LOP-AH 001 (V3) Pregnancy ELISA Manual",
+    "chunk_index": 89,
+    "section_title": "13 APPENDIX 1 – TI006 SPREADSHEET DATA ENTRY",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX 1 – TI006 SPREADSHEET DATA ENTRY\n\nThe TI006 Analysis Batch Conditions and Equipment to XML spreadsheet can be located at G:\\Specialty\nTesting\\CRV Pregnancy Testing."
+  },
+  {
+    "title": "LOP-AH 001 (V3) Pregnancy ELISA Manual",
+    "chunk_index": 90,
+    "section_title": "13 APPENDIX 1 – TI006 SPREADSHEET DATA ENTRY",
+    "retrieval_excluded": false,
+    "preview": "1. Enter the testing technician’s initials in the Analyst and date in Date sections.\n2. Under Analysis Batch Number enter the sample analysis batch number in the same format"
+  },
+  {
+    "title": "LOP-AH 001 (V3) Pregnancy ELISA Manual",
+    "chunk_index": 91,
+    "section_title": "13 APPENDIX 1 – TI006 SPREADSHEET DATA ENTRY",
+    "retrieval_excluded": false,
+    "preview": "generated by TITAN (i.e. Preg-xxx) for each of the ELISA plates being tested."
+  },
+  {
+    "title": "LOP-AH 002 (V6) Mycoplasma bovis Manual",
+    "chunk_index": 127,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 PROFICIENCY TESTING\n\n13.1.1 SAMPLE REGISTRATION"
+  },
+  {
+    "title": "LOP-AH 002 (V6) Mycoplasma bovis Manual",
+    "chunk_index": 144,
+    "section_title": "13.2 TI006 OPERATING PROCEDURE",
+    "retrieval_excluded": false,
+    "preview": "13.2 TI006 OPERATING PROCEDURE\n\n13.2.1 SPREADSHEET DATA ENTRY\n\nThe TI006 Analysis Batch Conditions and Equipment to XML spreadsheet can be located at\nG:\\TITAN\\XML Writer.\n\n1. Enter the testing technician’s initials in the ‘Analyst’ and date in ‘Date’"
+  },
+  {
+    "title": "LOP-AH 002 (V6) Mycoplasma bovis Manual",
+    "chunk_index": 151,
+    "section_title": "13.2.2 TITAN® IMPORTING",
+    "retrieval_excluded": false,
+    "preview": "1. In TITAN®, click on the application menu, select Data Exchange then Import. This will open the\n\nPerform Import window.\n\n2. Click browse to open file explorer and select the generated .XML import file in G:\\TITAN\\XML"
+  },
+  {
+    "title": "LOP-AH 002 (V6) Mycoplasma bovis Manual",
+    "chunk_index": 152,
+    "section_title": "13.2.2 TITAN® IMPORTING",
+    "retrieval_excluded": false,
+    "preview": "Writer\\Import File folder.\nNote: Check that the selected .XML File has the appropriate date and time.\n\n3. Click Exchange template and select Import Analysis Batch Conditions and Equipment (Global)\n\nfrom the drop-down menu and click import and select "
+  },
+  {
+    "title": "LOP-AH 002 (V6) Mycoplasma bovis Manual",
+    "chunk_index": 153,
+    "section_title": "13.2.2 TITAN® IMPORTING",
+    "retrieval_excluded": false,
+    "preview": "4. The Import progress can be checked by opening the TITAN dashboard. Once importing has\n\nsuccessfully completed, the dashboard will be marked as Complete with Errors (See Figure 10).\nFigure 10. Example of successful import of .XML File in TITAN Dash"
+  },
+  {
+    "title": "LOP-AH 003 (V3) Johne's (MAP) ELISA Manual",
+    "chunk_index": 129,
+    "section_title": "13 APPENDIX 1 – TI006 SPREADSHEET DATA ENTRY",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX 1 – TI006 SPREADSHEET DATA ENTRY\n\nThe TI006 Analysis Batch Conditions and Equipment to XML spreadsheet can be located at G:\\Specialty\nTesting\\Johne’s Disease ELISA."
+  },
+  {
+    "title": "LOP-AH 003 (V3) Johne's (MAP) ELISA Manual",
+    "chunk_index": 130,
+    "section_title": "13 APPENDIX 1 – TI006 SPREADSHEET DATA ENTRY",
+    "retrieval_excluded": false,
+    "preview": "1. Enter the testing technician’s initials in the Analyst and date in Date sections.\n2. Under Analysis Batch Number enter the sample analysis batch number in the same format"
+  },
+  {
+    "title": "LOP-AH 003 (V3) Johne's (MAP) ELISA Manual",
+    "chunk_index": 131,
+    "section_title": "13 APPENDIX 1 – TI006 SPREADSHEET DATA ENTRY",
+    "retrieval_excluded": false,
+    "preview": "generated by TITAN (i.e. Johnes-xxx) for each of the ELISA plates being tested."
+  },
+  {
+    "title": "LOP-AH 004 (V1) CAE ELISA Manual",
+    "chunk_index": 66,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-AH 004 (V1) CAE ELISA Manual",
+    "chunk_index": 67,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": true,
+    "preview": "N/A"
+  },
+  {
+    "title": "LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual",
+    "chunk_index": 88,
+    "section_title": "13 APPENDIX – SAMPLE TEST REQUIREMENTS",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX – SAMPLE TEST REQUIREMENTS\n\n13.1 DIETHYL ETHER PEROXIDE TEST\n\nEach new drum of Diethyl ether must be checked and recorded before use.\nTo test that the diethyl ether is peroxide free,"
+  },
+  {
+    "title": "LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual",
+    "chunk_index": 93,
+    "section_title": "13.2 PETROLIUM BENZINE BLANK TEST",
+    "retrieval_excluded": false,
+    "preview": "1. Evaporate in an empty flask 55 mL of petroleum benzine and dry as normal.\n2. The final weight of the residue should be no more than 0.0005 g greater than the blank value.\n3. If the weight is higher than this the solvents must be redistilled as per"
+  },
+  {
+    "title": "LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual",
+    "chunk_index": 94,
+    "section_title": "13.2 PETROLIUM BENZINE BLANK TEST",
+    "retrieval_excluded": false,
+    "preview": "Manual 6.3.10 note 4."
+  },
+  {
+    "title": "LOP-BS 001 (V1) BactoScan Testing ",
+    "chunk_index": 46,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": true,
+    "preview": "N/A"
+  },
+  {
+    "title": "LOP-BS 002 (V1) BactoScan Grade Investigation",
+    "chunk_index": 52,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 EXAMPLES OF SPLIT BLOOD PLATES\n\nFigure 3. Example of Hygiene/Mastitis split blood plate.\nMorphology: Small and medium, round, white and clear, mucosal,\nCount: H4/M3\nFinal Result: Hygiene/Mastitis\nFigure 4. Example of Hygiene/Mastiti"
+  },
+  {
+    "title": "LOP-CP 001 (V3) Cream Component Analysis (via MilkoScan FT3) Manual",
+    "chunk_index": 46,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CP 002 (V2) Buttermilk Component Analysis (via MilkoScan FT3) Manual",
+    "chunk_index": 42,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual",
+    "chunk_index": 43,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CP 004 (V3) Freezing Point (via Cryoscope) Manual",
+    "chunk_index": 72,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CP 004 (V3) Freezing Point (via Cryoscope) Manual",
+    "chunk_index": 73,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": true,
+    "preview": "N/A"
+  },
+  {
+    "title": "LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual",
+    "chunk_index": 86,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CP 006 (V36) CombiFoss Testing Manual",
+    "chunk_index": 95,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CR 001 (V2) CRV Vial Washing Manual",
+    "chunk_index": 58,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CR 002 (V3) CRV Procedures Manual",
+    "chunk_index": 43,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
+    "chunk_index": 33,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CR 004 (V6) CRV Vial Preparation Manual",
+    "chunk_index": 48,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CT 001 (V5) Immunoglobulin (IgG) (HPLC-UV) Manual",
+    "chunk_index": 109,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CT 001 (V5) Immunoglobulin (IgG) (HPLC-UV) Manual",
+    "chunk_index": 110,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "Table 3. HPLC Operating Parameters.\nMethod Name IgG HPLC\nHIP Sampler Draw Speed 100 μL\nInj Volume 5 μL\nNeedle Wash Time enable flush port for 10 secs.\nStop Time As per binary pump.\nPost Time 1 minute\nBinary Pump Flow 0.6 mL/min\nLow Pressure Limit 0 b"
+  },
+  {
+    "title": "LOP-CT 002 (V2) Urea (HPLC-UV) Manual",
+    "chunk_index": 80,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CT 002 (V2) Urea (HPLC-UV) Manual",
+    "chunk_index": 81,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "Table 3. LC Operating Parameters\nMethod name Urea HPLC\nHIP Sampler Draw Speed 40uL\nInjection Volume 10 μL\nNeedle Wash Time 10 sec\nStop Time 10 mins or as per binary pump\nPost Time 1 min\nBinary Pump Flow 0.5 mL/min\nLow Pressure Limit 0 bar\nHigh Pressu"
+  },
+  {
+    "title": "LOP-CT 002 (V2) Urea (HPLC-UV) Manual",
+    "chunk_index": 82,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV2 / Jan 2023 Authorised by Quality Manager Page 18 of 18\nFigure 1. Integration parameters for bovine milk urea on Quantitative analysis. Urea peak in green\ncolour. Peak area = 21. Minimum peak area is 10. Peak t"
+  },
+  {
+    "title": "LOP-CT 003 (V3) Antibiotics in Milk (LC-MS_MS) Manual",
+    "chunk_index": 98,
+    "section_title": "13 APPENDIX – ANTIBIOTICS WORKING VERSION",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX – ANTIBIOTICS WORKING VERSION"
+  },
+  {
+    "title": "LOP-CT 003 (V3) Antibiotics in Milk (LC-MS_MS) Manual",
+    "chunk_index": 99,
+    "section_title": "13 APPENDIX – ANTIBIOTICS WORKING VERSION",
+    "retrieval_excluded": false,
+    "preview": "Centrifuge at 10000 rpm, 5°C\nfor 10 minutes.\nSonicate for 10 minutes.\nPipette 500 μL of supernatant\nto 2 mL glass HPLC vial.\nRemove solvent down dryness using\nReacti-Vap Evaporation Unit.\nRun samples on LCMS QQQ\nAdd 500 μL of 5% acetonitrile/H2O.\nAdd"
+  },
+  {
+    "title": "LOP-CT 004 (V2) 4, 4'-DDE in Whole Milk by SPME-GC-ECD Manual",
+    "chunk_index": 72,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-CT 006 (V3) Fatty Acids in Liquid Milk (GC-FID) Manual",
+    "chunk_index": 115,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 APPENDIX 1 – LOAD METHOD FOR ANALYSIS OF FAMES BY GC-FID\n\nFigure 2. ChemStation/GC_PAL3 user interface to operate GFID system."
+  },
+  {
+    "title": "LOP-CT 006 (V3) Fatty Acids in Liquid Milk (GC-FID) Manual",
+    "chunk_index": 116,
+    "section_title": "13.1 APPENDIX 1 – LOAD METHOD FOR ANALYSIS OF FAMES BY GC-FID",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV3 / Jun 2025 by Quality Manager Page 24 of 30\nFigure 3. Procedure to load the GC method for analysis onto the GC-FID system through the\nChemStation/GC_PAL3 user interface system.\n\nCONTROLLED COPY IF THIS LINE IS"
+  },
+  {
+    "title": "LOP-GN 001 (V2) ELS Calibration Samples Manual",
+    "chunk_index": 29,
+    "section_title": "13 APPENDIX 1 – ELS SAMPLE PROCESSING",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX 1 – ELS SAMPLE PROCESSING\n\nKey\nSample Reception Team\nCMT Team\nTechnical Team\nSample Receipt\nSample Registration\n(Transitional Facility and TITAN®)\nSample Analysis\nResult Processing\nResult Review\nSample Disposal\nEmail Notification\n\nTITAN® "
+  },
+  {
+    "title": "LOP-GN 002 (V24) Reagent Grade Water Evaluation",
+    "chunk_index": 53,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-GN 003 (V1) Spatial Distribution Check Manual",
+    "chunk_index": 43,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual",
+    "chunk_index": 41,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-MB 002 (V28) Escherichia coli Detection in Water Manual",
+    "chunk_index": 51,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-MB 003 (V22) Foreign Matter Manual",
+    "chunk_index": 76,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-MB 003 (V22) Foreign Matter Manual",
+    "chunk_index": 77,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": true,
+    "preview": "N/A"
+  },
+  {
+    "title": "LOP-MB 004 (V1) Maintenance and Control of Reference Organisms",
+    "chunk_index": 91,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 PLATE STREAKING PROCEDURE\n\nAll cultures must be streaked onto appropriate agar and incubated at 30-35° C to allow for the\nisolation of individual colonies. The reference organism morphology can be assessed from the\nisolated colonies"
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 52,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 APPENDIX 1 – DILUTION SERIES PREPARATION\n\nAs agar methods are restricted by the size of the media and the maximum number of colonies, a\ndilution series is performed to obtain aliquots of decreasing concentration from the original sa"
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 53,
+    "section_title": "13.1 APPENDIX 1 – DILUTION SERIES PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "1. Vortex the sample for 20-60 seconds, ensuring the neat sample (100) is well mixed.\n2. Pipette 1 mL of sample into 9 mL peptone diluent to create a 10-1 dilution.\n3. Vortex the 10-1 dilution for 20-60 seconds, and using a new pipette tip, transfer "
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 54,
+    "section_title": "13.1 APPENDIX 1 – DILUTION SERIES PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "dilution into 9 mL peptone diluent to create a 10-2 dilution."
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 55,
+    "section_title": "13.1 APPENDIX 1 – DILUTION SERIES PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "4. Vortex the 10-2 dilution for 20-60 seconds, and using a new pipette tip, transfer 1 mL of 10-2"
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 56,
+    "section_title": "13.1 APPENDIX 1 – DILUTION SERIES PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "dilution into 9 mL peptone diluent to create a 10-3 dilution."
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 57,
+    "section_title": "13.1 APPENDIX 1 – DILUTION SERIES PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "5. Vortex the 10-3 dilution for 20-60 seconds, and using a new pipette tip, transfer 1 mL of 10-3"
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 58,
+    "section_title": "13.1 APPENDIX 1 – DILUTION SERIES PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "dilution into 9 mL peptone diluent to create a 10-4 dilution."
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 59,
+    "section_title": "13.1 APPENDIX 1 – DILUTION SERIES PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "6. Continue to repeat the steps above until the necessary concentration is achieved."
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 60,
+    "section_title": "13.1 APPENDIX 1 – DILUTION SERIES PREPARATION",
+    "retrieval_excluded": false,
+    "preview": "Note: if a 100 dilution is required, pipette 1 mL of neat sample directly onto a Petrifilm plate.\nNote: further dilutions can be made using the same technique described above if necessary. All\ndilution factors must be recorded on the appropriate logs"
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 61,
+    "section_title": "13.1 APPENDIX 1 – DILUTION SERIES PREPARATION",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV2 / Apr 2024 Authorised By: Quality Manager Page 13 of 13"
+  },
+  {
+    "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+    "chunk_index": 62,
+    "section_title": "13.2 APPENDIX 2 – TROUBLESHOOTING GUIDE",
+    "retrieval_excluded": false,
+    "preview": "13.2 APPENDIX 2 – TROUBLESHOOTING GUIDE\n\nIf issues arise with the 3M Petrifilm sheets, investigate the following areas for issues.\nIssue Source Guidelines\nColonies are\nconcentrated in an\narea, or smudged\ntogether.\nTechnician Error Sample must be pres"
+  },
+  {
+    "title": "LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual",
+    "chunk_index": 82,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 CONTAMINATION\n\nA contaminated run is defined as any run where the tips, diluent, blank control tube, and/or agar\ncontrol plates have a count greater than 2 colonies for SRCs. A smaller acceptable contamination limit\nis used for SRCs"
+  },
+  {
+    "title": "LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual",
+    "chunk_index": 95,
+    "section_title": "13.2 TROUBLESHOOTING GUIDE",
+    "retrieval_excluded": false,
+    "preview": "If issues arise with the SRC testing, investigate the following areas for potential resolution of issues.\nIssue Source Guidelines\nDRCA is still pink in colour\nafter boiling\nAgar has not been boiled enough to\nremove oxygen\nContinue to boil agar for ad"
+  },
+  {
+    "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+    "chunk_index": 151,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 DILUTION SERIES PREPARATION\n\nAs agar methods are restricted by the size of the media and the maximum number of colonies, a\ndilution series is performed to obtain aliquots of decreasing concentration from the original sample.\nEach di"
+  },
+  {
+    "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+    "chunk_index": 158,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "1. Isolate the affected run and examine all the plates.\n2. Separate the supplier plates into 3 groups.\n• Plates with counts  5 colonies\n• Plates with counts which are > 5 colonies but less than the grading limit\n• Plates with counts which are likely"
+  },
+  {
+    "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+    "chunk_index": 159,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "Note: Do not discard any plates – save them for further investigation."
+  },
+  {
+    "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+    "chunk_index": 160,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "4. Examine the run carefully assessing:"
+  },
+  {
+    "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+    "chunk_index": 161,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV3 / Oct 2025 Authorised By: Quality Manager Page 29 of 30\nContaminants"
+  },
+  {
+    "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+    "chunk_index": 162,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "• Are both the tips and/or agar control plates contaminated?\n• What sorts of numbers are contaminating the control plates?\n• What is the morphology of the contaminants and are they in the agar or on the surface?\n• Could the contaminant have inhibited"
+  },
+  {
+    "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+    "chunk_index": 163,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "• Is there evidence of contamination throughout the run?\n• Are there the usual numbers of plates without any counts?\n• Are the contaminants easily differentiated from the real supplier morphology?\n• What is the grading history of supplier plates with"
+  },
+  {
+    "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+    "chunk_index": 164,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "EVIDENCE of contamination the real count may be entered. Where there IS EVIDENCE of\ncontamination the plate may be entered as a blank result.\n\n• Plates with high counts and a grading history may be entered with care.\n• Plates with counts >5 but less "
+  },
+  {
+    "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+    "chunk_index": 165,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "7. Full details of the decisions made must be recorded on PC005 or PC006 including -\n• Date plates read\n• Supply date\n• Number of colonies on each control plate\n• The colony morphology\n• The names of the technicians involved\n• Any other relevant comm"
+  },
+  {
+    "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+    "chunk_index": 166,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV3 / Oct 2025 Authorised By: Quality Manager Page 30 of 30"
+  },
+  {
+    "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+    "chunk_index": 162,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 DILUTION SERIES PREPARATION\n\nAs agar methods are restricted by the size of the media and the maximum number of colonies, a\ndilution series is performed to obtain aliquots of decreasing concentration from the original sample.\nEach di"
+  },
+  {
+    "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+    "chunk_index": 172,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "13.2 CONTAMINATION\n\nContaminated thermoduric control plates appear sporadically. Often this contamination is present\nonly on the control plates with no evidence of supplier plates being affected. Intensive investigation\nhas failed to identify the sou"
+  },
+  {
+    "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+    "chunk_index": 173,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "1. Isolate the affected run and examine all the plates.\n2. Separate the supplier plates into 3 groups.\n• Plates with counts  5 colonies\n• Plates with counts which are > 5 colonies but less than the grading limit\n• Plates with counts which are likely"
+  },
+  {
+    "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+    "chunk_index": 174,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "Note: Do not discard any plates – save them for further investigation.\n\n4. Examine the run carefully assessing:\n\nContaminants"
+  },
+  {
+    "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+    "chunk_index": 175,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "• Are both the tips and/or agar control plates contaminated?\n• What sorts of numbers are contaminating the control plates?\n• What is the morphology of the contaminants and are they in the agar or on the surface?\n• Could the contaminant have inhibited"
+  },
+  {
+    "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+    "chunk_index": 176,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "Supplier Plates\n\n• Is there evidence of contamination throughout the run?\n• Are there the usual numbers of supplier plates without any counts?\n• Are the contaminants easily differentiated from the real supplier morphology?\n• What is the grading histo"
+  },
+  {
+    "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+    "chunk_index": 177,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV2 / August 2025 Authorised By: Quality Manager Page 31 of 31"
+  },
+  {
+    "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+    "chunk_index": 178,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "5. A decision must then be made whether to enter any results.\n• Supplier plates with counts 5 colonies can usually be entered regardless. Where there is NO\n\nEVIDENCE of contamination the real count may be entered. Where there IS EVIDENCE of\ncontamin"
+  },
+  {
+    "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+    "chunk_index": 179,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "• Supplier plates with high counts and a grading history may be entered with care.\n• Supplier plates with counts >5 but less than the grading limit may be entered so long as there\n\nis no sign of the contamination affecting the plates\n\n6. Where there "
+  },
+  {
+    "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+    "chunk_index": 180,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "7. Full details of the decisions made must be recorded on PC004, PC007 or PC013 including -\n• Date plates read\n• Supply date\n• Company and run number\n• No. of colonies on each control plate\n• The colony morphology\n• The names of the technicians invol"
+  },
+  {
+    "title": "LOP-MB 009 (V1) Aerobic Plate Count Manual",
+    "chunk_index": 91,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 DILUTION SERIES PREPARATION\n\nAs agar methods are restricted by the size of the media and the maximum number of colonies, a\ndilution series is performed to obtain aliquots of decreasing concentration from the original sample.\nEach di"
+  },
+  {
+    "title": "LOP-MB 009 (V1) Aerobic Plate Count Manual",
+    "chunk_index": 100,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "1. Isolate the affected run and examine all the plates.\n2. Separate the supplier plates into 2 groups.\n• Plates with counts < 5 colonies\n• Plates with counts which are ≥ 5 colonies.\n3. Notify a Team Lead."
+  },
+  {
+    "title": "LOP-MB 009 (V1) Aerobic Plate Count Manual",
+    "chunk_index": 101,
+    "section_title": "13.2 CONTAMINATION",
+    "retrieval_excluded": false,
+    "preview": "Note: Do not discard any plates – save them for further investigation."
+  },
+  {
+    "title": "LOP-MB 010 (V2) Pseudomonas Count Manual",
+    "chunk_index": 85,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 DILUTION SERIES PREPARATION\n\nAs agar methods are restricted by the size of the media and the maximum number of colonies, a\ndilution series is performed to obtain aliquots of decreasing concentration from the original sample.\nEach di"
+  },
+  {
+    "title": "LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual",
+    "chunk_index": 43,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 DEFECT/ODOUR DESCRIPTION AND POSSIBLE CAUSES/SOLUTIONS\n\n13.1.1 BLOOD\n\nBlood is present in the milk sample. This is normally caused by bleeding from the udder. It may be\ncaused by mastitis infection or damage caused by the milking ma"
+  },
+  {
+    "title": "LOP-QM 001 (V9) Proficiency Testing Manual",
+    "chunk_index": 118,
+    "section_title": "13 APPENDIX 1 – REPORT NUMBER RESULT SUBMISSION GUIDE",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX 1 – REPORT NUMBER RESULT SUBMISSION GUIDE\n\nProgramme Category Test Name Method Report\nNumber Instrument\nMilkChek®\n(Chem)\nMB*\nFat – Instrument\nProtein – Instrument\nLactose – Instrument\nTotal Solids – Instrument\nFreezing Point – Instrument\n"
+  },
+  {
+    "title": "LOP-QM 002 (V26) Microbiological Quality Control Procedures Manual",
+    "chunk_index": 73,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 ENVIRONMENTAL CONTROLS TROUBLE-SHOOTING GUIDE\n\n13.1.1 EXPOSURE PLATES\n\nExposure plates determine the level of air contamination present in the laboratory. This should not\nconsecutively exceed more than 10 CFU. If air contamination i"
+  },
+  {
+    "title": "LOP-QM 003 (V3) Key Technical Personnel Manual",
+    "chunk_index": 40,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-QM 004 (V4) Inwards Goods Validation Manual",
+    "chunk_index": 96,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 165,
+    "section_title": "7.13.2 CREAM",
+    "retrieval_excluded": false,
+    "preview": "Note: To create an RG fat (cream) uncertainty file for the new season, save a copy of the previous\nseasons file (G:\\Uncertainty\\Roese Gottlieb - Cream \\RG Cream Fat Uncertainty Calculations\n(Season).xls). Create a copy of the UHT XXXX and ILCP XXXX t"
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 166,
+    "section_title": "7.13.2.1 CREAM ILCPS",
+    "retrieval_excluded": false,
+    "preview": "1. Open Monthly ILCP Report .pdf S:\\ILCP\\(Season)\\(Month)\\3-CREAM_CHEM (date)\\ CTS_ND_3-\n\nCREAM_CHEM-(date).pdf (largest file size)."
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 167,
+    "section_title": "7.13.2.1 CREAM ILCPS",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV1 / Mar 2025 Authorised By: Quality Manager Page 41 of 66"
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 168,
+    "section_title": "7.13.2.1 CREAM ILCPS",
+    "retrieval_excluded": false,
+    "preview": "2. Open G:\\Uncertainty\\Roese Gottlieb - Cream \\RG Cream Fat Uncertainty Calculations (Season).xls\n\nNavigate to the ILCP XXXX tab – where XXXX is the year code for the season e.g. 2425."
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 169,
+    "section_title": "7.13.2.1 CREAM ILCPS",
+    "retrieval_excluded": false,
+    "preview": "3. From the Fat – Grav report copy Your Result (%m/m) and Overall Median from the ILCP .pdf into\n\nthe MTNZ and Median column in the RG Cream Fat Uncertainty Calculations spreadsheet. See\nFigure 17."
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 170,
+    "section_title": "7.13.2.1 CREAM ILCPS",
+    "retrieval_excluded": false,
+    "preview": "4. Once all data for the season is entered, enter your initials and the date into the spreadsheet.\n\nFigure 17. Example of Roese Gottlieb Cream Fat ILCP Report.\nOrange boxes indicate ‘Your Result’ and ‘Median’ raw data to copy into uncertainty spreads"
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 171,
+    "section_title": "7.13.2.1 CREAM ILCPS",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV1 / Mar 2025 Authorised By: Quality Manager Page 42 of 66"
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 172,
+    "section_title": "7.13.2.2 CREAM UHTS",
+    "retrieval_excluded": false,
+    "preview": "1. Open G:\\Uncertainty\\Roese Gottlieb - Cream\\RG Cream Fat Uncertainty Calculations\n\n(Season).xlsx. Navigate to the UHT XXXX tab – where XXXX is the year code for the season e.g.\n2324."
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 173,
+    "section_title": "7.13.2.2 CREAM UHTS",
+    "retrieval_excluded": false,
+    "preview": "2. Open G:\\Uncertainty\\Roese Gottlieb - Cream\\RG Cream Fat UoM data from Titan (date).xlsx. If\n\nnot available request this from the TITAN® System Administrator."
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 174,
+    "section_title": "7.13.2.2 CREAM UHTS",
+    "retrieval_excluded": false,
+    "preview": "3. Apply filters to the TITAN® file.\na. Scheduled Analysis Date - 1/06/20XX – 31/05/20XX (season) sort by date order.\nb. AB State – Approved only.\nc. QC Aliquot Number – filter – text filter – contains - QC 1.\n4. Copy data from the TITAN® file into t"
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 175,
+    "section_title": "7.13.2.3 CREAM SUMMARY",
+    "retrieval_excluded": false,
+    "preview": "1. Navigate to the Summary tab.\n2. In the ILCP, UHT and ILCP Participation tables, label a row for the new season underneath the\n\nprevious season."
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 176,
+    "section_title": "7.13.2.3 CREAM SUMMARY",
+    "retrieval_excluded": false,
+    "preview": "a. Update the ILCP table with sd and repeatability from ILCPXXXX tab for the new season.\nb. Update the UHT table with sd and repeatability from UHTXXXX tab for the new season.\nc. Update ILCP Participation table with no of pairs figure from ILCPXXXX t"
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 177,
+    "section_title": "7.13.2.3 CREAM SUMMARY",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV1 / Mar 2025 Authorised By: Quality Manager Page 43 of 66\nNote: Use last years data as a guide."
+  },
+  {
+    "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+    "chunk_index": 297,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-RM 001 (V36) Reference Material Preparation Manual",
+    "chunk_index": 198,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-RR 001 (V7) Result Release Manual",
+    "chunk_index": 5,
+    "section_title": "RESULT RELEASE MANUAL",
+    "retrieval_excluded": false,
+    "preview": "RESULT RELEASE MANUAL\n\n1 Principle and Purpose .................................................................................................................... 5\n2 Scope and Limitations ............................................................"
+  },
+  {
+    "title": "LOP-RR 001 (V7) Result Release Manual",
+    "chunk_index": 9,
+    "section_title": "4 HEALTH AND SAFETY",
+    "retrieval_excluded": false,
+    "preview": "Sitting for prolonged periods of time – take regular breaks, ensure an ergonomic setup used for\nworkspace.\n\n7 PROCEDURES\n\n7.1 METHOD\n\n7.1.1 RESULT RELEASE REPORTS\n\nThe Result Release report (MADCAP) is used to release both Microbiology and Component "
+  },
+  {
+    "title": "LOP-RR 001 (V7) Result Release Manual",
+    "chunk_index": 21,
+    "section_title": "7.2 MICROBIOLOGY RESULT RELEASE",
+    "retrieval_excluded": false,
+    "preview": "7.2 MICROBIOLOGY RESULT RELEASE\n\nIn MADCAP every test has a specific test type number. Microbiology test numbers are listed in Appendix\n13.2.1 Microbiology Test Codes.\n\n7.2.1 COLIFORM AND THERMODURIC RELEASING (020)"
+  },
+  {
+    "title": "LOP-RR 001 (V7) Result Release Manual",
+    "chunk_index": 40,
+    "section_title": "7. Refer Microbiology Procedures Manual - Appendix L Companies Requiring LCMS Confirmation to",
+    "retrieval_excluded": false,
+    "preview": "8. For confirmed negative samples, paste the results into a Confirmed IHS is now Under 0.003 IUmL"
+  },
+  {
+    "title": "LOP-RR 001 (V7) Result Release Manual",
+    "chunk_index": 41,
+    "section_title": "7. Refer Microbiology Procedures Manual - Appendix L Companies Requiring LCMS Confirmation to",
+    "retrieval_excluded": false,
+    "preview": "email template for the relevant company and send to listed email addresses.\n\n7.2.2.2 RELEASING CONFIRMED TWINSENSOR SAMPLES"
+  },
+  {
+    "title": "LOP-RR 001 (V7) Result Release Manual",
+    "chunk_index": 149,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 FONTERRA SUPPLIER GROUP CODES\n\nArea Group code Group site/region\nNorth (grey trays)\n\n73 Waitoa"
+  },
+  {
+    "title": "LOP-RR 001 (V7) Result Release Manual",
+    "chunk_index": 153,
+    "section_title": "13.2.1 MICROBIOLOGY TEST CODES",
+    "retrieval_excluded": true,
+    "preview": "Test Type Test Type Number\nBactoScan 2"
+  },
+  {
+    "title": "LOP-RR 001 (V7) Result Release Manual",
+    "chunk_index": 154,
+    "section_title": "13.2.1 MICROBIOLOGY TEST CODES",
+    "retrieval_excluded": false,
+    "preview": "APC/SPC 3\n\nColiform 4\nThermoduric 5\nForeign Matter 8\nInhibitory substances 9\nSenses 10\nGrade Investigation 12\nSulphite Reducing Clostridia (SRC) 17\nPseudomonas 24\n48/72 Hour Screening 25"
+  },
+  {
+    "title": "LOP-RR 001 (V7) Result Release Manual",
+    "chunk_index": 155,
+    "section_title": "13.2.1 MICROBIOLOGY TEST CODES",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV7 / Oct 2025 Authorised By: Quality Manager Page 32 of 34\nTest Type Test Type Number\nPetrifilm APC/SPC 32\nAPC/SPC Neat 33\nColiform Neat 34\nSporeformers 35\nQuality Control Failure 40\nBactoScan Alert 42\nE. coli in"
+  },
+  {
+    "title": "LOP-SP 001 (V3) Beta-Lactamase Manual",
+    "chunk_index": 41,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-SP 002 (V4) Titratable Acidity Manual",
+    "chunk_index": 55,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 FAILED QUALITY CONTROLS\n\nIf a Quality Control sample is out of limits, it will flag red in TITAN® (Figure 8). A new QC Aliquot needs\nto be created.\nFigure 8. Example of failed QC"
+  },
+  {
+    "title": "LOP-SP 002 (V4) Titratable Acidity Manual",
+    "chunk_index": 63,
+    "section_title": "13.2.1 PROCEDURE FOR REPLENISHING THE SODIUM HYDROXIDE SOLUTION.",
+    "retrieval_excluded": false,
+    "preview": "1. Get a new bottle from the storeroom and sign it out in SAP.\n2. Unscrew the dosing unit and remove any remaining fluid from the glass Autotitrator vessel. Fill\n\nthe vessel with the new solution and screw the dosing unit back on."
+  },
+  {
+    "title": "LOP-SP 002 (V4) Titratable Acidity Manual",
+    "chunk_index": 64,
+    "section_title": "13.2.1 PROCEDURE FOR REPLENISHING THE SODIUM HYDROXIDE SOLUTION.",
+    "retrieval_excluded": false,
+    "preview": "3. Empty the old fluid from the titration chamber. Select Manual dosing > Dosing > Empty\n4. Select ‘Prepare’ to fill the vessel to refill the dosing line and dosing chamber with new solution.\n5. In TITAN®, ‘Products (Active)’ search Sodium Hydroxide "
+  },
+  {
+    "title": "LOP-SP 002 (V4) Titratable Acidity Manual",
+    "chunk_index": 65,
+    "section_title": "13.2.1 PROCEDURE FOR REPLENISHING THE SODIUM HYDROXIDE SOLUTION.",
+    "retrieval_excluded": false,
+    "preview": "inventory item, transition it to ‘Available’ and print a label.\n\n6. Apply the label to the glass Autotitrator vessel.\n\nNote: See LOP – TI 002 TITAN Manual – Inventory Management – Inventory – Purchased Products\nsection for further information on crea"
+  },
+  {
+    "title": "LOP-SP 002 (V4) Titratable Acidity Manual",
+    "chunk_index": 66,
+    "section_title": "13.2.2 PROCEDURE FOR REPLACING BUFFERS",
+    "retrieval_excluded": false,
+    "preview": "1. Get a clean empty 37ml vial."
+  },
+  {
+    "title": "LOP-SP 002 (V4) Titratable Acidity Manual",
+    "chunk_index": 67,
+    "section_title": "13.2.2 PROCEDURE FOR REPLACING BUFFERS",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV4 / Apr 2025 Authorised By: Quality Manager Page 14 of 14"
+  },
+  {
+    "title": "LOP-SP 002 (V4) Titratable Acidity Manual",
+    "chunk_index": 68,
+    "section_title": "13.2.2 PROCEDURE FOR REPLACING BUFFERS",
+    "retrieval_excluded": false,
+    "preview": "2. Fill it to approx. 25ml with the required buffer.\n\nNOTE: New buffers are kept in the cupboard under the Quality bench in Micro.\n\n3. In TITAN®, Products (Active) search Buffer and select the appropriate product. Create a new"
+  },
+  {
+    "title": "LOP-SP 002 (V4) Titratable Acidity Manual",
+    "chunk_index": 69,
+    "section_title": "13.2.2 PROCEDURE FOR REPLACING BUFFERS",
+    "retrieval_excluded": false,
+    "preview": "inventory item, transition it to available and print a label.\n\n4. Apply the label to the new vial.\n\nNote: See LOP – TI 002 TITAN Manual – Inventory Management – Inventory – Purchased Products\nsection for further information on creating an inventory i"
+  },
+  {
+    "title": "LOP-SP 003 (V23) National Chemical Contaminants Programme Manual",
+    "chunk_index": 47,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 MILKTESTNZ CONTACTS\n\nCommercial Business Manager (Contract Manager)\nTechnical Lead (Technical Liaison)\n\n13.2 NCCP CONTACTS\n\nChantelle Brennan (Contract Manager)\nMPI – Specialist Adviser (Chemical & Microbiological Assurance)\nSusan M"
+  },
+  {
+    "title": "LOP-SP 005 (V2) pH Testing Manual",
+    "chunk_index": 43,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-SP 006 (V1) Bovine Adulteration Indicator Assay (BOV Test) Manual",
+    "chunk_index": 47,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": true,
+    "preview": "N/A"
+  },
+  {
+    "title": "LOP-SP 007 (V2) Stolle ELISA Assay Manual",
+    "chunk_index": 109,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 TROUBLESHOOTING GUIDELINES FOR STOLLE ASSAY\n\nProblem: Low Absorbance"
+  },
+  {
+    "title": "LOP-SP 008 (V1)  Routine Monitoring Of Tanker And Supplier Samples",
+    "chunk_index": 58,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 APPENDIX A – TANKER SAMPLE IDENTIFICATION AND COLLECTION\n\nMilkTestNZ receives tanker samples from Fonterra every Monday.\nThe term “tanker samples” covers the load, the truck and the trailer samples from Fonterra, and the\ntanker samp"
+  },
+  {
+    "title": "LOP-SP 008 (V1)  Routine Monitoring Of Tanker And Supplier Samples",
+    "chunk_index": 59,
+    "section_title": "13.1 APPENDIX A – TANKER SAMPLE IDENTIFICATION AND COLLECTION",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV1 / JUN 2025 Authorised By: Quality Manager Page 14 of 16\nTanker sample IDs are saved into .csv files via 2.0-Sample Selection, Section 2.2.3 on the Sorter Robot,\nor via manually scanning the IDs into a .csv fil"
+  },
+  {
+    "title": "LOP-SR 001 (V10) Receipt of Non-Casual Samples",
+    "chunk_index": 69,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-SR 002 (V15) Receipt of Casual Samples Manual",
+    "chunk_index": 23,
+    "section_title": "7.3.1. REGISTRATION OF SAMPLES IN MADCAP",
+    "retrieval_excluded": false,
+    "preview": "casual sample number (as recorded on the submission form in Step 1) and the test code number\n(refer to SR008 Sample Reception Test Information) on the coloured dot. The required coloured\ndot stickers are listed below:"
+  },
+  {
+    "title": "LOP-SR 002 (V15) Receipt of Casual Samples Manual",
+    "chunk_index": 26,
+    "section_title": "7.3.1. REGISTRATION OF SAMPLES IN MADCAP",
+    "retrieval_excluded": false,
+    "preview": "d) Place a coloured dot as described in Step 3 on the lid of each sample vial and label the\n\nassigned casual number and the relevant test code.\n\ne) Invert the sample to be split 10 times.\nf) Pour the required volume into the empty sterile vials (Refe"
+  },
+  {
+    "title": "LOP-SR 002 (V15) Receipt of Casual Samples Manual",
+    "chunk_index": 153,
+    "section_title": "5. Find and select the required submission in the list, then click Next (alternatively, double click the",
+    "retrieval_excluded": false,
+    "preview": "samples as described in Section 7.3.1. The test code for casual E. Coli water sample tests is 84.\n\nLOP-SR 002"
+  },
+  {
+    "title": "LOP-SR 002 (V15) Receipt of Casual Samples Manual",
+    "chunk_index": 216,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-TI 001 (V3) TITAN Manual - Analysis Batches",
+    "chunk_index": 38,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-TI 002 (V4) TITAN Manual - Inventory Management",
+    "chunk_index": 38,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-TI 003 (V3) TITAN Manual - Job Creation and Reporting",
+    "chunk_index": 58,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 CREATING COPIES DURING SAMPLE LOGIN\n\nCopies of a sample with the same sample settings can be generated and are created once the sample\nlogin process has been initiated. Copies can be numbered sequentially if required.\n\n1. Once Sampl"
+  },
+  {
+    "title": "LOP-TI 004 (V3) TITAN Manual - Approval and Reporting Privileges",
+    "chunk_index": 13,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX"
+  },
+  {
+    "title": "LOP-TI 005 (V4) TITAN Manual - System Incident Register",
+    "chunk_index": 75,
+    "section_title": "13 APPENDIX 1 – TITAN® SI PROCESS",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX 1 – TITAN® SI PROCESS\n\nCREATE SI Complete all\ninformation on the\nentry screen\n\nSAVE\n\nSI state = Created\nSI # Assigned\nComplete\nAssignment,\nAssociations tabs.\nStart Root Cause and\nFiles tabs.\nTransition SI to\n\nSUBMITTED\n\nInform Line Manage"
+  },
+  {
+    "title": "LOP-TI 005 (V4) TITAN Manual - System Incident Register",
+    "chunk_index": 76,
+    "section_title": "13 APPENDIX 1 – TITAN® SI PROCESS",
+    "retrieval_excluded": true,
+    "preview": "Inform Quality\nManager to review\nand sign-off SI.\nTransition SI to"
+  },
+  {
+    "title": "LOP-TI 006 (V3) TITAN Manual - Subcontracting",
+    "chunk_index": 29,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 SUBCONTRACTED TESTS IN TITAN®\n\nSubcontracted\nLaboratory\nTest Method Method Summary Standard LOQ/LOD\nALS/Analytica\nA1 Protein Free (Residue) LC-MS/MS 1%\nA1 Protein Free (Individual\nAnimal) Phenotype LC-MS/MS N/A\nA1 Protein Free (Infa"
+  },
+  {
+    "title": "LOP-TI 006 (V3) TITAN Manual - Subcontracting",
+    "chunk_index": 33,
+    "section_title": "13.2 SUBCONTRACTING END OF MONTH TASKS",
+    "retrieval_excluded": false,
+    "preview": "1. Number of jobs for;\n• FAR001 (Open Country Dairy Awarua – 540)\n• FAR011 (Fonterra – 020)\n• FAR012 (Fonterra – 020)\n• FAR014 (Mataura Valley Milk - 989)\n• Synlait – 410\n• Any other subcontracted testing"
+  },
+  {
+    "title": "LOP-TI 006 (V3) TITAN Manual - Subcontracting",
+    "chunk_index": 34,
+    "section_title": "13.2 SUBCONTRACTING END OF MONTH TASKS",
+    "retrieval_excluded": false,
+    "preview": "On TITAN® Jobs screen, filter for Submission name (YYMMDD). Either export this list to excel or\ncount the job sample count in the Job screen.\n\n2. Number of deepwells sent to subcontracted laboratories.\n\nFilter for ‘Is Deepwell’ in the Job screen unde"
+  },
+  {
+    "title": "LOP-TI 006 (V3) TITAN Manual - Subcontracting",
+    "chunk_index": 35,
+    "section_title": "13.2 SUBCONTRACTING END OF MONTH TASKS",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV3 / Jan 2025 Authorised By: Quality Manager Page 10 of 10"
+  },
+  {
+    "title": "LOP-TI 007 (V2) Titan Manual - Asset Registration, Maintenance and Calibration",
+    "chunk_index": 52,
+    "section_title": "13 APPENDIX",
+    "retrieval_excluded": false,
+    "preview": "13 APPENDIX\n\n13.1 ASSET TYPES"
+  },
+  {
+    "title": "LOP-TI 007 (V2) Titan Manual - Asset Registration, Maintenance and Calibration",
+    "chunk_index": 54,
+    "section_title": "13.2 MAINTENANCE TYPES",
+    "retrieval_excluded": true,
+    "preview": "CONTROLLED COPY IF THIS LINE IS GREEN\nV1 / Apr 2024 Authorised by Quality Manager Page 13 of 13\nName Responsible Department\nSpatial - External External\nSpatial - Technical Technical\nTemperature Check - Specialty Specialty\nTemperature Check - CMT CMT\n"
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 1,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "APPENDIX D: CONTROL OF EXPIRED GOODS\n\nMost laboratory consumables have expiry dates before which they should be used. These are often\nset very conservatively to allow for mishandling during transport when chemicals that should be\nrefrigerated may be "
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 2,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "1. Products with no expiry date e.g. Petri dishes.\n2. Products with an expiry date after which the function cannot possibly be affected e.g. sterile"
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 3,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "blank discs. The expiry date has to do with the sterility of the product rather than the\nfunctionality."
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 4,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "3. Products with an expiry date after which the performance of the goods could be affected e.g."
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 5,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "bacteriological media, FOSS chemicals.\nThe stores system should be organised to ensure that the product is used within the expiry date\nwherever possible, however this is not always achievable. It is permissible to use product that has\nexceeded its ex"
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 6,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "• An assessment of the potential effect of the expired consumable on the outcome of the assay is"
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 7,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "undertaken by the Technical Team and a Technical Note is issued if necessary."
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 8,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "• The consumable is used in an assay in which standard samples are routinely used e.g. BactoScan"
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 9,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "control samples, inhibitory substance standards, IgG standards, media positive controls."
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 10,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "• The performance of the standard samples is closely monitored and any deviation from the"
+  },
+  {
+    "title": "MPM - Appendix D (V3) Control of Expired Goods",
+    "chunk_index": 11,
+    "section_title": "APPENDIX D: CONTROL OF EXPIRED GOODS",
+    "retrieval_excluded": false,
+    "preview": "normal is rapidly acted upon."
+  },
+  {
+    "title": "MPM - Appendix H (V4) Detergent Residues",
+    "chunk_index": 1,
+    "section_title": "APPENDIX H: DETERGENT RESIDUES PROCEDURE",
+    "retrieval_excluded": false,
+    "preview": "APPENDIX H: DETERGENT RESIDUES PROCEDURE\n\n1. PURPOSE"
+  },
+  {
+    "title": "MPM - Appendix K (V2) Procedure for Creating Control Organisms at a Specific Concentration",
+    "chunk_index": 1,
+    "section_title": "APPENDIX K: PROCEDURE FOR CREATING CONTROL ORGANISMS AT A SPECIFIC",
+    "retrieval_excluded": false,
+    "preview": "APPENDIX K: PROCEDURE FOR CREATING CONTROL ORGANISMS AT A SPECIFIC\n\n1. Using a sterile loop, inoculate a vial of nutrient broth with the appropriate reference organism"
+  },
+  {
+    "title": "MPM - Appendix L (V2) Companies Requiring LCMS Confirmation",
+    "chunk_index": 1,
+    "section_title": "APPENDIX L: COMPANIES REQUIRING AUTOMATIC LC -MS TESTING FOR INHIBITORY",
+    "retrieval_excluded": false,
+    "preview": "APPENDIX L: COMPANIES REQUIRING AUTOMATIC LC -MS TESTING FOR INHIBITORY\n\nSUBSTANCES CONFIRMATION"
+  }
+]

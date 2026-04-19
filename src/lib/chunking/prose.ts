@@ -66,12 +66,59 @@ const DISTINCT_TYPES: Set<string> = new Set([
 ]);
 
 /** Section types exempt from the minimum-token guardrail */
+/**
+ * Validates whether a heading title is a real structural heading.
+ * Rejects table-row values like "APC/SPC 3", "FEI ± 1.25", "C TNTC TNTC 350".
+ * Accepts: numbered headings ("3.2 ...", "13.2.1 ..."), keyword headings ("APPENDIX", "TABLE").
+ */
+function isStructuralHeadingTitle(title: string): boolean {
+  const t = title.trim();
+  if (!t) return false;
+
+  const tokens = t.split(/\s+/).filter(Boolean);
+  const numericLikeTokens = tokens.filter((tok) => /\d/.test(tok)).length;
+
+  // Reject table/code row signatures before accepting broad numbered heading patterns.
+  if (/(\d{1,2}\/\d{1,2}\/\d{2,4})/.test(t)) return false; // date-like fields
+  if (/\b\d{1,2}:\d{2}(?::\d{2})?\b/.test(t)) return false; // time-like fields
+  if (tokens.length >= 8 && numericLikeTokens >= 3) return false; // dense record rows
+
+  // Accept: starts with a number[.number]* followed by a word character
+  // e.g. "13.2.1 MICROBIOLOGY TEST CODES", "3 QUALITY CONTROL"
+  if (/^\d+(\.\d+)*\s+\S/.test(t)) return true;
+
+  // Accept: starts with "Appendix", "Table", "Figure", "Schedule", "Annex"
+  if (/^(appendix|table|figure|schedule|annex)\b/i.test(t)) return true;
+
+  // Accept: ALL CAPS title with at least 3 words (e.g. "MICROBIOLOGY TEST CODES")
+  if (/^[A-Z][A-Z\s]{5,}$/.test(t) && t.trim().split(/\s+/).length >= 3) return true;
+
+  // Reject: ends with a bare number (test code row like "APC/SPC 3", "Coliform 4")
+  if (/\s+\d+$/.test(t)) return false;
+
+  // Reject: contains measurement symbols suggesting row data (±, ≥, ≤, >)
+  if (/[±≥≤>]/.test(t)) return false;
+
+  // Reject: very short titles that are just abbreviations/codes (< 3 words)
+  const words = t.split(/\s+/).filter(Boolean);
+  if (words.length < 2) return false;
+
+  return true;
+}
+
+function isStructuralHeadingLikeContent(content: string): boolean {
+  const firstLine = (content ?? '').split('\n')[0]?.trim() ?? '';
+  if (!firstLine) return false;
+  return isStructuralHeadingTitle(firstLine);
+}
+
 const MIN_TOKEN_EXEMPT_TYPES: Set<string> = new Set([
   'table',
   'procedure_step',
   'instruction_block',
   'warning',
   'note',
+  'appendix',   // Appendix data is structurally critical regardless of token count
 ]);
 
 /**
@@ -228,7 +275,8 @@ function applyGuardrails(
     if (
       !chunk.retrieval_excluded &&
       chunk.token_count < MIN_GUARDRAIL_TOKENS &&
-      !MIN_TOKEN_EXEMPT_TYPES.has(chunk.section_type ?? '')
+      !MIN_TOKEN_EXEMPT_TYPES.has(chunk.section_type ?? '') &&
+      !isStructuralHeadingLikeContent(chunk.content)
     ) {
       continue; // drop
     }
@@ -328,7 +376,7 @@ export function chunkProse(
     const section = asNormalised(rawSection);
 
     // Track heading as current section title
-    if (section.type === 'heading' && section.title) {
+    if (section.type === 'heading' && section.title && isStructuralHeadingTitle(section.title)) {
       currentSectionTitle = section.title;
     }
 

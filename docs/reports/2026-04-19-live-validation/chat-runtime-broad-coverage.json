@@ -1,0 +1,1316 @@
+{
+  "generatedAt": "2026-04-19T04:26:30.917Z",
+  "matrixSize": 42,
+  "requiredCategories": [
+    "catalogue/list",
+    "forms",
+    "codes",
+    "registers",
+    "mappings",
+    "program lists",
+    "appendix / structural",
+    "appendix content",
+    "section-number questions",
+    "table questions",
+    "rules / validation",
+    "operational rules",
+    "acceptance criteria",
+    "release conditions",
+    "definitions",
+    "what is X",
+    "what does Y do",
+    "process",
+    "comparison",
+    "ambiguous reference",
+    "negative / sparse",
+    "interaction / direct integration",
+    "interaction / middleware",
+    "interaction / file-based",
+    "interaction / reporting",
+    "interaction / generic",
+    "interaction / ambiguous",
+    "interaction / indirect",
+    "interaction / weak evidence",
+    "interaction / follow-up chain",
+    "interaction / cross-system"
+  ],
+  "coveredCategories": [
+    "acceptance criteria",
+    "ambiguous reference",
+    "appendix / structural",
+    "appendix content",
+    "catalogue/list",
+    "codes",
+    "comparison",
+    "definitions",
+    "forms",
+    "interaction / ambiguous",
+    "interaction / cross-system",
+    "interaction / direct integration",
+    "interaction / file-based",
+    "interaction / follow-up chain",
+    "interaction / generic",
+    "interaction / indirect",
+    "interaction / middleware",
+    "interaction / reporting",
+    "interaction / weak evidence",
+    "mappings",
+    "negative / sparse",
+    "operational rules",
+    "process",
+    "program lists",
+    "registers",
+    "release conditions",
+    "rules / validation",
+    "section-number questions",
+    "table questions",
+    "what does Y do",
+    "what is X"
+  ],
+  "missingCategories": [],
+  "results": [
+    {
+      "category": "catalogue/list",
+      "question": "List all MADCAP test types used across active databases.",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "forms",
+      "question": "What forms are referenced for MADCAP-related sample handling and result workflows?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "codes",
+      "question": "What MADCAP microbiology test codes are documented?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "registers",
+      "question": "What registers or listings are used as source-of-truth for MADCAP test definitions?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "mappings",
+      "question": "Show the mapping between MADCAP test type numbers and test names.",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "program lists",
+      "question": "Which MADCAP testing programs are documented for CombiFoss workflows?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "appendix / structural",
+      "question": "What does appendix 13.2 cover in the Result Release manual?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "appendix content",
+      "question": "What is in Appendix 13.2.1?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "section-number questions",
+      "question": "What does section 7.2 say in the MADCAP-related manuals?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "table questions",
+      "question": "What does the test type table in the MADCAP Test Type List show?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "rules / validation",
+      "question": "What validation rules are specified for MADCAP result entry?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "operational rules",
+      "question": "Summarise MADCAP operational rules across entry, adjustment, and release.",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "acceptance criteria",
+      "question": "What acceptance criteria or limits are mentioned before releasing results?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "release conditions",
+      "question": "Under what conditions are MADCAP results released to customers?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "definitions",
+      "question": "Define MADCAP based on the corpus evidence.",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "what is X",
+      "question": "What is BactoScan in the context of MADCAP workflows?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "what does Y do",
+      "question": "What does the MADCAP Result Release function do?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "process",
+      "question": "How does the result release process work from entry to transmission?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "comparison",
+      "question": "What is the difference between manual result entry and automatic result entry in MADCAP?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "ambiguous reference",
+      "question": "What is section 13.2.1 about across the corpus?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "negative / sparse",
+      "question": "What cryptographic protocol does MADCAP use for internal message signing?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "negative / sparse",
+      "question": "What is MADCAP's GPU memory model for retrieval indexing?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / direct integration",
+      "question": "How does MADCAP interact with the sorter?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / direct integration",
+      "question": "How does the analyser interact with MADCAP?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / direct integration",
+      "question": "How does the CombiFoss integrate with MADCAP?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / middleware",
+      "question": "How does automatic result entry work between the instrument and MADCAP?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / file-based",
+      "question": "How do results get from the analyser into MADCAP?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / reporting",
+      "question": "How does MADCAP feed into result release and customer reporting?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / reporting",
+      "question": "How does data flow from sample receipt to result transmission?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / generic",
+      "question": "What is the relationship between MADCAP and the colony counter?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / generic",
+      "question": "How does BactoScan send data to MADCAP?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / ambiguous",
+      "question": "How does MADCAP work with instruments?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / ambiguous",
+      "question": "How does the system talk to analyzers?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / indirect",
+      "question": "How do results end up in reports?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / weak evidence",
+      "question": "How does ODS interact with SAP for microbiology result release?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / follow-up chain",
+      "question": "More detail",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / follow-up chain",
+      "question": "What happens if it fails?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / follow-up chain",
+      "question": "Where is the logic?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / follow-up chain",
+      "question": "What is the fallback manual path?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / cross-system",
+      "question": "How does TITAN feed reporting outputs?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / cross-system",
+      "question": "How does ODS integrate with SAP?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    },
+    {
+      "category": "interaction / cross-system",
+      "question": "How does WSO2 interact with source systems?",
+      "answer": "",
+      "citationsInAnswer": [],
+      "topSources": [],
+      "sourceCount": 0,
+      "flags": {
+        "hasMadcapTestTypeList": false,
+        "hasAppendix1321": false,
+        "hasWeakBoilerplate": false
+      },
+      "checks": {
+        "hasNonEmptyAnswer": false,
+        "hasVisibleAnswerToken": false,
+        "hasSources": false,
+        "hasSourceCitations": false,
+        "hasCanonicalAuthoritySignal": false
+      },
+      "failures": [
+        "query_error"
+      ],
+      "error": "fetch failed"
+    }
+  ],
+  "categorySummary": [
+    {
+      "category": "acceptance criteria",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "ambiguous reference",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "appendix / structural",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "appendix content",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "catalogue/list",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "codes",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "comparison",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "definitions",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "forms",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "interaction / ambiguous",
+      "count": 2,
+      "failures": 2,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "interaction / cross-system",
+      "count": 3,
+      "failures": 3,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "interaction / direct integration",
+      "count": 3,
+      "failures": 3,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "interaction / file-based",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "interaction / follow-up chain",
+      "count": 4,
+      "failures": 4,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "interaction / generic",
+      "count": 2,
+      "failures": 2,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "interaction / indirect",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "interaction / middleware",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "interaction / reporting",
+      "count": 2,
+      "failures": 2,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "interaction / weak evidence",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "mappings",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "negative / sparse",
+      "count": 2,
+      "failures": 2,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "operational rules",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "process",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "program lists",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "registers",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "release conditions",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "rules / validation",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "section-number questions",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "table questions",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "what does Y do",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    },
+    {
+      "category": "what is X",
+      "count": 1,
+      "failures": 1,
+      "nonEmptyAnswers": 0,
+      "avgSourceCount": 0
+    }
+  ],
+  "acceptance": {
+    "allRequiredCategoriesCovered": true,
+    "allAnswersNonEmptyAndVisible": false,
+    "noSourcesWithEmptyAnswers": true,
+    "noSourceCitationsWithEmptyAnswers": true,
+    "rulesNoWeakBoilerplate": true,
+    "noObviousSourceSpam": true,
+    "interactionQueriesProduceNonEmptyAnswers": false,
+    "interactionSourceCapRespected": true,
+    "followUpChainQueriesProduceAnswers": false
+  },
+  "summary": {
+    "totalQueries": 42,
+    "failedQueries": 42,
+    "passRate": 0
+  }
+}

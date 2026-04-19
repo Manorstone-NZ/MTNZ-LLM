@@ -201,9 +201,13 @@ const tinyExcluded = makeSection({
   section_type: 'boilerplate',
   retrieval_excluded: true,
 });
+const tinyStructural = makeSection({
+  content: '13.2.1 MICROBIOLOGY TEST CODES',
+  section_type: 'paragraph',
+});
 
 const tinyChunks = chunkProse(
-  [tinyParagraph, tinyWarning, tinyExcluded],
+  [tinyParagraph, tinyWarning, tinyExcluded, tinyStructural],
   'Tiny Doc',
 );
 
@@ -215,6 +219,9 @@ assert(!!tinyWarnChunk, 'Tiny warning is NOT dropped (exempt type)');
 
 const tinyExclChunk = tinyChunks.find((c) => c.content === 'X');
 assert(!!tinyExclChunk, 'Tiny excluded chunk is NOT dropped (audit trail)');
+
+const tinyStructuralChunk = tinyChunks.find((c) => c.content === '13.2.1 MICROBIOLOGY TEST CODES');
+assert(!!tinyStructuralChunk, 'Tiny structural heading-like chunk is NOT dropped');
 
 // ---------------------------------------------------------------------------
 // Test maximum size guardrail
@@ -253,6 +260,40 @@ assert(legacyChunks.length > 0, 'Legacy ExtractedSection[] input produces chunks
 if (legacyChunks.length > 0) {
   assert(legacyChunks[0].embedding_status === 'pending', 'Legacy chunks default to embedding_status=pending');
 }
+
+// ---------------------------------------------------------------------------
+// Test row-like heading leakage prevention
+// ---------------------------------------------------------------------------
+
+console.log('\n=== Row-like heading leakage tests ===\n');
+
+const rowLeakSections: NormalisedSection[] = [
+  makeSection({
+    title: '4.1 RESULT LISTING',
+    type: 'heading',
+    section_type: 'heading',
+    content: '4.1 RESULT LISTING',
+  }),
+  makeSection({
+    // Table-row-like string that should NOT be promoted as a structural heading
+    title: '01 C WM 123 00001 1 01/01/23 10:30:59 10.0 43612 02011 00',
+    type: 'heading',
+    section_type: 'heading',
+    content: '01 C WM 123 00001 1 01/01/23 10:30:59 10.0 43612 02011 00',
+  }),
+  makeSection({
+    content: 'Result listing details follow for routine operations and reporting.',
+    section_type: 'paragraph',
+  }),
+];
+
+const rowLeakChunks = chunkProse(rowLeakSections, 'Row Leak Doc');
+const detailChunk = rowLeakChunks.find((c) => c.content.includes('Result listing details follow'));
+assert(!!detailChunk, 'Detail chunk exists after row-like heading candidate');
+assert(
+  detailChunk?.section_title === '4.1 RESULT LISTING',
+  'Row-like heading is rejected and previous structural heading is retained',
+);
 
 // ---------------------------------------------------------------------------
 // Summary

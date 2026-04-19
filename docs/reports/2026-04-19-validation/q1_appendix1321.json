@@ -1,0 +1,26 @@
+[
+  {
+    "chunk_index": 21,
+    "section_title": "7.2 MICROBIOLOGY RESULT RELEASE",
+    "content": "7.2 MICROBIOLOGY RESULT RELEASE\n\nIn MADCAP every test has a specific test type number. Microbiology test numbers are listed in Appendix\n13.2.1 Microbiology Test Codes.\n\n7.2.1 COLIFORM AND THERMODURIC RELEASING (020)",
+    "retrieval_excluded": false
+  },
+  {
+    "chunk_index": 153,
+    "section_title": "13.2.1 MICROBIOLOGY TEST CODES",
+    "content": "Test Type Test Type Number\nBactoScan 2",
+    "retrieval_excluded": true
+  },
+  {
+    "chunk_index": 154,
+    "section_title": "13.2.1 MICROBIOLOGY TEST CODES",
+    "content": "APC/SPC 3\n\nColiform 4\nThermoduric 5\nForeign Matter 8\nInhibitory substances 9\nSenses 10\nGrade Investigation 12\nSulphite Reducing Clostridia (SRC) 17\nPseudomonas 24\n48/72 Hour Screening 25",
+    "retrieval_excluded": false
+  },
+  {
+    "chunk_index": 155,
+    "section_title": "13.2.1 MICROBIOLOGY TEST CODES",
+    "content": "CONTROLLED COPY IF THIS LINE IS GREEN\nV7 / Oct 2025 Authorised By: Quality Manager Page 32 of 34\nTest Type Test Type Number\nPetrifilm APC/SPC 32\nAPC/SPC Neat 33\nColiform Neat 34\nSporeformers 35\nQuality Control Failure 40\nBactoScan Alert 42\nE. coli in Water 84\nAlcohol Precipitation (APT) 70% 83\nAlcohol Precipitation (APT) 75% 86\nThermoduric Serial Dilution 105\nFonterra Organic Inhibitory substances 509",
+    "retrieval_excluded": true
+  }
+]

@@ -2,9 +2,11 @@ import { PDFParse } from 'pdf-parse';
 import type { ExtractedContent, ExtractedSection } from '../types';
 import { assessTextQuality } from './pdf-quality';
 import { ocrPdf } from './ocr';
+import { promiseWithTimeout } from '../promiseWithTimeout';
 
 /** Minimum characters of extracted text before we consider the PDF "scanned" */
 const MIN_TEXT_CHARS = 100;
+const PDF_PARSE_TIMEOUT_MS = parseInt(process.env.PDF_PARSE_TIMEOUT_MS || '30000', 10);
 
 /**
  * Extract text and structured sections from a PDF buffer.
@@ -24,9 +26,13 @@ export async function extractPdf(
     parser = new PDFParse({ data: new Uint8Array(buffer) });
 
     // Use a page joiner that we can split on later to get per-page text
-    const textResult = await parser.getText({
-      pageJoiner: '\n---PAGE_BREAK---\n',
-    });
+    const textResult = await promiseWithTimeout(
+      parser.getText({
+        pageJoiner: '\n---PAGE_BREAK---\n',
+      }),
+      PDF_PARSE_TIMEOUT_MS,
+      `PDF native parse timed out after ${PDF_PARSE_TIMEOUT_MS}ms`,
+    );
 
     const fullText = textResult.text;
     const pageCount = textResult.total;
@@ -35,7 +41,11 @@ export async function extractPdf(
     let title: string | null = null;
     let author: string | null = null;
     try {
-      const info = await parser.getInfo();
+      const info = await promiseWithTimeout(
+        parser.getInfo(),
+        PDF_PARSE_TIMEOUT_MS,
+        `PDF info extraction timed out after ${PDF_PARSE_TIMEOUT_MS}ms`,
+      );
       title = info.info?.Title ?? null;
       author = info.info?.Author ?? null;
     } catch {
@@ -89,9 +99,13 @@ export async function extractPdf(
     try {
       const retryParser = new PDFParse({ data: new Uint8Array(buffer) });
       try {
-        const retryResult = await retryParser.getText({
-          pageJoiner: '\n---PAGE_BREAK---\n',
-        });
+        const retryResult = await promiseWithTimeout(
+          retryParser.getText({
+            pageJoiner: '\n---PAGE_BREAK---\n',
+          }),
+          PDF_PARSE_TIMEOUT_MS,
+          `PDF native parse retry timed out after ${PDF_PARSE_TIMEOUT_MS}ms`,
+        );
         const retryText = retryResult.text;
         const retryPages = splitByPages(retryText);
 

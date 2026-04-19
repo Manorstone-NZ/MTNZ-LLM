@@ -2,6 +2,9 @@ import type { ScoredChunk, CitedChunk } from './types';
 
 export interface GroupedSource {
   groupKey: string;
+  document_id?: string;
+  source_type?: string;
+  preview_image_url?: string | null;
   doc_title: string;
   folder: string;
   section_title: string | null;
@@ -12,6 +15,17 @@ export interface GroupedSource {
 const PREVIEW_MAX_CHARS = 280;
 const PREVIEW_MAX_SNIPPETS = 3;
 const NO_EVIDENCE_TEXT = 'No grounded evidence found in the document corpus for this question.';
+const PREVIEWABLE_IMAGE_TYPES = new Set(['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'tif', 'tiff']);
+
+export function isPreviewableImageSourceType(sourceType?: string): boolean {
+  if (!sourceType) return false;
+  return PREVIEWABLE_IMAGE_TYPES.has(sourceType.toLowerCase());
+}
+
+export function buildDocumentPreviewPath(documentId?: string, sourceType?: string): string | null {
+  if (!documentId || !isPreviewableImageSourceType(sourceType)) return null;
+  return `/api/documents/${documentId}/preview`;
+}
 
 export function shouldShowSources(answer: string, sources?: CitedChunk[]): boolean {
   if (!sources || sources.length === 0) return false;
@@ -87,6 +101,9 @@ export function groupChunksByDocument(chunks: CitedChunk[]): GroupedSource[] {
 
       return {
         groupKey,
+        document_id: first.document_id,
+        source_type: first.source_type,
+        preview_image_url: buildDocumentPreviewPath(first.document_id, first.source_type),
         doc_title: first.doc_title || 'Unknown document',
         folder: first.folder,
         section_title: bestChunk.section_title ?? null,

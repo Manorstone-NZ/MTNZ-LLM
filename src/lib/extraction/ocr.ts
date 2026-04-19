@@ -1,5 +1,5 @@
 import { execFileSync } from 'child_process';
-import { writeFileSync, readFileSync, mkdirSync } from 'fs';
+import { writeFileSync, readFileSync, mkdirSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
 import type { ExtractedContent, ExtractedSection } from '../types';
@@ -45,8 +45,13 @@ async function pdfToImages(
   try {
     return await pdfToImagesViaPdfjs(buffer);
   } catch {
-    // Last resort: return empty — OCR will report no pages processed
-    return { images: [], pageCount: 0 };
+    // Final fallback on macOS: render pages via PDFKit using the system Swift toolchain.
+    try {
+      return pdfToImagesViaPdfKitSwift(buffer);
+    } catch {
+      // Last resort: return empty — OCR will report no pages processed
+      return { images: [], pageCount: 0 };
+    }
   }
 }
 
@@ -63,6 +68,15 @@ function makeTempDir(): string {
   const workDir = join(tmpdir(), `ocr-${Date.now()}-${Math.random().toString(36).slice(2)}`);
   mkdirSync(workDir, { recursive: true });
   return workDir;
+}
+
+function hasSwift(): boolean {
+  try {
+    const path = execFileSync('which', ['swift'], { encoding: 'utf-8' }).trim();
+    return Boolean(path);
+  } catch {
+    return false;
+  }
 }
 
 function cleanupTempDir(workDir: string): void {
@@ -149,6 +163,39 @@ async function pdfToImagesViaPdfjs(
   return { images, pageCount: doc.numPages };
 }
 
+function pdfToImagesViaPdfKitSwift(
+  buffer: Buffer,
+): { images: Buffer[]; pageCount: number } {
+  if (process.platform !== 'darwin' || !hasSwift()) {
+    throw new Error('PDFKit Swift fallback unavailable');
+  }
+
+  const workDir = makeTempDir();
+  const pdfPath = join(workDir, 'input.pdf');
+  const outDir = join(workDir, 'rendered');
+  const swiftPath = join(workDir, 'render.swift');
+
+  try {
+    mkdirSync(outDir, { recursive: true });
+    writeFileSync(pdfPath, buffer);
+    writeFileSync(
+      swiftPath,
+      `import Foundation\nimport PDFKit\nimport AppKit\n\nlet pdfURL = URL(fileURLWithPath: CommandLine.arguments[1])\nlet outputDir = URL(fileURLWithPath: CommandLine.arguments[2], isDirectory: true)\nguard let document = PDFDocument(url: pdfURL) else {\n  fputs("load failed\\n", stderr)\n  exit(1)\n}\nprint(document.pageCount)\nfor index in 0..<document.pageCount {\n  guard let page = document.page(at: index) else { continue }\n  let rect = page.bounds(for: .mediaBox)\n  let scale: CGFloat = 2.0\n  let width = max(Int(rect.width * scale), 1)\n  let height = max(Int(rect.height * scale), 1)\n  let image = NSImage(size: NSSize(width: width, height: height))\n  image.lockFocus()\n  guard let context = NSGraphicsContext.current?.cgContext else {\n    image.unlockFocus()\n    continue\n  }\n  context.setFillColor(NSColor.white.cgColor)\n  context.fill(CGRect(x: 0, y: 0, width: width, height: height))\n  context.saveGState()\n  context.scaleBy(x: scale, y: scale)\n  page.draw(with: .mediaBox, to: context)\n  context.restoreGState()\n  image.unlockFocus()\n  guard let tiff = image.tiffRepresentation,\n        let bitmap = NSBitmapImageRep(data: tiff),\n        let png = bitmap.representation(using: .png, properties: [:]) else {\n    continue\n  }\n  let fileURL = outputDir.appendingPathComponent(String(format: \"page-%03d.png\", index + 1))\n  try png.write(to: fileURL)\n}\n`,
+    );
+
+    execFileSync('swift', [swiftPath, pdfPath, outDir], { timeout: 120_000, encoding: 'utf-8' });
+
+    const images = readdirSync(outDir)
+      .filter((name) => name.endsWith('.png'))
+      .sort()
+      .map((name) => readFileSync(join(outDir, name)));
+
+    return { images, pageCount: images.length };
+  } finally {
+    cleanupTempDir(workDir);
+  }
+}
+
 // ---------------------------------------------------------------------------
 // OCR execution
 // ---------------------------------------------------------------------------
@@ -157,6 +204,10 @@ interface OcrPageResult {
   page: number;
   text: string;
   confidence: number;
+}
+
+function canUseSwiftVision(): boolean {
+  return process.platform === 'darwin' && hasSwift();
 }
 
 async function ocrImageNative(
@@ -213,6 +264,57 @@ async function ocrImageTesseractJs(
     text: data.text,
     confidence: data.confidence / 100, // Tesseract.js returns 0-100
   };
+}
+
+async function ocrPdfViaSwiftVision(
+  buffer: Buffer,
+  filename: string,
+  onPageProgress?: (page: number, total: number) => void,
+): Promise<ExtractedContent> {
+  const workDir = makeTempDir();
+  const pdfPath = join(workDir, 'input.pdf');
+  const swiftPath = join(workDir, 'ocr.swift');
+
+  try {
+    writeFileSync(pdfPath, buffer);
+    writeFileSync(
+      swiftPath,
+      `import Foundation\nimport PDFKit\nimport Vision\nimport AppKit\n\nstruct PageResult: Codable {\n  let page: Int\n  let text: String\n  let confidence: Double\n}\n\nstruct Output: Codable {\n  let pageCount: Int\n  let pages: [PageResult]\n}\n\nlet pdfURL = URL(fileURLWithPath: CommandLine.arguments[1])\nguard let document = PDFDocument(url: pdfURL) else {\n  fputs("load failed\\n", stderr)\n  exit(1)\n}\n\nvar results: [PageResult] = []\nfor index in 0..<document.pageCount {\n  guard let page = document.page(at: index) else { continue }\n  let rect = page.bounds(for: .mediaBox)\n  let scale: CGFloat = 2.0\n  let width = max(Int(rect.width * scale), 1)\n  let height = max(Int(rect.height * scale), 1)\n  let image = NSImage(size: NSSize(width: width, height: height))\n  image.lockFocus()\n  guard let context = NSGraphicsContext.current?.cgContext else {\n    image.unlockFocus()\n    continue\n  }\n  context.setFillColor(NSColor.white.cgColor)\n  context.fill(CGRect(x: 0, y: 0, width: width, height: height))\n  context.saveGState()\n  context.scaleBy(x: scale, y: scale)\n  page.draw(with: .mediaBox, to: context)\n  context.restoreGState()\n  image.unlockFocus()\n\n  var proposedRect = NSRect(origin: .zero, size: image.size)\n  guard let cgImage = image.cgImage(forProposedRect: &proposedRect, context: nil, hints: nil) else { continue }\n\n  let request = VNRecognizeTextRequest()\n  request.recognitionLevel = .accurate\n  request.usesLanguageCorrection = true\n  let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])\n  try handler.perform([request])\n\n  let observations = request.results ?? []\n  let candidates = observations.compactMap { $0.topCandidates(1).first }\n  let text = candidates.map { $0.string }.joined(separator: "\\n")\n  let confidence = candidates.isEmpty ? 0.0 : candidates.reduce(0.0) { $0 + Double($1.confidence) } / Double(candidates.count)\n  results.append(PageResult(page: index + 1, text: text, confidence: confidence))\n}\n\nlet output = Output(pageCount: document.pageCount, pages: results)\nlet data = try JSONEncoder().encode(output)\nFileHandle.standardOutput.write(data)\n`,
+    );
+
+    const stdout = execFileSync('swift', [swiftPath, pdfPath], {
+      timeout: 600_000,
+      encoding: 'utf-8',
+      maxBuffer: 20 * 1024 * 1024,
+    });
+
+    const parsed = JSON.parse(stdout) as { pageCount: number; pages: OcrPageResult[] };
+    parsed.pages.forEach((page) => onPageProgress?.(page.page, parsed.pageCount));
+
+    const fullText = parsed.pages.map((page) => page.text).join('\n\n');
+    const avgConfidence = parsed.pages.length > 0
+      ? parsed.pages.reduce((sum, page) => sum + page.confidence, 0) / parsed.pages.length
+      : 0;
+    const sections = detectOcrSections(parsed.pages);
+
+    return {
+      text: fullText,
+      sections,
+      metadata: {
+        filename,
+        pages: parsed.pageCount,
+        ocr_used: true,
+        ocr_confidence: Math.round(avgConfidence * 100) / 100,
+        ocr_engine: 'swift_vision',
+        ocr_pages_processed: parsed.pages.length,
+        extraction_method: 'ocr',
+      },
+      ocr_used: true,
+      ocr_confidence: Math.round(avgConfidence * 100) / 100,
+    };
+  } finally {
+    cleanupTempDir(workDir);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -386,6 +488,10 @@ export async function ocrPdf(
   onPageProgress?: (page: number, total: number) => void,
 ): Promise<ExtractedContent> {
   try {
+    if (!findNativeTesseract() && canUseSwiftVision()) {
+      return await ocrPdfViaSwiftVision(buffer, filename, onPageProgress);
+    }
+
     // Step 1: Convert PDF to images
     const { images, pageCount } = await pdfToImages(buffer);
 

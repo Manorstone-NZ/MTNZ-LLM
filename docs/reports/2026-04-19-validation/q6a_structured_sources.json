@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ad0f6672-1b7b-4fde-ba1d-d4878cf9dad2",
+    "title": "Titan Client Export",
+    "source_path": "Supporting/Titan Client Export.xlsx",
+    "source_type": "xlsx",
+    "chunk_count": 82
+  },
+  {
+    "id": "99e4860d-2b12-42ae-80d9-1f083a705052",
+    "title": "MADCAP Test Type List",
+    "source_path": "Supporting/MADCAP Test Type List.xlsx",
+    "source_type": "xlsx",
+    "chunk_count": 73
+  },
+  {
+    "id": "57434d9b-38a6-4ab7-83c0-2dd224839708",
+    "title": "Sample Login Import Example",
+    "source_path": "Supporting/Sample Login Import Example.xlsx",
+    "source_type": "xlsx",
+    "chunk_count": 13
+  },
+  {
+    "id": "0a68dc0a-432b-4a03-b250-620d67cb9c97",
+    "title": "Titan Analysis Methods 02042026",
+    "source_path": "Supporting/Titan Analysis Methods 02042026.xlsx",
+    "source_type": "xlsx",
+    "chunk_count": 8
+  },
+  {
+    "id": "d166ba6b-3b10-4948-9cf5-a6e291a10aad",
+    "title": "TI002 (V3) M. bovis Sample Login Import Template",
+    "source_path": "Supporting/TI002 (V3) M. bovis Sample Login Import Template.xlsx",
+    "source_type": "xlsx",
+    "chunk_count": 2
+  },
+  {
+    "id": "cc531e12-64df-497f-9bd3-0dbc500e025e",
+    "title": "Titan States per Artifact 02042026",
+    "source_path": "Supporting/Titan States per Artifact 02042026.xlsx",
+    "source_type": "xlsx",
+    "chunk_count": 2
+  },
+  {
+    "id": "9892a151-524e-4d13-a12c-f8de41745b0d",
+    "title": "Manual Directory",
+    "source_path": "Supporting/Manual Directory.xlsx",
+    "source_type": "xlsx",
+    "chunk_count": 1
+  }
+]

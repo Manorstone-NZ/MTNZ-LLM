@@ -18,6 +18,11 @@ interface HealthMetrics {
   quality_good: number;
   quality_partial: number;
   quality_poor: number;
+  fallback_extraction_count: number;
+  fallback_extraction_percent: number;
+  excluded_chunks_total: number;
+  excluded_chunk_percent: number;
+  docs_with_structural_headings: number;
 }
 
 function MetricCard({ label, value, color }: { label: string; value: string | number; color?: string }) {
@@ -93,6 +98,19 @@ export default function HealthDashboard({ health }: { health: HealthMetrics | nu
         poor={health.quality_poor}
       />
       <MetricCard label="Zero-Text Docs" value={health.zero_text_docs} color={health.zero_text_docs > 0 ? 'text-amber-400' : 'text-slate-400'} />
+      <MetricCard
+        label="Fallback Extractions"
+        value={`${health.fallback_extraction_count} (${health.fallback_extraction_percent.toFixed(1)}%)`}
+        color={health.fallback_extraction_count > 0 ? 'text-amber-400' : 'text-slate-400'}
+      />
+      <MetricCard
+        label="Excluded Chunks"
+        value={`${health.excluded_chunks_total.toLocaleString()} (${health.excluded_chunk_percent.toFixed(1)}%)`}
+      />
+      <MetricCard
+        label="Docs w/ Appendix Headings"
+        value={health.docs_with_structural_headings}
+      />
       <MetricCard label="Avg Chunks/Doc" value={health.avg_chunks_per_doc.toFixed(1)} />
       <MetricCard label="Last Ingest Run" value={lastRun} />
       <MetricCard label="Embedding Model" value={health.embedding_model} />

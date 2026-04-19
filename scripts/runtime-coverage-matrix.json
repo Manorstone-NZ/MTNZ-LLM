@@ -1,0 +1,72 @@
+[
+  { "category": "catalogue/list", "question": "List all MADCAP test types used across active databases." },
+  { "category": "forms", "question": "What forms are referenced for MADCAP-related sample handling and result workflows?" },
+  { "category": "codes", "question": "What MADCAP microbiology test codes are documented?" },
+  { "category": "registers", "question": "What registers or listings are used as source-of-truth for MADCAP test definitions?" },
+  { "category": "mappings", "question": "Show the mapping between MADCAP test type numbers and test names." },
+  { "category": "program lists", "question": "Which MADCAP testing programs are documented for CombiFoss workflows?" },
+  { "category": "appendix / structural", "question": "What does appendix 13.2 cover in the Result Release manual?" },
+  { "category": "appendix content", "question": "What is in Appendix 13.2.1?" },
+  { "category": "section-number questions", "question": "What does section 7.2 say in the MADCAP-related manuals?" },
+  { "category": "table questions", "question": "What does the test type table in the MADCAP Test Type List show?" },
+  { "category": "rules / validation", "question": "What validation rules are specified for MADCAP result entry?" },
+  { "category": "operational rules", "question": "Summarise MADCAP operational rules across entry, adjustment, and release." },
+  { "category": "acceptance criteria", "question": "What acceptance criteria or limits are mentioned before releasing results?" },
+  { "category": "release conditions", "question": "Under what conditions are MADCAP results released to customers?" },
+  { "category": "definitions", "question": "Define MADCAP based on the corpus evidence." },
+  { "category": "what is X", "question": "What is BactoScan in the context of MADCAP workflows?" },
+  { "category": "what does Y do", "question": "What does the MADCAP Result Release function do?" },
+  { "category": "process", "question": "How does the result release process work from entry to transmission?" },
+  { "category": "comparison", "question": "What is the difference between manual result entry and automatic result entry in MADCAP?" },
+  { "category": "ambiguous reference", "question": "What is section 13.2.1 about across the corpus?" },
+  { "category": "negative / sparse", "question": "What cryptographic protocol does MADCAP use for internal message signing?" },
+  { "category": "negative / sparse", "question": "What is MADCAP's GPU memory model for retrieval indexing?" },
+  { "category": "interaction / direct integration", "question": "How does MADCAP interact with the sorter?" },
+  { "category": "interaction / direct integration", "question": "How does the analyser interact with MADCAP?" },
+  { "category": "interaction / direct integration", "question": "How does the CombiFoss integrate with MADCAP?" },
+  { "category": "interaction / middleware", "question": "How does automatic result entry work between the instrument and MADCAP?" },
+  { "category": "interaction / file-based", "question": "How do results get from the analyser into MADCAP?" },
+  { "category": "interaction / reporting", "question": "How does MADCAP feed into result release and customer reporting?" },
+  { "category": "interaction / reporting", "question": "How does data flow from sample receipt to result transmission?" },
+  { "category": "interaction / generic", "question": "What is the relationship between MADCAP and the colony counter?" },
+  { "category": "interaction / generic", "question": "How does BactoScan send data to MADCAP?" },
+  { "category": "interaction / ambiguous", "question": "How does MADCAP work with instruments?" },
+  { "category": "interaction / ambiguous", "question": "How does the system talk to analyzers?" },
+  { "category": "interaction / indirect", "question": "How do results end up in reports?" },
+  { "category": "interaction / weak evidence", "question": "How does ODS interact with SAP for microbiology result release?" },
+  {
+    "category": "interaction / follow-up chain",
+    "question": "More detail",
+    "conversationHistory": [
+      { "role": "user", "content": "How does MADCAP interact with the sorter?" },
+      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[\"doc-1\",\"doc-2\"]} -->" }
+    ]
+  },
+  {
+    "category": "interaction / follow-up chain",
+    "question": "What happens if it fails?",
+    "conversationHistory": [
+      { "role": "user", "content": "How does MADCAP interact with the sorter?" },
+      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[\"doc-1\",\"doc-2\"]} -->" }
+    ]
+  },
+  {
+    "category": "interaction / follow-up chain",
+    "question": "Where is the logic?",
+    "conversationHistory": [
+      { "role": "user", "content": "How does MADCAP interact with the sorter?" },
+      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[\"doc-1\",\"doc-2\"]} -->" }
+    ]
+  },
+  {
+    "category": "interaction / follow-up chain",
+    "question": "What is the fallback manual path?",
+    "conversationHistory": [
+      { "role": "user", "content": "How does MADCAP interact with the sorter?" },
+      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[\"doc-1\",\"doc-2\"]} -->" }
+    ]
+  },
+  { "category": "interaction / cross-system", "question": "How does TITAN feed reporting outputs?" },
+  { "category": "interaction / cross-system", "question": "How does ODS integrate with SAP?" },
+  { "category": "interaction / cross-system", "question": "How does WSO2 interact with source systems?" }
+]
