@@ -43,6 +43,21 @@ const FOLDERS = ['All', 'EOP', 'LOP', 'Recordings', 'Supporting', 'Architecture'
 const STATUSES = ['All', 'completed', 'failed', 'pending'] as const;
 const TYPES = ['All', 'pdf', 'docx', 'xlsx', 'txt'] as const;
 
+function ActiveBadge({ isActive }: { isActive: boolean }) {
+  if (isActive) {
+    return (
+      <span className="inline-flex items-center px-1 py-0.5 rounded text-[10px] font-medium bg-green-900/40 text-green-400">
+        active
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center px-1 py-0.5 rounded text-[10px] font-medium bg-slate-700/60 text-slate-500">
+      historical
+    </span>
+  );
+}
+
 function StatusBadge({ status }: { status: string }) {
   const base = 'inline-flex items-center px-2 py-0.5 rounded text-xs font-medium';
   switch (status) {
@@ -95,6 +110,8 @@ interface DocumentTableProps {
   isIngesting: boolean;
   filters: { folder: string; status: string; type: string };
   onFilterChange: (key: 'folder' | 'status' | 'type', value: string) => void;
+  /** Total number of documents across all versions (for reconciliation display) */
+  totalVersionCount?: number;
 }
 
 export default function DocumentTable({
@@ -104,10 +121,12 @@ export default function DocumentTable({
   isIngesting,
   filters,
   onFilterChange,
+  totalVersionCount,
 }: DocumentTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>('title');
   const [sortDir, setSortDir] = useState<SortDir>('asc');
   const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
+  const [activeOnly, setActiveOnly] = useState(true);
 
   function handleSort(key: SortKey) {
     if (sortKey === key) {
@@ -118,7 +137,9 @@ export default function DocumentTable({
     }
   }
 
-  const sorted = [...documents].sort((a, b) => {
+  const visibleDocuments = activeOnly ? documents.filter((d) => d.is_active) : documents;
+
+  const sorted = [...visibleDocuments].sort((a, b) => {
     const dir = sortDir === 'asc' ? 1 : -1;
     const aVal = a[sortKey];
     const bVal = b[sortKey];
@@ -137,10 +158,13 @@ export default function DocumentTable({
   const thClass = 'px-3 py-2 text-left text-xs font-medium text-slate-400 uppercase tracking-wider cursor-pointer hover:text-slate-200 select-none whitespace-nowrap';
   const thStatic = 'px-3 py-2 text-left text-xs font-medium text-slate-400 uppercase tracking-wider whitespace-nowrap';
 
+  const activeCount = documents.filter((d) => d.is_active).length;
+  const historicalCount = documents.length - activeCount;
+
   return (
     <div>
-      {/* Filters */}
-      <div className="flex flex-wrap items-center gap-3 mb-4">
+      {/* Filters + scope toggle */}
+      <div className="flex flex-wrap items-center gap-3 mb-3">
         <FilterSelect
           label="Folder"
           value={filters.folder}
@@ -159,8 +183,36 @@ export default function DocumentTable({
           options={TYPES}
           onChange={(v) => onFilterChange('type', v)}
         />
+      </div>
+      {/* Scope toggle + count */}
+      <div className="flex items-center gap-3 mb-4">
+        <label className="flex items-center gap-2 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={activeOnly}
+            onChange={(e) => setActiveOnly(e.target.checked)}
+            className="rounded border-slate-600 bg-slate-800 text-blue-500 focus:ring-blue-500 focus:ring-offset-0"
+          />
+          <span className="text-xs text-slate-300">
+            Active only <span className="text-slate-500">(latest version)</span>
+          </span>
+        </label>
         <span className="text-xs text-slate-500 ml-auto">
-          {documents.length} document{documents.length !== 1 ? 's' : ''}
+          {activeOnly ? (
+            <>
+              <span className="text-green-400 font-medium">{activeCount}</span>
+              <span className="text-slate-500"> active</span>
+              {historicalCount > 0 && (
+                <span className="text-slate-600"> · {historicalCount} historical hidden</span>
+              )}
+            </>
+          ) : (
+            <>
+              <span className="text-slate-300 font-medium">{documents.length}</span>
+              <span className="text-slate-500"> total versions</span>
+              <span className="text-slate-600"> ({activeCount} active · {historicalCount} historical)</span>
+            </>
+          )}
         </span>
       </div>
 
@@ -169,6 +221,7 @@ export default function DocumentTable({
         <table className="w-full text-sm">
           <thead className="bg-slate-800/80">
             <tr>
+              <th className={thStatic}>Version</th>
               <th className={thClass} onClick={() => handleSort('title')}>Title{sortIndicator('title')}</th>
               <th className={thClass} onClick={() => handleSort('folder')}>Folder{sortIndicator('folder')}</th>
               <th className={thClass} onClick={() => handleSort('source_type')}>Type{sortIndicator('source_type')}</th>
@@ -184,8 +237,8 @@ export default function DocumentTable({
           <tbody className="divide-y divide-slate-700/40">
             {sorted.length === 0 && (
               <tr>
-                <td colSpan={10} className="px-3 py-8 text-center text-slate-500">
-                  No documents found
+                <td colSpan={11} className="px-3 py-8 text-center text-slate-500">
+                  No documents found{activeOnly ? ' — try turning off "Active only"' : ''}
                 </td>
               </tr>
             )}
@@ -214,6 +267,9 @@ export default function DocumentTable({
                   key={doc.id}
                   className={`${rowBorder} ${rowBg} hover:bg-slate-800/60 transition-colors`}
                 >
+                  <td className="px-3 py-2">
+                    <ActiveBadge isActive={doc.is_active} />
+                  </td>
                   <td className="px-3 py-2 text-slate-200 max-w-[280px] truncate" title={doc.title}>
                     {doc.title}
                     {doc.ocr_used && (

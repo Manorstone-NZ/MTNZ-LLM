@@ -20,6 +20,7 @@ import { buildSynthesisContext } from '@/lib/synthesis';
 import { generateStream } from '@/lib/generation';
 import { embedText } from '@/lib/embeddings';
 import type { ModelTier } from '@/lib/generation';
+import type { ModelProviderMode } from '@/lib/generation';
 import type { RetrievalOptions } from '@/lib/retrieval';
 import { buildInteractionOperatingFrame, formatInteractionOperatingFrame } from '@/lib/interactionFrame';
 import {
@@ -50,10 +51,11 @@ function extractLatestAssistantMessage(
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { question, conversationHistory = [], modelTier = 'default' } = body as {
+  const { question, conversationHistory = [], modelTier = 'default', modelProvider = 'auto' } = body as {
     question?: string;
     conversationHistory?: { role: 'user' | 'assistant'; content: string }[];
     modelTier?: ModelTier;
+    modelProvider?: ModelProviderMode;
   };
 
   if (!question || typeof question !== 'string' || question.trim().length === 0) {
@@ -214,7 +216,8 @@ ${evidenceSummary.hasAuthoritativeSource
           systemPrompt,
           answerMessage,
           conversationHistory,
-          modelTier
+          modelTier,
+          modelProvider,
         );
 
         let fullAnswer = '';

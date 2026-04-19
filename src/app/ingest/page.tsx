@@ -42,7 +42,10 @@ interface DocumentRow {
 interface HealthMetrics {
   total_active: number;
   total_inactive: number;
-  total_failed: number;
+  active_completed: number;
+  active_pending: number;
+  active_failed: number;
+  historical_failed: number;
   total_chunks: number;
   zero_text_docs: number;
   avg_chunks_per_doc: number;
@@ -50,13 +53,14 @@ interface HealthMetrics {
   embedding_model: string;
   db_size_mb: number;
   source_missing_count: number;
-  ocr_used_count: number;
+  active_ocr_count: number;
   // V2 fields
   quarantined_count: number;
   needs_review_count: number;
   quality_good: number;
   quality_partial: number;
   quality_poor: number;
+  quality_unclassified: number;
   fallback_extraction_count: number;
   fallback_extraction_percent: number;
   excluded_chunks_total: number;
@@ -267,6 +271,7 @@ export default function IngestPage() {
               isIngesting={isIngesting}
               filters={filters}
               onFilterChange={handleFilterChange}
+              totalVersionCount={documents.length}
             />
           )}
         </section>

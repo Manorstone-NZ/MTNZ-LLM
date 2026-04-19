@@ -174,38 +174,54 @@ export async function getHealthMetrics(): Promise<HealthMetrics> {
     {
       total_active: string;
       total_inactive: string;
-      total_failed: string;
+      active_completed: string;
+      active_pending: string;
+      active_failed: string;
+      historical_failed: string;
       total_chunks: string;
       zero_text_docs: string;
       avg_chunks: string;
       source_missing_count: string;
-      ocr_used_count: string;
+      active_ocr_count: string;
       quarantined_count: string;
       needs_review_count: string;
       quality_good: string;
       quality_partial: string;
       quality_poor: string;
+      quality_unclassified: string;
       fallback_extraction_count: string;
       excluded_chunks_total: string;
       docs_with_structural_headings: string;
     }[]
   >`
     SELECT
-      count(*) FILTER (WHERE is_active = true) AS total_active,
-      count(*) FILTER (WHERE is_active = false) AS total_inactive,
-      count(*) FILTER (WHERE extraction_status = 'failed') AS total_failed,
-      coalesce(sum(chunk_count) FILTER (WHERE is_active = true), 0) AS total_chunks,
-      count(*) FILTER (WHERE chunk_count = 0 AND extraction_status = 'completed') AS zero_text_docs,
-      coalesce(avg(chunk_count) FILTER (WHERE is_active = true AND chunk_count > 0), 0) AS avg_chunks,
-      count(*) FILTER (WHERE source_missing = true) AS source_missing_count,
-      count(*) FILTER (WHERE ocr_used = true) AS ocr_used_count,
-      count(*) FILTER (WHERE quarantined = true AND is_active = true) AS quarantined_count,
-      count(*) FILTER (WHERE needs_review = true AND is_active = true) AS needs_review_count,
-      count(*) FILTER (WHERE text_quality_tier = 'good' AND is_active = true) AS quality_good,
-      count(*) FILTER (WHERE text_quality_tier = 'partial' AND is_active = true) AS quality_partial,
-      count(*) FILTER (WHERE text_quality_tier = 'poor' AND is_active = true) AS quality_poor,
-      count(*) FILTER (WHERE is_active = true AND extraction_method IN ('ocr', 'native_pdfjs')) AS fallback_extraction_count,
-      coalesce(sum(excluded_chunk_count) FILTER (WHERE is_active = true), 0) AS excluded_chunks_total,
+      -- Active corpus counts (is_active = true)
+      count(*) FILTER (WHERE is_active = true)                                               AS total_active,
+      count(*) FILTER (WHERE is_active = false)                                              AS total_inactive,
+      count(*) FILTER (WHERE extraction_status = 'completed' AND is_active = true)          AS active_completed,
+      count(*) FILTER (WHERE extraction_status = 'pending'   AND is_active = true)          AS active_pending,
+      count(*) FILTER (WHERE extraction_status = 'failed'    AND is_active = true)          AS active_failed,
+      -- Historical failed = inactive docs that are in failed state (not active corpus)
+      count(*) FILTER (WHERE extraction_status = 'failed'    AND is_active = false)         AS historical_failed,
+      -- Chunk metrics (active only)
+      coalesce(sum(chunk_count) FILTER (WHERE is_active = true), 0)                         AS total_chunks,
+      count(*) FILTER (WHERE chunk_count = 0 AND extraction_status = 'completed'
+                       AND is_active = true)                                                 AS zero_text_docs,
+      coalesce(avg(chunk_count) FILTER (WHERE is_active = true AND chunk_count > 0), 0)     AS avg_chunks,
+      -- Source/OCR (active only)
+      count(*) FILTER (WHERE source_missing = true AND is_active = true)                    AS source_missing_count,
+      count(*) FILTER (WHERE ocr_used = true       AND is_active = true)                    AS active_ocr_count,
+      -- Quality (active only)
+      count(*) FILTER (WHERE quarantined = true    AND is_active = true)                    AS quarantined_count,
+      count(*) FILTER (WHERE needs_review = true   AND is_active = true)                    AS needs_review_count,
+      count(*) FILTER (WHERE text_quality_tier = 'good'    AND is_active = true)            AS quality_good,
+      count(*) FILTER (WHERE text_quality_tier = 'partial' AND is_active = true)            AS quality_partial,
+      count(*) FILTER (WHERE text_quality_tier = 'poor'    AND is_active = true)            AS quality_poor,
+      count(*) FILTER (WHERE text_quality_tier IS NULL     AND is_active = true)            AS quality_unclassified,
+      -- Fallback extraction = active docs where native parse failed/timed out and fallback path was used
+      count(*) FILTER (WHERE is_active = true
+                       AND extraction_method IN ('ocr', 'native_pdfjs'))                    AS fallback_extraction_count,
+      coalesce(sum(excluded_chunk_count) FILTER (WHERE is_active = true), 0)               AS excluded_chunks_total,
       (
         SELECT count(DISTINCT c.document_id)
         FROM chunks c
@@ -234,7 +250,10 @@ export async function getHealthMetrics(): Promise<HealthMetrics> {
   return {
     total_active: totalActive,
     total_inactive: Number(counts.total_inactive),
-    total_failed: Number(counts.total_failed),
+    active_completed: Number(counts.active_completed),
+    active_pending: Number(counts.active_pending),
+    active_failed: Number(counts.active_failed),
+    historical_failed: Number(counts.historical_failed),
     total_chunks: totalChunks,
     zero_text_docs: Number(counts.zero_text_docs),
     avg_chunks_per_doc: Number(Number(counts.avg_chunks).toFixed(1)),
@@ -242,12 +261,13 @@ export async function getHealthMetrics(): Promise<HealthMetrics> {
     embedding_model: process.env.EMBEDDING_MODEL ?? 'unknown',
     db_size_mb: Number(dbSize.size_mb),
     source_missing_count: Number(counts.source_missing_count),
-    ocr_used_count: Number(counts.ocr_used_count),
+    active_ocr_count: Number(counts.active_ocr_count),
     quarantined_count: Number(counts.quarantined_count),
     needs_review_count: Number(counts.needs_review_count),
     quality_good: Number(counts.quality_good),
     quality_partial: Number(counts.quality_partial),
     quality_poor: Number(counts.quality_poor),
+    quality_unclassified: Number(counts.quality_unclassified),
     fallback_extraction_count: fallbackCount,
     fallback_extraction_percent: totalActive > 0
       ? Number(((fallbackCount / totalActive) * 100).toFixed(1))

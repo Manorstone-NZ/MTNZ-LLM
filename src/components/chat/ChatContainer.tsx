@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import type { CitedChunk } from '@/lib/types';
 import MessageBubble from './MessageBubble';
 import ModelToggle from './ModelToggle';
+import ProviderToggle from './ProviderToggle';
 
 interface Message {
   id: string;
@@ -22,6 +23,7 @@ export default function ChatContainer() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [modelTier, setModelTier] = useState<'default' | 'quality'>('default');
+  const [modelProvider, setModelProvider] = useState<'auto' | 'anthropic' | 'lmstudio'>('auto');
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -72,6 +74,7 @@ export default function ChatContainer() {
           question: trimmed,
           conversationHistory,
           modelTier,
+          modelProvider,
         }),
       });
 
@@ -187,7 +190,10 @@ export default function ChatContainer() {
         <span className="text-xs text-slate-500">
           {messages.length === 0 ? 'Start a conversation' : `${messages.filter((m) => m.role === 'user').length} messages`}
         </span>
-        <ModelToggle modelTier={modelTier} onChange={setModelTier} />
+        <div className="flex items-center gap-2">
+          <ProviderToggle providerMode={modelProvider} onChange={setModelProvider} />
+          <ModelToggle modelTier={modelTier} onChange={setModelTier} />
+        </div>
       </div>
 
       {/* Error banner */}

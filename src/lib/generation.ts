@@ -10,6 +10,21 @@ function useAnthropicProvider(): boolean {
   return Boolean(process.env.ANTHROPIC_API_KEY);
 }
 
+export type ModelProviderMode = 'auto' | 'anthropic' | 'lmstudio';
+
+export function resolveProviderMode(
+  requestedMode: ModelProviderMode = 'auto',
+  anthropicAvailable: boolean = useAnthropicProvider(),
+): 'anthropic' | 'lmstudio' {
+  if (requestedMode === 'anthropic') {
+    return anthropicAvailable ? 'anthropic' : 'lmstudio';
+  }
+  if (requestedMode === 'lmstudio') {
+    return 'lmstudio';
+  }
+  return anthropicAvailable ? 'anthropic' : 'lmstudio';
+}
+
 // ---------------------------------------------------------------------------
 // LM Studio (OpenAI-compatible) client
 // ---------------------------------------------------------------------------
@@ -33,8 +48,8 @@ function getAnthropicClient(): Anthropic {
 
 export type ModelTier = 'default' | 'quality';
 
-function getModelId(tier: ModelTier): string {
-  if (useAnthropicProvider()) {
+function getModelId(tier: ModelTier, provider: 'anthropic' | 'lmstudio'): string {
+  if (provider === 'anthropic') {
     return tier === 'quality'
       ? (process.env.ANTHROPIC_QUALITY_MODEL ?? 'claude-opus-4-5')
       : (process.env.ANTHROPIC_DEFAULT_MODEL ?? 'claude-sonnet-4-5');
@@ -112,11 +127,13 @@ export async function* generateStream(
   systemPrompt: string,
   userMessage: string,
   conversationHistory: ChatCompletionMessageParam[] = [],
-  tier: ModelTier = 'default'
+  tier: ModelTier = 'default',
+  providerMode: ModelProviderMode = 'auto',
 ): AsyncIterable<string> {
-  const model = getModelId(tier);
+  const provider = resolveProviderMode(providerMode);
+  const model = getModelId(tier, provider);
 
-  if (useAnthropicProvider()) {
+  if (provider === 'anthropic') {
     yield* generateStreamAnthropic(systemPrompt, userMessage, conversationHistory, model);
     return;
   }
@@ -162,11 +179,13 @@ export async function* generateStream(
 export async function generateSync(
   systemPrompt: string,
   userMessage: string,
-  tier: ModelTier = 'default'
+  tier: ModelTier = 'default',
+  providerMode: ModelProviderMode = 'auto',
 ): Promise<string> {
-  const model = getModelId(tier);
+  const provider = resolveProviderMode(providerMode);
+  const model = getModelId(tier, provider);
 
-  if (useAnthropicProvider()) {
+  if (provider === 'anthropic') {
     return generateSyncAnthropic(systemPrompt, userMessage, model);
   }
 

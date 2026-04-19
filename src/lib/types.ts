@@ -139,7 +139,14 @@ export interface DocumentRow {
 export interface HealthMetrics {
   total_active: number;
   total_inactive: number;
-  total_failed: number;
+  /** Active docs with extraction_status = 'completed' (active corpus only) */
+  active_completed: number;
+  /** Active docs with extraction_status = 'pending' (active corpus only) */
+  active_pending: number;
+  /** Active docs with extraction_status = 'failed' (active corpus only) */
+  active_failed: number;
+  /** Inactive/superseded docs with extraction_status = 'failed' (historical) */
+  historical_failed: number;
   total_chunks: number;
   zero_text_docs: number;
   avg_chunks_per_doc: number;
@@ -147,13 +154,17 @@ export interface HealthMetrics {
   embedding_model: string;
   db_size_mb: number;
   source_missing_count: number;
-  ocr_used_count: number;
+  /** Docs where OCR contributed to extracted text (active corpus only) */
+  active_ocr_count: number;
   // V2 fields
   quarantined_count: number;
   needs_review_count: number;
   quality_good: number;
   quality_partial: number;
   quality_poor: number;
+  /** Active docs with no quality tier assigned — good + partial + poor + unclassified = total_active */
+  quality_unclassified: number;
+  /** Docs where native extraction failed/timed out and fallback path was used (active corpus only) */
   fallback_extraction_count: number;
   fallback_extraction_percent: number;
   excluded_chunks_total: number;
