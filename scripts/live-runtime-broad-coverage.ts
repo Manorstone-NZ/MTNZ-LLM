@@ -29,6 +29,7 @@ type InteractionDiagnostics = {
   uniqueDocCount: number;
   hasMechanismChunk?: boolean;
   tierBalanceRatio?: string;
+  tier1and2Pct?: number;
 };
 
 type QueryResult = {
@@ -102,11 +103,19 @@ function buildInteractionDiagnostics(
     }
   }
 
+  const totalSources = tier1Count + tier2Count + tier3Count;
+  const hasMechanismChunk = tier1Count > 0 || tier2Count > 0;
+  const tier1and2Pct = totalSources > 0
+    ? Number(((tier1Count + tier2Count) / totalSources * 100).toFixed(0))
+    : 0;
+
   return {
     tier1Count,
     tier2Count,
     tier3Count,
     uniqueDocCount: uniqueDocs.size,
+    hasMechanismChunk,
+    tier1and2Pct,
   };
 }
 
@@ -173,6 +182,8 @@ const REQUIRED_CATEGORIES = [
   'interaction / weak evidence',
   'interaction / follow-up chain',
   'interaction / cross-system',
+  'interaction / failure-path',
+  'interaction / pattern',
 ];
 
 function hasVisibleAnswerToken(answer: string): boolean {
@@ -406,8 +417,9 @@ async function main() {
       const result = await askWithRetry(entry);
       results.push(result);
       if (result.interactionDiagnostics) {
+        const d = result.interactionDiagnostics;
         console.log(
-          `[diag] ${entry.category}: sources=${result.sourceCount}, tier1=${result.interactionDiagnostics.tier1Count}, tier2=${result.interactionDiagnostics.tier2Count}, tier3=${result.interactionDiagnostics.tier3Count}, docs=${result.interactionDiagnostics.uniqueDocCount}`,
+          `[diag] ${entry.category}: sources=${result.sourceCount}, tier1=${d.tier1Count}, tier2=${d.tier2Count}, tier3=${d.tier3Count}, tier1+2=${d.tier1and2Pct ?? 0}%, mechanism=${d.hasMechanismChunk ?? false}, docs=${d.uniqueDocCount}`,
         );
       }
       console.log(`[done] ${entry.category}: ${entry.question}`);

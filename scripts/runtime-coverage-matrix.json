@@ -68,5 +68,13 @@
   },
   { "category": "interaction / cross-system", "question": "How does TITAN feed reporting outputs?" },
   { "category": "interaction / cross-system", "question": "How does ODS integrate with SAP?" },
-  { "category": "interaction / cross-system", "question": "How does WSO2 interact with source systems?" }
+  { "category": "interaction / cross-system", "question": "How does WSO2 interact with source systems?" },
+  { "category": "interaction / cross-system", "question": "How does MADCAP interact with SAP B1 for billing?" },
+  { "category": "interaction / cross-system", "question": "How does data flow from CombiFoss to Qlik?" },
+  { "category": "interaction / cross-system", "question": "What happens if the integration between MADCAP and WSO2 fails?" },
+  { "category": "interaction / cross-system", "question": "Where is the decision logic between selection and sorting?" },
+  { "category": "interaction / failure-path", "question": "What happens if automatic result entry between an instrument and MADCAP fails?" },
+  { "category": "interaction / failure-path", "question": "What is the fallback when sorter communication with MADCAP is lost?" },
+  { "category": "interaction / pattern", "question": "Which integrations use a web service or API mechanism?" },
+  { "category": "interaction / pattern", "question": "Which integrations use file-based exchange?" }
 ]
