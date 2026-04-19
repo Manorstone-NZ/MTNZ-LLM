@@ -152,3 +152,11 @@ npx tsx scripts/live-runtime-broad-coverage.ts --out report.json
 - Keep provider on `Auto` for day-to-day usage unless testing a specific backend.
 - Prefer `Quality` tier for complex interaction/synthesis prompts.
 - Re-run broad validation after major retrieval or prompt changes.
+
+## Governance Helpers
+
+Apply branch protection (required PR review + required CI check) with:
+
+```bash
+GITHUB_TOKEN=<repo-admin-token> bash scripts/enforce-branch-protection.sh
+```
