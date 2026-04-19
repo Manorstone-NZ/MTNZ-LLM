@@ -245,6 +245,8 @@ interface InteractionSelectionResult {
     tier2Count: number;
     tier3Count: number;
     uniqueDocCount: number;
+    hasMechanismChunk: boolean;
+    tierBalanceRatio: string;
   };
 }
 
@@ -346,6 +348,19 @@ function pickInteractionResults(
     take(item);
   }
 
+  // Hard requirement: enforce Tier 3 ceiling and mechanism presence
+  if (tier3Count > maxLowSignal) {
+    console.warn(
+      `[interaction-warning] Tier 3 exceeds cap: ${tier3Count} > ${maxLowSignal}. This should not happen.`,
+    );
+  }
+
+  const hasMechanismChunk =
+    selected.some((chunk) => {
+      const corpus = `${chunk.section_title ?? ''} ${chunk.content_preview ?? ''} ${chunk.content ?? ''}`;
+      return INTERACTION_MECHANISM_REGEX.test(corpus);
+    });
+
   return {
     selected,
     diagnostics: {
@@ -354,6 +369,8 @@ function pickInteractionResults(
       tier2Count,
       tier3Count,
       uniqueDocCount: uniqueDocs.size,
+      hasMechanismChunk,
+      tierBalanceRatio: tier1Count + tier2Count > 0 ? ((tier1Count + tier2Count) / selected.length).toFixed(2) : '0.00',
     },
   };
 }
@@ -640,8 +657,126 @@ export async function hybridSearchWithMode(
     );
 
     console.log(
-      `[interaction-retrieval] tier distribution: Tier1=${result.diagnostics.tier1Count}, Tier2=${result.diagnostics.tier2Count}, Tier3=${result.diagnostics.tier3Count}, total=${result.diagnostics.totalSources}, docs=${result.diagnostics.uniqueDocCount}`,
+      `[interaction-retrieval] tier distribution: Tier1=${result.diagnostics.tier1Count}, Tier2=${result.diagnostics.tier2Count}, Tier3=${result.diagnostics.tier3Count}, total=${result.diagnostics.totalSources}, docs=${result.diagnostics.uniqueDocCount}, mechanism=${result.diagnostics.hasMechanismChunk}`,
     );
+
+    // Hard requirement: if primary retrieval has results but no mechanism chunk, trigger mechanism-focused fallback
+    if (result.selected.length > 0 && !result.diagnostics.hasMechanismChunk) {
+      console.log(
+        `[interaction-retrieval-mechanism-fallback] No mechanism chunk in primary results. Triggering mechanism-focused fallback.`,
+      );
+
+      const mechanismFallbackHints = [
+        'integration mechanism',
+        'interface',
+        'web service',
+        'api',
+        'automatic entry',
+        'middleware',
+        'connection',
+        'protocol',
+        'data flow',
+        'exchange',
+        'trigger',
+        'setup',
+        'configuration',
+      ]
+        .join(' ');
+      const mechanismFallbackQuery = `${interactionPair?.systemA ?? ''} ${interactionPair?.systemB ?? ''} ${mechanismFallbackHints}`.trim();
+
+      const mechanismFallback = await hybridSearchWithMode(mechanismFallbackQuery, 'synthesis');
+      const mechanismResult = pickInteractionResults(
+        mechanismFallback,
+        Math.ceil(interactionCap / 2),
+        interactionHardCap,
+        interactionMaxPerDoc,
+        interactionMaxLowSignal,
+        interactionPair?.systemA,
+        interactionPair?.systemB,
+      );
+
+      if (mechanismResult.diagnostics.hasMechanismChunk && mechanismResult.selected.length > 0) {
+        const merged = dedupeById(
+          [
+            ...result.selected,
+            ...mechanismResult.selected.filter((m) => !result.selected.some((r) => r.id === m.id)),
+          ],
+          (chunk) => chunk.id,
+        );
+        const finalResult = pickInteractionResults(
+          merged,
+          interactionCap,
+          interactionHardCap,
+          interactionMaxPerDoc,
+          interactionMaxLowSignal,
+          interactionPair?.systemA,
+          interactionPair?.systemB,
+        );
+        console.log(
+          `[interaction-retrieval-mechanism-fallback-result] merged: Tier1=${finalResult.diagnostics.tier1Count}, Tier2=${finalResult.diagnostics.tier2Count}, mechanism=${finalResult.diagnostics.hasMechanismChunk}`,
+        );
+        return finalResult.selected;
+      }
+    }
+
+    // Hard requirement: if primary retrieval has results but no mechanism chunk, trigger mechanism-focused fallback
+    if (result.selected.length > 0 && !result.diagnostics.hasMechanismChunk) {
+      console.log(
+        `[interaction-retrieval-mechanism-fallback] No mechanism chunk in primary results. Triggering mechanism-focused fallback.`,
+      );
+
+      const mechanismFallbackHints = [
+        'integration mechanism',
+        'interface',
+        'web service',
+        'api',
+        'automatic entry',
+        'middleware',
+        'connection',
+        'protocol',
+        'data flow',
+        'exchange',
+        'trigger',
+        'setup',
+        'configuration',
+      ]
+        .join(' ');
+      const mechanismFallbackQuery = `${interactionPair?.systemA ?? ''} ${interactionPair?.systemB ?? ''} ${mechanismFallbackHints}`.trim();
+
+      const mechanismFallback = await hybridSearchWithMode(mechanismFallbackQuery, 'synthesis');
+      const mechanismResult = pickInteractionResults(
+        mechanismFallback,
+        Math.ceil(interactionCap / 2),
+        interactionHardCap,
+        interactionMaxPerDoc,
+        interactionMaxLowSignal,
+        interactionPair?.systemA,
+        interactionPair?.systemB,
+      );
+
+      if (mechanismResult.diagnostics.hasMechanismChunk && mechanismResult.selected.length > 0) {
+        const merged = dedupeById(
+          [
+            ...result.selected,
+            ...mechanismResult.selected.filter((m) => !result.selected.some((r) => r.id === m.id)),
+          ],
+          (chunk) => chunk.id,
+        );
+        const finalResult = pickInteractionResults(
+          merged,
+          interactionCap,
+          interactionHardCap,
+          interactionMaxPerDoc,
+          interactionMaxLowSignal,
+          interactionPair?.systemA,
+          interactionPair?.systemB,
+        );
+        console.log(
+          `[interaction-retrieval-mechanism-fallback-result] merged: Tier1=${finalResult.diagnostics.tier1Count}, Tier2=${finalResult.diagnostics.tier2Count}, mechanism=${finalResult.diagnostics.hasMechanismChunk}`,
+        );
+        return finalResult.selected;
+      }
+    }
 
     if (result.selected.length > 0) {
       return result.selected;

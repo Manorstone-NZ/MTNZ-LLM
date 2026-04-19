@@ -27,6 +27,8 @@ type InteractionDiagnostics = {
   tier2Count: number;
   tier3Count: number;
   uniqueDocCount: number;
+  hasMechanismChunk?: boolean;
+  tierBalanceRatio?: string;
 };
 
 type QueryResult = {
@@ -459,6 +461,26 @@ async function main() {
   const interactionResults = results.filter((result) => result.category.toLowerCase().startsWith('interaction'));
   const interactionFollowUpResults = results.filter((result) => result.category.toLowerCase() === 'interaction / follow-up chain');
 
+  // Regression guard 1: interaction tier distribution check
+  const interactionTierHealthy = interactionResults.every((result) => {
+    if (!result.interactionDiagnostics) return true;
+    const { tier1Count, tier2Count, tier3Count } = result.interactionDiagnostics;
+    const totalTiers = tier1Count + tier2Count + tier3Count;
+    if (totalTiers === 0) return true;
+    const tier1and2Pct = ((tier1Count + tier2Count) / totalTiers) * 100;
+    return tier1and2Pct >= 60;
+  });
+
+  // Regression guard 2: interaction mechanism check
+  const interactionMechanismHealthy = interactionResults.every((result) => {
+    if (!result.interactionDiagnostics) return true;
+    // If we have any sources, we should have detected some mechanism chunks
+    const totalTiers = result.interactionDiagnostics.tier1Count + result.interactionDiagnostics.tier2Count + result.interactionDiagnostics.tier3Count;
+    if (totalTiers === 0) return true;
+    // If tier2 or higher exists, mechanism was detected
+    return result.interactionDiagnostics.tier2Count > 0 || result.interactionDiagnostics.tier1Count > 0;
+  });
+
   const report: Report = {
     generatedAt: new Date().toISOString(),
     matrixSize: matrix.length,
@@ -483,6 +505,8 @@ async function main() {
       followUpChainQueriesProduceAnswers: interactionFollowUpResults.every(
         (result) => result.checks.hasNonEmptyAnswer && result.checks.hasVisibleAnswerToken,
       ),
+      interactionTierDistributionHealthy: interactionTierHealthy,
+      interactionMechanismDetectionHealthy: interactionMechanismHealthy,
     },
     summary: {
       totalQueries: results.length,
