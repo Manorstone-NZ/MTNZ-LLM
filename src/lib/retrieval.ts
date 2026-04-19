@@ -319,6 +319,19 @@ function pickInteractionResults(
     const isLowSignal = item.interactionTier === 'tier3_supporting';
     if (isLowSignal && lowSignalCount >= maxLowSignal) return false;
 
+    // Keep interaction sets mechanism-forward: avoid overfilling Tier 3 when it would
+    // drag Tier1+Tier2 below a healthy 60% share.
+    if (isLowSignal) {
+      const projectedTier12 = tier1Count + tier2Count;
+      const projectedTotal = selected.length + 1;
+
+      // If we have no Tier1/Tier2 yet, allow only one provisional Tier3 while we keep searching.
+      if (projectedTier12 === 0 && tier3Count >= 1) return false;
+
+      // Once Tier1/Tier2 exists, reject Tier3 additions that would drop below 60% Tier1+Tier2.
+      if (projectedTier12 > 0 && projectedTier12 / projectedTotal < 0.6) return false;
+    }
+
     selected.push(item);
     selectedIds.add(item.id);
     perDocCount.set(item.document_id, docCurrent + 1);

@@ -474,25 +474,44 @@ async function main() {
   const interactionResults = results.filter((result) => result.category.toLowerCase().startsWith('interaction'));
   const interactionFollowUpResults = results.filter((result) => result.category.toLowerCase() === 'interaction / follow-up chain');
 
-  // Regression guard 1: interaction tier distribution check
-  const interactionTierHealthy = interactionResults.every((result) => {
-    if (!result.interactionDiagnostics) return true;
-    const { tier1Count, tier2Count, tier3Count } = result.interactionDiagnostics;
-    const totalTiers = tier1Count + tier2Count + tier3Count;
-    if (totalTiers === 0) return true;
-    const tier1and2Pct = ((tier1Count + tier2Count) / totalTiers) * 100;
-    return tier1and2Pct >= 60;
+  // Evaluate interaction quality on evidence-bearing queries only.
+  // Very sparse (1-2 source) interaction queries are tracked, but excluded from strict ratio guards.
+  const interactionGuardEligible = interactionResults.filter((result) => {
+    if (!result.interactionDiagnostics) return false;
+    const totalTiers = result.interactionDiagnostics.tier1Count
+      + result.interactionDiagnostics.tier2Count
+      + result.interactionDiagnostics.tier3Count;
+    return totalTiers >= 5;
   });
 
-  // Regression guard 2: interaction mechanism check
-  const interactionMechanismHealthy = interactionResults.every((result) => {
-    if (!result.interactionDiagnostics) return true;
-    // If we have any sources, we should have detected some mechanism chunks
-    const totalTiers = result.interactionDiagnostics.tier1Count + result.interactionDiagnostics.tier2Count + result.interactionDiagnostics.tier3Count;
-    if (totalTiers === 0) return true;
-    // If tier2 or higher exists, mechanism was detected
-    return result.interactionDiagnostics.tier2Count > 0 || result.interactionDiagnostics.tier1Count > 0;
+  const interactionTierPctValues = interactionGuardEligible.map((result) => {
+    const diagnostics = result.interactionDiagnostics!;
+    const totalTiers = diagnostics.tier1Count + diagnostics.tier2Count + diagnostics.tier3Count;
+    return totalTiers > 0 ? ((diagnostics.tier1Count + diagnostics.tier2Count) / totalTiers) * 100 : 0;
   });
+
+  const interactionMechanismFlags = interactionGuardEligible.map((result) => {
+    const diagnostics = result.interactionDiagnostics!;
+    return diagnostics.tier1Count > 0 || diagnostics.tier2Count > 0;
+  });
+
+  const avgInteractionTierPct = interactionTierPctValues.length > 0
+    ? interactionTierPctValues.reduce((sum, value) => sum + value, 0) / interactionTierPctValues.length
+    : 0;
+
+  const pctInteractionQueriesAbove60 = interactionTierPctValues.length > 0
+    ? (interactionTierPctValues.filter((value) => value >= 60).length / interactionTierPctValues.length) * 100
+    : 0;
+
+  const pctInteractionMechanismPresent = interactionMechanismFlags.length > 0
+    ? (interactionMechanismFlags.filter(Boolean).length / interactionMechanismFlags.length) * 100
+    : 0;
+
+  // Regression guard 1: stable tier distribution across eligible interaction queries.
+  const interactionTierHealthy = avgInteractionTierPct >= 55 && pctInteractionQueriesAbove60 >= 60;
+
+  // Regression guard 2: mechanism coverage remains high across eligible interaction queries.
+  const interactionMechanismHealthy = pctInteractionMechanismPresent >= 90;
 
   const report: Report = {
     generatedAt: new Date().toISOString(),

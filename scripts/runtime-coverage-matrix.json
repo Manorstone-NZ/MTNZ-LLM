@@ -39,7 +39,7 @@
     "question": "More detail",
     "conversationHistory": [
       { "role": "user", "content": "How does MADCAP interact with the sorter?" },
-      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[\"doc-1\",\"doc-2\"]} -->" }
+      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[]} -->" }
     ]
   },
   {
@@ -47,7 +47,7 @@
     "question": "What happens if it fails?",
     "conversationHistory": [
       { "role": "user", "content": "How does MADCAP interact with the sorter?" },
-      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[\"doc-1\",\"doc-2\"]} -->" }
+      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[]} -->" }
     ]
   },
   {
@@ -55,7 +55,7 @@
     "question": "Where is the logic?",
     "conversationHistory": [
       { "role": "user", "content": "How does MADCAP interact with the sorter?" },
-      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[\"doc-1\",\"doc-2\"]} -->" }
+      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[]} -->" }
     ]
   },
   {
@@ -63,7 +63,7 @@
     "question": "What is the fallback manual path?",
     "conversationHistory": [
       { "role": "user", "content": "How does MADCAP interact with the sorter?" },
-      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[\"doc-1\",\"doc-2\"]} -->" }
+      { "role": "assistant", "content": "Direct integration summary. Role of each side: MADCAP decides routing; sorter executes routing. Data flow includes selections and identifiers. Technical mechanism uses web service calls. Operational implications include source of truth in MADCAP. <!-- INTERACTION_CONTEXT:{\"systemA\":\"MADCAP\",\"systemB\":\"Sorter\",\"lastIntent\":\"interaction_explanation\",\"retrievedDocIds\":[]} -->" }
     ]
   },
   { "category": "interaction / cross-system", "question": "How does TITAN feed reporting outputs?" },
