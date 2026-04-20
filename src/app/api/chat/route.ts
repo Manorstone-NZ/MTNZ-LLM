@@ -106,13 +106,24 @@ export async function POST(request: NextRequest) {
       };
 
       try {
-        // Step 1: Test LM Studio connectivity by embedding the question
-        try {
-          await embedText(question);
-        } catch {
-          push('error', { message: 'LM Studio is unavailable', code: 'LM_UNAVAILABLE' });
-          controller.close();
-          return;
+        // Step 1: Determine answer mode early so we can skip LM Studio checks when not needed
+        const earlyConfiguredMode = resolveConfiguredAnswerModeFromEnv(process.env);
+        const earlyRequestMode = parseAnswerMode(answerMode) ?? answerModeFromLegacyProvider(modelProvider);
+        const earlyEffectiveMode = earlyRequestMode ?? earlyConfiguredMode;
+        const requiresLmStudio = earlyEffectiveMode !== 'anthropic_only';
+
+        // Test LM Studio connectivity only when it may be used
+        if (requiresLmStudio) {
+          try {
+            await embedText(question);
+          } catch {
+            if (earlyEffectiveMode === 'lmstudio_only') {
+              push('error', { message: 'LM Studio is unavailable', code: 'LM_UNAVAILABLE' });
+              controller.close();
+              return;
+            }
+            // two_tier_auto: continue — routing will fall back to Anthropic if available
+          }
         }
 
         // Step 2: Query intent and retrieval mode
@@ -167,13 +178,17 @@ export async function POST(request: NextRequest) {
         const effectiveAnswerMode = requestAnswerMode ?? configuredAnswerMode;
         let availableLmStudioModelIds: string[] | undefined;
 
-        if (effectiveAnswerMode !== 'anthropic_only' || typeof lmStudioModel === 'string') {
+        if (effectiveAnswerMode !== 'anthropic_only') {
           try {
             const availableLmStudioModels = await listLmStudioModels();
             availableLmStudioModelIds = availableLmStudioModels.map((model) => model.id);
           } catch (err) {
-            const message = err instanceof Error ? err.message : 'Failed to fetch LM Studio models';
-            throw new RoutingDecisionError('LMSTUDIO_MODELS_UNAVAILABLE', message);
+            if (effectiveAnswerMode === 'lmstudio_only') {
+              const message = err instanceof Error ? err.message : 'Failed to fetch LM Studio models';
+              throw new RoutingDecisionError('LMSTUDIO_MODELS_UNAVAILABLE', message);
+            }
+            // two_tier_auto: treat as no LM Studio models available — routing will fall back to Anthropic
+            availableLmStudioModelIds = [];
           }
         }
 
@@ -301,9 +316,49 @@ export async function POST(request: NextRequest) {
         );
 
         let fullAnswer = '';
+        const GENERATION_TIMEOUT = 30000; // 30 seconds
+        const FIRST_TOKEN_TIMEOUT = 15000; // 15 seconds to get first token
 
-        for await (const text of tokenStream) {
-          fullAnswer += text;
+        try {
+          let firstTokenReceived = false;
+          const streamPromise = (async () => {
+            for await (const text of tokenStream) {
+              firstTokenReceived = true;
+              fullAnswer += text;
+            }
+          })();
+
+          // Race between the stream and timeout for first token
+          if (!firstTokenReceived) {
+            await Promise.race([
+              streamPromise,
+              new Promise((_, reject) =>
+                setTimeout(
+                  () => reject(new Error('No response from model within ' + FIRST_TOKEN_TIMEOUT + 'ms')),
+                  FIRST_TOKEN_TIMEOUT
+                )
+              ),
+            ]).catch(() => {
+              // Timeout occurred, but continue with fallback
+            });
+          }
+
+          // If we got some tokens, wait for the rest (with full timeout)
+          if (firstTokenReceived) {
+            await Promise.race([
+              streamPromise,
+              new Promise((_, reject) =>
+                setTimeout(
+                  () => reject(new Error('Generation timeout')),
+                  GENERATION_TIMEOUT
+                )
+              ),
+            ]).catch(() => {
+              // Timeout, proceed with what we have
+            });
+          }
+        } catch {
+          // Generation error, proceed with fallback if needed
         }
 
         const uniqueDocs = new Set(citedChunks.map((chunk) => `${chunk.doc_title}|||${chunk.folder}`));
@@ -312,6 +367,12 @@ export async function POST(request: NextRequest) {
           0,
           requiredCount,
         );
+
+        // If we got no answer from the model, provide a fallback
+        if (fullAnswer.trim().length === 0) {
+          fullAnswer = 'I was unable to generate a response. The sources above may contain the information you need. Please try your question again or consult the documents directly.';
+        }
+
 
         const { answerText } = normalizeAnswerWithReferences(fullAnswer, {
           fallbackLabels,

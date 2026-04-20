@@ -20,7 +20,7 @@ export default function SourceCard({ sources }: SourceCardProps) {
     const group = groups[0];
     return (
       <div className="mt-2 text-xs text-slate-500">
-        <span className="text-slate-400">Source: </span>
+        <span className="text-slate-400">Reference: </span>
         <span className="text-slate-700">{group.doc_title}</span>
         {group.preview_image_url && (
           <span className="ml-2 rounded bg-[color:var(--brand-soft)] px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-[color:var(--brand-strong)]">
@@ -68,10 +68,10 @@ export default function SourceCard({ sources }: SourceCardProps) {
       <button
         onClick={() => setIsOpen((open) => !open)}
         aria-expanded={isOpen}
-        aria-label={`${isOpen ? 'Collapse' : 'Expand'} sources (${groups.length} documents)`}
+        aria-label={`${isOpen ? 'Collapse' : 'Expand'} references (${groups.length} documents)`}
         className="inline-flex items-center gap-1.5 rounded-md border border-[color:var(--line)] bg-white px-2.5 py-1 text-xs text-slate-600 transition-colors hover:border-[color:var(--brand)] hover:text-[color:var(--brand-strong)]"
       >
-        <span>Sources ({groups.length})</span>
+        <span>References ({groups.length})</span>
         <svg
           className={`h-3 w-3 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           viewBox="0 0 12 12"

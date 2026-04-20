@@ -14,7 +14,7 @@ const OPTIONS: Array<{ value: 'lmstudio_only' | 'anthropic_only' | 'two_tier_aut
 export default function ProviderToggle({ providerMode, onChange }: ProviderToggleProps) {
   return (
     <label className="flex items-center gap-2 text-xs text-slate-500">
-      <span className="hidden sm:inline">Answer Mode</span>
+      <span className="hidden sm:inline">Model routing</span>
       <select
         value={providerMode}
         onChange={(e) => onChange(e.target.value as 'lmstudio_only' | 'anthropic_only' | 'two_tier_auto')}

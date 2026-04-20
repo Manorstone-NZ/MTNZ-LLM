@@ -560,11 +560,16 @@ export async function hybridSearchWithMode(
   const needsListPriority = synthesisLike && (isListPriorityQuery(query) || needsCataloguePriority);
   const shouldPrioritizeStructuredSources = synthesisLike && (needsListPriority || needsCanonicalPriority || needsRulesPriority);
 
-  // Embed query and run all three searches in parallel
-  const queryEmbedding = await embedText(query);
+  // Embed query — fall back to empty vector results if LM Studio is unavailable
+  let queryEmbedding: number[] | null = null;
+  try {
+    queryEmbedding = await embedText(query);
+  } catch {
+    console.warn('[retrieval] embedText failed — falling back to text-only search (FTS + trigram)');
+  }
 
   const [vecResults, ftsResults, trgResults, sectionAnchors, listAnchors, authoritativeAnchors] = await Promise.all([
-    vectorSearch(queryEmbedding, lexicalLimit),
+    queryEmbedding ? vectorSearch(queryEmbedding, lexicalLimit) : Promise.resolve([]),
     fullTextSearch(searchQuery, lexicalLimit, prep.sectionRefs, prep.documentRefs),
     trigramSearch(searchQuery, lexicalLimit, prep.sectionRefs, prep.documentRefs),
     prep.sectionRefs.length > 0

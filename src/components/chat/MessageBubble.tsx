@@ -14,6 +14,7 @@ interface MessageBubbleProps {
   content: string;
   sources?: CitedChunk[];
   isStreaming?: boolean;
+  routingMeta?: string;
 }
 
 function SourceBadge({ label }: { label: string }) {
@@ -48,7 +49,7 @@ function renderFormattedNodes(children: React.ReactNode): React.ReactNode {
   });
 }
 
-export default function MessageBubble({ role, content, sources, isStreaming }: MessageBubbleProps) {
+export default function MessageBubble({ role, content, sources, isStreaming, routingMeta }: MessageBubbleProps) {
   if (role === 'user') {
     return (
       <div className="flex justify-end mb-4">
@@ -67,17 +68,24 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
   return (
     <div className="flex justify-start mb-4">
       <div className="max-w-[85%]">
-        <div className="app-card rounded-2xl rounded-bl-md px-4 py-2.5 text-sm leading-relaxed text-slate-700 prose prose-sm max-w-none prose-p:my-1.5 prose-headings:my-2 prose-li:my-0.5 prose-pre:border prose-pre:border-[color:var(--line)] prose-pre:bg-[color:var(--surface-muted)] prose-code:text-[color:var(--brand-strong)] prose-table:text-xs prose-th:px-2 prose-th:py-1 prose-td:px-2 prose-td:py-1 prose-th:border prose-th:border-[color:var(--line)] prose-td:border prose-td:border-[color:var(--line)]">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={{
-              p: ({ children, ...props }) => <p {...props}>{renderFormattedNodes(children)}</p>,
-              td: ({ children, ...props }) => <td {...props}>{renderFormattedNodes(children)}</td>,
-              li: ({ children, ...props }) => <li {...props}>{renderFormattedNodes(children)}</li>,
-            }}
-          >
-            {processedContent}
-          </ReactMarkdown>
+        <div className="app-card rounded-2xl rounded-bl-md px-4 py-2.5 text-sm leading-relaxed text-slate-700 prose prose-sm max-w-none prose-p:my-1.5 prose-headings:my-2 prose-li:my-0.5 prose-pre:border prose-pre:border-[color:var(--line)] prose-pre:bg-[color:var(--surface-muted)] prose-code:text-[color:var(--brand-strong)] prose-table:text-xs prose-th:px-2 prose-th:py-1 prose-td:px-2 prose-td:py-1 prose-th:border prose-th:border-[color:var(--line)] prose-td:border prose-td:border-[color:var(--line)] [&_h2+ul]:space-y-1">
+          {content.length === 0 && isStreaming ? (
+            <div className="flex items-center gap-2">
+              <span className="inline-block w-2 h-2 bg-[color:var(--brand)] rounded-full animate-pulse" />
+              <span className="text-slate-500">Generating response...</span>
+            </div>
+          ) : (
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                p: ({ children, ...props }) => <p {...props}>{renderFormattedNodes(children)}</p>,
+                td: ({ children, ...props }) => <td {...props}>{renderFormattedNodes(children)}</td>,
+                li: ({ children, ...props }) => <li {...props} className="break-words">{renderFormattedNodes(children)}</li>,
+              }}
+            >
+              {processedContent}
+            </ReactMarkdown>
+          )}
           {imagePreviews.length > 0 && (
             <div className="mt-3 space-y-2">
               {imagePreviews.map((preview) => (
@@ -109,6 +117,9 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
           )}
         </div>
         {showSources && <SourceCard sources={sources!} />}
+        {routingMeta && !isStreaming && (
+          <p className="mt-1 text-[10px] text-slate-400">{routingMeta}</p>
+        )}
       </div>
     </div>
   );

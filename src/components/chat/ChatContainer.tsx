@@ -3,9 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import type { CitedChunk } from '@/lib/types';
 import MessageBubble from './MessageBubble';
-import ModelToggle from './ModelToggle';
 import ProviderToggle from './ProviderToggle';
-import AnswerStyleToggle from './AnswerStyleToggle';
 import LocalModelSelector from './LocalModelSelector';
 
 interface Message {
@@ -14,9 +12,40 @@ interface Message {
   content: string;
   sources?: CitedChunk[];
   isStreaming?: boolean;
+  routingMeta?: string;
 }
 
 type AnswerMode = 'lmstudio_only' | 'anthropic_only' | 'two_tier_auto';
+type ResponseProfile = 'quick' | 'balanced' | 'deep' | 'custom';
+
+function deriveResponseProfile(
+  answerStyle: 'concise' | 'detailed',
+  modelTier: 'default' | 'quality',
+): ResponseProfile {
+  if (answerStyle === 'concise' && modelTier === 'default') return 'quick';
+  if (answerStyle === 'detailed' && modelTier === 'default') return 'balanced';
+  if (answerStyle === 'detailed' && modelTier === 'quality') return 'deep';
+  return 'custom';
+}
+
+function applyResponseProfile(
+  profile: Exclude<ResponseProfile, 'custom'>,
+  setAnswerStyle: (style: 'concise' | 'detailed') => void,
+  setModelTier: (tier: 'default' | 'quality') => void,
+): void {
+  if (profile === 'quick') {
+    setAnswerStyle('concise');
+    setModelTier('default');
+    return;
+  }
+  if (profile === 'balanced') {
+    setAnswerStyle('detailed');
+    setModelTier('default');
+    return;
+  }
+  setAnswerStyle('detailed');
+  setModelTier('quality');
+}
 
 function generateId() {
   return `msg-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
@@ -35,17 +64,44 @@ export default function ChatContainer() {
   const [answerStyle, setAnswerStyle] = useState<'concise' | 'detailed'>('concise');
   const [error, setError] = useState<string | null>(null);
   const [providerNotice, setProviderNotice] = useState<string | null>(null);
-  const [routingNotice, setRoutingNotice] = useState<string | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const responseAnchorIdRef = useRef<string | null>(null);
+
+  const scrollToResponseTop = useCallback(() => {
+    const anchorId = responseAnchorIdRef.current;
+    if (!anchorId) return;
+
+    const anchor = document.getElementById(anchorId);
+    if (!anchor) return;
+
+    anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    responseAnchorIdRef.current = null;
+  }, []);
+
+  const handleStop = useCallback(() => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages, scrollToBottom]);
+    scrollToResponseTop();
+  }, [messages, scrollToResponseTop]);
+
+  const responseProfile = deriveResponseProfile(answerStyle, modelTier);
+
+  // Cleanup abort controller on unmount
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -102,7 +158,6 @@ export default function ChatContainer() {
 
     setError(null);
     setProviderNotice(null);
-    setRoutingNotice(null);
 
     const userMessage: Message = {
       id: generateId(),
@@ -119,6 +174,7 @@ export default function ChatContainer() {
       isStreaming: true,
     };
 
+    responseAnchorIdRef.current = `message-${assistantId}`;
     setMessages((prev) => [...prev, userMessage, assistantMessage]);
     setInput('');
     setIsLoading(true);
@@ -129,6 +185,9 @@ export default function ChatContainer() {
       .map((m) => ({ role: m.role, content: m.content }));
 
     try {
+      // Create a new abort controller for this request
+      abortControllerRef.current = new AbortController();
+      
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -140,6 +199,7 @@ export default function ChatContainer() {
           lmStudioModel: answerMode === 'anthropic_only' ? undefined : lmStudioModel,
           answerStyle,
         }),
+        signal: abortControllerRef.current.signal,
       });
 
       if (!response.ok) {
@@ -197,10 +257,13 @@ export default function ChatContainer() {
               }
 
               case 'routing': {
-                if (parsed?.quality_mode_triggered === true && typeof parsed?.quality_mode_reason === 'string') {
-                  setRoutingNotice(`Routing: ${parsed.provider_used} (${parsed.model_used}) because ${parsed.quality_mode_reason}.`);
-                } else if (typeof parsed?.provider_used === 'string' && typeof parsed?.model_used === 'string') {
-                  setRoutingNotice(`Routing: ${parsed.provider_used} (${parsed.model_used}).`);
+                if (typeof parsed?.provider_used === 'string' && typeof parsed?.model_used === 'string') {
+                  const meta = `${parsed.provider_used} · ${parsed.model_used}`;
+                  setMessages((prev) =>
+                    prev.map((m) =>
+                      m.id === assistantId ? { ...m, routingMeta: meta } : m
+                    )
+                  );
                 }
                 break;
               }
@@ -223,14 +286,18 @@ export default function ChatContainer() {
                 );
                 break;
 
-              case 'error':
-                setError(parsed.message || 'An error occurred');
+              case 'error': {
+                const errMsg = parsed.message || 'An error occurred';
+                setError(errMsg);
                 setMessages((prev) =>
                   prev.map((m) =>
-                    m.id === assistantId ? { ...m, isStreaming: false } : m
+                    m.id === assistantId
+                      ? { ...m, isStreaming: false, content: m.content || errMsg }
+                      : m
                   )
                 );
                 break;
+              }
             }
           } catch {
             // Skip malformed JSON
@@ -245,16 +312,28 @@ export default function ChatContainer() {
         )
       );
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Failed to send message';
-      setError(message);
-      setMessages((prev) =>
-        prev.map((m) =>
-          m.id === assistantId
-            ? { ...m, isStreaming: false, content: m.content || 'Failed to get response.' }
-            : m
-        )
-      );
+      // Handle abort separately
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId
+              ? { ...m, isStreaming: false, content: m.content || '[Response stopped by user]' }
+              : m
+          )
+        );
+      } else {
+        const message = err instanceof Error ? err.message : 'Failed to send message';
+        setError(message);
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId
+              ? { ...m, isStreaming: false, content: m.content || 'Failed to get response.' }
+              : m
+          )
+        );
+      }
     } finally {
+      abortControllerRef.current = null;
       setIsLoading(false);
       inputRef.current?.focus();
     }
@@ -274,8 +353,24 @@ export default function ChatContainer() {
         <span className="text-xs text-slate-500">
           {messages.length === 0 ? 'Start a conversation' : `${messages.filter((m) => m.role === 'user').length} messages`}
         </span>
-        <div className="flex items-center gap-2 overflow-x-auto">
-          <AnswerStyleToggle answerStyle={answerStyle} onChange={setAnswerStyle} />
+        <div className="flex flex-wrap items-center gap-2 overflow-x-auto">
+          <label className="flex items-center gap-2 text-xs text-slate-500">
+            <span className="hidden sm:inline">Response profile</span>
+            <select
+              value={responseProfile}
+              onChange={(e) => {
+                const selected = e.target.value as ResponseProfile;
+                if (selected === 'custom') return;
+                applyResponseProfile(selected, setAnswerStyle, setModelTier);
+              }}
+              className="app-input rounded-md px-2 py-1 text-slate-700"
+            >
+              <option value="quick">Quick (short + fast model)</option>
+              <option value="balanced">Balanced (detailed + fast model)</option>
+              <option value="deep">Deep (detailed + quality model)</option>
+              {responseProfile === 'custom' && <option value="custom">Custom</option>}
+            </select>
+          </label>
           <ProviderToggle providerMode={answerMode} onChange={setAnswerMode} />
           <LocalModelSelector
             models={lmStudioModels}
@@ -284,7 +379,9 @@ export default function ChatContainer() {
             disabled={answerMode === 'anthropic_only'}
             onChange={setLmStudioModel}
           />
-          <ModelToggle modelTier={modelTier} onChange={setModelTier} />
+        </div>
+        <div className="w-full text-[11px] text-slate-500 sm:text-xs">
+          Quick = concise answer using fast model. Balanced = detailed answer using fast model. Deep = detailed answer using quality model.
         </div>
       </div>
 
@@ -325,18 +422,6 @@ export default function ChatContainer() {
         </div>
       )}
 
-      {routingNotice && !error && (
-        <div className="mx-2 mt-2 flex items-center justify-between rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-muted)] px-3 py-2 text-sm text-slate-700 sm:mx-4">
-          <span>{routingNotice}</span>
-          <button
-            onClick={() => setRoutingNotice(null)}
-            className="ml-2 text-slate-500 hover:text-slate-700"
-          >
-            x
-          </button>
-        </div>
-      )}
-
       {/* Messages area */}
       <div className="app-card flex-1 overflow-y-auto border-t-0 px-4 py-4 sm:px-5">
         {messages.length === 0 && (
@@ -351,15 +436,16 @@ export default function ChatContainer() {
           </div>
         )}
         {messages.map((msg) => (
-          <MessageBubble
-            key={msg.id}
-            role={msg.role}
-            content={msg.content}
-            sources={msg.sources}
-            isStreaming={msg.isStreaming}
-          />
+          <div key={msg.id} id={`message-${msg.id}`}>
+            <MessageBubble
+              role={msg.role}
+              content={msg.content}
+              sources={msg.sources}
+              isStreaming={msg.isStreaming}
+              routingMeta={msg.routingMeta}
+            />
+          </div>
         ))}
-        <div ref={messagesEndRef} />
       </div>
 
       {/* Input area */}
@@ -372,7 +458,8 @@ export default function ChatContainer() {
             onKeyDown={handleKeyDown}
             placeholder="Ask a question about IDD documents..."
             rows={1}
-            className="app-input flex-1 resize-none rounded-xl px-3 py-2.5 text-sm placeholder:text-slate-400 transition-colors"
+            disabled={isLoading}
+            className="app-input flex-1 resize-none rounded-xl px-3 py-2.5 text-sm placeholder:text-slate-400 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             style={{ maxHeight: '120px' }}
             onInput={(e) => {
               const target = e.target as HTMLTextAreaElement;
@@ -380,17 +467,23 @@ export default function ChatContainer() {
               target.style.height = Math.min(target.scrollHeight, 120) + 'px';
             }}
           />
-          <button
-            onClick={handleSend}
-            disabled={!input.trim() || isLoading}
-            className="rounded-xl bg-[color:var(--brand)] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[color:var(--brand-strong)] disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            {isLoading ? (
-              <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            ) : (
-              'Send'
-            )}
-          </button>
+          {isLoading ? (
+            <button
+              onClick={handleStop}
+              className="rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-red-700 active:bg-red-800"
+              title="Stop the current response"
+            >
+              Stop
+            </button>
+          ) : (
+            <button
+              onClick={handleSend}
+              disabled={!input.trim()}
+              className="rounded-xl bg-[color:var(--brand)] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[color:var(--brand-strong)] disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Send
+            </button>
+          )}
         </div>
       </div>
     </div>
