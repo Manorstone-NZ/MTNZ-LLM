@@ -1,0 +1,49 @@
+{
+  "query": "which tests are performed for which customers",
+  "captured_at": "2026-04-20",
+  "authoritative_source_check": {
+    "title": "MADCAP Test Type List",
+    "source_type": "xlsx",
+    "is_active": true,
+    "chunk_count": 73,
+    "extraction_status": "completed",
+    "visible_via_api_docs": true
+  },
+  "intent_detection": {
+    "intent": "standard",
+    "sectionRefs": [],
+    "signals": []
+  },
+  "retrieval_mode_selected": "standard",
+  "top_candidate_sources_before_fusion": {
+    "available": false,
+    "reason": "The live API path does not expose pre-fusion candidates. For this query, standard retrieval mode was selected, so canonical/list/authoritative candidate augmentation was not activated. In current code this means authoritative anchor retrieval was skipped before fusion."
+  },
+  "final_selected_sources": [
+    { "title": "4.0 - Plating and Counting Section V7", "source_type": "pdf" },
+    { "title": "LOP-RR 001 (V7) Result Release Manual", "source_type": "pdf" },
+    { "title": "LOP-MC 001 (V1) MADCAP Procedures Manual", "source_type": "pdf" },
+    { "title": "LOP-MC 001 (V1) MADCAP Procedures Manual", "source_type": "pdf" },
+    { "title": "2.0-Sample Selection V22", "source_type": "pdf" },
+    { "title": "Chromatography Manual (V6)", "source_type": "pdf" },
+    { "title": "LOP-MC 001 (V1) MADCAP Procedures Manual", "source_type": "pdf" },
+    { "title": "LOP-MB 003 (V22) Foreign Matter Manual", "source_type": "pdf" }
+  ],
+  "answer_citations": [
+    { "title": "4.0 - Plating and Counting Section V7", "source_type": "pdf" },
+    { "title": "LOP-RR 001 (V7) Result Release Manual", "source_type": "pdf" },
+    { "title": "LOP-MC 001 (V1) MADCAP Procedures Manual", "source_type": "pdf" },
+    { "title": "LOP-MC 001 (V1) MADCAP Procedures Manual", "source_type": "pdf" },
+    { "title": "2.0-Sample Selection V22", "source_type": "pdf" },
+    { "title": "Chromatography Manual (V6)", "source_type": "pdf" },
+    { "title": "LOP-MC 001 (V1) MADCAP Procedures Manual", "source_type": "pdf" },
+    { "title": "LOP-MB 003 (V22) Foreign Matter Manual", "source_type": "pdf" }
+  ],
+  "stage_presence": {
+    "candidate_pool": false,
+    "final_pool": false,
+    "answer_citations": false
+  },
+  "drop_stage": "candidate_generation",
+  "drop_stage_note": "The authoritative structured source was lost before fusion because the query was classified as standard rather than canonical_lookup. In standard mode, authoritative/list anchor retrieval and structured-source prioritization are not activated, so procedural PDFs dominate the final pool."
+}

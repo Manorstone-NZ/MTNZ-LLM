@@ -12,6 +12,7 @@ import type { RetrievalMode } from './retrievalMode';
 import type { ScoredChunk } from './types';
 import {
   hasRuleSignal,
+  isAuthoritativeChunkCandidate,
   isCanonicalLookupQuery,
   isCatalogueStyleQuery,
   isStructuredSourceType,
@@ -25,10 +26,6 @@ const RULES_PRIORITY_REGEX =
   /\b(rule|rules|validation|validations|processing logic|business rules|decision logic|criteria|conditions|govern|release rules|entry rules|result entry rules|validation conditions)\b/i;
 const RULE_SIGNAL_REGEX =
   /\b(must|shall|required|if|when|only if|enter|reject|accept|notify|adjust|release|confirm|limit|threshold|range|code|result code|criteria|condition|validation)\b/i;
-
-// Regex that detects integration/interaction-related content to boost during interaction retrieval.
-const INTERACTION_CONTENT_REGEX =
-  /\b(integration|interface|web\s*service|api|middleware|automatic\s*(?:data\s*)?entry|import|export|file\s*transfer|setup|configuration|connection|protocol|sends?|receives?|trigger|flow|exchange|result\s*entry|sorter|robot|analyser|analyzer|instrument|ods|titan|madcap|lims|erp|eap|wso2|selection|selections)\b/i;
 
 // Mechanism-focused interaction signal excludes system names to avoid false positives.
 const INTERACTION_MECHANISM_REGEX =
@@ -418,10 +415,15 @@ function pickInteractionResults(
   };
 }
 
-function pickSynthesisResults(
+interface SynthesisSelectionOptions {
+  preserveAuthoritativeStructuredSource?: boolean;
+}
+
+export function pickSynthesisResults(
   ranked: ScoredChunk[],
   targetCount: number,
   maxPerDocument: number,
+  options: SynthesisSelectionOptions = {},
 ): ScoredChunk[] {
   const selected: ScoredChunk[] = [];
   const perDocCount = new Map<string, number>();
@@ -435,16 +437,55 @@ function pickSynthesisResults(
     if (selected.length >= targetCount) break;
   }
 
-  if (selected.length >= targetCount) return selected;
-
   const seen = new Set(selected.map((s) => s.id));
   for (const chunk of ranked) {
+    if (selected.length >= targetCount) break;
     if (seen.has(chunk.id)) continue;
     selected.push(chunk);
-    if (selected.length >= targetCount) break;
   }
 
-  return selected;
+  if (!options.preserveAuthoritativeStructuredSource) {
+    return selected;
+  }
+
+  const hasPreservedStructuredSource = selected.some(
+    (chunk) => isStructuredSourceType(chunk.source_type) && isAuthoritativeChunkCandidate(chunk),
+  );
+
+  if (hasPreservedStructuredSource) {
+    return selected;
+  }
+
+  const authoritativeStructuredCandidate = ranked.find(
+    (chunk) =>
+      !selected.some((selectedChunk) => selectedChunk.id === chunk.id) &&
+      isStructuredSourceType(chunk.source_type) &&
+      isAuthoritativeChunkCandidate(chunk),
+  );
+
+  if (!authoritativeStructuredCandidate) {
+    return selected;
+  }
+
+  if (selected.length < targetCount) {
+    return [...selected, authoritativeStructuredCandidate];
+  }
+
+  const replacementIndex = [...selected]
+    .map((chunk, index) => ({ chunk, index }))
+    .reverse()
+    .find(({ chunk }) => !(isStructuredSourceType(chunk.source_type) && isAuthoritativeChunkCandidate(chunk)))?.index;
+
+  if (replacementIndex == null) {
+    return selected;
+  }
+
+  const replaced = [...selected];
+  replaced[replacementIndex] = authoritativeStructuredCandidate;
+  const rankIndex = new Map(ranked.map((chunk, index) => [chunk.id, index]));
+  replaced.sort((a, b) => (rankIndex.get(a.id) ?? Number.MAX_SAFE_INTEGER) - (rankIndex.get(b.id) ?? Number.MAX_SAFE_INTEGER));
+
+  return replaced;
 }
 
 export async function hybridSearchWithMode(
@@ -682,11 +723,15 @@ export async function hybridSearchWithMode(
   results.sort((a, b) => b.score - a.score);
 
   if (mode === 'canonical') {
-    return pickSynthesisResults(results, canonicalTopKFinal, canonicalMaxPerDoc);
+    return pickSynthesisResults(results, canonicalTopKFinal, canonicalMaxPerDoc, {
+      preserveAuthoritativeStructuredSource: true,
+    });
   }
 
   if (mode === 'synthesis') {
-    return pickSynthesisResults(results, synthesisTopKFinal, synthesisMaxPerDoc);
+    return pickSynthesisResults(results, synthesisTopKFinal, synthesisMaxPerDoc, {
+      preserveAuthoritativeStructuredSource: needsCanonicalPriority || needsListPriority,
+    });
   }
 
   if (mode === 'interaction') {

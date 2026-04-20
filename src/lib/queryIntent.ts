@@ -1,6 +1,7 @@
 import {
   isCanonicalLookupQuery,
   isCatalogueStyleQuery,
+  isMappingStyleQuery,
   isRulesStyleQuery,
 } from './authoritativeSources';
 import { extractRegistryInteractionPair } from './entityRegistry';
@@ -131,6 +132,7 @@ export function classifyQueryIntent(input: string): QueryIntentResult {
   const hasStructuralWord = STRUCTURAL_REGEX.test(q);
   const hasListLanguage = isCatalogueStyleQuery(q);
   const hasCanonicalLanguage = isCanonicalLookupQuery(q);
+  const hasMappingLanguage = isMappingStyleQuery(q);
   const hasWhatExistsPattern = WHAT_EXISTS_REGEX.test(q);
   const hasRulesLanguage = isRulesStyleQuery(q);
   const hasInteractionVerb = INTERACTION_VERB_REGEX.test(q);
@@ -148,6 +150,7 @@ export function classifyQueryIntent(input: string): QueryIntentResult {
   if (sectionRefs.length > 0) signals.push('section_ref');
   if (hasListLanguage) signals.push('list_language');
   if (hasCanonicalLanguage) signals.push('canonical_language');
+  if (hasMappingLanguage) signals.push('mapping_language');
   if (hasWhatExistsPattern) signals.push('what_exists_pattern');
   if (hasRulesLanguage) signals.push('rules_query');
   if (hasInteractionPatternQuery) signals.push('interaction_pattern_query');
@@ -164,7 +167,7 @@ export function classifyQueryIntent(input: string): QueryIntentResult {
     };
   }
 
-  if (hasCanonicalLanguage && (hasListLanguage || sectionRefs.length > 0 || hasStructuralWord)) {
+  if (hasMappingLanguage || (hasCanonicalLanguage && (hasListLanguage || sectionRefs.length > 0 || hasStructuralWord || hasWhatExistsPattern))) {
     return {
       intent: 'canonical_lookup',
       sectionRefs,

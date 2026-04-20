@@ -383,7 +383,7 @@ export default function HealthDashboard({ health }: { health: HealthMetrics | nu
           <SectionHeading>Top Re-OCR Candidates</SectionHeading>
           <div className="col-span-full rounded-lg bg-slate-800/80 border border-slate-700/50 p-4">
             <div className="space-y-2">
-              {health.top_reprocess_candidates.slice(0, 5).map((doc, idx) => (
+              {health.top_reprocess_candidates.slice(0, 5).map((doc) => (
                 <div key={doc.title} className="text-xs">
                   <div className="flex items-start gap-2">
                     <span className="tabular-nums text-amber-400 font-semibold min-w-6">#{doc.reprocess_rank ?? '—'}</span>

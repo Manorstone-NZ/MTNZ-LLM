@@ -14,6 +14,24 @@ const CATALOGUE_QUERY_REGEX =
 const CANONICAL_QUERY_REGEX =
   /\b(canonical|master|authoritative|official|reference\s+source|source\s+of\s+truth|lookup|mapping|register|matrix|code\s+list|test\s+type\s+list)\b/i;
 
+const MAPPING_WHICH_FOR_WHICH_REGEX =
+  /\bwhich\s+[\w\s/-]+\s+(?:are|is|were|was|performed|used|mapped|assigned|available)?\s*(?:for|to)\s+which\s+[\w\s/-]+\b/i;
+
+const MAPPING_WHICH_HAS_WHICH_REGEX =
+  /\bwhich\s+[\w\s/-]+\s+has\s+which\s+[\w\s/-]+\b/i;
+
+const MAPPING_MAP_TO_REGEX =
+  /\bmap(?:ping)?\s+[\w\s/-]+\s+to\s+[\w\s/-]+\b/i;
+
+const MAPPING_ASSOCIATION_REGEX =
+  /\bassociations?\s+(?:between|for)\s+[\w\s/-]+\s+(?:and|to)\s+[\w\s/-]+\b/i;
+
+const MAPPING_ENTITY_PAIR_ASSOCIATION_REGEX =
+  /\b(?:customer|client|database|system|site|instrument|business\s+unit)(?:\s*\/\s*|-)\s*(?:customer|client|database|system|site|instrument|business\s+unit)\s+associations?\b/i;
+
+const MAPPING_BREAKDOWN_REGEX =
+  /\b(?:(?:tests?|test\s*types?|codes?|programmes?|programs?|databases?|systems?|sites?|customers?|clients?|instruments?|business\s+units?)\s*-\s*by\s*-\s*(?:tests?|test\s*types?|codes?|programmes?|programs?|databases?|systems?|sites?|customers?|clients?|instruments?|business\s+units?)|breakdown\s+by\s+(?:customer|client|database|system|site|instrument|business\s+unit)|(?:tests?|test\s*types?|codes?|programmes?|programs?|databases?|systems?|sites?)\s+by\s+(?:customer|client|database|system|site|instrument|business\s+unit))\b/i;
+
 const RULES_QUERY_REGEX =
   /\b(rule|rules|validation|validations|processing\s+logic|business\s+rules|decision\s+logic|criteria|conditions|govern|release\s+rules|entry\s+rules|result\s+entry\s+rules|validation\s+conditions)\b/i;
 
@@ -50,8 +68,19 @@ export function isCatalogueStyleQuery(input: string): boolean {
   return CATALOGUE_QUERY_REGEX.test(input);
 }
 
+export function isMappingStyleQuery(input: string): boolean {
+  return (
+    MAPPING_WHICH_FOR_WHICH_REGEX.test(input) ||
+    MAPPING_WHICH_HAS_WHICH_REGEX.test(input) ||
+    MAPPING_MAP_TO_REGEX.test(input) ||
+    MAPPING_ASSOCIATION_REGEX.test(input) ||
+    MAPPING_ENTITY_PAIR_ASSOCIATION_REGEX.test(input) ||
+    MAPPING_BREAKDOWN_REGEX.test(input)
+  );
+}
+
 export function isCanonicalLookupQuery(input: string): boolean {
-  return CANONICAL_QUERY_REGEX.test(input);
+  return CANONICAL_QUERY_REGEX.test(input) || isMappingStyleQuery(input);
 }
 
 export function isRulesStyleQuery(input: string): boolean {

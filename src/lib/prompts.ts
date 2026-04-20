@@ -1,4 +1,5 @@
 import type { CitedChunk } from './types';
+import type { EvidenceSummary } from './evidenceSummary';
 import type { SynthesisContext } from './synthesis';
 
 export const SYSTEM_PROMPT = `You are an IDD knowledge assistant for the MTNZ LIMS replacement programme.
@@ -59,6 +60,42 @@ Preferred answer structure:
 2. Rule model grouped into categories (prefer this taxonomy when grounded: system configuration and data partitioning rules; sample classification and eligibility rules; data entry and formatting rules; result entry and adjustment rules; instrument and program-specific rules; release and reporting rules; exception and escalation conditions)
 3. Operational implications or usage notes where grounded
 4. Brief evidence caveat only if genuinely necessary`;
+
+export function buildSynthesisEvidencePolicyHint(
+  intent: 'synthesis_list' | 'synthesis_rules' | 'canonical_lookup',
+  evidenceSummary: EvidenceSummary | null,
+): string {
+  if (!evidenceSummary) return '';
+
+  const lines: string[] = [];
+
+  if (intent === 'synthesis_rules' && evidenceSummary.hasBroadRuleCoverage) {
+    lines.push('Retrieved evidence spans multiple documents and contains substantial rule-like material.');
+    lines.push('Do NOT add a generic "available sources do not fully cover" limitations section unless a major rule category is unsupported.');
+    lines.push('Provide a confident consolidated rule model from the retrieved evidence.');
+    return lines.join('\n');
+  }
+
+  if (evidenceSummary.hasStrongSynthesisCoverage) {
+    lines.push('Retrieved evidence is strong across multiple documents.');
+  } else if (evidenceSummary.hasAuthoritativeSource) {
+    lines.push('Retrieved evidence includes an authoritative structured source.');
+  } else {
+    return '';
+  }
+
+  if (evidenceSummary.hasAuthoritativeSource) {
+    lines.push('- Prioritize authoritative/canonical structured sources when presenting the final answer structure.');
+    lines.push('- Use the authoritative structured source as the primary basis for mappings, catalogues, registers, and matrix-style answers.');
+    lines.push('- Do NOT claim that you lack access to the required list, mapping, register, or reference source when authoritative structured evidence is already in the retrieved sources.');
+    lines.push('- Supplement with procedural/manual context only when it adds grounded operational detail.');
+  } else {
+    lines.push('- No single authoritative source dominates; provide a grounded corpus-derived consolidation.');
+  }
+
+  lines.push('- Do NOT add generic incompleteness boilerplate unless major requested areas are unsupported.');
+  return lines.join('\n');
+}
 
 export function buildAnswerMessage(
   question: string,

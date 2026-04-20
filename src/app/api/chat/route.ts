@@ -11,6 +11,7 @@ import {
   SYNTHESIS_CANONICAL_PROMPT,
   SYNTHESIS_RULES_PROMPT,
   INTERACTION_EXPLANATION_PROMPT,
+  buildSynthesisEvidencePolicyHint,
   buildAnswerMessage,
   buildSynthesisAnswerMessage,
   buildInteractionAnswerMessage,
@@ -228,18 +229,10 @@ export async function POST(request: NextRequest) {
             ? summariseRuleEvidence(citedChunks)
             : null;
 
-        let evidencePolicyHint = '';
-        if (intentResult.intent === 'synthesis_rules' && evidenceSummary?.hasBroadRuleCoverage) {
-          evidencePolicyHint = `Retrieved evidence spans multiple documents and contains substantial rule-like material.
-Do NOT add a generic "available sources do not fully cover" limitations section unless a major rule category is unsupported.
-Provide a confident consolidated rule model from the retrieved evidence.`;
-        } else if (evidenceSummary?.hasStrongSynthesisCoverage) {
-          evidencePolicyHint = `Retrieved evidence is strong across multiple documents.
-${evidenceSummary.hasAuthoritativeSource
-    ? '- Prioritize authoritative/canonical structured sources when presenting the final answer structure.'
-    : '- No single authoritative source dominates; provide a grounded corpus-derived consolidation.'}
-- Do NOT add generic incompleteness boilerplate unless major requested areas are unsupported.`;
-        }
+        const evidencePolicyHint =
+          effectiveIntent === 'canonical_lookup' || effectiveIntent === 'synthesis_list' || effectiveIntent === 'synthesis_rules'
+            ? buildSynthesisEvidencePolicyHint(effectiveIntent, evidenceSummary)
+            : '';
 
         // Step 7: Build system prompt (with optional low-confidence caveat)
         let systemPrompt = SYSTEM_PROMPT;

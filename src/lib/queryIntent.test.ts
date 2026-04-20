@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { classifyQueryIntent } from './queryIntent';
+import { retrievalModeFromIntent } from './retrievalMode';
 
 test('classifies MADCAP list query as synthesis_list', () => {
   const out = classifyQueryIntent('What MADCAP tests are there?');
@@ -42,6 +43,32 @@ test('classifies canonical lookup query correctly', () => {
     'What is the canonical test type list reference source in this corpus?'
   );
   assert.equal(out.intent, 'canonical_lookup');
+});
+
+test('classifies mapping-style customer test query as canonical_lookup', () => {
+  const out = classifyQueryIntent('Which tests are performed for which customers?');
+  assert.equal(out.intent, 'canonical_lookup');
+});
+
+test('classifies customer-by-customer breakdown query as canonical_lookup', () => {
+  const out = classifyQueryIntent('Customer-by-customer breakdown of programmes and test types');
+  assert.equal(out.intent, 'canonical_lookup');
+});
+
+test('classifies database client association query as canonical_lookup', () => {
+  const out = classifyQueryIntent('Database/client associations for result codes');
+  assert.equal(out.intent, 'canonical_lookup');
+});
+
+test('classifies generic mapping query as canonical_lookup', () => {
+  const out = classifyQueryIntent('Map programs to instruments by site');
+  assert.equal(out.intent, 'canonical_lookup');
+});
+
+test('routes mapping-style canonical intent to canonical retrieval mode', () => {
+  const out = classifyQueryIntent('Which tests are performed for which customers?');
+  assert.equal(out.intent, 'canonical_lookup');
+  assert.equal(retrievalModeFromIntent(out.intent), 'canonical');
 });
 
 test('validation set: list/catalogue class routes to synthesis_list', () => {
