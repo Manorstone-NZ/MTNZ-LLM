@@ -1,0 +1,138 @@
+{
+  "generated_at": "2026-04-19T21:25:04.344532Z",
+  "fixed_cohort": {
+    "size": 20,
+    "avg_excluded_ratio_before": 0.409,
+    "avg_excluded_ratio_after": 0.3041,
+    "improved_doc_count": 19,
+    "improved_docs_sample": [
+      {
+        "title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
+        "before_excluded_ratio": 0.5294,
+        "after_excluded_ratio": 0.3261,
+        "delta": 0.2033
+      },
+      {
+        "title": "EOP 018 (V1) Colony Counter Manual",
+        "before_excluded_ratio": 0.4091,
+        "after_excluded_ratio": 0.2453,
+        "delta": 0.1638
+      },
+      {
+        "title": "LOP-SP 008 (V1)  Routine Monitoring Of Tanker And Supplier Samples",
+        "before_excluded_ratio": 0.4091,
+        "after_excluded_ratio": 0.2564,
+        "delta": 0.1527
+      },
+      {
+        "title": "EOP 008 (V2) RFID Aerial Table Manual",
+        "before_excluded_ratio": 0.4,
+        "after_excluded_ratio": 0.25,
+        "delta": 0.15
+      },
+      {
+        "title": "EOP 012 (V1) Thermoduric Pasteurisation Bath Manual",
+        "before_excluded_ratio": 0.4082,
+        "after_excluded_ratio": 0.2586,
+        "delta": 0.1496
+      },
+      {
+        "title": "LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual",
+        "before_excluded_ratio": 0.4048,
+        "after_excluded_ratio": 0.2692,
+        "delta": 0.1356
+      },
+      {
+        "title": "EOP 010 (V1) Infrared Thermometer Manual",
+        "before_excluded_ratio": 0.4074,
+        "after_excluded_ratio": 0.2821,
+        "delta": 0.1253
+      },
+      {
+        "title": "LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual",
+        "before_excluded_ratio": 0.38,
+        "after_excluded_ratio": 0.2549,
+        "delta": 0.1251
+      },
+      {
+        "title": "EOP 021 (V1) DT80 Data Logger Manual",
+        "before_excluded_ratio": 0.375,
+        "after_excluded_ratio": 0.25,
+        "delta": 0.125
+      },
+      {
+        "title": "LOP-TI 002 (V4) TITAN Manual - Inventory Management",
+        "before_excluded_ratio": 0.3846,
+        "after_excluded_ratio": 0.2727,
+        "delta": 0.1119
+      }
+    ],
+    "high_excluded_docs_before": 20,
+    "high_excluded_docs_after": 19
+  },
+  "global_reporting": {
+    "checks_all_passed": true,
+    "active_partial_before": 105,
+    "active_partial_after": 105,
+    "high_excluded_reason_before": 75,
+    "high_excluded_reason_after": 74,
+    "active_excluded_chunk_percent_before": 26.2,
+    "active_excluded_chunk_percent_after": 25.3
+  },
+  "category_shift": {
+    "before": [
+      {
+        "category": "metadata_block",
+        "excluded_chunks": 223
+      },
+      {
+        "category": "short_fragment_noise",
+        "excluded_chunks": 69
+      },
+      {
+        "category": "duplicate_boilerplate",
+        "excluded_chunks": 49
+      },
+      {
+        "category": "broken_structure",
+        "excluded_chunks": 23
+      },
+      {
+        "category": "list_reference",
+        "excluded_chunks": 19
+      }
+    ],
+    "after": [
+      {
+        "category": "metadata_block",
+        "excluded_chunks": 156
+      },
+      {
+        "category": "duplicate_boilerplate",
+        "excluded_chunks": 81
+      },
+      {
+        "category": "short_fragment_noise",
+        "excluded_chunks": 63
+      },
+      {
+        "category": "broken_structure",
+        "excluded_chunks": 22
+      },
+      {
+        "category": "list_reference",
+        "excluded_chunks": 11
+      }
+    ],
+    "over_excluded_category_total_before": 42,
+    "over_excluded_category_total_after": 33,
+    "true_noise_category_total_before": 341,
+    "true_noise_category_total_after": 300
+  },
+  "safety_checks": {
+    "duplicate_boilerplate_still_excluded": true,
+    "short_fragment_noise_still_excluded": true,
+    "metadata_block_still_excluded": true,
+    "validator_checks_all_true": true
+  }
+}

@@ -43,7 +43,7 @@ export default function IngestControls({
         <button
           onClick={onIngestNew}
           disabled={isIngesting}
-          className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="px-4 py-2 rounded-lg bg-[color:var(--brand)] text-white text-sm font-medium hover:bg-[color:var(--brand-strong)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         >
           Ingest New/Changed
         </button>
@@ -75,9 +75,9 @@ export default function IngestControls({
               </span>
             )}
           </div>
-          <div className="w-full h-2 rounded-full bg-slate-700 overflow-hidden">
+          <div className="w-full h-2 rounded-full bg-[color:var(--surface-muted)] overflow-hidden">
             <div
-              className="h-full rounded-full bg-blue-500 transition-all duration-300"
+              className="h-full rounded-full bg-[color:var(--brand)] transition-all duration-300"
               style={{ width: progress.total > 0 ? `${pct}%` : '0%' }}
             />
           </div>
@@ -85,8 +85,8 @@ export default function IngestControls({
       )}
 
       {isIngesting && !progress && (
-        <div className="flex items-center gap-2 text-xs text-slate-400">
-          <span className="inline-block w-3 h-3 border-2 border-blue-400/30 border-t-blue-400 rounded-full animate-spin" />
+        <div className="flex items-center gap-2 text-xs text-slate-500">
+          <span className="inline-block w-3 h-3 border-2 border-[color:var(--brand)]/30 border-t-[color:var(--brand)] rounded-full animate-spin" />
           Connecting...
         </div>
       )}
@@ -94,13 +94,13 @@ export default function IngestControls({
       {/* Full Rebuild confirmation dialog */}
       {showRebuildDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-          <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
-            <h3 className="text-lg font-semibold text-slate-100 mb-2">Confirm Full Rebuild</h3>
-            <p className="text-sm text-slate-400 mb-4">
+          <div className="bg-white border border-[color:var(--line)] rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
+            <h3 className="text-lg font-semibold text-[color:var(--brand-strong)] mb-2">Confirm Full Rebuild</h3>
+            <p className="text-sm text-slate-600 mb-4">
               This will delete all documents, chunks, and ingest history, then re-process every file from scratch.
               This action cannot be undone.
             </p>
-            <label className="block text-sm text-slate-300 mb-2">
+            <label className="block text-sm text-slate-700 mb-2">
               Type <span className="font-mono font-bold text-red-400">REBUILD</span> to confirm:
             </label>
             <input
@@ -111,14 +111,14 @@ export default function IngestControls({
                 if (e.key === 'Enter') handleRebuildConfirm();
                 if (e.key === 'Escape') { setShowRebuildDialog(false); setConfirmText(''); }
               }}
-              className="w-full rounded bg-slate-900 border border-slate-600 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-red-500 mb-4"
+              className="w-full rounded app-input px-3 py-2 text-sm placeholder-slate-400 focus:outline-none focus:border-red-500 mb-4"
               placeholder="REBUILD"
               autoFocus
             />
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => { setShowRebuildDialog(false); setConfirmText(''); }}
-                className="px-4 py-2 rounded-lg bg-slate-700 text-slate-300 text-sm hover:bg-slate-600 transition-colors"
+                className="px-4 py-2 rounded-lg bg-[color:var(--surface-muted)] text-slate-700 text-sm hover:bg-[color:var(--brand-soft)] transition-colors"
               >
                 Cancel
               </button>

@@ -1,0 +1,486 @@
+{
+  "generated_at": "2026-04-20T00:57:28.035Z",
+  "wave": "2b",
+  "reprocess_runs": [
+    {
+      "title": "LOP-TI 005 (V4) TITAN Manual - System Incident Register",
+      "source_path": "LOP/LOP-TI 005 (V4) TITAN Manual - System Incident Register.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-CT 006 (V3) Fatty Acids in Liquid Milk (GC-FID) Manual",
+      "source_path": "LOP/LOP-CT 006 (V3) Fatty Acids in Liquid Milk (GC-FID) Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "EOP 010 (V1) Infrared Thermometer Manual",
+      "source_path": "EOP/EOP 010 (V1) Infrared Thermometer Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-QM 002 (V26) Microbiological Quality Control Procedures Manual",
+      "source_path": "LOP/LOP-QM 002 (V26) Microbiological Quality Control Procedures Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-RR 001 (V7) Result Release Manual",
+      "source_path": "LOP/LOP-RR 001 (V7) Result Release Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual",
+      "source_path": "LOP/LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-TI 002 (V4) TITAN Manual - Inventory Management",
+      "source_path": "LOP/LOP-TI 002 (V4) TITAN Manual - Inventory Management.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual",
+      "source_path": "LOP/LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-CT 002 (V2) Urea (HPLC-UV) Manual",
+      "source_path": "LOP/LOP-CT 002 (V2) Urea (HPLC-UV) Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual",
+      "source_path": "LOP/LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "before_ocr_summary": {
+    "native_clean": 70,
+    "ocr_clean": 186,
+    "ocr_mixed": 403,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 54,
+    "high_priority_candidates": 54
+  },
+  "after_ocr_summary": {
+    "native_clean": 70,
+    "ocr_clean": 186,
+    "ocr_mixed": 413,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 54,
+    "high_priority_candidates": 54
+  },
+  "per_document": [
+    {
+      "title": "LOP-TI 005 (V4) TITAN Manual - System Incident Register",
+      "source_path": "LOP/LOP-TI 005 (V4) TITAN Manual - System Incident Register.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 77,
+        "excluded_chunk_count": 22,
+        "excluded_ratio": 0.2857142857142857,
+        "heading_chunk_count": "5",
+        "reasons": [
+          "PDF native",
+          "Some issues (29% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 15
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 157,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2857,
+        "chunk_count_delta": 80,
+        "excluded_chunk_count_delta": -22,
+        "heading_chunk_count_delta": -5,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-CT 006 (V3) Fatty Acids in Liquid Milk (GC-FID) Manual",
+      "source_path": "LOP/LOP-CT 006 (V3) Fatty Acids in Liquid Milk (GC-FID) Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 120,
+        "excluded_chunk_count": 34,
+        "excluded_ratio": 0.2833333333333333,
+        "heading_chunk_count": "9",
+        "reasons": [
+          "PDF native",
+          "Some issues (28% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 16
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 201,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2833,
+        "chunk_count_delta": 81,
+        "excluded_chunk_count_delta": -34,
+        "heading_chunk_count_delta": -9,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "EOP 010 (V1) Infrared Thermometer Manual",
+      "source_path": "EOP/EOP 010 (V1) Infrared Thermometer Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 39,
+        "excluded_chunk_count": 11,
+        "excluded_ratio": 0.28205128205128205,
+        "heading_chunk_count": "12",
+        "reasons": [
+          "PDF native",
+          "Some issues (28% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 17
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 23,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2821,
+        "chunk_count_delta": -16,
+        "excluded_chunk_count_delta": -11,
+        "heading_chunk_count_delta": -12,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-QM 002 (V26) Microbiological Quality Control Procedures Manual",
+      "source_path": "LOP/LOP-QM 002 (V26) Microbiological Quality Control Procedures Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 94,
+        "excluded_chunk_count": 26,
+        "excluded_ratio": 0.2765957446808511,
+        "heading_chunk_count": "6",
+        "reasons": [
+          "PDF native",
+          "Some issues (28% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 18
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 161,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2766,
+        "chunk_count_delta": 67,
+        "excluded_chunk_count_delta": -26,
+        "heading_chunk_count_delta": -6,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-RR 001 (V7) Result Release Manual",
+      "source_path": "LOP/LOP-RR 001 (V7) Result Release Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 160,
+        "excluded_chunk_count": 44,
+        "excluded_ratio": 0.275,
+        "heading_chunk_count": "17",
+        "reasons": [
+          "PDF native",
+          "Some issues (28% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 19
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 196,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.275,
+        "chunk_count_delta": 36,
+        "excluded_chunk_count_delta": -44,
+        "heading_chunk_count_delta": -17,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual",
+      "source_path": "LOP/LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 95,
+        "excluded_chunk_count": 26,
+        "excluded_ratio": 0.2736842105263158,
+        "heading_chunk_count": "9",
+        "reasons": [
+          "PDF native",
+          "Some issues (27% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 20
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 128,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2737,
+        "chunk_count_delta": 33,
+        "excluded_chunk_count_delta": -26,
+        "heading_chunk_count_delta": -9,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-TI 002 (V4) TITAN Manual - Inventory Management",
+      "source_path": "LOP/LOP-TI 002 (V4) TITAN Manual - Inventory Management.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 44,
+        "excluded_chunk_count": 12,
+        "excluded_ratio": 0.2727272727272727,
+        "heading_chunk_count": "9",
+        "reasons": [
+          "PDF native",
+          "Some issues (27% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 21
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 47,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2727,
+        "chunk_count_delta": 3,
+        "excluded_chunk_count_delta": -12,
+        "heading_chunk_count_delta": -9,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual",
+      "source_path": "LOP/LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 52,
+        "excluded_chunk_count": 14,
+        "excluded_ratio": 0.2692307692307692,
+        "heading_chunk_count": "12",
+        "reasons": [
+          "PDF native",
+          "Some issues (27% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 22
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 49,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2692,
+        "chunk_count_delta": -3,
+        "excluded_chunk_count_delta": -14,
+        "heading_chunk_count_delta": -12,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-CT 002 (V2) Urea (HPLC-UV) Manual",
+      "source_path": "LOP/LOP-CT 002 (V2) Urea (HPLC-UV) Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 83,
+        "excluded_chunk_count": 22,
+        "excluded_ratio": 0.26506024096385544,
+        "heading_chunk_count": "6",
+        "reasons": [
+          "PDF native",
+          "Some issues (27% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 24
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 115,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2651,
+        "chunk_count_delta": 32,
+        "excluded_chunk_count_delta": -22,
+        "heading_chunk_count_delta": -6,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual",
+      "source_path": "LOP/LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 96,
+        "excluded_chunk_count": 25,
+        "excluded_ratio": 0.2604166666666667,
+        "heading_chunk_count": "6",
+        "reasons": [
+          "PDF native",
+          "Some issues (26% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 25
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 155,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2604,
+        "chunk_count_delta": 59,
+        "excluded_chunk_count_delta": -25,
+        "heading_chunk_count_delta": -6,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    }
+  ]
+}

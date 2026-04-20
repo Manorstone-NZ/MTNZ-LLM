@@ -59,13 +59,28 @@ bash scripts/db-setup.sh
 DATABASE_URL=postgres://damian:password@localhost:5432/idd_knowledge
 SOURCE_PATH=/absolute/path/to/your-corpus
 
-# Model provider routing
+# Answer-generation routing mode
+# lmstudio_only | anthropic_only | two_tier_auto
+ANSWER_MODE=two_tier_auto
+
+# Optional provider gating (default true when unset)
+ANTHROPIC_ENABLED=true
+CLAUDE_ENABLED=true
+
+# Anthropic API key (either variable name works)
 ANTHROPIC_API_KEY=<optional-if-using-claude>
-LMSTUDIO_URL=http://localhost:1234/v1
+CLAUDE_API_KEY=<optional-alias-if-using-claude>
+
+# LM Studio endpoint
+LMSTUDIO_URL=http://localhost:1234
 
 # LM Studio model ids
-DEFAULT_ANSWER_MODEL=<lmstudio-fast-model>
-QUALITY_ANSWER_MODEL=<lmstudio-quality-model>
+DEFAULT_LMSTUDIO_MODEL=<lmstudio-fast-model>
+QUALITY_LMSTUDIO_MODEL=<lmstudio-quality-model>
+
+# Backward-compatible aliases still accepted
+DEFAULT_ANSWER_MODEL=<legacy-lmstudio-fast-model>
+QUALITY_ANSWER_MODEL=<legacy-lmstudio-quality-model>
 
 # Anthropic model ids
 ANTHROPIC_DEFAULT_MODEL=<anthropic-fast-model>
@@ -83,17 +98,33 @@ npm run dev
 - Chat: `http://localhost:3000`
 - Ingest dashboard: `http://localhost:3000/ingest`
 
-## Provider and Model Selection
+## Answer Routing Modes
 
 In chat UI:
 
 - Tier toggle:
   - `Fast` -> `default`
   - `Quality` -> `quality`
-- Provider selector:
-  - `Auto` -> Claude when `ANTHROPIC_API_KEY` is available, otherwise LM Studio
-  - `Claude` -> forces Anthropic path (falls back to LM Studio if unavailable)
-  - `LM Studio` -> forces local OpenAI-compatible path
+- Answer mode selector:
+  - `LM Studio only` -> always local model, no Claude escalation
+  - `Claude only` -> always Anthropic model
+  - `Auto (two-tier)` -> local by default, escalates to Claude for quality/low-confidence and synthesis-heavy questions
+- Local model selector:
+  - Populated from currently available LM Studio models (`GET /api/models`)
+  - Disabled when answer mode is `Claude only`
+
+`two_tier_auto` fallback behaviour when Claude is unavailable:
+
+- Escalation falls back to LM Studio and emits routing diagnostics (`quality_mode_reason` includes `anthropic_unavailable_fallback_local`)
+
+Request-level overrides are supported in `/api/chat` body:
+
+```json
+{
+  "answerMode": "lmstudio_only",
+  "lmStudioModel": "qwen3:8b"
+}
+```
 
 ## Ingestion Operations
 
@@ -120,6 +151,33 @@ To switch to a different knowledge base:
 3. Point `SOURCE_PATH` to the new content directory (or pass a one-off `sourcePath` in the `/api/ingest` request body).
 4. Run `Full Rebuild` from `/ingest` to populate the new database.
 5. Query in chat normally; retrieval will operate over the currently configured database.
+
+#### Database switch runbook
+
+Use this sequence when moving from one corpus database to another:
+
+1. Stop app processes.
+2. Set a new environment profile with the new DATABASE_URL and SOURCE_PATH.
+3. Apply migrations to the new database.
+4. Run a full rebuild ingest into that database.
+5. Restart app and validate with a known query.
+
+Example profile snippet:
+
+```bash
+DATABASE_URL=postgres://damian:password@localhost:5432/idd_knowledge_alt
+SOURCE_PATH=/absolute/path/to/alternate-corpus
+```
+
+Migration + run flow:
+
+```bash
+# load your env profile first
+bash scripts/db-setup.sh
+npm run dev
+```
+
+Then open `/ingest` and run Full Rebuild once for the new corpus.
 
 ## Useful Scripts
 

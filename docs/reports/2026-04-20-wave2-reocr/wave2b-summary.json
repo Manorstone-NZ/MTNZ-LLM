@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-04-20T00:57:28.049Z",
+  "wave": "2b",
+  "doc_count": 10,
+  "outcomes": {
+    "wave": "2b",
+    "wave_doc_count": 10,
+    "material_improvement_docs": 10,
+    "retrieval_improved_docs": 8,
+    "average_excluded_ratio_delta": -0.2744,
+    "average_status_movement": 1,
+    "vs_pilot_baseline": {
+      "pilot_avg_ratio_delta": -0.3457,
+      "wave_avg_ratio_delta": -0.2744,
+      "pilot_improvement_rate": 1,
+      "wave_improvement_rate": 1,
+      "results_consistent": true
+    },
+    "decision": {
+      "worthwhile": true,
+      "recommendation": "continue_to_next_wave"
+    }
+  },
+  "safety_checks": {
+    "no_spike_in_junk_chunks": true,
+    "no_obvious_source_spam": true,
+    "ingest_dashboard_reconciliation_ok": true
+  },
+  "acceptance_snapshot": {
+    "selected_docs_only_reprocessed": true,
+    "before_after_metrics_for_every_doc": true,
+    "retrieval_checked_for_every_doc": true
+  }
+}

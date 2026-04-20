@@ -1,0 +1,140 @@
+{
+  "endpoint": "http://localhost:3000/api/docs",
+  "checks": {
+    "active_plus_inactive_reconciles": true,
+    "quality_reconciles": true,
+    "split_failed_present": true,
+    "table_default_active_only": true,
+    "table_default_latest_only": true,
+    "table_default_historical_off": true,
+    "default_scope_excludes_historical_rows": true,
+    "unclassified_present_when_needed": true
+  },
+  "diagnostics": {
+    "quality_total": 136,
+    "active_docs": 136,
+    "total_document_versions": 542,
+    "active_plus_inactive_total": 542,
+    "api_diagnostics": {
+      "quality_total": 136,
+      "active_docs": 136,
+      "quality_reconciles": true,
+      "total_versions": 542,
+      "active_plus_inactive_reconciles": true
+    },
+    "default_visible_rows_count": 136,
+    "raw_documents_count": 542
+  },
+  "raw_health": {
+    "active_docs": 136,
+    "active_completed": 136,
+    "active_pending": 0,
+    "active_failed": 0,
+    "active_needs_review": 0,
+    "active_chunks_total": 9913,
+    "active_ocr_used": 4,
+    "active_fallback_extractions": 4,
+    "inactive_versions": 406,
+    "historical_failed": 13,
+    "active_good": 2,
+    "active_partial": 105,
+    "active_poor": 0,
+    "active_unclassified": 29,
+    "active_quarantined": 0,
+    "active_source_missing": 0,
+    "active_zero_text_docs": 0,
+    "active_avg_chunks_per_doc": 72.9,
+    "active_fallback_extraction_percent": 2.9,
+    "active_excluded_chunks_total": 2599,
+    "active_excluded_chunk_percent": 26.2,
+    "active_docs_with_structural_headings": 83,
+    "total_document_versions": 542,
+    "last_ingest_run": "2026-04-18T21:57:07.166Z",
+    "embedding_model": "text-embedding-nomic-embed-text-v1.5",
+    "db_size_mb": 291.11,
+    "diagnostics": {
+      "quality_total": 136,
+      "active_docs": 136,
+      "quality_reconciles": true,
+      "total_versions": 542,
+      "active_plus_inactive_reconciles": true
+    },
+    "metric_audit": {
+      "active_docs": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true"
+      },
+      "active_completed": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_status = 'completed'"
+      },
+      "active_pending": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_status = 'pending'"
+      },
+      "active_failed": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_status = 'failed'"
+      },
+      "active_needs_review": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND needs_review = true"
+      },
+      "active_chunks_total": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true (sum chunk_count)"
+      },
+      "active_ocr_used": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND ocr_used = true"
+      },
+      "active_fallback_extractions": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_method IN ('ocr','native_pdfjs')"
+      },
+      "inactive_versions": {
+        "source": "documents",
+        "scope": "historical_only",
+        "filter": "is_active = false"
+      },
+      "historical_failed": {
+        "source": "documents",
+        "scope": "historical_only",
+        "filter": "is_active = false AND extraction_status = 'failed'"
+      },
+      "active_good": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier = 'good'"
+      },
+      "active_partial": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier = 'partial'"
+      },
+      "active_poor": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier = 'poor'"
+      },
+      "active_unclassified": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier IS NULL"
+      },
+      "total_document_versions": {
+        "source": "documents",
+        "scope": "all_versions",
+        "filter": "active_docs + inactive_versions"
+      }
+    }
+  }
+}

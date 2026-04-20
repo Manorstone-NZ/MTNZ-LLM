@@ -1,0 +1,242 @@
+{
+  "endpoint": "http://localhost:3000/api/docs",
+  "checks": {
+    "active_plus_inactive_reconciles": true,
+    "quality_reconciles": true,
+    "split_failed_present": true,
+    "table_default_active_only": true,
+    "table_default_latest_only": true,
+    "table_default_historical_off": true,
+    "default_scope_excludes_historical_rows": true,
+    "unclassified_present_when_needed": true,
+    "partial_docs_have_reasons": true,
+    "unclassified_docs_have_reasons": true,
+    "partial_reason_breakdown_present": true,
+    "partial_reason_counts_reconcile": true
+  },
+  "diagnostics": {
+    "quality_total": 136,
+    "active_docs": 136,
+    "total_document_versions": 542,
+    "active_plus_inactive_total": 542,
+    "api_diagnostics": {
+      "quality_total": 136,
+      "active_docs": 136,
+      "quality_reconciles": true,
+      "total_versions": 542,
+      "active_plus_inactive_reconciles": true,
+      "quality_reason_diagnostics": {
+        "partial_docs": 105,
+        "unclassified_docs": 29,
+        "partial_docs_with_reasons": 105,
+        "unclassified_docs_with_reasons": 29,
+        "partial_docs_have_reasons": true,
+        "unclassified_docs_have_reasons": true,
+        "partial_reason_counts_present": true
+      }
+    },
+    "quality_reason_diagnostics": {
+      "partial_docs": 105,
+      "unclassified_docs": 29,
+      "partial_docs_with_reasons": 105,
+      "unclassified_docs_with_reasons": 29,
+      "partial_docs_have_reasons": true,
+      "unclassified_docs_have_reasons": true,
+      "partial_reason_counts_present": true
+    },
+    "default_visible_rows_count": 136,
+    "raw_documents_count": 542,
+    "partial_docs": 105,
+    "partial_docs_with_reasons": 105,
+    "unclassified_docs": 29,
+    "unclassified_docs_with_reasons": 29,
+    "partial_reason_count_keys": 7,
+    "partial_reason_count_total": 125
+  },
+  "sample_partial_docs": [
+    {
+      "id": "37af609e-bcb7-4277-a077-d740b8119269",
+      "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+      "quality_tier": "partial",
+      "quality_reasons": [
+        "High excluded chunk ratio"
+      ]
+    },
+    {
+      "id": "d34c6ace-364a-40b4-aa94-689f621b81b5",
+      "title": "EOP 002 (V3) HOBO Data Logger Manual",
+      "quality_tier": "partial",
+      "quality_reasons": [
+        "High excluded chunk ratio"
+      ]
+    },
+    {
+      "id": "86ce51e6-a7ee-42e5-a2d0-00c478eeb2e8",
+      "title": "EOP 003 (V8) TRAW Manual",
+      "quality_tier": "partial",
+      "quality_reasons": [
+        "High excluded chunk ratio"
+      ]
+    },
+    {
+      "id": "2a9486e1-0a57-441f-8aee-dbd046a3ef20",
+      "title": "EOP 004 (V3) Autotitrator Manual",
+      "quality_tier": "partial",
+      "quality_reasons": [
+        "High excluded chunk ratio"
+      ]
+    },
+    {
+      "id": "ede9da31-a661-4aab-a1d5-4cc4b8fa5c1b",
+      "title": "EOP 005 (V1) Plate Washer Manual",
+      "quality_tier": "partial",
+      "quality_reasons": [
+        "High excluded chunk ratio"
+      ]
+    }
+  ],
+  "raw_health": {
+    "active_docs": 136,
+    "active_completed": 136,
+    "active_pending": 0,
+    "active_failed": 0,
+    "active_needs_review": 0,
+    "active_chunks_total": 9913,
+    "active_ocr_used": 4,
+    "active_fallback_extractions": 4,
+    "inactive_versions": 406,
+    "historical_failed": 13,
+    "active_good": 2,
+    "active_partial": 105,
+    "active_poor": 0,
+    "active_unclassified": 29,
+    "active_quarantined": 0,
+    "active_source_missing": 0,
+    "active_zero_text_docs": 0,
+    "active_avg_chunks_per_doc": 72.9,
+    "active_fallback_extraction_percent": 2.9,
+    "active_excluded_chunks_total": 2599,
+    "active_excluded_chunk_percent": 26.2,
+    "active_docs_with_structural_headings": 83,
+    "total_document_versions": 542,
+    "last_ingest_run": "2026-04-18T21:57:07.166Z",
+    "embedding_model": "text-embedding-nomic-embed-text-v1.5",
+    "db_size_mb": 291.11,
+    "diagnostics": {
+      "quality_total": 136,
+      "active_docs": 136,
+      "quality_reconciles": true,
+      "total_versions": 542,
+      "active_plus_inactive_reconciles": true,
+      "quality_reason_diagnostics": {
+        "partial_docs": 105,
+        "unclassified_docs": 29,
+        "partial_docs_with_reasons": 105,
+        "unclassified_docs_with_reasons": 29,
+        "partial_docs_have_reasons": true,
+        "unclassified_docs_have_reasons": true,
+        "partial_reason_counts_present": true
+      }
+    },
+    "metric_audit": {
+      "active_docs": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true"
+      },
+      "active_completed": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_status = 'completed'"
+      },
+      "active_pending": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_status = 'pending'"
+      },
+      "active_failed": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_status = 'failed'"
+      },
+      "active_needs_review": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND needs_review = true"
+      },
+      "active_chunks_total": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true (sum chunk_count)"
+      },
+      "active_ocr_used": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND ocr_used = true"
+      },
+      "active_fallback_extractions": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_method IN ('ocr','native_pdfjs')"
+      },
+      "inactive_versions": {
+        "source": "documents",
+        "scope": "historical_only",
+        "filter": "is_active = false"
+      },
+      "historical_failed": {
+        "source": "documents",
+        "scope": "historical_only",
+        "filter": "is_active = false AND extraction_status = 'failed'"
+      },
+      "active_good": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier = 'good'"
+      },
+      "active_partial": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier = 'partial'"
+      },
+      "active_poor": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier = 'poor'"
+      },
+      "active_unclassified": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier IS NULL"
+      },
+      "total_document_versions": {
+        "source": "documents",
+        "scope": "all_versions",
+        "filter": "active_docs + inactive_versions"
+      }
+    },
+    "partial_reason_counts": {
+      "High excluded chunk ratio": 75,
+      "Low structure confidence": 21,
+      "Sparse text": 6,
+      "Low chunk density": 11,
+      "Weak headings": 8,
+      "OCR used": 2,
+      "Fallback extraction": 2
+    },
+    "good_reason_counts": {
+      "Weak headings": 2,
+      "Appendix-heavy / list-heavy": 1
+    },
+    "unclassified_reason_counts": {
+      "Unclassified inputs": 29,
+      "Weak headings": 18,
+      "Low chunk density": 6,
+      "High excluded chunk ratio": 3,
+      "Sparse text": 5,
+      "OCR used": 2,
+      "Fallback extraction": 2,
+      "Table-heavy": 7
+    }
+  }
+}

@@ -79,6 +79,27 @@ export interface ScoredChunk {
 export type ChatSSEEvent =
   | { event: 'token'; data: { text: string } }
   | { event: 'sources'; data: { chunks: CitedChunk[] } }
+  | {
+      event: 'provider';
+      data: {
+        requested: string;
+        resolved: 'anthropic' | 'lmstudio';
+        anthropicEnabled: boolean;
+        fallbackApplied: boolean;
+        lmStudioModel?: string | null;
+      };
+    }
+  | {
+      event: 'routing';
+      data: {
+        answer_mode_used: 'lmstudio_only' | 'anthropic_only' | 'two_tier_auto';
+        provider_used: 'anthropic' | 'lmstudio';
+        model_used: string;
+        quality_mode_triggered: boolean;
+        quality_mode_reason: string;
+        request_override_applied: boolean;
+      };
+    }
   | { event: 'done'; data: { ok: true } }
   | { event: 'error'; data: { message: string; code: string } };
 
@@ -117,6 +138,8 @@ export interface DocumentRow {
   processed_at: string | null;
   created_at: string;
   updated_at: string;
+  /** True when this is the most recent version for source_path */
+  is_latest_version?: boolean;
   // V2 fields
   pipeline_version?: string;
   extraction_method?: string | null;
@@ -133,43 +156,87 @@ export interface DocumentRow {
   extraction_completeness_reasons?: string[] | null;
   missing_referenced_appendices?: string[] | null;
   completeness_last_audited_at?: string | null;
+  heading_chunk_count?: number;
+  table_chunk_count?: number;
+  appendix_chunk_count?: number;
+  list_chunk_count?: number;
+  quality_tier?: 'good' | 'partial' | 'poor' | null;
+  quality_reasons?: string[];
+  // OCR Quality Scoring fields
+  ocr_quality_status?: 'native_clean' | 'ocr_clean' | 'ocr_mixed' | 'ocr_noisy' | 'ocr_unusable';
+  ocr_quality_reasons?: string[];
+  document_priority?: 'high' | 'medium' | 'low';
+  reprocess_candidate?: boolean;
+  reprocess_reason?: string;
+  reprocess_rank?: number | null;
 }
 
-// Health metrics for dashboard
+export interface IngestHealthDiagnostics {
+  quality_total: number;
+  active_docs: number;
+  quality_reconciles: boolean;
+  total_versions: number;
+  active_plus_inactive_reconciles: boolean;
+  quality_reason_diagnostics?: {
+    partial_docs: number;
+    unclassified_docs: number;
+    partial_docs_with_reasons: number;
+    unclassified_docs_with_reasons: number;
+    partial_docs_have_reasons: boolean;
+    unclassified_docs_have_reasons: boolean;
+    partial_reason_counts_present: boolean;
+  };
+}
+
+export interface IngestMetricAudit {
+  source: 'documents' | 'chunks';
+  scope: 'active_only' | 'historical_only' | 'all_versions';
+  filter: string;
+}
+
+// Standardized health metrics for /api/docs dashboard payload
 export interface HealthMetrics {
-  total_active: number;
-  total_inactive: number;
-  /** Active docs with extraction_status = 'completed' (active corpus only) */
+  // Active corpus
+  active_docs: number;
   active_completed: number;
-  /** Active docs with extraction_status = 'pending' (active corpus only) */
   active_pending: number;
-  /** Active docs with extraction_status = 'failed' (active corpus only) */
   active_failed: number;
-  /** Inactive/superseded docs with extraction_status = 'failed' (historical) */
+  active_needs_review: number;
+  active_chunks_total: number;
+  active_ocr_used: number;
+  active_fallback_extractions: number;
+
+  // Historical
+  inactive_versions: number;
   historical_failed: number;
-  total_chunks: number;
-  zero_text_docs: number;
-  avg_chunks_per_doc: number;
+
+  // Quality (active only)
+  active_good: number;
+  active_partial: number;
+  active_poor: number;
+  active_unclassified: number;
+
+  // Additional active/system context
+  active_quarantined: number;
+  active_source_missing: number;
+  active_zero_text_docs: number;
+  active_avg_chunks_per_doc: number;
+  active_fallback_extraction_percent: number;
+  active_excluded_chunks_total: number;
+  active_excluded_chunk_percent: number;
+  active_docs_with_structural_headings: number;
+
+  // Totals/system
+  total_document_versions: number;
   last_ingest_run: string | null;
   embedding_model: string;
   db_size_mb: number;
-  source_missing_count: number;
-  /** Docs where OCR contributed to extracted text (active corpus only) */
-  active_ocr_count: number;
-  // V2 fields
-  quarantined_count: number;
-  needs_review_count: number;
-  quality_good: number;
-  quality_partial: number;
-  quality_poor: number;
-  /** Active docs with no quality tier assigned — good + partial + poor + unclassified = total_active */
-  quality_unclassified: number;
-  /** Docs where native extraction failed/timed out and fallback path was used (active corpus only) */
-  fallback_extraction_count: number;
-  fallback_extraction_percent: number;
-  excluded_chunks_total: number;
-  excluded_chunk_percent: number;
-  docs_with_structural_headings: number;
+
+  diagnostics: IngestHealthDiagnostics;
+  partial_reason_counts?: Record<string, number>;
+  good_reason_counts?: Record<string, number>;
+  unclassified_reason_counts?: Record<string, number>;
+  metric_audit: Record<string, IngestMetricAudit>;
 }
 
 // Ingest run result

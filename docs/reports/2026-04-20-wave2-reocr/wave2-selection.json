@@ -1,0 +1,229 @@
+{
+  "generated_at": "2026-04-20T00:16:49.001Z",
+  "excluded_from_pilot": [
+    "EOP/_EOP(Manual) Index (V17).pdf",
+    "Supporting/SOP (Manual) Index (V23).pdf",
+    "LOP/LOP-CR 003 (V3) CRV Sample On-sending Process Manual.pdf",
+    "LOP/LOP-CR 002 (V3) CRV Procedures Manual.pdf",
+    "LOP/LOP-GN 003 (V1) Spatial Distribution Check Manual.pdf",
+    "LOP/LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual.pdf",
+    "LOP/LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual.pdf",
+    "LOP/LOP-QM 003 (V3) Key Technical Personnel Manual.pdf"
+  ],
+  "selection_criteria": {
+    "reprocess_candidate": true,
+    "document_priority": [
+      "high",
+      "medium"
+    ],
+    "allowed_statuses": [
+      "ocr_mixed",
+      "ocr_noisy"
+    ],
+    "excluded_statuses": [
+      "native_clean",
+      "ocr_clean",
+      "ocr_unusable"
+    ]
+  },
+  "wave2a": {
+    "doc_count": 10,
+    "documents": [
+      {
+        "title": "LOP-QM 001 (V9) Proficiency Testing Manual",
+        "source_path": "LOP/LOP-QM 001 (V9) Proficiency Testing Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.3152,
+        "document_priority": "high",
+        "reprocess_rank": 5,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 32% excluded chunks"
+      },
+      {
+        "title": "LOP-SP 003 (V23) National Chemical Contaminants Programme Manual",
+        "source_path": "LOP/LOP-SP 003 (V23) National Chemical Contaminants Programme Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.3115,
+        "document_priority": "high",
+        "reprocess_rank": 6,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 31% excluded chunks"
+      },
+      {
+        "title": "EOP 003 (V8) TRAW Manual",
+        "source_path": "EOP/EOP 003 (V8) TRAW Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.31,
+        "document_priority": "high",
+        "reprocess_rank": 7,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 31% excluded chunks"
+      },
+      {
+        "title": "LOP-QM 004 (V4) Inwards Goods Validation Manual",
+        "source_path": "LOP/LOP-QM 004 (V4) Inwards Goods Validation Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.3093,
+        "document_priority": "high",
+        "reprocess_rank": 8,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 31% excluded chunks"
+      },
+      {
+        "title": "LOP-MB 003 (V22) Foreign Matter Manual",
+        "source_path": "LOP/LOP-MB 003 (V22) Foreign Matter Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.3077,
+        "document_priority": "high",
+        "reprocess_rank": 9,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 31% excluded chunks"
+      },
+      {
+        "title": "LOP-CR 004 (V6) CRV Vial Preparation Manual",
+        "source_path": "LOP/LOP-CR 004 (V6) CRV Vial Preparation Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.3061,
+        "document_priority": "high",
+        "reprocess_rank": 10,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 31% excluded chunks"
+      },
+      {
+        "title": "EOP 022 (V1) ILAS3200 Operation Manual",
+        "source_path": "EOP/EOP 022 (V1) ILAS3200 Operation Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.3007,
+        "document_priority": "high",
+        "reprocess_rank": 11,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 30% excluded chunks"
+      },
+      {
+        "title": "Analytical Procedures Manual (V27)",
+        "source_path": "Supporting/Analytical Procedures Manual (V27).pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2903,
+        "document_priority": "high",
+        "reprocess_rank": 12,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "Chromatography Manual (V6)",
+        "source_path": "Supporting/Chromatography Manual (V6).pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2897,
+        "document_priority": "high",
+        "reprocess_rank": 13,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "_LOP (Manual) Index (V48)",
+        "source_path": "LOP/_LOP (Manual) Index (V48).pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2857,
+        "document_priority": "high",
+        "reprocess_rank": 14,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      }
+    ]
+  },
+  "wave2b": {
+    "doc_count": 10,
+    "documents": [
+      {
+        "title": "LOP-TI 005 (V4) TITAN Manual - System Incident Register",
+        "source_path": "LOP/LOP-TI 005 (V4) TITAN Manual - System Incident Register.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2857,
+        "document_priority": "high",
+        "reprocess_rank": 15,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "LOP-CT 006 (V3) Fatty Acids in Liquid Milk (GC-FID) Manual",
+        "source_path": "LOP/LOP-CT 006 (V3) Fatty Acids in Liquid Milk (GC-FID) Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2833,
+        "document_priority": "high",
+        "reprocess_rank": 16,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "EOP 010 (V1) Infrared Thermometer Manual",
+        "source_path": "EOP/EOP 010 (V1) Infrared Thermometer Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2821,
+        "document_priority": "high",
+        "reprocess_rank": 17,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "LOP-QM 002 (V26) Microbiological Quality Control Procedures Manual",
+        "source_path": "LOP/LOP-QM 002 (V26) Microbiological Quality Control Procedures Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2766,
+        "document_priority": "high",
+        "reprocess_rank": 18,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "LOP-RR 001 (V7) Result Release Manual",
+        "source_path": "LOP/LOP-RR 001 (V7) Result Release Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.275,
+        "document_priority": "high",
+        "reprocess_rank": 19,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual",
+        "source_path": "LOP/LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2737,
+        "document_priority": "high",
+        "reprocess_rank": 20,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "LOP-TI 002 (V4) TITAN Manual - Inventory Management",
+        "source_path": "LOP/LOP-TI 002 (V4) TITAN Manual - Inventory Management.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2727,
+        "document_priority": "high",
+        "reprocess_rank": 21,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual",
+        "source_path": "LOP/LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2692,
+        "document_priority": "high",
+        "reprocess_rank": 22,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "LOP-CT 002 (V2) Urea (HPLC-UV) Manual",
+        "source_path": "LOP/LOP-CT 002 (V2) Urea (HPLC-UV) Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2651,
+        "document_priority": "high",
+        "reprocess_rank": 24,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      },
+      {
+        "title": "LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual",
+        "source_path": "LOP/LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual.pdf",
+        "ocr_quality_status": "ocr_mixed",
+        "excluded_ratio": 0.2604,
+        "document_priority": "high",
+        "reprocess_rank": 25,
+        "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+      }
+    ]
+  },
+  "total_selected": 20,
+  "before_ocr_summary": {
+    "native_clean": 68,
+    "ocr_clean": 186,
+    "ocr_mixed": 395,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 57,
+    "high_priority_candidates": 57
+  }
+}

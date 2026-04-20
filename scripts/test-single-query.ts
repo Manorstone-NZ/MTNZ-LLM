@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 async function testQuery() {
   const query = 'List all MADCAP test types used across active databases.';
   
@@ -33,7 +31,7 @@ async function testQuery() {
       for (const line of lines) {
         if (line.startsWith('event:')) {
           const eventMatch = line.match(/event:\s*(\w+)/);
-          const dataMatch = line.match(/data:\s*(.+)/s);
+          const dataMatch = line.match(/data:\s*([\s\S]+)/);
           if (eventMatch && dataMatch) {
             const event = eventMatch[1];
             try {
@@ -64,3 +62,5 @@ async function testQuery() {
 }
 
 testQuery();
+
+export {};

@@ -1,8 +1,14 @@
 console.log('Environment:');
 console.log('DATABASE_URL:', process.env.DATABASE_URL ? 'SET' : 'MISSING');
 console.log('SOURCE_PATH:', process.env.SOURCE_PATH);
+console.log('ANSWER_MODE:', process.env.ANSWER_MODE ?? 'UNSET (defaults two_tier_auto)');
+console.log('ANTHROPIC_ENABLED:', process.env.ANTHROPIC_ENABLED ?? 'UNSET (defaults true)');
+console.log('CLAUDE_ENABLED:', process.env.CLAUDE_ENABLED ?? 'UNSET (defaults true)');
 console.log('ANTHROPIC_API_KEY:', process.env.ANTHROPIC_API_KEY ? 'SET' : 'MISSING');
+console.log('CLAUDE_API_KEY:', process.env.CLAUDE_API_KEY ? 'SET' : 'MISSING');
 console.log('LMSTUDIO_URL:', process.env.LMSTUDIO_URL);
+console.log('DEFAULT_LMSTUDIO_MODEL:', process.env.DEFAULT_LMSTUDIO_MODEL);
+console.log('QUALITY_LMSTUDIO_MODEL:', process.env.QUALITY_LMSTUDIO_MODEL);
 console.log('DEFAULT_ANSWER_MODEL:', process.env.DEFAULT_ANSWER_MODEL);
 console.log('QUALITY_ANSWER_MODEL:', process.env.QUALITY_ANSWER_MODEL);
 console.log('ANTHROPIC_DEFAULT_MODEL:', process.env.ANTHROPIC_DEFAULT_MODEL);

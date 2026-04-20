@@ -1,0 +1,1266 @@
+{
+  "generated_at": "2026-04-19T22:43:32.208Z",
+  "cohort_definition": "Top 20 active Partial docs by excluded ratio after pass 2",
+  "cohort_size": 20,
+  "summary": {
+    "avg_excluded_ratio": 0.3304,
+    "high_excluded_doc_count": 20,
+    "top_residual_document_families": [
+      {
+        "family": "EOP",
+        "count": 3
+      },
+      {
+        "family": "LOP-CR",
+        "count": 2
+      },
+      {
+        "family": "LOP-GN",
+        "count": 2
+      },
+      {
+        "family": "LOP-MB",
+        "count": 2
+      },
+      {
+        "family": "LOP-CP",
+        "count": 2
+      },
+      {
+        "family": "LOP-SP",
+        "count": 2
+      },
+      {
+        "family": "LOP-CT",
+        "count": 2
+      },
+      {
+        "family": "10-Introduction",
+        "count": 1
+      },
+      {
+        "family": "MPM",
+        "count": 1
+      },
+      {
+        "family": "SOP",
+        "count": 1
+      },
+      {
+        "family": "LOP-BS",
+        "count": 1
+      },
+      {
+        "family": "EOPManual",
+        "count": 1
+      }
+    ],
+    "top_structural_failure_categories": [
+      {
+        "category": "footer_header_body_mix",
+        "count": 16
+      },
+      {
+        "category": "sparse_extraction",
+        "count": 3
+      },
+      {
+        "category": "ocr_body_contamination",
+        "count": 1
+      },
+      {
+        "category": "weak_heading_detection",
+        "count": 0
+      },
+      {
+        "category": "broken_section_boundary",
+        "count": 0
+      },
+      {
+        "category": "multi_column_fragmentation",
+        "count": 0
+      },
+      {
+        "category": "table_schema_loss",
+        "count": 0
+      },
+      {
+        "category": "split_procedure_fragment",
+        "count": 0
+      },
+      {
+        "category": "diagram_caption_fragmentation",
+        "count": 0
+      },
+      {
+        "category": "layout_order_error",
+        "count": 0
+      }
+    ],
+    "most_fixable_narrow_categories": [
+      "footer_header_body_mix",
+      "weak_heading_detection",
+      "broken_section_boundary"
+    ],
+    "likely_inherently_messy_docs": []
+  },
+  "per_document": [
+    {
+      "id": "46d9f0c1-892c-4872-9718-6ecbe28a5845",
+      "title": "1.0-Introduction V19.1",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "OCR used",
+        "High excluded chunk ratio",
+        "Fallback extraction"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.796",
+      "excluded_ratio": 0.3529,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 4,
+        "heading_chunk_ratio": 0.2353,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 4,
+        "null_section_title_chunks": 1,
+        "null_section_title_ratio": 0.0588
+      },
+      "chunk_density": {
+        "chunk_count": 17,
+        "included_chunk_count": 11,
+        "excluded_chunk_count": 6,
+        "avg_chunk_tokens": 75.76
+      },
+      "ocr_and_fallback": {
+        "ocr_used": true,
+        "fallback_used": true,
+        "extraction_method": "ocr",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 5
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 2
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 1.5176470588235293,
+        "multi_column_fragmentation": 1.6058823529411765,
+        "ocr_body_contamination": 5.7,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 3,
+        "footer_header_body_mix": 6,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.8764705882352941
+      },
+      "likely_family": "10-Introduction",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "f747f873-1bfb-4401-ab4c-d2e5179a22a5",
+      "title": "LOP-CR 002 (V3) CRV Procedures Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "OCR used",
+        "High excluded chunk ratio",
+        "Fallback extraction",
+        "Needs review"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.773",
+      "excluded_ratio": 0.338,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 20,
+        "heading_chunk_ratio": 0.2817,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 16,
+        "null_section_title_chunks": 2,
+        "null_section_title_ratio": 0.0282
+      },
+      "chunk_density": {
+        "chunk_count": 71,
+        "included_chunk_count": 47,
+        "excluded_chunk_count": 24,
+        "avg_chunk_tokens": 45.8
+      },
+      "ocr_and_fallback": {
+        "ocr_used": true,
+        "fallback_used": true,
+        "extraction_method": "ocr",
+        "ocr_garbage_chunks": 1,
+        "contamination_chunks": 11
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 7
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 5.656338028169014,
+        "multi_column_fragmentation": 1.5507042253521126,
+        "ocr_body_contamination": 11.799999999999999,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 12,
+        "footer_header_body_mix": 13.850000000000001,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.8366197183098592
+      },
+      "likely_family": "LOP-CR",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "24a4a715-00c6-4d92-86fa-ec1964d43d0e",
+      "title": "MPM - Appendix L (V2) Companies Requiring LCMS Confirmation",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "Weak headings",
+        "High excluded chunk ratio",
+        "Sparse text",
+        "Low chunk density"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.756",
+      "excluded_ratio": 0.3333,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 0,
+        "heading_chunk_ratio": 0,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": true
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 1,
+        "null_section_title_ratio": 0.3333
+      },
+      "chunk_density": {
+        "chunk_count": 3,
+        "included_chunk_count": 2,
+        "excluded_chunk_count": 1,
+        "avg_chunk_tokens": 50.67
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 1
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "sparse_extraction",
+      "failure_score_vector": {
+        "weak_heading_detection": 4.5,
+        "broken_section_boundary": 1.1666666666666665,
+        "multi_column_fragmentation": 1.6,
+        "ocr_body_contamination": 0.9,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 1.1,
+        "diagram_caption_fragmentation": 0.7,
+        "sparse_extraction": 5,
+        "layout_order_error": 1.4333333333333333
+      },
+      "likely_family": "MPM",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "47672c02-f1b9-47dd-8503-ad1494f37102",
+      "title": "SOP (Manual) Index (V23)",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio",
+        "Sparse text",
+        "Low chunk density"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.756",
+      "excluded_ratio": 0.3333,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 2,
+        "heading_chunk_ratio": 0.6667,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 0,
+        "null_section_title_ratio": 0
+      },
+      "chunk_density": {
+        "chunk_count": 3,
+        "included_chunk_count": 2,
+        "excluded_chunk_count": 1,
+        "avg_chunk_tokens": 180.67
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 2
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "sparse_extraction",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 0,
+        "multi_column_fragmentation": 1,
+        "ocr_body_contamination": 1.8,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 2.2,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 5,
+        "layout_order_error": 1
+      },
+      "likely_family": "SOP",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "bc86cd7f-9530-4265-b5ad-0e940f6c8c89",
+      "title": "LOP-GN 002 (V24) Reagent Grade Water Evaluation",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.757",
+      "excluded_ratio": 0.3333,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 2,
+        "heading_chunk_ratio": 0.037,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 5,
+        "null_section_title_ratio": 0.0926
+      },
+      "chunk_density": {
+        "chunk_count": 54,
+        "included_chunk_count": 36,
+        "excluded_chunk_count": 18,
+        "avg_chunk_tokens": 56.72
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 8
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 0.18518518518518517,
+        "multi_column_fragmentation": 1.1666666666666667,
+        "ocr_body_contamination": 7.2,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 8.8,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.1203703703703705
+      },
+      "likely_family": "LOP-GN",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "45891971-e95d-4396-9da2-41f358e5df4a",
+      "title": "LOP-MB 009 (V1) Aerobic Plate Count Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.761",
+      "excluded_ratio": 0.3333,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 5,
+        "heading_chunk_ratio": 0.049,
+        "heading_like_paragraph_chunks": 1,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 3,
+        "null_section_title_ratio": 0.0294
+      },
+      "chunk_density": {
+        "chunk_count": 102,
+        "included_chunk_count": 68,
+        "excluded_chunk_count": 34,
+        "avg_chunk_tokens": 60.74
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 17
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0.7,
+        "broken_section_boundary": 0.058823529411764705,
+        "multi_column_fragmentation": 1.0529411764705883,
+        "ocr_body_contamination": 15.3,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 18.700000000000003,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.0382352941176471
+      },
+      "likely_family": "LOP-MB",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "66ea94a5-6f46-4c4e-ab18-8eb4828c5b28",
+      "title": "LOP-CP 006 (V36) CombiFoss Testing Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.768",
+      "excluded_ratio": 0.3333,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 11,
+        "heading_chunk_ratio": 0.1146,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 5,
+        "null_section_title_ratio": 0.0521
+      },
+      "chunk_density": {
+        "chunk_count": 96,
+        "included_chunk_count": 64,
+        "excluded_chunk_count": 32,
+        "avg_chunk_tokens": 84.06
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 22
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 0.10416666666666667,
+        "multi_column_fragmentation": 1.09375,
+        "ocr_body_contamination": 19.8,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 24.200000000000003,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.0677083333333333
+      },
+      "likely_family": "LOP-CP",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "63cb3920-5406-4334-a83b-c45011eb951e",
+      "title": "LOP-SP 006 (V1) Bovine Adulteration Indicator Assay (BOV Test) Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio",
+        "Needs review"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.773",
+      "excluded_ratio": 0.3333,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 11,
+        "heading_chunk_ratio": 0.2157,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 5,
+        "null_section_title_chunks": 4,
+        "null_section_title_ratio": 0.0784
+      },
+      "chunk_density": {
+        "chunk_count": 51,
+        "included_chunk_count": 34,
+        "excluded_chunk_count": 17,
+        "avg_chunk_tokens": 41.78
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 6
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 6
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 1.906862745098039,
+        "multi_column_fragmentation": 1.1411764705882352,
+        "ocr_body_contamination": 5.4,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 3.75,
+        "footer_header_body_mix": 8.100000000000001,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.1019607843137256
+      },
+      "likely_family": "LOP-SP",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "9c49c256-1321-46a3-ad65-6ab3996b3fa6",
+      "title": "LOP-BS 001 (V1) BactoScan Testing ",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.779",
+      "excluded_ratio": 0.3333,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 12,
+        "heading_chunk_ratio": 0.2222,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 4,
+        "null_section_title_chunks": 3,
+        "null_section_title_ratio": 0.0556
+      },
+      "chunk_density": {
+        "chunk_count": 54,
+        "included_chunk_count": 36,
+        "excluded_chunk_count": 18,
+        "avg_chunk_tokens": 77.98
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 12
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 8
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 1.511111111111111,
+        "multi_column_fragmentation": 1.1,
+        "ocr_body_contamination": 10.8,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 3,
+        "footer_header_body_mix": 15.200000000000001,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.0722222222222222
+      },
+      "likely_family": "LOP-BS",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "532d8fac-003e-4bfe-9c73-1d37cb60e027",
+      "title": "_EOP(Manual) Index (V17)",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio",
+        "Sparse text",
+        "Low chunk density"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.787",
+      "excluded_ratio": 0.3333,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 1,
+        "heading_chunk_ratio": 0.3333,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 0,
+        "null_section_title_ratio": 0
+      },
+      "chunk_density": {
+        "chunk_count": 3,
+        "included_chunk_count": 2,
+        "excluded_chunk_count": 1,
+        "avg_chunk_tokens": 125
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 2
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "sparse_extraction",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 0,
+        "multi_column_fragmentation": 1,
+        "ocr_body_contamination": 1.8,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 2.2,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 5,
+        "layout_order_error": 1
+      },
+      "likely_family": "EOPManual",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "c2d93e1f-d9ec-4332-86e4-f2c26244a6cd",
+      "title": "LOP-CT 004 (V2) 4, 4'-DDE in Whole Milk by SPME-GC-ECD Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.759",
+      "excluded_ratio": 0.3288,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 9,
+        "heading_chunk_ratio": 0.1233,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 7,
+        "null_section_title_ratio": 0.0959
+      },
+      "chunk_density": {
+        "chunk_count": 73,
+        "included_chunk_count": 49,
+        "excluded_chunk_count": 24,
+        "avg_chunk_tokens": 87.64
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 16
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 0.1917808219178082,
+        "multi_column_fragmentation": 1.1726027397260275,
+        "ocr_body_contamination": 14.4,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 17.6,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.1246575342465754
+      },
+      "likely_family": "LOP-CT",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "f98f3b1c-2703-4157-b80a-4b960c369fa4",
+      "title": "LOP-SP 002 (V4) Titratable Acidity Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.766",
+      "excluded_ratio": 0.3286,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 9,
+        "heading_chunk_ratio": 0.1286,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 6,
+        "null_section_title_ratio": 0.0857
+      },
+      "chunk_density": {
+        "chunk_count": 70,
+        "included_chunk_count": 47,
+        "excluded_chunk_count": 23,
+        "avg_chunk_tokens": 61.83
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 13
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 0.17142857142857143,
+        "multi_column_fragmentation": 1.1542857142857144,
+        "ocr_body_contamination": 11.700000000000001,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 14.3,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.1114285714285714
+      },
+      "likely_family": "LOP-SP",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "e9d6e87d-5f18-4c2b-8ba9-a89738167d84",
+      "title": "LOP-GN 003 (V1) Spatial Distribution Check Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "OCR used",
+        "High excluded chunk ratio",
+        "Fallback extraction"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.774",
+      "excluded_ratio": 0.3281,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 9,
+        "heading_chunk_ratio": 0.1406,
+        "heading_like_paragraph_chunks": 1,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 14,
+        "null_section_title_chunks": 1,
+        "null_section_title_ratio": 0.0156
+      },
+      "chunk_density": {
+        "chunk_count": 64,
+        "included_chunk_count": 43,
+        "excluded_chunk_count": 21,
+        "avg_chunk_tokens": 67.23
+      },
+      "ocr_and_fallback": {
+        "ocr_used": true,
+        "fallback_used": true,
+        "extraction_method": "ocr",
+        "ocr_garbage_chunks": 1,
+        "contamination_chunks": 11
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 4
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0.7,
+        "broken_section_boundary": 4.9312499999999995,
+        "multi_column_fragmentation": 1.528125,
+        "ocr_body_contamination": 11.799999999999999,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 10.5,
+        "footer_header_body_mix": 13.100000000000001,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.8203125
+      },
+      "likely_family": "LOP-GN",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "4940ee71-8144-44c1-965a-cf70a81edb15",
+      "title": "LOP-MB 002 (V28) Escherichia coli Detection in Water Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.77",
+      "excluded_ratio": 0.3269,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 5,
+        "heading_chunk_ratio": 0.0962,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 6,
+        "null_section_title_ratio": 0.1154
+      },
+      "chunk_density": {
+        "chunk_count": 52,
+        "included_chunk_count": 35,
+        "excluded_chunk_count": 17,
+        "avg_chunk_tokens": 59.54
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 9
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 0.23076923076923078,
+        "multi_column_fragmentation": 1.2076923076923076,
+        "ocr_body_contamination": 8.1,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 9.9,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.15
+      },
+      "likely_family": "LOP-MB",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "ca43b07a-7c5b-4191-ae53-f007b6480b9a",
+      "title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio",
+        "Needs review"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.757",
+      "excluded_ratio": 0.3261,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 14,
+        "heading_chunk_ratio": 0.3043,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 7,
+        "null_section_title_chunks": 4,
+        "null_section_title_ratio": 0.087
+      },
+      "chunk_density": {
+        "chunk_count": 46,
+        "included_chunk_count": 31,
+        "excluded_chunk_count": 15,
+        "avg_chunk_tokens": 41.93
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 5
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 4
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 2.6239130434782605,
+        "multi_column_fragmentation": 1.1565217391304348,
+        "ocr_body_contamination": 4.5,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 5.25,
+        "footer_header_body_mix": 6.5,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.1130434782608696
+      },
+      "likely_family": "LOP-CR",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "13e69e45-a31f-48fa-95f8-46d4b57e205b",
+      "title": "EOP 016 (V1) Centrifuge Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio",
+        "Needs review"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.757",
+      "excluded_ratio": 0.3256,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 8,
+        "heading_chunk_ratio": 0.186,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 4,
+        "null_section_title_chunks": 0,
+        "null_section_title_ratio": 0
+      },
+      "chunk_density": {
+        "chunk_count": 43,
+        "included_chunk_count": 29,
+        "excluded_chunk_count": 14,
+        "avg_chunk_tokens": 55.58
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 1,
+        "contamination_chunks": 7
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 5
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 1.4,
+        "multi_column_fragmentation": 1,
+        "ocr_body_contamination": 7,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 3,
+        "footer_header_body_mix": 8.950000000000001,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1
+      },
+      "likely_family": "EOP",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "76ae2c66-cc23-4630-b15f-bbab9ccbcd19",
+      "title": "LOP-CP 002 (V2) Buttermilk Component Analysis (via MilkoScan FT3) Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.777",
+      "excluded_ratio": 0.3256,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 3,
+        "heading_chunk_ratio": 0.0698,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 1,
+        "null_section_title_ratio": 0.0233
+      },
+      "chunk_density": {
+        "chunk_count": 43,
+        "included_chunk_count": 29,
+        "excluded_chunk_count": 14,
+        "avg_chunk_tokens": 61.19
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 7
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 0.046511627906976744,
+        "multi_column_fragmentation": 1.041860465116279,
+        "ocr_body_contamination": 6.3,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 7.700000000000001,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.0302325581395348
+      },
+      "likely_family": "LOP-CP",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "37af609e-bcb7-4277-a077-d740b8119269",
+      "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.761",
+      "excluded_ratio": 0.3235,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 2,
+        "heading_chunk_ratio": 0.0294,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 4,
+        "null_section_title_ratio": 0.0588
+      },
+      "chunk_density": {
+        "chunk_count": 68,
+        "included_chunk_count": 46,
+        "excluded_chunk_count": 22,
+        "avg_chunk_tokens": 50.63
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 11
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 0.11764705882352941,
+        "multi_column_fragmentation": 1.1058823529411765,
+        "ocr_body_contamination": 9.9,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 12.100000000000001,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.076470588235294
+      },
+      "likely_family": "EOP",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "52be4092-1fa5-4b45-8239-32d1af25945f",
+      "title": "LOP-CT 003 (V3) Antibiotics in Milk (LC-MS_MS) Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.745",
+      "excluded_ratio": 0.32,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 11,
+        "heading_chunk_ratio": 0.11,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 0,
+        "null_section_title_chunks": 6,
+        "null_section_title_ratio": 0.06
+      },
+      "chunk_density": {
+        "chunk_count": 100,
+        "included_chunk_count": 68,
+        "excluded_chunk_count": 32,
+        "avg_chunk_tokens": 95.43
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 0,
+        "contamination_chunks": 21
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 0
+      },
+      "dominant_structural_failure_pattern": "footer_header_body_mix",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 0.12,
+        "multi_column_fragmentation": 1.108,
+        "ocr_body_contamination": 18.900000000000002,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 0,
+        "footer_header_body_mix": 23.1,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.078
+      },
+      "likely_family": "LOP-CT",
+      "likely_inherently_messy": false
+    },
+    {
+      "id": "9733a5bb-7b82-440e-8a66-3e14a4602e9e",
+      "title": "EOP 006 (V3) Conductivity Meter Manual",
+      "source_type": "pdf",
+      "current_quality_reasons": [
+        "High excluded chunk ratio"
+      ],
+      "quality_tier": "partial",
+      "text_quality_score": "0.754",
+      "excluded_ratio": 0.3182,
+      "heading_quality_indicators": {
+        "heading_chunk_count": 12,
+        "heading_chunk_ratio": 0.2727,
+        "heading_like_paragraph_chunks": 0,
+        "weak_heading_signal": false
+      },
+      "section_boundary_quality_indicators": {
+        "broken_structure_chunks": 0,
+        "short_fragment_noise_chunks": 4,
+        "null_section_title_chunks": 10,
+        "null_section_title_ratio": 0.2273
+      },
+      "chunk_density": {
+        "chunk_count": 44,
+        "included_chunk_count": 30,
+        "excluded_chunk_count": 14,
+        "avg_chunk_tokens": 43.55
+      },
+      "ocr_and_fallback": {
+        "ocr_used": false,
+        "fallback_used": false,
+        "extraction_method": "native_pdf",
+        "ocr_garbage_chunks": 5,
+        "contamination_chunks": 6
+      },
+      "table_and_layout_signals": {
+        "table_chunks": 0,
+        "list_chunks": 0,
+        "table_noise_chunks": 0,
+        "metadata_block_chunks": 3
+      },
+      "dominant_structural_failure_pattern": "ocr_body_contamination",
+      "failure_score_vector": {
+        "weak_heading_detection": 0,
+        "broken_section_boundary": 1.8545454545454545,
+        "multi_column_fragmentation": 1.4090909090909092,
+        "ocr_body_contamination": 8.9,
+        "table_schema_loss": 0,
+        "split_procedure_fragment": 3,
+        "footer_header_body_mix": 7.3500000000000005,
+        "diagram_caption_fragmentation": 0.3,
+        "sparse_extraction": 0,
+        "layout_order_error": 1.2954545454545454
+      },
+      "likely_family": "EOP",
+      "likely_inherently_messy": false
+    }
+  ]
+}

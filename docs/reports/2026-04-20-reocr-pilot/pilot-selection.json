@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-04-19T23:42:24.701Z",
+  "pilot_size": 8,
+  "selection_criteria": {
+    "reprocess_candidate": true,
+    "document_priority": "high",
+    "allowed_statuses": [
+      "ocr_mixed",
+      "ocr_noisy"
+    ],
+    "excluded_statuses": [
+      "native_clean",
+      "ocr_clean",
+      "ocr_unusable"
+    ],
+    "manual_focus": "LOP/EOP/core manuals"
+  },
+  "before_ocr_summary": {
+    "native_clean": 66,
+    "ocr_clean": 186,
+    "ocr_mixed": 389,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 59,
+    "high_priority_candidates": 59
+  },
+  "selected_documents": [
+    {
+      "title": "_EOP(Manual) Index (V17)",
+      "source_path": "EOP/_EOP(Manual) Index (V17).pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.4,
+      "document_priority": "high",
+      "reprocess_rank": 1,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 40% excluded chunks",
+      "selection_note": "High contamination in high-priority manual; likely to benefit from selective re-OCR."
+    },
+    {
+      "title": "SOP (Manual) Index (V23)",
+      "source_path": "Supporting/SOP (Manual) Index (V23).pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.4,
+      "document_priority": "high",
+      "reprocess_rank": 2,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 40% excluded chunks",
+      "selection_note": "High contamination in high-priority manual; likely to benefit from selective re-OCR."
+    },
+    {
+      "title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
+      "source_path": "LOP/LOP-CR 003 (V3) CRV Sample On-sending Process Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.3469,
+      "document_priority": "high",
+      "reprocess_rank": 3,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 35% excluded chunks",
+      "selection_note": "High contamination in high-priority manual; likely to benefit from selective re-OCR."
+    },
+    {
+      "title": "LOP-CR 002 (V3) CRV Procedures Manual",
+      "source_path": "LOP/LOP-CR 002 (V3) CRV Procedures Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.338,
+      "document_priority": "high",
+      "reprocess_rank": 4,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 34% excluded chunks",
+      "selection_note": "High contamination in high-priority manual; likely to benefit from selective re-OCR."
+    },
+    {
+      "title": "LOP-GN 003 (V1) Spatial Distribution Check Manual",
+      "source_path": "LOP/LOP-GN 003 (V1) Spatial Distribution Check Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.3281,
+      "document_priority": "high",
+      "reprocess_rank": 5,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 33% excluded chunks",
+      "selection_note": "High contamination in high-priority manual; likely to benefit from selective re-OCR."
+    },
+    {
+      "title": "LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual",
+      "source_path": "LOP/LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.3182,
+      "document_priority": "high",
+      "reprocess_rank": 6,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 32% excluded chunks",
+      "selection_note": "High contamination in high-priority manual; likely to benefit from selective re-OCR."
+    },
+    {
+      "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+      "source_path": "LOP/LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.3175,
+      "document_priority": "high",
+      "reprocess_rank": 7,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 32% excluded chunks",
+      "selection_note": "High contamination in high-priority manual; likely to benefit from selective re-OCR."
+    },
+    {
+      "title": "LOP-QM 003 (V3) Key Technical Personnel Manual",
+      "source_path": "LOP/LOP-QM 003 (V3) Key Technical Personnel Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.3171,
+      "document_priority": "high",
+      "reprocess_rank": 8,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 32% excluded chunks",
+      "selection_note": "High contamination in high-priority manual; likely to benefit from selective re-OCR."
+    }
+  ]
+}

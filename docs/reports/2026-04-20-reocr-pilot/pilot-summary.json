@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-04-19T23:53:14.111Z",
+  "pilot_size": 8,
+  "quality_outcomes": {
+    "pilot_doc_count": 8,
+    "material_improvement_docs": 8,
+    "retrieval_improved_docs": 7,
+    "average_excluded_ratio_delta": -0.3457,
+    "average_status_movement": 1,
+    "decision": {
+      "worthwhile": true,
+      "recommendation": "proceed_to_next_10_20_candidates"
+    }
+  },
+  "safety_checks": {
+    "no_spike_in_junk_chunks": true,
+    "no_obvious_source_spam": true,
+    "ingest_dashboard_reconciliation_ok": true
+  },
+  "acceptance_snapshot": {
+    "selected_docs_only_reprocessed": true,
+    "before_after_metrics_for_every_doc": true,
+    "retrieval_checked_for_every_doc": true
+  },
+  "final_decision": {
+    "worthwhile": true,
+    "next_step": "proceed_to_next_10_20_candidates",
+    "explicit_answer": "Pilot was worthwhile based on measurable quality and retrieval gains."
+  }
+}

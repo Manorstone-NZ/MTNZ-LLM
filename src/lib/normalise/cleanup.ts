@@ -32,6 +32,94 @@ function isStructuralHeadingLikeContent(content: string): boolean {
   return false;
 }
 
+const PROCEDURAL_SIGNAL = /\b(open|select|enter|click|run|verify|check|start|stop|load|save|submit|record|confirm|navigate|calibrate|review|scan|print|prepare|measure|analyze|test|sample|adjust|set|connect|disconnect|press|hold|wait|repeat|document|log|note)\b/i;
+const STEP_SIGNAL = /^\s*(\d+[.)]|step\s+\d+|[-*•])\s+/im;
+const LIST_REFERENCE_SIGNAL = /\b(code|codes|parameter|parameters|result|results|method|test|limit|limits|range|ranges|unit|units|setting|settings|table|appendix|reference|value|values|option|options|label|labels|standard|specification|temp|temperature|time|pressure|volume|rate|percent|percentage|serial|id|identifier|calibration|reference|material|equipment|instrument)\b/i;
+const EQUIPMENT_SPEC_SIGNAL = /\b(model|version|range|capacity|size|dimension|weight|voltage|current|power|frequency|resolution|accuracy|sensitivity|warranty|material|coating|compatible|connection|interface|connector|port|channel|slot|module|component|accessory|part|number|code|calibration|certificate|reference|standard)\b/i;
+const SAFETY_WARNING_SIGNAL = /\b(warning|caution|alert|danger|safety|hazard|risk|required|must|critical|important|do not|never|always|ensure|avoid|prevent|protect|emergency|stop|procedure|instruction|before|after|during)\b/i;
+
+function isMeaningfulShortFragment(section: NormalisedSection): boolean {
+  const content = section.content ?? '';
+  const lines = content.split('\n').map((line) => line.trim()).filter(Boolean);
+  const bulletLines = lines.filter((line) => /^[-*•]/.test(line));
+  const wordCount = content.split(/\s+/).filter(Boolean).length;
+
+  // Lists
+  if (section.type === 'list') {
+    if (/^\s*[-*•]/.test(content) && LIST_REFERENCE_SIGNAL.test(content)) return true;
+  }
+
+  // Equipment spec blocks: short technical specs with equipment signals
+  if (EQUIPMENT_SPEC_SIGNAL.test(content) && wordCount >= 4 && wordCount <= 30) {
+    return true;
+  }
+
+  // Safety/warning short blocks
+  if (SAFETY_WARNING_SIGNAL.test(content) && wordCount >= 3 && wordCount <= 40) {
+    return true;
+  }
+
+  // Preserve short equipment/reference bullet lists even when keywords are sparse.
+  if (bulletLines.length >= 2) {
+    const compactBullets = bulletLines.every((line) => line.replace(/^[-*•]\s*/, '').split(/\s+/).filter(Boolean).length <= 8);
+    if (compactBullets) return true;
+  }
+
+  // Numbered steps with procedural signals
+  if (STEP_SIGNAL.test(content) && PROCEDURAL_SIGNAL.test(content)) return true;
+  
+  // Procedural context with keywords suggesting equipment/method reference
+  if (PROCEDURAL_SIGNAL.test(content) && /\b(sample|report|code|table|result|parameter|setting|method|calibr|equipment|instrument|device|test|measure)\b/i.test(content)) {
+    return true;
+  }
+
+  // Range/value specifications even without strong procedural signal
+  if (/\b\d+\s*(–|-|to|up to|maximum|minimum)\s*\d+\b/.test(content) && LIST_REFERENCE_SIGNAL.test(content)) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Detect if a fragment with broken_structure tag contains procedural or equipment value
+ * and should be retained rather than excluded.
+ */
+function isBrokenStructureButValueable(section: NormalisedSection): boolean {
+  const content = section.content ?? '';
+  const wordCount = content.split(/\s+/).filter(Boolean).length;
+
+  // Too long to be a fragment — should not be here
+  if (wordCount > 50) return false;
+
+  // Equipment specification fragment
+  if (EQUIPMENT_SPEC_SIGNAL.test(content) && wordCount >= 3) {
+    return true;
+  }
+
+  // Calibration/procedure value
+  if (/\b(calibrat|procedure|setup|config|setting|standard|reference|tolerance)\b/i.test(content) && /\b\d+/.test(content)) {
+    return true;
+  }
+
+  // Safety/warning fragment
+  if (SAFETY_WARNING_SIGNAL.test(content) && wordCount >= 3 && wordCount <= 50) {
+    return true;
+  }
+
+  // Procedure step even if structurally awkward
+  if (STEP_SIGNAL.test(content) && PROCEDURAL_SIGNAL.test(content)) {
+    return true;
+  }
+
+  // Result/measurement fragment
+  if (/\b(result|reading|value|measurement|output|status|condition|state)\b/i.test(content) && /\b\d+/.test(content)) {
+    return true;
+  }
+
+  return false;
+}
+
 /** Track the "current heading" while walking sections. */
 function getCurrentHeading(sections: NormalisedSection[], index: number): string | null {
   for (let i = index - 1; i >= 0; i--) {
@@ -225,6 +313,19 @@ export function applyShortContentPolicy(sections: NormalisedSection[]): Normalis
     const tokens = countTokens(section.content);
     if (tokens >= MIN_TOKENS) return section;
 
+    // Keep meaningful short procedure/list fragments even when extraction split structure poorly.
+    if (isMeaningfulShortFragment(section)) {
+      return {
+        ...section,
+        normalisation_reason: {
+          ...(section.normalisation_reason ?? {}),
+          retained: true,
+          reason: 'short_content_retained',
+          exclusion_tag: 'short_procedure',
+        },
+      };
+    }
+
     // Check if adjacent to a section with the same parent heading that is > 20 tokens
     const heading = getCurrentHeading(sections, i);
 
@@ -246,7 +347,51 @@ export function applyShortContentPolicy(sections: NormalisedSection[]): Normalis
       normalisation_reason: {
         excluded: true,
         reason: 'short_content_isolated',
+        exclusion_tag: 'short_fragment_noise',
       },
     };
+  });
+}
+
+// ---------------------------------------------------------------------------
+// 5. Recover valuable broken_structure fragments (Pass 2 tuning)
+// ---------------------------------------------------------------------------
+
+/**
+ * Recover fragments that were excluded as broken_structure but contain procedural/equipment value.
+ * This is a pass 2 improvement to reduce over-exclusion for technical manuals.
+ */
+export function recoverValueableBrokenStructureFragments(
+  sections: NormalisedSection[]
+): NormalisedSection[] {
+  return sections.map((section) => {
+    // Only target sections that are:
+    // 1. Currently excluded as retrieval_excluded
+    // 2. Have broken_structure or short_fragment_noise tag
+    // 3. Contain valuable content
+    if (!section.retrieval_excluded) return section;
+
+    const reason = section.normalisation_reason as Record<string, any> | null;
+    const exclusionTag = reason?.exclusion_tag as string | undefined;
+
+    if (!exclusionTag || (exclusionTag !== 'broken_structure' && exclusionTag !== 'short_fragment_noise')) {
+      return section;
+    }
+
+    // Check if this fragment should be retained
+    if (isBrokenStructureButValueable(section) || isMeaningfulShortFragment(section)) {
+      return {
+        ...section,
+        retrieval_excluded: false,
+        normalisation_reason: {
+          ...(section.normalisation_reason ?? {}),
+          retained_pass2: true,
+          recovery_reason: 'valuable_' + exclusionTag,
+          recovery_signal: 'procedural_or_equipment_value',
+        },
+      };
+    }
+
+    return section;
   });
 }

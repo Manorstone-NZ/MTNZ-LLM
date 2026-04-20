@@ -1,6 +1,10 @@
 import { NextRequest } from 'next/server';
 import { hybridSearchWithMode } from '@/lib/retrieval';
-import { formatChunksForPrompt, formatChunksWithContent } from '@/lib/citations';
+import {
+  formatChunksForPrompt,
+  formatChunksWithContent,
+  normalizeAnswerWithReferences,
+} from '@/lib/citations';
 import {
   SYSTEM_PROMPT,
   SYNTHESIS_SYSTEM_PROMPT,
@@ -18,9 +22,19 @@ import { classifyQueryIntent, extractInteractionEntityPair } from '@/lib/queryIn
 import { retrievalModeFromIntent } from '@/lib/retrievalMode';
 import { buildSynthesisContext } from '@/lib/synthesis';
 import { generateStream } from '@/lib/generation';
+import { listLmStudioModels } from '@/lib/generation';
+import { isAnthropicProviderAvailableFromEnv } from '@/lib/generation';
 import { embedText } from '@/lib/embeddings';
 import type { ModelTier } from '@/lib/generation';
 import type { ModelProviderMode } from '@/lib/generation';
+import {
+  parseAnswerMode,
+  resolveConfiguredAnswerModeFromEnv,
+  resolveRoutingDecision,
+  RoutingDecisionError,
+  type AnswerMode,
+} from '@/lib/answerRouting';
+import { buildAnswerStylePolicy, resolveAnswerStyle, type AnswerStyle } from '@/lib/answerPolicy';
 import type { RetrievalOptions } from '@/lib/retrieval';
 import { buildInteractionOperatingFrame, formatInteractionOperatingFrame } from '@/lib/interactionFrame';
 import {
@@ -38,6 +52,13 @@ function sseEvent(event: string, data: unknown): string {
   return `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
 }
 
+function answerModeFromLegacyProvider(provider?: ModelProviderMode): AnswerMode | undefined {
+  if (!provider) return undefined;
+  if (provider === 'lmstudio') return 'lmstudio_only';
+  if (provider === 'anthropic') return 'anthropic_only';
+  return 'two_tier_auto';
+}
+
 function extractLatestAssistantMessage(
   conversationHistory: { role: 'user' | 'assistant'; content: string }[],
 ): string | undefined {
@@ -51,11 +72,22 @@ function extractLatestAssistantMessage(
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { question, conversationHistory = [], modelTier = 'default', modelProvider = 'auto' } = body as {
+  const {
+    question,
+    conversationHistory = [],
+    modelTier = 'default',
+    modelProvider,
+    answerStyle,
+    answerMode,
+    lmStudioModel,
+  } = body as {
     question?: string;
     conversationHistory?: { role: 'user' | 'assistant'; content: string }[];
     modelTier?: ModelTier;
     modelProvider?: ModelProviderMode;
+    answerStyle?: AnswerStyle;
+    answerMode?: string;
+    lmStudioModel?: string;
   };
 
   if (!question || typeof question !== 'string' || question.trim().length === 0) {
@@ -116,6 +148,7 @@ export async function POST(request: NextRequest) {
           retrievalMode === 'interaction' && inheritInteractionMode
             ? buildFollowUpRetrievalQuestion(question, priorInteractionContext, deepHintTerms)
             : question;
+        const effectiveAnswerStyle = resolveAnswerStyle(answerStyle, question);
 
         // Step 3: Hybrid search
         const chunks = await hybridSearchWithMode(retrievalQuestion, retrievalMode, interactionOptions);
@@ -126,6 +159,58 @@ export async function POST(request: NextRequest) {
 
         // Step 5: Check if we have usable results
         const bestScore = chunks.length > 0 ? Math.max(...chunks.map((c) => c.score)) : 0;
+
+        const configuredAnswerMode = resolveConfiguredAnswerModeFromEnv(process.env);
+        const requestAnswerMode = parseAnswerMode(answerMode) ?? answerModeFromLegacyProvider(modelProvider);
+        const anthropicAvailable = isAnthropicProviderAvailableFromEnv(process.env);
+        const effectiveAnswerMode = requestAnswerMode ?? configuredAnswerMode;
+        let availableLmStudioModelIds: string[] | undefined;
+
+        if (effectiveAnswerMode !== 'anthropic_only' || typeof lmStudioModel === 'string') {
+          try {
+            const availableLmStudioModels = await listLmStudioModels();
+            availableLmStudioModelIds = availableLmStudioModels.map((model) => model.id);
+          } catch (err) {
+            const message = err instanceof Error ? err.message : 'Failed to fetch LM Studio models';
+            throw new RoutingDecisionError('LMSTUDIO_MODELS_UNAVAILABLE', message);
+          }
+        }
+
+        const routingDecision = resolveRoutingDecision({
+          configuredAnswerMode,
+          requestAnswerMode,
+          requestLmStudioModel: lmStudioModel,
+          modelTier,
+          question,
+          bestScore,
+          lowConfidenceThreshold: lowConfidence,
+          intent: effectiveIntent,
+          retrievalMode,
+          chunks: chunks.map((chunk) => ({ score: chunk.score, document_id: chunk.document_id })),
+          anthropicAvailable,
+          availableLmStudioModelIds,
+          defaultLmStudioModel:
+            process.env.DEFAULT_LMSTUDIO_MODEL
+            ?? process.env.DEFAULT_ANSWER_MODEL
+            ?? 'openai/gpt-oss-20b',
+          qualityLmStudioModel:
+            process.env.QUALITY_LMSTUDIO_MODEL
+            ?? process.env.QUALITY_ANSWER_MODEL
+            ?? process.env.DEFAULT_LMSTUDIO_MODEL
+            ?? process.env.DEFAULT_ANSWER_MODEL
+            ?? 'openai/gpt-oss-20b',
+          defaultAnthropicModel: process.env.ANTHROPIC_DEFAULT_MODEL ?? 'claude-sonnet-4-5',
+          qualityAnthropicModel: process.env.ANTHROPIC_QUALITY_MODEL ?? 'claude-opus-4-5',
+        });
+
+        push('routing', routingDecision);
+        push('provider', {
+          requested: requestAnswerMode ?? configuredAnswerMode,
+          resolved: routingDecision.provider_used,
+          anthropicEnabled: anthropicAvailable,
+          fallbackApplied: routingDecision.quality_mode_reason.includes('anthropic_unavailable_fallback_local'),
+          lmStudioModel: routingDecision.provider_used === 'lmstudio' ? routingDecision.model_used : null,
+        });
 
         if (chunks.length === 0 || bestScore < minGrounded) {
           push('sources', { chunks: [] });
@@ -169,6 +254,7 @@ ${evidenceSummary.hasAuthoritativeSource
               ? SYNTHESIS_RULES_PROMPT
               : SYNTHESIS_SYSTEM_PROMPT;
         }
+        systemPrompt = `${systemPrompt}\n\n${buildAnswerStylePolicy(effectiveAnswerStyle)}`;
         if (bestScore < lowConfidence) {
           systemPrompt = LOW_CONFIDENCE_CAVEAT + systemPrompt;
         }
@@ -217,14 +303,30 @@ ${evidenceSummary.hasAuthoritativeSource
           answerMessage,
           conversationHistory,
           modelTier,
-          modelProvider,
+          routingDecision.provider_used,
+          routingDecision.model_used,
         );
 
         let fullAnswer = '';
 
         for await (const text of tokenStream) {
           fullAnswer += text;
-          push('token', { text });
+        }
+
+        const uniqueDocs = new Set(citedChunks.map((chunk) => `${chunk.doc_title}|||${chunk.folder}`));
+        const requiredCount = uniqueDocs.size > 1 ? 2 : 1;
+        const fallbackLabels = Array.from(new Set(citedChunks.map((chunk) => chunk.citation_label))).slice(
+          0,
+          requiredCount,
+        );
+
+        const { answerText } = normalizeAnswerWithReferences(fullAnswer, {
+          fallbackLabels,
+          noEvidenceMessage: NO_EVIDENCE_MESSAGE,
+        });
+
+        if (answerText.trim().length > 0) {
+          push('token', { text: answerText });
         }
 
         if (retrievalMode === 'interaction') {
@@ -245,26 +347,12 @@ ${evidenceSummary.hasAuthoritativeSource
           push('token', { text: serializeInteractionContext(interactionContext) });
         }
 
-        // Enforce a minimum citation floor when the model omits citations.
-        const citationMatches = fullAnswer.match(/\[Source:\s*[^\]]+\]/g) ?? [];
-        const normalizedAnswer = fullAnswer.trim();
-        if (citationMatches.length === 0 && !normalizedAnswer.includes(NO_EVIDENCE_MESSAGE)) {
-          const uniqueDocs = new Set(citedChunks.map((chunk) => `${chunk.doc_title}|||${chunk.folder}`));
-          const requiredCount = uniqueDocs.size > 1 ? 2 : 1;
-          const uniqueLabels = Array.from(new Set(citedChunks.map((chunk) => chunk.citation_label))).slice(
-            0,
-            requiredCount
-          );
-          if (uniqueLabels.length > 0) {
-            const citationSuffix = `\n\n${uniqueLabels
-              .map((label) => `[Source: ${label}]`)
-              .join(' ')}`;
-            push('token', { text: citationSuffix });
-          }
-        }
-
         push('done', { ok: true });
       } catch (err) {
+        if (err instanceof RoutingDecisionError) {
+          push('error', { message: err.message, code: err.code });
+          return;
+        }
         const message = err instanceof Error ? err.message : 'Internal server error';
         push('error', { message, code: 'INTERNAL_ERROR' });
       } finally {

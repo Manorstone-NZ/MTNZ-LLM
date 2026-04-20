@@ -159,12 +159,36 @@ export async function getDocumentInventory(
   filters?: { folder?: string; status?: string; type?: string }
 ): Promise<DocumentRow[]> {
   const rows = await sql<DocumentRow[]>`
-    SELECT * FROM documents
+    WITH chunk_signals AS (
+      SELECT
+        c.document_id,
+        count(*) FILTER (WHERE c.section_type = 'heading')  AS heading_chunk_count,
+        count(*) FILTER (WHERE c.section_type = 'table')    AS table_chunk_count,
+        count(*) FILTER (WHERE c.section_type = 'appendix') AS appendix_chunk_count,
+        count(*) FILTER (WHERE c.section_type = 'list')     AS list_chunk_count
+      FROM chunks c
+      GROUP BY c.document_id
+    ),
+    ranked AS (
+      SELECT
+        d.*,
+        coalesce(cs.heading_chunk_count, 0)  AS heading_chunk_count,
+        coalesce(cs.table_chunk_count, 0)    AS table_chunk_count,
+        coalesce(cs.appendix_chunk_count, 0) AS appendix_chunk_count,
+        coalesce(cs.list_chunk_count, 0)     AS list_chunk_count,
+        row_number() OVER (
+          PARTITION BY d.source_path
+          ORDER BY d.created_at DESC, d.updated_at DESC, d.id DESC
+        ) = 1 AS is_latest_version
+      FROM documents d
+      LEFT JOIN chunk_signals cs ON cs.document_id = d.id
+    )
+    SELECT * FROM ranked
     WHERE 1 = 1
       ${filters?.folder ? sql`AND folder = ${filters.folder}` : sql``}
       ${filters?.status ? sql`AND extraction_status = ${filters.status}` : sql``}
       ${filters?.type ? sql`AND source_type = ${filters.type}` : sql``}
-    ORDER BY folder, title
+    ORDER BY is_active DESC, is_latest_version DESC, folder, title, created_at DESC
   `;
   return rows;
 }
@@ -172,63 +196,63 @@ export async function getDocumentInventory(
 export async function getHealthMetrics(): Promise<HealthMetrics> {
   const [counts] = await sql<
     {
-      total_active: string;
-      total_inactive: string;
+      active_docs: string;
+      inactive_versions: string;
       active_completed: string;
       active_pending: string;
       active_failed: string;
       historical_failed: string;
-      total_chunks: string;
-      zero_text_docs: string;
-      avg_chunks: string;
-      source_missing_count: string;
-      active_ocr_count: string;
-      quarantined_count: string;
-      needs_review_count: string;
-      quality_good: string;
-      quality_partial: string;
-      quality_poor: string;
-      quality_unclassified: string;
-      fallback_extraction_count: string;
-      excluded_chunks_total: string;
-      docs_with_structural_headings: string;
+      active_chunks_total: string;
+      active_zero_text_docs: string;
+      active_avg_chunks_per_doc: string;
+      active_source_missing: string;
+      active_ocr_used: string;
+      active_quarantined: string;
+      active_needs_review: string;
+      active_good: string;
+      active_partial: string;
+      active_poor: string;
+      active_unclassified: string;
+      active_fallback_extractions: string;
+      active_excluded_chunks_total: string;
+      active_docs_with_structural_headings: string;
     }[]
   >`
     SELECT
       -- Active corpus counts (is_active = true)
-      count(*) FILTER (WHERE is_active = true)                                               AS total_active,
-      count(*) FILTER (WHERE is_active = false)                                              AS total_inactive,
+      count(*) FILTER (WHERE is_active = true)                                               AS active_docs,
+      count(*) FILTER (WHERE is_active = false)                                              AS inactive_versions,
       count(*) FILTER (WHERE extraction_status = 'completed' AND is_active = true)          AS active_completed,
       count(*) FILTER (WHERE extraction_status = 'pending'   AND is_active = true)          AS active_pending,
       count(*) FILTER (WHERE extraction_status = 'failed'    AND is_active = true)          AS active_failed,
       -- Historical failed = inactive docs that are in failed state (not active corpus)
       count(*) FILTER (WHERE extraction_status = 'failed'    AND is_active = false)         AS historical_failed,
       -- Chunk metrics (active only)
-      coalesce(sum(chunk_count) FILTER (WHERE is_active = true), 0)                         AS total_chunks,
+      coalesce(sum(chunk_count) FILTER (WHERE is_active = true), 0)                         AS active_chunks_total,
       count(*) FILTER (WHERE chunk_count = 0 AND extraction_status = 'completed'
-                       AND is_active = true)                                                 AS zero_text_docs,
-      coalesce(avg(chunk_count) FILTER (WHERE is_active = true AND chunk_count > 0), 0)     AS avg_chunks,
+                       AND is_active = true)                                                 AS active_zero_text_docs,
+      coalesce(avg(chunk_count) FILTER (WHERE is_active = true AND chunk_count > 0), 0)     AS active_avg_chunks_per_doc,
       -- Source/OCR (active only)
-      count(*) FILTER (WHERE source_missing = true AND is_active = true)                    AS source_missing_count,
-      count(*) FILTER (WHERE ocr_used = true       AND is_active = true)                    AS active_ocr_count,
+      count(*) FILTER (WHERE source_missing = true AND is_active = true)                    AS active_source_missing,
+      count(*) FILTER (WHERE ocr_used = true       AND is_active = true)                    AS active_ocr_used,
       -- Quality (active only)
-      count(*) FILTER (WHERE quarantined = true    AND is_active = true)                    AS quarantined_count,
-      count(*) FILTER (WHERE needs_review = true   AND is_active = true)                    AS needs_review_count,
-      count(*) FILTER (WHERE text_quality_tier = 'good'    AND is_active = true)            AS quality_good,
-      count(*) FILTER (WHERE text_quality_tier = 'partial' AND is_active = true)            AS quality_partial,
-      count(*) FILTER (WHERE text_quality_tier = 'poor'    AND is_active = true)            AS quality_poor,
-      count(*) FILTER (WHERE text_quality_tier IS NULL     AND is_active = true)            AS quality_unclassified,
+      count(*) FILTER (WHERE quarantined = true    AND is_active = true)                    AS active_quarantined,
+      count(*) FILTER (WHERE needs_review = true   AND is_active = true)                    AS active_needs_review,
+      count(*) FILTER (WHERE text_quality_tier = 'good'    AND is_active = true)            AS active_good,
+      count(*) FILTER (WHERE text_quality_tier = 'partial' AND is_active = true)            AS active_partial,
+      count(*) FILTER (WHERE text_quality_tier = 'poor'    AND is_active = true)            AS active_poor,
+      count(*) FILTER (WHERE text_quality_tier IS NULL     AND is_active = true)            AS active_unclassified,
       -- Fallback extraction = active docs where native parse failed/timed out and fallback path was used
       count(*) FILTER (WHERE is_active = true
-                       AND extraction_method IN ('ocr', 'native_pdfjs'))                    AS fallback_extraction_count,
-      coalesce(sum(excluded_chunk_count) FILTER (WHERE is_active = true), 0)               AS excluded_chunks_total,
+                       AND extraction_method IN ('ocr', 'native_pdfjs'))                    AS active_fallback_extractions,
+      coalesce(sum(excluded_chunk_count) FILTER (WHERE is_active = true), 0)               AS active_excluded_chunks_total,
       (
         SELECT count(DISTINCT c.document_id)
         FROM chunks c
         JOIN documents d2 ON d2.id = c.document_id
         WHERE d2.is_active = true
           AND c.section_type = 'appendix'
-      ) AS docs_with_structural_headings
+      ) AS active_docs_with_structural_headings
     FROM documents
   `;
 
@@ -239,43 +263,80 @@ export async function getHealthMetrics(): Promise<HealthMetrics> {
   `;
 
   const [dbSize] = await sql<{ size_mb: string }[]>`
-    SELECT round(pg_database_size('idd_knowledge') / 1048576.0, 2) AS size_mb
+    SELECT round(pg_database_size(current_database()) / 1048576.0, 2) AS size_mb
   `;
 
-  const totalActive = Number(counts.total_active);
-  const totalChunks = Number(counts.total_chunks);
-  const fallbackCount = Number(counts.fallback_extraction_count);
-  const excludedChunksTotal = Number(counts.excluded_chunks_total);
+  const activeDocs = Number(counts.active_docs);
+  const inactiveVersions = Number(counts.inactive_versions);
+  const activeChunksTotal = Number(counts.active_chunks_total);
+  const activeFallbackExtractions = Number(counts.active_fallback_extractions);
+  const activeExcludedChunksTotal = Number(counts.active_excluded_chunks_total);
+  const activeGood = Number(counts.active_good);
+  const activePartial = Number(counts.active_partial);
+  const activePoor = Number(counts.active_poor);
+  const activeUnclassified = Number(counts.active_unclassified);
+  const qualityTotal = activeGood + activePartial + activePoor + activeUnclassified;
+  const totalDocumentVersions = activeDocs + inactiveVersions;
 
   return {
-    total_active: totalActive,
-    total_inactive: Number(counts.total_inactive),
+    active_docs: activeDocs,
     active_completed: Number(counts.active_completed),
     active_pending: Number(counts.active_pending),
     active_failed: Number(counts.active_failed),
+    active_needs_review: Number(counts.active_needs_review),
+    active_chunks_total: activeChunksTotal,
+    active_ocr_used: Number(counts.active_ocr_used),
+    active_fallback_extractions: activeFallbackExtractions,
+
+    inactive_versions: inactiveVersions,
     historical_failed: Number(counts.historical_failed),
-    total_chunks: totalChunks,
-    zero_text_docs: Number(counts.zero_text_docs),
-    avg_chunks_per_doc: Number(Number(counts.avg_chunks).toFixed(1)),
+
+    active_good: activeGood,
+    active_partial: activePartial,
+    active_poor: activePoor,
+    active_unclassified: activeUnclassified,
+
+    active_quarantined: Number(counts.active_quarantined),
+    active_source_missing: Number(counts.active_source_missing),
+    active_zero_text_docs: Number(counts.active_zero_text_docs),
+    active_avg_chunks_per_doc: Number(Number(counts.active_avg_chunks_per_doc).toFixed(1)),
+    active_fallback_extraction_percent: activeDocs > 0
+      ? Number(((activeFallbackExtractions / activeDocs) * 100).toFixed(1))
+      : 0,
+    active_excluded_chunks_total: activeExcludedChunksTotal,
+    active_excluded_chunk_percent: activeChunksTotal > 0
+      ? Number(((activeExcludedChunksTotal / activeChunksTotal) * 100).toFixed(1))
+      : 0,
+    active_docs_with_structural_headings: Number(counts.active_docs_with_structural_headings),
+
+    total_document_versions: totalDocumentVersions,
     last_ingest_run: lastRun?.started_at ?? null,
     embedding_model: process.env.EMBEDDING_MODEL ?? 'unknown',
     db_size_mb: Number(dbSize.size_mb),
-    source_missing_count: Number(counts.source_missing_count),
-    active_ocr_count: Number(counts.active_ocr_count),
-    quarantined_count: Number(counts.quarantined_count),
-    needs_review_count: Number(counts.needs_review_count),
-    quality_good: Number(counts.quality_good),
-    quality_partial: Number(counts.quality_partial),
-    quality_poor: Number(counts.quality_poor),
-    quality_unclassified: Number(counts.quality_unclassified),
-    fallback_extraction_count: fallbackCount,
-    fallback_extraction_percent: totalActive > 0
-      ? Number(((fallbackCount / totalActive) * 100).toFixed(1))
-      : 0,
-    excluded_chunks_total: excludedChunksTotal,
-    excluded_chunk_percent: totalChunks > 0
-      ? Number(((excludedChunksTotal / totalChunks) * 100).toFixed(1))
-      : 0,
-    docs_with_structural_headings: Number(counts.docs_with_structural_headings),
+
+    diagnostics: {
+      quality_total: qualityTotal,
+      active_docs: activeDocs,
+      quality_reconciles: qualityTotal === activeDocs,
+      total_versions: totalDocumentVersions,
+      active_plus_inactive_reconciles: activeDocs + inactiveVersions === totalDocumentVersions,
+    },
+    metric_audit: {
+      active_docs: { source: 'documents', scope: 'active_only', filter: 'is_active = true' },
+      active_completed: { source: 'documents', scope: 'active_only', filter: "is_active = true AND extraction_status = 'completed'" },
+      active_pending: { source: 'documents', scope: 'active_only', filter: "is_active = true AND extraction_status = 'pending'" },
+      active_failed: { source: 'documents', scope: 'active_only', filter: "is_active = true AND extraction_status = 'failed'" },
+      active_needs_review: { source: 'documents', scope: 'active_only', filter: 'is_active = true AND needs_review = true' },
+      active_chunks_total: { source: 'documents', scope: 'active_only', filter: 'is_active = true (sum chunk_count)' },
+      active_ocr_used: { source: 'documents', scope: 'active_only', filter: 'is_active = true AND ocr_used = true' },
+      active_fallback_extractions: { source: 'documents', scope: 'active_only', filter: "is_active = true AND extraction_method IN ('ocr','native_pdfjs')" },
+      inactive_versions: { source: 'documents', scope: 'historical_only', filter: 'is_active = false' },
+      historical_failed: { source: 'documents', scope: 'historical_only', filter: "is_active = false AND extraction_status = 'failed'" },
+      active_good: { source: 'documents', scope: 'active_only', filter: "is_active = true AND text_quality_tier = 'good'" },
+      active_partial: { source: 'documents', scope: 'active_only', filter: "is_active = true AND text_quality_tier = 'partial'" },
+      active_poor: { source: 'documents', scope: 'active_only', filter: "is_active = true AND text_quality_tier = 'poor'" },
+      active_unclassified: { source: 'documents', scope: 'active_only', filter: 'is_active = true AND text_quality_tier IS NULL' },
+      total_document_versions: { source: 'documents', scope: 'all_versions', filter: 'active_docs + inactive_versions' },
+    },
   };
 }

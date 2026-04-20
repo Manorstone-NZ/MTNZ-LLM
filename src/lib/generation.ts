@@ -6,16 +6,41 @@ import type { ChatCompletionMessageParam } from 'openai/resources/chat/completio
 // Provider detection
 // ---------------------------------------------------------------------------
 
+function envFlagEnabled(raw: string | undefined): boolean {
+  if (raw == null) return true;
+  const v = raw.trim().toLowerCase();
+  return !(v === '0' || v === 'false' || v === 'no' || v === 'off');
+}
+
+export function isAnthropicProviderAvailableFromEnv(
+  env: Record<string, string | undefined>,
+): boolean {
+  const anthropicEnabled = envFlagEnabled(env.ANTHROPIC_ENABLED);
+  const claudeEnabled = envFlagEnabled(env.CLAUDE_ENABLED);
+  if (!anthropicEnabled || !claudeEnabled) return false;
+
+  return Boolean(env.ANTHROPIC_API_KEY || env.CLAUDE_API_KEY);
+}
+
 function isAnthropicProviderAvailable(): boolean {
-  return Boolean(process.env.ANTHROPIC_API_KEY);
+  return isAnthropicProviderAvailableFromEnv(process.env);
 }
 
 export type ModelProviderMode = 'auto' | 'anthropic' | 'lmstudio';
+export type ProviderKind = 'anthropic' | 'lmstudio';
+export type ModelTier = 'default' | 'quality';
+
+export interface LmStudioModelInfo {
+  id: string;
+  available: boolean;
+  object?: string;
+  owned_by?: string;
+}
 
 export function resolveProviderMode(
   requestedMode: ModelProviderMode = 'auto',
   anthropicAvailable: boolean = isAnthropicProviderAvailable(),
-): 'anthropic' | 'lmstudio' {
+): ProviderKind {
   if (requestedMode === 'anthropic') {
     return anthropicAvailable ? 'anthropic' : 'lmstudio';
   }
@@ -25,14 +50,34 @@ export function resolveProviderMode(
   return anthropicAvailable ? 'anthropic' : 'lmstudio';
 }
 
+export function resolveLmStudioBaseUrlFromEnv(
+  env: Record<string, string | undefined> = process.env,
+): string {
+  const raw = env.LMSTUDIO_URL?.trim() || 'http://localhost:1234';
+  const normalized = raw.replace(/\/+$/, '');
+  return normalized.endsWith('/v1') ? normalized : `${normalized}/v1`;
+}
+
 // ---------------------------------------------------------------------------
 // LM Studio (OpenAI-compatible) client
 // ---------------------------------------------------------------------------
 
 const lmStudioClient = new OpenAI({
-  baseURL: process.env.LMSTUDIO_URL! + '/v1',
+  baseURL: resolveLmStudioBaseUrlFromEnv(process.env),
   apiKey: 'lm-studio',
 });
+
+export async function listLmStudioModels(): Promise<LmStudioModelInfo[]> {
+  const response = await lmStudioClient.models.list();
+  const items = (response.data ?? []).map((model) => ({
+    id: model.id,
+    available: true,
+    object: 'object' in model ? String(model.object) : undefined,
+    owned_by: 'owned_by' in model ? String(model.owned_by) : undefined,
+  }));
+
+  return items.sort((a, b) => a.id.localeCompare(b.id));
+}
 
 // ---------------------------------------------------------------------------
 // Anthropic client (lazy — only constructed when key is present)
@@ -41,22 +86,22 @@ const lmStudioClient = new OpenAI({
 let _anthropicClient: Anthropic | null = null;
 function getAnthropicClient(): Anthropic {
   if (!_anthropicClient) {
-    _anthropicClient = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+    _anthropicClient = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY ?? process.env.CLAUDE_API_KEY,
+    });
   }
   return _anthropicClient;
 }
 
-export type ModelTier = 'default' | 'quality';
-
-function getModelId(tier: ModelTier, provider: 'anthropic' | 'lmstudio'): string {
+function getModelId(tier: ModelTier, provider: ProviderKind): string {
   if (provider === 'anthropic') {
     return tier === 'quality'
       ? (process.env.ANTHROPIC_QUALITY_MODEL ?? 'claude-opus-4-5')
       : (process.env.ANTHROPIC_DEFAULT_MODEL ?? 'claude-sonnet-4-5');
   }
   return tier === 'quality'
-    ? process.env.QUALITY_ANSWER_MODEL!
-    : process.env.DEFAULT_ANSWER_MODEL!;
+    ? (process.env.QUALITY_LMSTUDIO_MODEL ?? process.env.QUALITY_ANSWER_MODEL ?? process.env.DEFAULT_LMSTUDIO_MODEL ?? process.env.DEFAULT_ANSWER_MODEL ?? 'openai/gpt-oss-20b')
+    : (process.env.DEFAULT_LMSTUDIO_MODEL ?? process.env.DEFAULT_ANSWER_MODEL ?? process.env.QUALITY_LMSTUDIO_MODEL ?? process.env.QUALITY_ANSWER_MODEL ?? 'openai/gpt-oss-20b');
 }
 
 // ---------------------------------------------------------------------------
@@ -121,7 +166,6 @@ async function generateSyncAnthropic(
 
 /**
  * Streaming chat completion. Returns an async iterable of text chunks.
- * Routes to Anthropic when ANTHROPIC_API_KEY is set, otherwise LM Studio.
  */
 export async function* generateStream(
   systemPrompt: string,
@@ -129,9 +173,10 @@ export async function* generateStream(
   conversationHistory: ChatCompletionMessageParam[] = [],
   tier: ModelTier = 'default',
   providerMode: ModelProviderMode = 'auto',
+  modelOverride?: string,
 ): AsyncIterable<string> {
   const provider = resolveProviderMode(providerMode);
-  const model = getModelId(tier, provider);
+  const model = modelOverride?.trim() || getModelId(tier, provider);
 
   if (provider === 'anthropic') {
     yield* generateStreamAnthropic(systemPrompt, userMessage, conversationHistory, model);
@@ -174,16 +219,16 @@ export async function* generateStream(
 
 /**
  * Non-streaming chat completion. Returns the full response text.
- * Routes to Anthropic when ANTHROPIC_API_KEY is set, otherwise LM Studio.
  */
 export async function generateSync(
   systemPrompt: string,
   userMessage: string,
   tier: ModelTier = 'default',
   providerMode: ModelProviderMode = 'auto',
+  modelOverride?: string,
 ): Promise<string> {
   const provider = resolveProviderMode(providerMode);
-  const model = getModelId(tier, provider);
+  const model = modelOverride?.trim() || getModelId(tier, provider);
 
   if (provider === 'anthropic') {
     return generateSyncAnthropic(systemPrompt, userMessage, model);

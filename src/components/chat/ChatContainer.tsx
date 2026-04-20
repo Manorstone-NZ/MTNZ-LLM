@@ -5,6 +5,8 @@ import type { CitedChunk } from '@/lib/types';
 import MessageBubble from './MessageBubble';
 import ModelToggle from './ModelToggle';
 import ProviderToggle from './ProviderToggle';
+import AnswerStyleToggle from './AnswerStyleToggle';
+import LocalModelSelector from './LocalModelSelector';
 
 interface Message {
   id: string;
@@ -13,6 +15,8 @@ interface Message {
   sources?: CitedChunk[];
   isStreaming?: boolean;
 }
+
+type AnswerMode = 'lmstudio_only' | 'anthropic_only' | 'two_tier_auto';
 
 function generateId() {
   return `msg-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
@@ -23,8 +27,15 @@ export default function ChatContainer() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [modelTier, setModelTier] = useState<'default' | 'quality'>('default');
-  const [modelProvider, setModelProvider] = useState<'auto' | 'anthropic' | 'lmstudio'>('auto');
+  const [answerMode, setAnswerMode] = useState<AnswerMode>('two_tier_auto');
+  const [lmStudioModels, setLmStudioModels] = useState<string[]>([]);
+  const [lmStudioModel, setLmStudioModel] = useState('');
+  const [isLoadingModels, setIsLoadingModels] = useState(false);
+  const [modelDiscoveryError, setModelDiscoveryError] = useState<string | null>(null);
+  const [answerStyle, setAnswerStyle] = useState<'concise' | 'detailed'>('concise');
   const [error, setError] = useState<string | null>(null);
+  const [providerNotice, setProviderNotice] = useState<string | null>(null);
+  const [routingNotice, setRoutingNotice] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -36,11 +47,62 @@ export default function ChatContainer() {
     scrollToBottom();
   }, [messages, scrollToBottom]);
 
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadModels() {
+      setIsLoadingModels(true);
+      setModelDiscoveryError(null);
+      try {
+        const response = await fetch('/api/models');
+        const payload = await response.json();
+        if (!response.ok) {
+          throw new Error(payload?.error || 'Unable to load LM Studio models');
+        }
+
+        if (cancelled) return;
+        const ids = Array.isArray(payload.models)
+          ? payload.models
+            .map((entry: { id?: string }) => entry?.id)
+            .filter((id: string | undefined): id is string => typeof id === 'string' && id.length > 0)
+          : [];
+
+        setLmStudioModels(ids);
+
+        if (typeof payload.answerMode === 'string') {
+          const mode = payload.answerMode as AnswerMode;
+          if (mode === 'lmstudio_only' || mode === 'anthropic_only' || mode === 'two_tier_auto') {
+            setAnswerMode(mode);
+          }
+        }
+
+        const preferred = typeof payload.defaultLmStudioModel === 'string' ? payload.defaultLmStudioModel : '';
+        const selected = preferred && ids.includes(preferred) ? preferred : (ids[0] ?? '');
+        setLmStudioModel((prev) => (prev && ids.includes(prev) ? prev : selected));
+      } catch (err) {
+        if (cancelled) return;
+        const message = err instanceof Error ? err.message : 'Unable to load LM Studio models';
+        setModelDiscoveryError(message);
+      } finally {
+        if (!cancelled) {
+          setIsLoadingModels(false);
+        }
+      }
+    }
+
+    void loadModels();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const handleSend = async () => {
     const trimmed = input.trim();
     if (!trimmed || isLoading) return;
 
     setError(null);
+    setProviderNotice(null);
+    setRoutingNotice(null);
 
     const userMessage: Message = {
       id: generateId(),
@@ -74,7 +136,9 @@ export default function ChatContainer() {
           question: trimmed,
           conversationHistory,
           modelTier,
-          modelProvider,
+          answerMode,
+          lmStudioModel: answerMode === 'anthropic_only' ? undefined : lmStudioModel,
+          answerStyle,
         }),
       });
 
@@ -120,6 +184,26 @@ export default function ChatContainer() {
                   )
                 );
                 break;
+
+              case 'provider': {
+                if (
+                  parsed?.fallbackApplied === true
+                  && (parsed?.requested === 'anthropic_only' || parsed?.requested === 'anthropic')
+                  && parsed?.resolved === 'lmstudio'
+                ) {
+                  setProviderNotice('Claude is disabled in environment; using LM Studio for this response.');
+                }
+                break;
+              }
+
+              case 'routing': {
+                if (parsed?.quality_mode_triggered === true && typeof parsed?.quality_mode_reason === 'string') {
+                  setRoutingNotice(`Routing: ${parsed.provider_used} (${parsed.model_used}) because ${parsed.quality_mode_reason}.`);
+                } else if (typeof parsed?.provider_used === 'string' && typeof parsed?.model_used === 'string') {
+                  setRoutingNotice(`Routing: ${parsed.provider_used} (${parsed.model_used}).`);
+                }
+                break;
+              }
 
               case 'token':
                 setMessages((prev) =>
@@ -184,25 +268,69 @@ export default function ChatContainer() {
   };
 
   return (
-    <div className="flex flex-col flex-1 min-h-0">
+    <div className="mx-auto flex min-h-0 w-full max-w-7xl flex-1 flex-col px-3 py-4 sm:px-4 sm:py-5">
       {/* Header bar with model toggle */}
-      <div className="flex items-center justify-between px-4 py-2 border-b border-slate-800 bg-slate-900/80">
+      <div className="app-card flex flex-wrap items-center justify-between gap-3 rounded-t-2xl border-b px-4 py-3">
         <span className="text-xs text-slate-500">
           {messages.length === 0 ? 'Start a conversation' : `${messages.filter((m) => m.role === 'user').length} messages`}
         </span>
-        <div className="flex items-center gap-2">
-          <ProviderToggle providerMode={modelProvider} onChange={setModelProvider} />
+        <div className="flex items-center gap-2 overflow-x-auto">
+          <AnswerStyleToggle answerStyle={answerStyle} onChange={setAnswerStyle} />
+          <ProviderToggle providerMode={answerMode} onChange={setAnswerMode} />
+          <LocalModelSelector
+            models={lmStudioModels}
+            value={lmStudioModel}
+            loading={isLoadingModels}
+            disabled={answerMode === 'anthropic_only'}
+            onChange={setLmStudioModel}
+          />
           <ModelToggle modelTier={modelTier} onChange={setModelTier} />
         </div>
       </div>
 
+      {modelDiscoveryError && !error && (
+        <div className="mx-2 mt-2 flex items-center justify-between rounded-xl border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-700 sm:mx-4">
+          <span>{modelDiscoveryError}</span>
+          <button
+            onClick={() => setModelDiscoveryError(null)}
+            className="ml-2 text-amber-600 hover:text-amber-800"
+          >
+            x
+          </button>
+        </div>
+      )}
+
       {/* Error banner */}
       {error && (
-        <div className="mx-4 mt-2 px-3 py-2 rounded-md bg-red-900/50 border border-red-700 text-red-200 text-sm flex items-center justify-between">
+        <div className="mx-2 mt-2 flex items-center justify-between rounded-xl border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-700 sm:mx-4">
           <span>{error}</span>
           <button
             onClick={() => setError(null)}
-            className="ml-2 text-red-400 hover:text-red-200"
+            className="ml-2 text-red-500 hover:text-red-700"
+          >
+            x
+          </button>
+        </div>
+      )}
+
+      {providerNotice && !error && (
+        <div className="mx-2 mt-2 flex items-center justify-between rounded-xl border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-700 sm:mx-4">
+          <span>{providerNotice}</span>
+          <button
+            onClick={() => setProviderNotice(null)}
+            className="ml-2 text-amber-600 hover:text-amber-800"
+          >
+            x
+          </button>
+        </div>
+      )}
+
+      {routingNotice && !error && (
+        <div className="mx-2 mt-2 flex items-center justify-between rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-muted)] px-3 py-2 text-sm text-slate-700 sm:mx-4">
+          <span>{routingNotice}</span>
+          <button
+            onClick={() => setRoutingNotice(null)}
+            className="ml-2 text-slate-500 hover:text-slate-700"
           >
             x
           </button>
@@ -210,12 +338,16 @@ export default function ChatContainer() {
       )}
 
       {/* Messages area */}
-      <div className="flex-1 overflow-y-auto px-4 py-4">
+      <div className="app-card flex-1 overflow-y-auto border-t-0 px-4 py-4 sm:px-5">
         {messages.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-full text-slate-500">
-            <div className="text-4xl mb-4">?</div>
-            <p className="text-lg font-medium">IDD Knowledge Chat</p>
-            <p className="text-sm mt-1">Ask questions about IDD documents and policies</p>
+          <div className="flex h-full flex-col items-center justify-center rounded-2xl border border-dashed border-[color:var(--line)] bg-[color:var(--surface-muted)] text-center text-slate-600">
+            <div className="mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-[color:var(--brand)] text-lg font-extrabold text-white">
+              NZ
+            </div>
+            <p className="text-lg font-semibold text-[color:var(--brand-strong)]">IDD Knowledge Chat</p>
+            <p className="mt-1 max-w-md text-sm text-slate-500">
+              Ask practical questions about manuals, procedures, and policy sources.
+            </p>
           </div>
         )}
         {messages.map((msg) => (
@@ -231,7 +363,7 @@ export default function ChatContainer() {
       </div>
 
       {/* Input area */}
-      <div className="border-t border-slate-800 bg-slate-900/80 px-4 py-3">
+      <div className="app-card rounded-b-2xl border-t-0 px-4 py-3">
         <div className="flex items-end gap-2 max-w-4xl mx-auto">
           <textarea
             ref={inputRef}
@@ -240,7 +372,7 @@ export default function ChatContainer() {
             onKeyDown={handleKeyDown}
             placeholder="Ask a question about IDD documents..."
             rows={1}
-            className="flex-1 resize-none rounded-lg bg-slate-800 border border-slate-700 px-3 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+            className="app-input flex-1 resize-none rounded-xl px-3 py-2.5 text-sm placeholder:text-slate-400 transition-colors"
             style={{ maxHeight: '120px' }}
             onInput={(e) => {
               const target = e.target as HTMLTextAreaElement;
@@ -251,7 +383,7 @@ export default function ChatContainer() {
           <button
             onClick={handleSend}
             disabled={!input.trim() || isLoading}
-            className="px-4 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="rounded-xl bg-[color:var(--brand)] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[color:var(--brand-strong)] disabled:cursor-not-allowed disabled:opacity-40"
           >
             {isLoading ? (
               <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

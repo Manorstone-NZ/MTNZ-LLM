@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-04-19T22:27:00.126136Z",
+  "pass": 2,
+  "fixed_cohort": {
+    "size": 20,
+    "avg_excluded_ratio_before": 0.362,
+    "avg_excluded_ratio_after": 0.3304,
+    "improved_doc_count": 3,
+    "improved_docs_sample": [
+      {
+        "title": "1.0-Introduction V19.1",
+        "before_excluded_ratio": 0.5,
+        "after_excluded_ratio": 0.3529,
+        "delta": 0.1471
+      },
+      {
+        "title": "LOP-CR 002 (V3) CRV Procedures Manual",
+        "before_excluded_ratio": 0.3636,
+        "after_excluded_ratio": 0.338,
+        "delta": 0.0256
+      },
+      {
+        "title": "LOP-GN 003 (V1) Spatial Distribution Check Manual",
+        "before_excluded_ratio": 0.3409,
+        "after_excluded_ratio": 0.3281,
+        "delta": 0.0128
+      }
+    ],
+    "high_excluded_docs_before": 20,
+    "high_excluded_docs_after": 20
+  },
+  "global_reporting": {
+    "checks_all_passed": true,
+    "active_partial_before": "N/A",
+    "active_partial_after": 105,
+    "high_excluded_reason_before": "N/A",
+    "high_excluded_reason_after": 65,
+    "active_excluded_chunk_percent_before": "N/A",
+    "active_excluded_chunk_percent_after": 24.3
+  },
+  "safety_checks": {
+    "validator_checks_all_true": true
+  }
+}

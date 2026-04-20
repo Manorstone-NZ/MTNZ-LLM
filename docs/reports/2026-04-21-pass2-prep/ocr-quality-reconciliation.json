@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-04-19T23:28:43.107Z",
+  "total_documents": 10,
+  "status_distribution": {
+    "ocr_noisy": 2,
+    "ocr_mixed": 3,
+    "ocr_clean": 3,
+    "native_clean": 1,
+    "ocr_unusable": 1
+  },
+  "priority_distribution": {
+    "high": 4,
+    "medium": 3,
+    "low": 3
+  },
+  "validation_checks": {
+    "all_docs_have_status": true,
+    "all_quality_docs_have_reasons": true,
+    "all_candidates_have_reasons": true,
+    "all_candidates_have_rank": true,
+    "no_zero_candidates": true
+  },
+  "validation_details": [
+    "✓ All validation checks passed"
+  ],
+  "top_reprocess_candidates": [
+    {
+      "rank": 1,
+      "title": "LOP-Procedures-Q1-2026.pdf",
+      "status": "ocr_noisy",
+      "priority": "high",
+      "excluded_ratio": 0.42,
+      "reasons": "High-priority document with 42% excluded chunks - likely high OCR noise"
+    },
+    {
+      "rank": 2,
+      "title": "EOP-SOP-StandardOps-v2.pdf",
+      "status": "ocr_noisy",
+      "priority": "high",
+      "excluded_ratio": 0.35,
+      "reasons": "High-priority EOP SOP with 35% excluded chunks"
+    },
+    {
+      "rank": 3,
+      "title": "MANUAL-Setup-Guide-Regional.pdf",
+      "status": "ocr_mixed",
+      "priority": "high",
+      "excluded_ratio": 0.21666666666666667,
+      "reasons": "Manual family doc with 22% excluded - good candidate for selective re-OCR"
+    },
+    {
+      "rank": 4,
+      "title": "LOP-Q2-Procedures-Draft.pdf",
+      "status": "ocr_mixed",
+      "priority": "high",
+      "excluded_ratio": 0.2818181818181818,
+      "reasons": "LOP family with 28% excluded - high-value reprocess candidate"
+    }
+  ],
+  "sample_rows": [
+    {
+      "title": "LOP-Procedures-Q1-2026.pdf",
+      "status": "ocr_noisy",
+      "priority": "high",
+      "candidate": true,
+      "reasons": [
+        "High-value LOP document",
+        "Significant text extraction contamination (42% excluded chunks)",
+        "Weak structural headings"
+      ]
+    },
+    {
+      "title": "MANUAL-Setup-Guide-Regional.pdf",
+      "status": "ocr_mixed",
+      "priority": "high",
+      "candidate": true,
+      "reasons": [
+        "Manual setup document",
+        "Moderate contamination (22% excluded chunks)"
+      ]
+    },
+    {
+      "title": "Reference-Data-Clean-Extract.pdf",
+      "status": "ocr_clean",
+      "priority": "medium",
+      "candidate": false,
+      "reasons": [
+        "Native extraction with clean OCR"
+      ]
+    },
+    {
+      "title": "Technical-Specs-2026.pdf",
+      "status": "native_clean",
+      "priority": "medium",
+      "candidate": false,
+      "reasons": [
+        "Native text extraction with <5% excluded"
+      ]
+    },
+    {
+      "title": "EOP-Archive-v1.pdf",
+      "status": "ocr_unusable",
+      "priority": "low",
+      "candidate": false,
+      "reasons": [
+        "Quarantined document",
+        "All chunks excluded from retrieval"
+      ]
+    }
+  ]
+}

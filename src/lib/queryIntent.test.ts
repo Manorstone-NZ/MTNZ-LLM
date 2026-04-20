@@ -79,3 +79,40 @@ test('classifies failure-path interaction query as interaction_explanation', () 
   const out = classifyQueryIntent('What happens if the integration between MADCAP and WSO2 fails?');
   assert.equal(out.intent, 'interaction_explanation');
 });
+
+test('classifies operational-boundary query as interaction_explanation', () => {
+  const out = classifyQueryIntent(
+    'What operational boundary exists between laboratory instruments and downstream business systems?'
+  );
+  assert.equal(out.intent, 'interaction_explanation');
+});
+
+test('classifies reporting export preparation query as interaction_explanation', () => {
+  const out = classifyQueryIntent('How are result exports prepared for downstream reporting consumers?');
+  assert.equal(out.intent, 'interaction_explanation');
+});
+
+test('classifies downstream billing query as interaction_explanation', () => {
+  const out = classifyQueryIntent('Which systems provide data needed for downstream billing after result release?');
+  assert.equal(out.intent, 'interaction_explanation');
+});
+
+test('classifies analytics data-flow query as interaction_explanation', () => {
+  const out = classifyQueryIntent('What is the data flow from operational LIMS steps into analytics platforms?');
+  assert.equal(out.intent, 'interaction_explanation');
+});
+
+test('classifies automatic result entry query as interaction_explanation', () => {
+  const out = classifyQueryIntent('How does automatic result entry work between the instrument and MADCAP?');
+  assert.equal(out.intent, 'interaction_explanation');
+});
+
+test('classifies report propagation query as interaction_explanation', () => {
+  const out = classifyQueryIntent('How do results end up in reports?');
+  assert.equal(out.intent, 'interaction_explanation');
+});
+
+test('classifies fallback manual path query as interaction_explanation', () => {
+  const out = classifyQueryIntent('What is the fallback manual path?');
+  assert.equal(out.intent, 'interaction_explanation');
+});

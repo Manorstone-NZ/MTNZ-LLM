@@ -11,6 +11,7 @@ import {
   dropEmptyHeadings,
   deduplicateWithinDocument,
   applyShortContentPolicy,
+  recoverValueableBrokenStructureFragments,
 } from './cleanup';
 
 const enc = get_encoding('cl100k_base');
@@ -61,19 +62,22 @@ export async function normalise(
   // Step 6: apply short content policy
   const final = applyShortContentPolicy(deduped);
 
+  // Step 7: recover valuable broken_structure fragments (Pass 2 tuning)
+  const recovered = recoverValueableBrokenStructureFragments(final);
+
   // --- Stats computation ---
   const stats: NormaliseStats = {
     total_input: sections.length,
-    total_output: final.length,
-    excluded: final.filter(s => s.retrieval_excluded === true).length,
-    downranked: final.filter(s => s.retrieval_downranked === true).length,
-    boilerplate: final.filter(s => s.is_boilerplate === true).length,
+    total_output: recovered.length,
+    excluded: recovered.filter(s => s.retrieval_excluded === true).length,
+    downranked: recovered.filter(s => s.retrieval_downranked === true).length,
+    boilerplate: recovered.filter(s => s.is_boilerplate === true).length,
     merged: preMergeCount - postMergeCount,
-    deduplicated: final.filter(s => {
+    deduplicated: recovered.filter(s => {
       const reason = s.normalisation_reason as Record<string, unknown> | null;
       return reason?.reason === 'duplicate_within_document';
     }).length,
-    dropped_short: final.filter(s => {
+    dropped_short: recovered.filter(s => {
       const reason = s.normalisation_reason as Record<string, unknown> | null;
       return reason?.reason === 'short_content_isolated';
     }).length,
@@ -88,7 +92,7 @@ export async function normalise(
   }
 
   // Fewer than 3 non-excluded sections
-  const nonExcluded = final.filter(s => s.retrieval_excluded === false);
+  const nonExcluded = recovered.filter(s => s.retrieval_excluded === false);
   if (nonExcluded.length < 3) {
     sanity_warning = true;
   }
@@ -102,5 +106,5 @@ export async function normalise(
     }
   }
 
-  return { sections: final, stats, sanity_warning };
+  return { sections: recovered, stats, sanity_warning };
 }

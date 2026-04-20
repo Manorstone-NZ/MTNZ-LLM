@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import HealthDashboard from '@/components/ingest/HealthDashboard';
 import DocumentTable from '@/components/ingest/DocumentTable';
@@ -26,6 +27,7 @@ interface DocumentRow {
   processed_at: string | null;
   created_at: string;
   updated_at: string;
+  is_latest_version?: boolean;
   // V2 fields
   pipeline_version?: string;
   extraction_method?: string | null;
@@ -37,35 +39,72 @@ interface DocumentRow {
   boilerplate_chunk_count?: number;
   downranked_chunk_count?: number;
   quarantined?: boolean;
+  heading_chunk_count?: number;
+  table_chunk_count?: number;
+  appendix_chunk_count?: number;
+  list_chunk_count?: number;
+  quality_tier?: 'good' | 'partial' | 'poor' | null;
+  quality_reasons?: string[];
 }
 
 interface HealthMetrics {
-  total_active: number;
-  total_inactive: number;
+  active_docs: number;
   active_completed: number;
   active_pending: number;
   active_failed: number;
+  active_needs_review: number;
+  active_chunks_total: number;
+  active_ocr_used: number;
+  active_fallback_extractions: number;
+
+  inactive_versions: number;
   historical_failed: number;
-  total_chunks: number;
-  zero_text_docs: number;
-  avg_chunks_per_doc: number;
+
+  active_good: number;
+  active_partial: number;
+  active_poor: number;
+  active_unclassified: number;
+
+  active_quarantined: number;
+  active_source_missing: number;
+  active_zero_text_docs: number;
+  active_avg_chunks_per_doc: number;
+  active_fallback_extraction_percent: number;
+  active_excluded_chunks_total: number;
+  active_excluded_chunk_percent: number;
+  active_docs_with_structural_headings: number;
+
+  total_document_versions: number;
   last_ingest_run: string | null;
   embedding_model: string;
   db_size_mb: number;
-  source_missing_count: number;
-  active_ocr_count: number;
-  // V2 fields
-  quarantined_count: number;
-  needs_review_count: number;
-  quality_good: number;
-  quality_partial: number;
-  quality_poor: number;
-  quality_unclassified: number;
-  fallback_extraction_count: number;
-  fallback_extraction_percent: number;
-  excluded_chunks_total: number;
-  excluded_chunk_percent: number;
-  docs_with_structural_headings: number;
+
+  diagnostics: {
+    quality_total: number;
+    active_docs: number;
+    quality_reconciles: boolean;
+    total_versions: number;
+    active_plus_inactive_reconciles: boolean;
+    quality_reason_diagnostics?: {
+      partial_docs: number;
+      unclassified_docs: number;
+      partial_docs_with_reasons: number;
+      unclassified_docs_with_reasons: number;
+      partial_docs_have_reasons: boolean;
+      unclassified_docs_have_reasons: boolean;
+      partial_reason_counts_present: boolean;
+    };
+  };
+  partial_reason_counts?: Record<string, number>;
+  good_reason_counts?: Record<string, number>;
+  unclassified_reason_counts?: Record<string, number>;
+  metric_audit: Record<string, { source: string; scope: string; filter: string }>;
+}
+
+declare global {
+  interface Window {
+    __ingestFileInput?: HTMLInputElement | null;
+  }
 }
 
 interface ProgressEvent {
@@ -75,6 +114,18 @@ interface ProgressEvent {
   total: number;
 }
 
+interface UploadState {
+  isDragging: boolean;
+  isUploading: boolean;
+  uploadProgress: { file: string; percent: number } | null;
+  uploadError: string | null;
+}
+
+const SUPPORTED_EXTENSIONS = new Set([
+  '.pdf', '.docx', '.xlsx', '.txt',
+  '.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp', '.tif', '.tiff',
+]);
+
 export default function IngestPage() {
   const [documents, setDocuments] = useState<DocumentRow[]>([]);
   const [health, setHealth] = useState<HealthMetrics | null>(null);
@@ -83,6 +134,118 @@ export default function IngestPage() {
   const [isIngesting, setIsIngesting] = useState(false);
   const [progress, setProgress] = useState<ProgressEvent | null>(null);
   const [filters, setFilters] = useState({ folder: 'All', status: 'All', type: 'All' });
+  const [upload, setUpload] = useState<UploadState>({
+    isDragging: false,
+    isUploading: false,
+    uploadProgress: null,
+    uploadError: null,
+  });
+  const fileInputRef = useCallback((ref: HTMLInputElement | null) => {
+    window.__ingestFileInput = ref;
+  }, []);
+  function handleDragOver(e: React.DragEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    setUpload((prev) => ({ ...prev, isDragging: true }));
+  }
+
+  function handleDragLeave(e: React.DragEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    setUpload((prev) => ({ ...prev, isDragging: false }));
+  }
+
+  async function processFiles(files: FileList | null) {
+    if (!files || files.length === 0) return;
+
+    setUpload((prev) => ({ ...prev, isDragging: false, uploadError: null }));
+
+    // Validate files
+    const validFiles: File[] = [];
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const ext = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+      if (!SUPPORTED_EXTENSIONS.has(ext)) {
+        setUpload((prev) => ({
+          ...prev,
+          uploadError: `Unsupported format: ${file.name}. Supported: PDF, DOCX, XLSX, TXT, images`,
+        }));
+        return;
+      }
+      if (file.size > 100 * 1024 * 1024) {
+        // 100MB limit
+        setUpload((prev) => ({
+          ...prev,
+          uploadError: `File too large: ${file.name} (max 100MB)`,
+        }));
+        return;
+      }
+      validFiles.push(file);
+    }
+
+    if (validFiles.length === 0) return;
+
+    setUpload((prev) => ({ ...prev, isUploading: true, uploadError: null }));
+
+    try {
+      // Process files sequentially
+      for (const file of validFiles) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        setUpload((prev) => ({
+          ...prev,
+          uploadProgress: { file: file.name, percent: 10 },
+        }));
+
+        const res = await fetch('/api/ingest/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!res.ok) {
+          const errorData = await res.json().catch(() => ({}));
+          throw new Error(
+            errorData.error || `Upload failed for ${file.name} (${res.status})`
+          );
+        }
+
+        setUpload((prev) => ({
+          ...prev,
+          uploadProgress: { file: file.name, percent: 100 },
+        }));
+      }
+
+      // After all uploads complete, trigger ingest with force reprocess
+      setUpload((prev) => ({
+        ...prev,
+        uploadProgress: { file: 'Processing...', percent: 50 },
+      }));
+
+      await runIngestAction({ action: 'ingest_new', forceReprocess: true });
+    } catch (err) {
+      setUpload((prev) => ({
+        ...prev,
+        uploadError: err instanceof Error ? err.message : 'Upload failed',
+        isUploading: false,
+        uploadProgress: null,
+      }));
+    }
+  }
+
+  function handleDrop(e: React.DragEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    setUpload((prev) => ({ ...prev, isDragging: false }));
+    processFiles(e.dataTransfer.files);
+  }
+
+  function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    processFiles(e.target.files);
+    // Reset input so same file can be re-selected
+    e.target.value = '';
+  }
+
 
   const fetchData = useCallback(async () => {
     try {
@@ -108,6 +271,8 @@ export default function IngestPage() {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  const isProcessing = isIngesting || upload.isUploading;
 
   function handleFilterChange(key: 'folder' | 'status' | 'type', value: string) {
     setFilters((prev) => ({ ...prev, [key]: value }));
@@ -220,33 +385,141 @@ export default function IngestPage() {
 
   return (
     <div className="flex-1 overflow-y-auto">
-      <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div className="mx-auto max-w-7xl space-y-6 px-4 py-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-semibold text-slate-100">Document Ingestion</h1>
+          <h1 className="text-xl font-semibold text-[color:var(--brand-strong)]">Document Ingestion</h1>
         </div>
 
         {/* Error banner */}
-        {error && (
-          <div className="px-4 py-3 rounded-lg bg-red-900/50 border border-red-700 text-red-200 text-sm flex items-center justify-between">
-            <span>{error}</span>
+        {(error || upload.uploadError) && (
+          <div className="flex items-center justify-between rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <span>{error || upload.uploadError}</span>
             <button
-              onClick={() => setError(null)}
-              className="ml-2 text-red-400 hover:text-red-200 text-lg leading-none"
+              onClick={() => {
+                setError(null);
+                setUpload((prev) => ({ ...prev, uploadError: null }));
+              }}
+              className="ml-2 text-lg leading-none text-red-500 hover:text-red-700"
             >
               &times;
             </button>
           </div>
         )}
 
+        <section>
+          <div className="flex items-center justify-between gap-4 rounded-lg border border-[color:var(--brand)]/40 bg-[color:var(--brand-soft)] px-4 py-3 text-sm text-[color:var(--brand-strong)]">
+            <div>
+              Need help with uploads, ingestion rules, or troubleshooting?
+              <span className="text-[color:var(--brand)]"> Open the integrated Help center.</span>
+            </div>
+            <Link
+              href="/help?guide=adding-documents"
+              className="shrink-0 inline-flex items-center rounded-md border border-[color:var(--brand)]/40 bg-[color:var(--brand-soft)] px-3 py-1.5 text-xs font-semibold text-[color:var(--brand-strong)] hover:bg-[color:var(--brand-soft)]/80 transition-colors"
+            >
+              Open Help
+            </Link>
+          </div>
+        </section>
+
+        {/* Upload Area */}
+        <section>
+          <h2 className="mb-3 text-sm font-medium uppercase tracking-wide text-slate-500">Upload Documents</h2>
+          <div
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${
+              upload.isDragging
+                ? 'border-[color:var(--brand)] bg-[color:var(--brand-soft)]/60'
+                : 'border-[color:var(--line)] bg-white/70 hover:border-[color:var(--brand)]'
+            } ${isProcessing ? 'opacity-50 pointer-events-none' : ''}`}
+          >
+            <input
+              ref={fileInputRef}
+              type="file"
+              multiple
+              accept={Array.from(SUPPORTED_EXTENSIONS).join(',')}
+              onChange={handleFileSelect}
+              disabled={isProcessing}
+              className="hidden"
+            />
+            <button
+              onClick={() => {
+                const input = window.__ingestFileInput;
+                if (input) input.click();
+              }}
+              disabled={isProcessing}
+              className="mx-auto"
+            >
+              <div className="text-3xl mb-2">📄</div>
+              <h3 className="mb-1 font-semibold text-[color:var(--brand-strong)]">Upload Documents</h3>
+              <p className="mb-3 text-sm text-slate-500">
+                Drag files here or click to browse
+              </p>
+              <p className="text-xs text-slate-500">
+                Supported: PDF, DOCX, XLSX, TXT, PNG, JPG, GIF, WebP, TIFF (Max 100MB each)
+              </p>
+            </button>
+          </div>
+
+          {/* Upload Progress */}
+          {upload.uploadProgress && (
+            <div className="mt-4 space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-slate-700">{upload.uploadProgress.file}</span>
+                <span className="text-slate-500">{upload.uploadProgress.percent}%</span>
+              </div>
+              <div className="h-2 w-full overflow-hidden rounded bg-[color:var(--surface-muted)]">
+                <div
+                  className="h-full bg-[color:var(--brand)] transition-all"
+                  style={{ width: `${upload.uploadProgress.percent}%` }}
+                />
+              </div>
+            </div>
+          )}
+        </section>
+
         {/* Health Dashboard */}
         <section>
-          <h2 className="text-sm font-medium text-slate-400 uppercase tracking-wide mb-3">Health Metrics</h2>
+          <h2 className="mb-3 text-sm font-medium uppercase tracking-wide text-slate-500">Health Metrics</h2>
           <HealthDashboard health={health} />
+          {process.env.NODE_ENV !== 'production' && health?.diagnostics && (
+            <div className="mt-3 rounded-md border border-[color:var(--line)] bg-white/70 px-3 py-2 text-xs text-slate-600">
+              <span className="mr-4">
+                quality reconciles:{' '}
+                <span className={health.diagnostics.quality_reconciles ? 'text-green-400' : 'text-red-400'}>
+                  {String(health.diagnostics.quality_reconciles)}
+                </span>
+              </span>
+              <span>
+                active/inactive totals reconcile:{' '}
+                <span
+                  className={
+                    health.diagnostics.active_plus_inactive_reconciles ? 'text-green-400' : 'text-red-400'
+                  }
+                >
+                  {String(health.diagnostics.active_plus_inactive_reconciles)}
+                </span>
+              </span>
+              <span className="ml-4">
+                partial reasons complete:{' '}
+                <span
+                  className={
+                    health.diagnostics.quality_reason_diagnostics?.partial_docs_have_reasons
+                      ? 'text-green-400'
+                      : 'text-red-400'
+                  }
+                >
+                  {String(health.diagnostics.quality_reason_diagnostics?.partial_docs_have_reasons ?? false)}
+                </span>
+              </span>
+            </div>
+          )}
         </section>
 
         {/* Ingest Controls */}
         <section>
-          <h2 className="text-sm font-medium text-slate-400 uppercase tracking-wide mb-3">Actions</h2>
+          <h2 className="mb-3 text-sm font-medium uppercase tracking-wide text-slate-500">Actions</h2>
           <IngestControls
             isIngesting={isIngesting}
             progress={progress}
@@ -257,10 +530,10 @@ export default function IngestPage() {
 
         {/* Document Table */}
         <section>
-          <h2 className="text-sm font-medium text-slate-400 uppercase tracking-wide mb-3">Documents</h2>
+          <h2 className="mb-3 text-sm font-medium uppercase tracking-wide text-slate-500">Documents</h2>
           {isLoading ? (
             <div className="flex items-center justify-center py-12 text-slate-500">
-              <span className="inline-block w-5 h-5 border-2 border-slate-500/30 border-t-slate-500 rounded-full animate-spin mr-2" />
+              <span className="mr-2 inline-block h-5 w-5 animate-spin rounded-full border-2 border-[color:var(--brand)]/20 border-t-[color:var(--brand)]" />
               Loading documents...
             </div>
           ) : (
@@ -271,7 +544,6 @@ export default function IngestPage() {
               isIngesting={isIngesting}
               filters={filters}
               onFilterChange={handleFilterChange}
-              totalVersionCount={documents.length}
             />
           )}
         </section>

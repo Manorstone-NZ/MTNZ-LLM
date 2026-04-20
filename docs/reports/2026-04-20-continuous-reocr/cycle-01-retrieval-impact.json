@@ -1,0 +1,557 @@
+{
+  "generated_at": "2026-04-20T05:15:57.198Z",
+  "cycle": 1,
+  "method": "API chat SSE checks with practical procedure/calibration/quality queries per doc",
+  "per_document": [
+    {
+      "title": "EOP 015 (V1) Thermometer Manual",
+      "source_path": "EOP/EOP 015 (V1) Thermometer Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in EOP 015  Thermometer Manual?",
+          "before": {
+            "source_count": 0,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 0
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in EOP 015  Thermometer Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1625
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in EOP 015  Thermometer Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-TI 006 (V3) TITAN Manual - Subcontracting",
+      "source_path": "LOP/LOP-TI 006 (V3) TITAN Manual - Subcontracting.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-TI 006  TITAN Manual - Subcontracting?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2151
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1786
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-TI 006  TITAN Manual - Subcontracting?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 2117
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1437
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-TI 006  TITAN Manual - Subcontracting?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1973
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1678
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": false
+    },
+    {
+      "title": "EOP 008 (V2) RFID Aerial Table Manual",
+      "source_path": "EOP/EOP 008 (V2) RFID Aerial Table Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in EOP 008  RFID Aerial Table Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in EOP 008  RFID Aerial Table Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in EOP 008  RFID Aerial Table Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 860
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-AH 001 (V3) Pregnancy ELISA Manual",
+      "source_path": "LOP/LOP-AH 001 (V3) Pregnancy ELISA Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-AH 001  Pregnancy ELISA Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1475
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 2086
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-AH 001  Pregnancy ELISA Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1309
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 849
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-AH 001  Pregnancy ELISA Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 689
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1429
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-MB 010 (V2) Pseudomonas Count Manual",
+      "source_path": "LOP/LOP-MB 010 (V2) Pseudomonas Count Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-MB 010  Pseudomonas Count Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 2330
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 2023
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-MB 010  Pseudomonas Count Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 1314
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 1966
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-MB 010  Pseudomonas Count Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1677
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-CP 004 (V3) Freezing Point (via Cryoscope) Manual",
+      "source_path": "LOP/LOP-CP 004 (V3) Freezing Point (via Cryoscope) Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-CP 004  Freezing Point (via Cryoscope) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 2496
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 2839
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-CP 004  Freezing Point (via Cryoscope) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 1763
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 3095
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-CP 004  Freezing Point (via Cryoscope) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 2077
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 1458
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "EOP 007 (V7) Mediaclave Manual",
+      "source_path": "EOP/EOP 007 (V7) Mediaclave Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in EOP 007  Mediaclave Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 847
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 756
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in EOP 007  Mediaclave Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1384
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 394
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in EOP 007  Mediaclave Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 544
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 617
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-AH 003 (V3) Johne's (MAP) ELISA Manual",
+      "source_path": "LOP/LOP-AH 003 (V3) Johne's (MAP) ELISA Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-AH 003  Johne's (MAP) ELISA Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-AH 003  Johne's (MAP) ELISA Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1648
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1296
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-AH 003  Johne's (MAP) ELISA Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1261
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-SP 007 (V2) Stolle ELISA Assay Manual",
+      "source_path": "LOP/LOP-SP 007 (V2) Stolle ELISA Assay Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-SP 007  Stolle ELISA Assay Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 6,
+            "answer_length": 1771
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 6,
+            "answer_length": 1552
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-SP 007  Stolle ELISA Assay Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 8,
+            "answer_length": 2191
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 7,
+            "answer_length": 2281
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-SP 007  Stolle ELISA Assay Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 8,
+            "answer_length": 1243
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 8,
+            "answer_length": 969
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "EOP 013 (V8) Pipette Manual",
+      "source_path": "EOP/EOP 013 (V8) Pipette Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in EOP 013  Pipette Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1610
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1262
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in EOP 013  Pipette Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 8,
+            "answer_length": 1825
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 7,
+            "answer_length": 1723
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in EOP 013  Pipette Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1849
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 800
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": false
+    }
+  ]
+}

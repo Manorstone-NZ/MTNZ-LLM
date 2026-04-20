@@ -10,6 +10,6 @@ for (const q of queries) {
   const result = classifyQueryIntent(q);
   console.log(`Q: ${q}`);
   console.log(`  Intent: ${result.intent}`);
-  console.log(`  Confidence: ${result.confidence}`);
+  console.log(`  Signals: ${result.signals.join(', ') || '(none)'}`);
   console.log();
 }

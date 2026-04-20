@@ -19,22 +19,22 @@ export default function SourceCard({ sources }: SourceCardProps) {
   if (groups.length === 1) {
     const group = groups[0];
     return (
-      <div className="mt-2 text-xs text-slate-400">
-        <span className="text-slate-500">Source: </span>
-        <span className="text-slate-300">{group.doc_title}</span>
+      <div className="mt-2 text-xs text-slate-500">
+        <span className="text-slate-400">Source: </span>
+        <span className="text-slate-700">{group.doc_title}</span>
         {group.preview_image_url && (
-          <span className="ml-2 rounded bg-sky-900/50 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-sky-300">
+          <span className="ml-2 rounded bg-[color:var(--brand-soft)] px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-[color:var(--brand-strong)]">
             Image
           </span>
         )}
         {group.section_title && (
           <>
-            <span className="mx-1 text-slate-600">-</span>
-            <span className="text-slate-400">{group.section_title}</span>
+            <span className="mx-1 text-slate-400">-</span>
+            <span className="text-slate-500">{group.section_title}</span>
           </>
         )}
         {group.preview_image_url && (
-          <div className="mt-2 max-w-xs overflow-hidden rounded-md border border-slate-700 bg-slate-900">
+          <div className="mt-2 max-w-xs overflow-hidden rounded-md border border-[color:var(--line)] bg-white">
             <a
               href={group.preview_image_url}
               target="_blank"
@@ -44,15 +44,15 @@ export default function SourceCard({ sources }: SourceCardProps) {
               <img
                 src={group.preview_image_url}
                 alt={group.doc_title}
-                className="max-h-40 w-full object-contain bg-slate-950"
+                className="max-h-40 w-full object-contain bg-[color:var(--surface-muted)]"
               />
             </a>
-            <div className="border-t border-slate-800 px-2 py-1">
+            <div className="border-t border-[color:var(--line)] px-2 py-1">
               <a
                 href={group.preview_image_url}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[11px] text-sky-400 hover:text-sky-300"
+                className="text-[11px] text-[color:var(--brand)] hover:text-[color:var(--brand-strong)]"
               >
                 Open image preview
               </a>
@@ -69,7 +69,7 @@ export default function SourceCard({ sources }: SourceCardProps) {
         onClick={() => setIsOpen((open) => !open)}
         aria-expanded={isOpen}
         aria-label={`${isOpen ? 'Collapse' : 'Expand'} sources (${groups.length} documents)`}
-        className="inline-flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800 px-2.5 py-1 text-xs text-slate-400 transition-colors hover:border-slate-500 hover:text-slate-200"
+        className="inline-flex items-center gap-1.5 rounded-md border border-[color:var(--line)] bg-white px-2.5 py-1 text-xs text-slate-600 transition-colors hover:border-[color:var(--brand)] hover:text-[color:var(--brand-strong)]"
       >
         <span>Sources ({groups.length})</span>
         <svg
@@ -88,12 +88,12 @@ export default function SourceCard({ sources }: SourceCardProps) {
           {groups.map((group) => (
             <div
               key={group.groupKey}
-              className="rounded-md border border-slate-700 bg-slate-800 px-3 py-2 text-xs"
+              className="rounded-md border border-[color:var(--line)] bg-white px-3 py-2 text-xs"
             >
               <div className="flex flex-wrap items-baseline gap-1.5">
-                <span className="font-semibold text-slate-200">{group.doc_title}</span>
+                <span className="font-semibold text-slate-700">{group.doc_title}</span>
                 {group.preview_image_url && (
-                  <span className="rounded bg-sky-900/50 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-sky-300">
+                  <span className="rounded bg-[color:var(--brand-soft)] px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-[color:var(--brand-strong)]">
                     Image
                   </span>
                 )}
@@ -102,13 +102,13 @@ export default function SourceCard({ sources }: SourceCardProps) {
                 )}
               </div>
               {group.section_title && (
-                <div className="mt-0.5 text-slate-400">{group.section_title}</div>
+                <div className="mt-0.5 text-slate-500">{group.section_title}</div>
               )}
               {group.preview && (
                 <p className="mt-1 leading-relaxed text-slate-500">{group.preview}</p>
               )}
               {group.preview_image_url && (
-                <div className="mt-2 max-w-xs overflow-hidden rounded-md border border-slate-700 bg-slate-900">
+                <div className="mt-2 max-w-xs overflow-hidden rounded-md border border-[color:var(--line)] bg-white">
                   <a
                     href={group.preview_image_url}
                     target="_blank"
@@ -118,15 +118,15 @@ export default function SourceCard({ sources }: SourceCardProps) {
                     <img
                       src={group.preview_image_url}
                       alt={group.doc_title}
-                      className="max-h-40 w-full object-contain bg-slate-950"
+                      className="max-h-40 w-full object-contain bg-[color:var(--surface-muted)]"
                     />
                   </a>
-                  <div className="border-t border-slate-800 px-2 py-1">
+                  <div className="border-t border-[color:var(--line)] px-2 py-1">
                     <a
                       href={group.preview_image_url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-[11px] text-sky-400 hover:text-sky-300"
+                      className="text-[11px] text-[color:var(--brand)] hover:text-[color:var(--brand-strong)]"
                     >
                       Open image preview
                     </a>

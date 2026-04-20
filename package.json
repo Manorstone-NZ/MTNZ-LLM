@@ -10,7 +10,10 @@
     "lint:core": "eslint src/app/api/chat/route.ts src/app/api/ingest/route.ts src/app/ingest/page.tsx src/components/chat/ChatContainer.tsx src/components/chat/ProviderToggle.tsx src/components/ingest/DocumentTable.tsx src/components/ingest/HealthDashboard.tsx src/lib/generation.ts src/lib/generation.provider.test.ts src/lib/queryIntent.ts src/lib/queryIntent.test.ts src/lib/retrieval.ts src/lib/repositories/documents.ts src/lib/types.ts",
     "test:core": "tsx --test src/lib/*.test.ts",
     "ci:core": "npm run lint:core && npm run test:core",
+    "validate:ingest-reporting": "tsx scripts/validate-ingest-reporting.ts",
+    "validate:answer-style": "tsx scripts/validate-answer-style.ts",
     "audit:pdf": "tsx scripts/audit-pdf-completeness.ts",
+    "reocr:continuous": "tsx scripts/run-continuous-reocr.ts",
     "repair:section-titles": "tsx scripts/repair-section-titles.ts",
     "rescue:pdf": "tsx scripts/rescue-active-pdfs.ts --type=pdf",
     "rescue:docs": "tsx scripts/rescue-active-pdfs.ts"

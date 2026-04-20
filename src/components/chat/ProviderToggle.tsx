@@ -1,24 +1,24 @@
 'use client';
 
 interface ProviderToggleProps {
-  providerMode: 'auto' | 'anthropic' | 'lmstudio';
-  onChange: (mode: 'auto' | 'anthropic' | 'lmstudio') => void;
+  providerMode: 'lmstudio_only' | 'anthropic_only' | 'two_tier_auto';
+  onChange: (mode: 'lmstudio_only' | 'anthropic_only' | 'two_tier_auto') => void;
 }
 
-const OPTIONS: Array<{ value: 'auto' | 'anthropic' | 'lmstudio'; label: string }> = [
-  { value: 'auto', label: 'Provider: Auto' },
-  { value: 'anthropic', label: 'Provider: Claude' },
-  { value: 'lmstudio', label: 'Provider: LM Studio' },
+const OPTIONS: Array<{ value: 'lmstudio_only' | 'anthropic_only' | 'two_tier_auto'; label: string }> = [
+  { value: 'lmstudio_only', label: 'LM Studio only' },
+  { value: 'anthropic_only', label: 'Claude only' },
+  { value: 'two_tier_auto', label: 'Auto (two-tier)' },
 ];
 
 export default function ProviderToggle({ providerMode, onChange }: ProviderToggleProps) {
   return (
-    <label className="text-xs text-slate-400 flex items-center gap-2">
-      <span className="hidden sm:inline">Model Provider</span>
+    <label className="flex items-center gap-2 text-xs text-slate-500">
+      <span className="hidden sm:inline">Answer Mode</span>
       <select
         value={providerMode}
-        onChange={(e) => onChange(e.target.value as 'auto' | 'anthropic' | 'lmstudio')}
-        className="rounded-md bg-slate-800 border border-slate-700 text-slate-200 px-2 py-1 focus:outline-none focus:border-blue-500"
+        onChange={(e) => onChange(e.target.value as 'lmstudio_only' | 'anthropic_only' | 'two_tier_auto')}
+        className="app-input rounded-md px-2 py-1 text-slate-700"
       >
         {OPTIONS.map((opt) => (
           <option key={opt.value} value={opt.value}>

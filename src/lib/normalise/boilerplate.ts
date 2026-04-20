@@ -46,6 +46,12 @@ export function isRuleBasedBoilerplate(
   return { matched: false };
 }
 
+export function classifyBoilerplateTag(content: string): 'duplicate_boilerplate' | 'none' {
+  const rule = isRuleBasedBoilerplate(content);
+  if (rule.matched) return 'duplicate_boilerplate';
+  return 'none';
+}
+
 // ============================================================
 // 2. Protected content check (HARD OVERRIDE)
 // ============================================================
@@ -210,6 +216,7 @@ export async function suppressBoilerplate(
           excluded: true,
           reason: 'rule_pattern',
           pattern: ruleResult.pattern,
+          exclusion_tag: 'duplicate_boilerplate',
         },
       });
       continue;
@@ -230,6 +237,7 @@ export async function suppressBoilerplate(
             reason: 'corpus_frequency',
             occurrence_count: fp.count,
             confirmed: fp.confirmed,
+            exclusion_tag: 'duplicate_boilerplate',
           },
         });
         continue;

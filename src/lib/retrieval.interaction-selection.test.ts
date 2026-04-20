@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {
   classifyInteractionTier,
   computeTierScoreBonus,
+  mergeInteractionSelections,
   pickInteractionResults,
 } from './retrieval';
 import type { ScoredChunk } from './types';
@@ -49,6 +50,17 @@ test('classifies integration plus one entity as tier2', () => {
   const result = classifyInteractionTier(chunk, chunk.content, 'MADCAP', 'sorter');
   assert.equal(result.tier, 'tier2_integrated');
   assert.equal(result.hasBothEntities, false);
+  assert.equal(result.hasIntegrationSignal, true);
+});
+
+test('classifies pairless mechanism chunks as tier2', () => {
+  const chunk = makeChunk({
+    section_title: 'Automatic result entry',
+    content: 'Automatic result entry uses API configuration and import/export middleware.',
+  });
+
+  const result = classifyInteractionTier(chunk, chunk.content);
+  assert.equal(result.tier, 'tier2_integrated');
   assert.equal(result.hasIntegrationSignal, true);
 });
 
@@ -153,4 +165,45 @@ test('enforces per-document cap of 3', () => {
 
   assert.ok(fromDocA <= 3);
   assert.ok(result.diagnostics.uniqueDocCount >= 1);
+});
+
+test('reapplies hard cap after merging fallback interaction results', () => {
+  const primary: ScoredChunk[] = [
+    makeChunk({
+      id: 'primary-tier1',
+      document_id: 'doc-primary',
+      section_title: 'Integration flow',
+      content: 'MADCAP sends results to sorter through middleware and API.',
+      score: 10,
+    }),
+  ];
+
+  const fallback: ScoredChunk[] = [];
+  for (let i = 0; i < 30; i += 1) {
+    fallback.push(
+      makeChunk({
+        id: `fallback-${i}`,
+        document_id: `doc-${Math.floor(i / 2)}`,
+        section_title: i % 3 === 0 ? 'Interface setup' : 'Operational note',
+        content: i % 3 === 0
+          ? `Sorter API configuration and web service request ${i}`
+          : `Sorter note ${i}`,
+        score: 9 - i * 0.1,
+      }),
+    );
+  }
+
+  const result = mergeInteractionSelections(
+    primary,
+    fallback,
+    20,
+    20,
+    3,
+    2,
+    'MADCAP',
+    'Sorter',
+  );
+
+  assert.ok(result.selected.length <= 20);
+  assert.ok(result.diagnostics.tier1Count + result.diagnostics.tier2Count >= 1);
 });

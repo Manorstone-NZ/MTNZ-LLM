@@ -103,9 +103,30 @@ export async function ingestDocuments(options: {
   };
 
   try {
-    // --- File scanning ---
+    // --- File scanning from both SOURCE_PATH and uploads directory ---
     const allFiles = await scanFiles(sourcePath);
-    const seenPaths = new Set<string>();
+    
+    // Also scan uploads directory if it exists and is different from sourcePath
+    const uploadsDir = process.env.UPLOAD_DIR || './uploads';
+    if (uploadsDir !== sourcePath) {
+      try {
+        const uploadStats = await stat(uploadsDir);
+        if (uploadStats.isDirectory()) {
+          const uploadedFiles = await scanFiles(uploadsDir);
+          // Prefix uploaded files with "uploads/" for tracking
+          allFiles.push(
+            ...uploadedFiles.map(f => ({
+              ...f,
+              relativePath: `uploads/${f.relativePath}`,
+            }))
+          );
+        }
+      } catch {
+        // Uploads directory may not exist yet, skip
+        console.log(`  [info] Uploads directory not found: ${uploadsDir}`);
+      }
+    }
+  const seenPaths = new Set<string>();
 
     let files: FileEntry[];
     if (singleFile) {

@@ -1,0 +1,506 @@
+{
+  "generated_at": "2026-04-20T05:15:57.192Z",
+  "cycle": 1,
+  "reprocess_runs": [
+    {
+      "title": "EOP 015 (V1) Thermometer Manual",
+      "source_path": "EOP/EOP 015 (V1) Thermometer Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-TI 006 (V3) TITAN Manual - Subcontracting",
+      "source_path": "LOP/LOP-TI 006 (V3) TITAN Manual - Subcontracting.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "EOP 008 (V2) RFID Aerial Table Manual",
+      "source_path": "EOP/EOP 008 (V2) RFID Aerial Table Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-AH 001 (V3) Pregnancy ELISA Manual",
+      "source_path": "LOP/LOP-AH 001 (V3) Pregnancy ELISA Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-MB 010 (V2) Pseudomonas Count Manual",
+      "source_path": "LOP/LOP-MB 010 (V2) Pseudomonas Count Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-CP 004 (V3) Freezing Point (via Cryoscope) Manual",
+      "source_path": "LOP/LOP-CP 004 (V3) Freezing Point (via Cryoscope) Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "EOP 007 (V7) Mediaclave Manual",
+      "source_path": "EOP/EOP 007 (V7) Mediaclave Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-AH 003 (V3) Johne's (MAP) ELISA Manual",
+      "source_path": "LOP/LOP-AH 003 (V3) Johne's (MAP) ELISA Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-SP 007 (V2) Stolle ELISA Assay Manual",
+      "source_path": "LOP/LOP-SP 007 (V2) Stolle ELISA Assay Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "EOP 013 (V8) Pipette Manual",
+      "source_path": "EOP/EOP 013 (V8) Pipette Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "before_ocr_summary": {
+    "native_clean": 70,
+    "ocr_clean": 186,
+    "ocr_mixed": 453,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 49,
+    "high_priority_candidates": 49
+  },
+  "after_ocr_summary": {
+    "native_clean": 70,
+    "ocr_clean": 186,
+    "ocr_mixed": 463,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 49,
+    "high_priority_candidates": 49
+  },
+  "per_document": [
+    {
+      "title": "EOP 015 (V1) Thermometer Manual",
+      "source_path": "EOP/EOP 015 (V1) Thermometer Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 76,
+        "excluded_chunk_count": 23,
+        "excluded_ratio": 0.3026315789473684,
+        "heading_chunk_count": "9",
+        "reasons": [
+          "PDF native",
+          "Some issues (30% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 15,
+        "document_priority": "high"
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 58,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null,
+        "document_priority": "low"
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3026,
+        "chunk_count_delta": -18,
+        "excluded_chunk_count_delta": -23,
+        "heading_chunk_count_delta": -9,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-TI 006 (V3) TITAN Manual - Subcontracting",
+      "source_path": "LOP/LOP-TI 006 (V3) TITAN Manual - Subcontracting.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 44,
+        "excluded_chunk_count": 13,
+        "excluded_ratio": 0.29545454545454547,
+        "heading_chunk_count": "5",
+        "reasons": [
+          "PDF native",
+          "Some issues (30% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 16,
+        "document_priority": "high"
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 45,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null,
+        "document_priority": "low"
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2955,
+        "chunk_count_delta": 1,
+        "excluded_chunk_count_delta": -13,
+        "heading_chunk_count_delta": -5,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "EOP 008 (V2) RFID Aerial Table Manual",
+      "source_path": "EOP/EOP 008 (V2) RFID Aerial Table Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 26,
+        "excluded_chunk_count": 7,
+        "excluded_ratio": 0.2692307692307692,
+        "heading_chunk_count": "3",
+        "reasons": [
+          "PDF native",
+          "Some issues (27% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 20,
+        "document_priority": "high"
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 29,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null,
+        "document_priority": "low"
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2692,
+        "chunk_count_delta": 3,
+        "excluded_chunk_count_delta": -7,
+        "heading_chunk_count_delta": -3,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-AH 001 (V3) Pregnancy ELISA Manual",
+      "source_path": "LOP/LOP-AH 001 (V3) Pregnancy ELISA Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 117,
+        "excluded_chunk_count": 30,
+        "excluded_ratio": 0.2564102564102564,
+        "heading_chunk_count": "4",
+        "reasons": [
+          "PDF native",
+          "Some issues (26% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 26,
+        "document_priority": "high"
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 122,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null,
+        "document_priority": "low"
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2564,
+        "chunk_count_delta": 5,
+        "excluded_chunk_count_delta": -30,
+        "heading_chunk_count_delta": -4,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-MB 010 (V2) Pseudomonas Count Manual",
+      "source_path": "LOP/LOP-MB 010 (V2) Pseudomonas Count Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 107,
+        "excluded_chunk_count": 27,
+        "excluded_ratio": 0.2523364485981308,
+        "heading_chunk_count": "8",
+        "reasons": [
+          "PDF native",
+          "Some issues (25% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 28,
+        "document_priority": "high"
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 131,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null,
+        "document_priority": "low"
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2523,
+        "chunk_count_delta": 24,
+        "excluded_chunk_count_delta": -27,
+        "heading_chunk_count_delta": -8,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-CP 004 (V3) Freezing Point (via Cryoscope) Manual",
+      "source_path": "LOP/LOP-CP 004 (V3) Freezing Point (via Cryoscope) Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 84,
+        "excluded_chunk_count": 21,
+        "excluded_ratio": 0.25,
+        "heading_chunk_count": "9",
+        "reasons": [
+          "PDF native",
+          "Some issues (25% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 29,
+        "document_priority": "high"
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 105,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null,
+        "document_priority": "low"
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.25,
+        "chunk_count_delta": 21,
+        "excluded_chunk_count_delta": -21,
+        "heading_chunk_count_delta": -9,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "EOP 007 (V7) Mediaclave Manual",
+      "source_path": "EOP/EOP 007 (V7) Mediaclave Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 82,
+        "excluded_chunk_count": 19,
+        "excluded_ratio": 0.23170731707317074,
+        "heading_chunk_count": "7",
+        "reasons": [
+          "PDF native",
+          "Some issues (23% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 32,
+        "document_priority": "high"
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 105,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null,
+        "document_priority": "low"
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2317,
+        "chunk_count_delta": 23,
+        "excluded_chunk_count_delta": -19,
+        "heading_chunk_count_delta": -7,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-AH 003 (V3) Johne's (MAP) ELISA Manual",
+      "source_path": "LOP/LOP-AH 003 (V3) Johne's (MAP) ELISA Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 156,
+        "excluded_chunk_count": 35,
+        "excluded_ratio": 0.22435897435897437,
+        "heading_chunk_count": "16",
+        "reasons": [
+          "PDF native",
+          "Some issues (22% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 34,
+        "document_priority": "high"
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 189,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null,
+        "document_priority": "low"
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2244,
+        "chunk_count_delta": 33,
+        "excluded_chunk_count_delta": -35,
+        "heading_chunk_count_delta": -16,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-SP 007 (V2) Stolle ELISA Assay Manual",
+      "source_path": "LOP/LOP-SP 007 (V2) Stolle ELISA Assay Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 143,
+        "excluded_chunk_count": 32,
+        "excluded_ratio": 0.22377622377622378,
+        "heading_chunk_count": "20",
+        "reasons": [
+          "PDF native",
+          "Some issues (22% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 35,
+        "document_priority": "high"
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 173,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null,
+        "document_priority": "low"
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2238,
+        "chunk_count_delta": 30,
+        "excluded_chunk_count_delta": -32,
+        "heading_chunk_count_delta": -20,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "EOP 013 (V8) Pipette Manual",
+      "source_path": "EOP/EOP 013 (V8) Pipette Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 108,
+        "excluded_chunk_count": 24,
+        "excluded_ratio": 0.2222222222222222,
+        "heading_chunk_count": "7",
+        "reasons": [
+          "PDF native",
+          "Some issues (22% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 36,
+        "document_priority": "high"
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 103,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null,
+        "document_priority": "low"
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2222,
+        "chunk_count_delta": -5,
+        "excluded_chunk_count_delta": -24,
+        "heading_chunk_count_delta": -7,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    }
+  ]
+}

@@ -185,6 +185,11 @@ const REQUIRED_CATEGORIES = [
   'interaction / cross-system',
   'interaction / failure-path',
   'interaction / pattern',
+  'interaction / it-ot integration',
+  'interaction / reporting-export',
+  'interaction / billing-downstream',
+  'interaction / data-platform-analytics',
+  'procedural / non-madcap',
 ];
 
 function hasVisibleAnswerToken(answer: string): boolean {

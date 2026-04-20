@@ -86,7 +86,37 @@ To run the same app against another knowledge base:
 Advanced option:
 - `/api/ingest` accepts an optional `sourcePath` body field to override `SOURCE_PATH` for a specific ingest run.
 
+### 5.2 Database change checklist (operator)
+
+Run this exact checklist when switching environments:
+
+1. Stop the running app.
+2. Update env values for DATABASE_URL and SOURCE_PATH.
+3. Apply migrations to the target database.
+4. Start app and execute Full Rebuild in `/ingest`.
+5. Run a known validation query in chat and confirm expected sources.
+
+Suggested env example:
+
+```bash
+DATABASE_URL=postgres://damian:password@localhost:5432/idd_knowledge_alt
+SOURCE_PATH=/absolute/path/to/alternate-corpus
+```
+
+Suggested command flow:
+
+
 ## 6. Ingest Dashboard Interpretation
+**Quick start:** See [Adding Documents Guide](./guides/adding-documents.md) for step-by-step instructions.
+
+Available operations:
+- `Upload Documents`: Upload files via drag-and-drop or file picker (new!)
+- `Ingest New`: scans source path + uploads for new/changed files
+- `Reprocess One`: reprocess selected document
+- `Full Rebuild`: clears corpus tables and re-ingests all documents
+- `Remove`: deactivates current document version
+
+Ingest operations stream progress events and refresh dashboard/table when complete.
 
 Top cards are scoped by active corpus unless explicitly marked historical.
 
@@ -147,15 +177,20 @@ This report should show:
 
 ## 10. Best Practices
 
-- Keep provider on `Auto` for normal operations
-- Keep one env profile per corpus/database pair to avoid accidental cross-ingest
-- Use `Quality` for interaction-heavy and synthesis-heavy questions
-- Validate after significant retrieval/prompt/ingest pipeline changes
-- Keep architecture and validation docs up to date with each phase
 
 ## 11. Related Documentation
+### User Guides (New!)
+- **[Adding Documents](./guides/adding-documents.md)** — How to upload documents, understand processing phases, interpret quality indicators  
+- **[Guides Directory](./guides/README.md)** — Index of all documentation with quick navigation
 
+### Technical References
+- **[Ingestion Pipeline Internals](./guides/ingestion-pipeline-internals.md)** — Complete reference for the V2 pipeline, all quality rules, configuration, and extension points
+- **[Document Upload Implementation](./guides/document-upload-implementation.md)** — File upload feature architecture, APIs, data flow, and test cases
+
+### More Documentation
 - Architecture: `docs/specs/2026-04-19-solution-architecture.md`
 - Original design: `docs/specs/2026-04-16-idd-knowledge-chat-design.md`
 - V2 quality rebuild: `docs/specs/2026-04-17-v2-data-quality-rebuild.md`
+- Implementation plan: `docs/plans/2026-04-16-idd-knowledge-chat-plan.md`
+- Validation reports: `docs/reports/2026-04-19-live-validation/` and `docs/reports/2026-04-20-continuous-reocr/`
 - Final Step 3 validation report: `docs/reports/2026-04-19-live-validation/chat-runtime-broad-coverage-step3-validation-final.json`

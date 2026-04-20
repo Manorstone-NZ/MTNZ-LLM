@@ -1,0 +1,557 @@
+{
+  "generated_at": "2026-04-20T00:42:40.725Z",
+  "wave": "2a",
+  "method": "API chat SSE checks with practical procedure/calibration/quality queries per doc",
+  "per_document": [
+    {
+      "title": "LOP-QM 001 (V9) Proficiency Testing Manual",
+      "source_path": "LOP/LOP-QM 001 (V9) Proficiency Testing Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-QM 001  Proficiency Testing Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1379
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-QM 001  Proficiency Testing Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1464
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2681
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-QM 001  Proficiency Testing Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1086
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 3025
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-SP 003 (V23) National Chemical Contaminants Programme Manual",
+      "source_path": "LOP/LOP-SP 003 (V23) National Chemical Contaminants Programme Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-SP 003  National Chemical Contaminants Programme Manual?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-SP 003  National Chemical Contaminants Programme Manual?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-SP 003  National Chemical Contaminants Programme Manual?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 574
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 401
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "EOP 003 (V8) TRAW Manual",
+      "source_path": "EOP/EOP 003 (V8) TRAW Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in EOP 003  TRAW Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1699
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 2458
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in EOP 003  TRAW Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1352
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 964
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in EOP 003  TRAW Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1240
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 1568
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-QM 004 (V4) Inwards Goods Validation Manual",
+      "source_path": "LOP/LOP-QM 004 (V4) Inwards Goods Validation Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-QM 004  Inwards Goods Validation Manual?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 3251
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 3230
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-QM 004  Inwards Goods Validation Manual?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 2904
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 2272
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-QM 004  Inwards Goods Validation Manual?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 2299
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1400
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": false
+    },
+    {
+      "title": "LOP-MB 003 (V22) Foreign Matter Manual",
+      "source_path": "LOP/LOP-MB 003 (V22) Foreign Matter Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-MB 003  Foreign Matter Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-MB 003  Foreign Matter Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-MB 003  Foreign Matter Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": false
+    },
+    {
+      "title": "LOP-CR 004 (V6) CRV Vial Preparation Manual",
+      "source_path": "LOP/LOP-CR 004 (V6) CRV Vial Preparation Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-CR 004  CRV Vial Preparation Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2157
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2249
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-CR 004  CRV Vial Preparation Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 2059
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1428
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-CR 004  CRV Vial Preparation Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1544
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2026
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "EOP 022 (V1) ILAS3200 Operation Manual",
+      "source_path": "EOP/EOP 022 (V1) ILAS3200 Operation Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in EOP 022  ILAS3200 Operation Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 7,
+            "answer_length": 2559
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 7,
+            "answer_length": 1898
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in EOP 022  ILAS3200 Operation Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 2290
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 8,
+            "answer_length": 3417
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in EOP 022  ILAS3200 Operation Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1839
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 6,
+            "answer_length": 1672
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "Analytical Procedures Manual (V27)",
+      "source_path": "Supporting/Analytical Procedures Manual (V27).pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in Analytical Procedures Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 6,
+            "answer_length": 1636
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in Analytical Procedures Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 6,
+            "answer_length": 2183
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in Analytical Procedures Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1019
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 7,
+            "answer_length": 2950
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "Chromatography Manual (V6)",
+      "source_path": "Supporting/Chromatography Manual (V6).pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in Chromatography Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 6,
+            "answer_length": 1458
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in Chromatography Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 7,
+            "answer_length": 3212
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 8,
+            "answer_length": 3389
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in Chromatography Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 7,
+            "answer_length": 1745
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 8,
+            "answer_length": 2530
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "_LOP (Manual) Index (V48)",
+      "source_path": "LOP/_LOP (Manual) Index (V48).pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in _LOP (Manual) Index?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 3043
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in _LOP (Manual) Index?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 1909
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 2353
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in _LOP (Manual) Index?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1748
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    }
+  ]
+}

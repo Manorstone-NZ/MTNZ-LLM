@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-04-19T22:27:30Z",
+  "decision_rule_analysis": {
+    "question": "Is the remaining Partial population still mainly driven by exclusion behaviour, or has the dominant issue shifted to structural extraction quality / weak headings / genuinely messy docs?",
+    "analysis_approach": [
+      "Compare cohort improvement trajectory across pass 1 and pass 2",
+      "Inspect global Partial population drivers",
+      "Analyze excluded chunk distribution patterns",
+      "Assess whether further exclusion tuning is viable"
+    ]
+  },
+  "findings": {
+    "pass1_tuning": {
+      "cohort_improvement": "0.409 → 0.3041 (25.7% reduction)",
+      "mechanism": "Retained procedural steps, equipment lists, footer-mixed bodies",
+      "result": "Significant improvement through targeted retention"
+    },
+    "pass2_tuning": {
+      "cohort_improvement": "0.362 → 0.3304 (8.7% reduction)",
+      "mechanism": "Recovered equipment specs, calibration ranges, safety warnings",
+      "result": "Marginal improvement; diminishing returns observed",
+      "key_observation": "Only 3 of 20 docs improved, most docs unchanged"
+    },
+    "global_state": {
+      "active_partial_docs": 105,
+      "high_excluded_reason_drivers": 65,
+      "excluded_chunk_percent": "24.3%",
+      "interpretation": "Core exclusion issue partially addressed; residual population still driven by High excluded chunk ratio"
+    },
+    "quality_distribution": {
+      "pattern": "After two passes, docs remain at ~33% excluded chunks on average",
+      "plateau": "Improvement curve flattening; further exclusion-only tuning yields diminishing gains",
+      "bottleneck_hypothesis": "The remaining exclusion is not aggressive policy, but structural: many sections are genuinely fragmented, weak-heading-dependent, or low-value metadata"
+    }
+  },
+  "diagnostic_assessment": {
+    "likely_remaining_exclusion_types": [
+      "weak_heading_fragments: heading-dependent procedural steps with missing parent section",
+      "genuinely_messy_structure: multi-column layouts, form elements, diagrams that don't extract cleanly",
+      "metadata_heavy_sections: version history, change logs, compliance blocks that are necessary context but low direct utility",
+      "broken_extraction: OCR/native extraction failures that fragment coherent content"
+    ],
+    "evidence": [
+      "Pass 2 recovery of equipment specs saw only 3/20 docs improve",
+      "All 20 docs still above 25% exclusion threshold after two targeted passes",
+      "Global high_excluded_reason_drivers stable at 65 docs (not improving with cohort-based tuning)",
+      "Category distribution shows metadata_block and duplicate_boilerplate still dominant"
+    ]
+  },
+  "decision": {
+    "diagnosis": "Remaining Partial population is NOT primarily driven by aggressive exclusion policy, but by STRUCTURAL EXTRACTION QUALITY ISSUES.",
+    "reasoning": [
+      "If the issue were just over-aggressive rules, pass 1 and pass 2 tuning would show continuous improvement and convergence.",
+      "Instead, we see plateauing: pass 1 made big gains (25%), pass 2 made small gains (8%), suggesting we've tuned most of the tuning-able exclusion.",
+      "The docs that remain highly excluded after two passes likely have genuine structural problems: weak headings, messy layouts, or fragmented extraction."
+    ],
+    "next_step": "Move from exclusion policy tuning to STRUCTURAL EXTRACTION IMPROVEMENTS.",
+    "recommended_next_actions": [
+      "1. Analyze heading strength and structural hierarchy in remaining high-excluded docs",
+      "2. Improve heading detection and section boundary extraction",
+      "3. Enhance multi-column and form extraction heuristics",
+      "4. Consider OCR preprocessing for scanned documents",
+      "5. Investigate whether some docs genuinely need quarantine vs. continued tuning"
+    ]
+  },
+  "summary": {
+    "pass1_result": "Successful; targeted exclusion tuning reduced cohort avg from 0.409 to 0.3041",
+    "pass2_result": "Modest; additional tuning reduced cohort avg from 0.362 to 0.3304, but with diminishing returns",
+    "conclusion": "Exclusion tuning path has reached practical limits. The remaining 105 active Partial docs are now constrained by extraction quality, not exclusion aggressiveness.",
+    "implication": "Further performance gains require improving the QUALITY of extraction (heading detection, structure parsing, multi-column support), not further relaxing exclusion thresholds."
+  }
+}

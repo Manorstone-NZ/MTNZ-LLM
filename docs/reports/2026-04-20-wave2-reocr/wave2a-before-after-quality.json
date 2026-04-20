@@ -1,0 +1,486 @@
+{
+  "generated_at": "2026-04-20T00:42:40.713Z",
+  "wave": "2a",
+  "reprocess_runs": [
+    {
+      "title": "LOP-QM 001 (V9) Proficiency Testing Manual",
+      "source_path": "LOP/LOP-QM 001 (V9) Proficiency Testing Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-SP 003 (V23) National Chemical Contaminants Programme Manual",
+      "source_path": "LOP/LOP-SP 003 (V23) National Chemical Contaminants Programme Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "EOP 003 (V8) TRAW Manual",
+      "source_path": "EOP/EOP 003 (V8) TRAW Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-QM 004 (V4) Inwards Goods Validation Manual",
+      "source_path": "LOP/LOP-QM 004 (V4) Inwards Goods Validation Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-MB 003 (V22) Foreign Matter Manual",
+      "source_path": "LOP/LOP-MB 003 (V22) Foreign Matter Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-CR 004 (V6) CRV Vial Preparation Manual",
+      "source_path": "LOP/LOP-CR 004 (V6) CRV Vial Preparation Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "EOP 022 (V1) ILAS3200 Operation Manual",
+      "source_path": "EOP/EOP 022 (V1) ILAS3200 Operation Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "Analytical Procedures Manual (V27)",
+      "source_path": "Supporting/Analytical Procedures Manual (V27).pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "Chromatography Manual (V6)",
+      "source_path": "Supporting/Chromatography Manual (V6).pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "_LOP (Manual) Index (V48)",
+      "source_path": "LOP/_LOP (Manual) Index (V48).pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "before_ocr_summary": {
+    "native_clean": 68,
+    "ocr_clean": 186,
+    "ocr_mixed": 395,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 57,
+    "high_priority_candidates": 57
+  },
+  "after_ocr_summary": {
+    "native_clean": 70,
+    "ocr_clean": 186,
+    "ocr_mixed": 403,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 54,
+    "high_priority_candidates": 54
+  },
+  "per_document": [
+    {
+      "title": "LOP-QM 001 (V9) Proficiency Testing Manual",
+      "source_path": "LOP/LOP-QM 001 (V9) Proficiency Testing Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 165,
+        "excluded_chunk_count": 52,
+        "excluded_ratio": 0.3151515151515151,
+        "heading_chunk_count": "43",
+        "reasons": [
+          "OCR extracted",
+          "Moderate contamination (32%)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 5
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 149,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3152,
+        "chunk_count_delta": -16,
+        "excluded_chunk_count_delta": -52,
+        "heading_chunk_count_delta": -43,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-SP 003 (V23) National Chemical Contaminants Programme Manual",
+      "source_path": "LOP/LOP-SP 003 (V23) National Chemical Contaminants Programme Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 61,
+        "excluded_chunk_count": 19,
+        "excluded_ratio": 0.3114754098360656,
+        "heading_chunk_count": "17",
+        "reasons": [
+          "PDF native",
+          "Some issues (31% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 6
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 45,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3115,
+        "chunk_count_delta": -16,
+        "excluded_chunk_count_delta": -19,
+        "heading_chunk_count_delta": -17,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "EOP 003 (V8) TRAW Manual",
+      "source_path": "EOP/EOP 003 (V8) TRAW Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 100,
+        "excluded_chunk_count": 31,
+        "excluded_ratio": 0.31,
+        "heading_chunk_count": "11",
+        "reasons": [
+          "PDF native",
+          "Some issues (31% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 7
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 139,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.31,
+        "chunk_count_delta": 39,
+        "excluded_chunk_count_delta": -31,
+        "heading_chunk_count_delta": -11,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-QM 004 (V4) Inwards Goods Validation Manual",
+      "source_path": "LOP/LOP-QM 004 (V4) Inwards Goods Validation Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 97,
+        "excluded_chunk_count": 30,
+        "excluded_ratio": 0.30927835051546393,
+        "heading_chunk_count": "10",
+        "reasons": [
+          "PDF native",
+          "Some issues (31% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 8
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 140,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3093,
+        "chunk_count_delta": 43,
+        "excluded_chunk_count_delta": -30,
+        "heading_chunk_count_delta": -10,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-MB 003 (V22) Foreign Matter Manual",
+      "source_path": "LOP/LOP-MB 003 (V22) Foreign Matter Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 78,
+        "excluded_chunk_count": 24,
+        "excluded_ratio": 0.3076923076923077,
+        "heading_chunk_count": "7",
+        "reasons": [
+          "PDF native",
+          "Some issues (31% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 9
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 103,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3077,
+        "chunk_count_delta": 25,
+        "excluded_chunk_count_delta": -24,
+        "heading_chunk_count_delta": -7,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-CR 004 (V6) CRV Vial Preparation Manual",
+      "source_path": "LOP/LOP-CR 004 (V6) CRV Vial Preparation Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 49,
+        "excluded_chunk_count": 15,
+        "excluded_ratio": 0.30612244897959184,
+        "heading_chunk_count": "5",
+        "reasons": [
+          "PDF native",
+          "Some issues (31% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 10
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 73,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3061,
+        "chunk_count_delta": 24,
+        "excluded_chunk_count_delta": -15,
+        "heading_chunk_count_delta": -5,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "EOP 022 (V1) ILAS3200 Operation Manual",
+      "source_path": "EOP/EOP 022 (V1) ILAS3200 Operation Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 143,
+        "excluded_chunk_count": 43,
+        "excluded_ratio": 0.3006993006993007,
+        "heading_chunk_count": "17",
+        "reasons": [
+          "PDF native",
+          "Some issues (30% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 11
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 232,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3007,
+        "chunk_count_delta": 89,
+        "excluded_chunk_count_delta": -43,
+        "heading_chunk_count_delta": -17,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "Analytical Procedures Manual (V27)",
+      "source_path": "Supporting/Analytical Procedures Manual (V27).pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 310,
+        "excluded_chunk_count": 90,
+        "excluded_ratio": 0.2903225806451613,
+        "heading_chunk_count": "31",
+        "reasons": [
+          "PDF native",
+          "Some issues (29% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 12
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 317,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2903,
+        "chunk_count_delta": 7,
+        "excluded_chunk_count_delta": -90,
+        "heading_chunk_count_delta": -31,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "Chromatography Manual (V6)",
+      "source_path": "Supporting/Chromatography Manual (V6).pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 214,
+        "excluded_chunk_count": 62,
+        "excluded_ratio": 0.2897196261682243,
+        "heading_chunk_count": "45",
+        "reasons": [
+          "PDF native",
+          "Some issues (29% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 13
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 197,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2897,
+        "chunk_count_delta": -17,
+        "excluded_chunk_count_delta": -62,
+        "heading_chunk_count_delta": -45,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "_LOP (Manual) Index (V48)",
+      "source_path": "LOP/_LOP (Manual) Index (V48).pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 7,
+        "excluded_chunk_count": 2,
+        "excluded_ratio": 0.2857142857142857,
+        "heading_chunk_count": "3",
+        "reasons": [
+          "PDF native",
+          "Some issues (29% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 14
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 4,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.2857,
+        "chunk_count_delta": -3,
+        "excluded_chunk_count_delta": -2,
+        "heading_chunk_count_delta": -3,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    }
+  ]
+}

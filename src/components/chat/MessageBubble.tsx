@@ -18,7 +18,7 @@ interface MessageBubbleProps {
 
 function SourceBadge({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center px-1.5 py-0.5 mx-0.5 rounded text-[10px] font-semibold bg-blue-900/50 text-blue-300 border border-blue-700/50">
+    <span className="mx-0.5 inline-flex items-center rounded border border-[color:var(--line)] bg-[color:var(--brand-soft)] px-1.5 py-0.5 text-[10px] font-semibold text-[color:var(--brand-strong)]">
       {label}
     </span>
   );
@@ -52,7 +52,7 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
   if (role === 'user') {
     return (
       <div className="flex justify-end mb-4">
-        <div className="max-w-[75%] px-4 py-2.5 rounded-2xl rounded-br-md bg-blue-600 text-white text-sm leading-relaxed">
+        <div className="max-w-[75%] rounded-2xl rounded-br-md bg-[color:var(--brand)] px-4 py-2.5 text-sm leading-relaxed text-white shadow-sm">
           {content}
         </div>
       </div>
@@ -67,7 +67,7 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
   return (
     <div className="flex justify-start mb-4">
       <div className="max-w-[85%]">
-        <div className="px-4 py-2.5 rounded-2xl rounded-bl-md bg-slate-800 text-slate-100 text-sm leading-relaxed prose prose-invert prose-sm max-w-none prose-p:my-1.5 prose-headings:my-2 prose-li:my-0.5 prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-700 prose-code:text-blue-300 prose-table:text-xs prose-th:px-2 prose-th:py-1 prose-td:px-2 prose-td:py-1 prose-th:border prose-th:border-slate-600 prose-td:border prose-td:border-slate-700">
+        <div className="app-card rounded-2xl rounded-bl-md px-4 py-2.5 text-sm leading-relaxed text-slate-700 prose prose-sm max-w-none prose-p:my-1.5 prose-headings:my-2 prose-li:my-0.5 prose-pre:border prose-pre:border-[color:var(--line)] prose-pre:bg-[color:var(--surface-muted)] prose-code:text-[color:var(--brand-strong)] prose-table:text-xs prose-th:px-2 prose-th:py-1 prose-td:px-2 prose-td:py-1 prose-th:border prose-th:border-[color:var(--line)] prose-td:border prose-td:border-[color:var(--line)]">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -83,19 +83,19 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
               {imagePreviews.map((preview) => (
                 <figure
                   key={preview.documentId}
-                  className="rounded-lg border border-slate-700/70 bg-slate-900/60 overflow-hidden"
+                  className="overflow-hidden rounded-lg border border-[color:var(--line)] bg-white"
                 >
                   <img
                     src={preview.previewUrl}
                     alt={preview.title}
-                    className="w-full h-auto max-h-80 object-contain bg-slate-950"
+                    className="h-auto max-h-80 w-full object-contain bg-[color:var(--surface-muted)]"
                     loading="lazy"
                   />
-                  <figcaption className="px-3 py-2 text-xs text-slate-400 border-t border-slate-700/70">
-                    <span className="text-slate-300">{preview.title}</span>
+                  <figcaption className="border-t border-[color:var(--line)] px-3 py-2 text-xs text-slate-500">
+                    <span className="text-slate-700">{preview.title}</span>
                     {preview.sectionTitle ? (
                       <>
-                        <span className="mx-1 text-slate-600">-</span>
+                        <span className="mx-1 text-slate-400">-</span>
                         <span>{preview.sectionTitle}</span>
                       </>
                     ) : null}
@@ -105,7 +105,7 @@ export default function MessageBubble({ role, content, sources, isStreaming }: M
             </div>
           )}
           {isStreaming && (
-            <span className="inline-block w-2 h-4 ml-0.5 bg-blue-400 animate-pulse rounded-sm" />
+            <span className="ml-0.5 inline-block h-4 w-2 animate-pulse rounded-sm bg-[color:var(--accent)]" />
           )}
         </div>
         {showSources && <SourceCard sources={sources!} />}

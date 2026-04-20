@@ -1,0 +1,97 @@
+{
+  "generated_at": "2026-04-20T05:03:17.561Z",
+  "cycle": 1,
+  "batch_size": 10,
+  "selected_documents": [
+    {
+      "title": "EOP 015 (V1) Thermometer Manual",
+      "source_path": "EOP/EOP 015 (V1) Thermometer Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.3026,
+      "document_priority": "high",
+      "reprocess_rank": 15,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 30% excluded chunks"
+    },
+    {
+      "title": "LOP-TI 006 (V3) TITAN Manual - Subcontracting",
+      "source_path": "LOP/LOP-TI 006 (V3) TITAN Manual - Subcontracting.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2955,
+      "document_priority": "high",
+      "reprocess_rank": 16,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "EOP 008 (V2) RFID Aerial Table Manual",
+      "source_path": "EOP/EOP 008 (V2) RFID Aerial Table Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2692,
+      "document_priority": "high",
+      "reprocess_rank": 20,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-AH 001 (V3) Pregnancy ELISA Manual",
+      "source_path": "LOP/LOP-AH 001 (V3) Pregnancy ELISA Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2564,
+      "document_priority": "high",
+      "reprocess_rank": 26,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-MB 010 (V2) Pseudomonas Count Manual",
+      "source_path": "LOP/LOP-MB 010 (V2) Pseudomonas Count Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2523,
+      "document_priority": "high",
+      "reprocess_rank": 28,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-CP 004 (V3) Freezing Point (via Cryoscope) Manual",
+      "source_path": "LOP/LOP-CP 004 (V3) Freezing Point (via Cryoscope) Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.25,
+      "document_priority": "high",
+      "reprocess_rank": 29,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "EOP 007 (V7) Mediaclave Manual",
+      "source_path": "EOP/EOP 007 (V7) Mediaclave Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2317,
+      "document_priority": "high",
+      "reprocess_rank": 32,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-AH 003 (V3) Johne's (MAP) ELISA Manual",
+      "source_path": "LOP/LOP-AH 003 (V3) Johne's (MAP) ELISA Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2244,
+      "document_priority": "high",
+      "reprocess_rank": 34,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-SP 007 (V2) Stolle ELISA Assay Manual",
+      "source_path": "LOP/LOP-SP 007 (V2) Stolle ELISA Assay Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2238,
+      "document_priority": "high",
+      "reprocess_rank": 35,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "EOP 013 (V8) Pipette Manual",
+      "source_path": "EOP/EOP 013 (V8) Pipette Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2222,
+      "document_priority": "high",
+      "reprocess_rank": 36,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    }
+  ]
+}

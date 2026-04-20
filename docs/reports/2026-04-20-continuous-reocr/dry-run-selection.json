@@ -1,0 +1,98 @@
+{
+  "generated_at": "2026-04-20T04:09:46.038Z",
+  "mode": "dry_run",
+  "batch_size": 10,
+  "selected_count": 10,
+  "selected_documents": [
+    {
+      "title": "LOP-AH 001 (V3) Pregnancy ELISA Manual",
+      "source_path": "LOP/LOP-AH 001 (V3) Pregnancy ELISA Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2421,
+      "document_priority": "high",
+      "reprocess_rank": 25,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "EOP 015 (V1) Thermometer Manual",
+      "source_path": "EOP/EOP 015 (V1) Thermometer Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2414,
+      "document_priority": "high",
+      "reprocess_rank": 26,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "EOP 008 (V2) RFID Aerial Table Manual",
+      "source_path": "EOP/EOP 008 (V2) RFID Aerial Table Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.24,
+      "document_priority": "high",
+      "reprocess_rank": 27,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-MB 010 (V2) Pseudomonas Count Manual",
+      "source_path": "LOP/LOP-MB 010 (V2) Pseudomonas Count Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2391,
+      "document_priority": "high",
+      "reprocess_rank": 28,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "EOP 007 (V7) Mediaclave Manual",
+      "source_path": "EOP/EOP 007 (V7) Mediaclave Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2361,
+      "document_priority": "high",
+      "reprocess_rank": 29,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-AH 003 (V3) Johne's (MAP) ELISA Manual",
+      "source_path": "LOP/LOP-AH 003 (V3) Johne's (MAP) ELISA Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2353,
+      "document_priority": "high",
+      "reprocess_rank": 30,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-MB 004 (V1) Maintenance and Control of Reference Organisms",
+      "source_path": "LOP/LOP-MB 004 (V1) Maintenance and Control of Reference Organisms.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2328,
+      "document_priority": "high",
+      "reprocess_rank": 32,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+      "source_path": "LOP/LOP-MB 007 (V3) Coliform Plate Count Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2321,
+      "document_priority": "high",
+      "reprocess_rank": 33,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
+      "source_path": "LOP/LOP-QM 005 (V1) Uncertainty of Measurement Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2315,
+      "document_priority": "high",
+      "reprocess_rank": 34,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "EOP 014 (V1) CombiFoss Manual",
+      "source_path": "EOP/EOP 014 (V1) CombiFoss Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.231,
+      "document_priority": "high",
+      "reprocess_rank": 35,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    }
+  ]
+}

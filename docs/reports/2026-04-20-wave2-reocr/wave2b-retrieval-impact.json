@@ -1,0 +1,557 @@
+{
+  "generated_at": "2026-04-20T00:57:28.045Z",
+  "wave": "2b",
+  "method": "API chat SSE checks with practical procedure/calibration/quality queries per doc",
+  "per_document": [
+    {
+      "title": "LOP-TI 005 (V4) TITAN Manual - System Incident Register",
+      "source_path": "LOP/LOP-TI 005 (V4) TITAN Manual - System Incident Register.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-TI 005  TITAN Manual - System Incident Register?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-TI 005  TITAN Manual - System Incident Register?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-TI 005  TITAN Manual - System Incident Register?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 2053
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-CT 006 (V3) Fatty Acids in Liquid Milk (GC-FID) Manual",
+      "source_path": "LOP/LOP-CT 006 (V3) Fatty Acids in Liquid Milk (GC-FID) Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-CT 006  Fatty Acids in Liquid Milk (GC-FID) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 643
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2130
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-CT 006  Fatty Acids in Liquid Milk (GC-FID) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1979
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 2505
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-CT 006  Fatty Acids in Liquid Milk (GC-FID) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 2041
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 7,
+            "answer_length": 2194
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "EOP 010 (V1) Infrared Thermometer Manual",
+      "source_path": "EOP/EOP 010 (V1) Infrared Thermometer Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in EOP 010  Infrared Thermometer Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 1995
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 6,
+            "answer_length": 2102
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in EOP 010  Infrared Thermometer Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2115
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2598
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in EOP 010  Infrared Thermometer Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2573
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 1422
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-QM 002 (V26) Microbiological Quality Control Procedures Manual",
+      "source_path": "LOP/LOP-QM 002 (V26) Microbiological Quality Control Procedures Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-QM 002  Microbiological Quality Control Procedures Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 2732
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-QM 002  Microbiological Quality Control Procedures Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 627
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1991
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-QM 002  Microbiological Quality Control Procedures Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2790
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1468
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-RR 001 (V7) Result Release Manual",
+      "source_path": "LOP/LOP-RR 001 (V7) Result Release Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-RR 001  Result Release Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 2358
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 559
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-RR 001  Result Release Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1271
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-RR 001  Result Release Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual",
+      "source_path": "LOP/LOP-AL 001 (V2) Fat (Röse Gottlieb) Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-AL 001  Fat (Röse Gottlieb) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1262
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1179
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-AL 001  Fat (Röse Gottlieb) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-AL 001  Fat (Röse Gottlieb) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 68
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-TI 002 (V4) TITAN Manual - Inventory Management",
+      "source_path": "LOP/LOP-TI 002 (V4) TITAN Manual - Inventory Management.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-TI 002  TITAN Manual - Inventory Management?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-TI 002  TITAN Manual - Inventory Management?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-TI 002  TITAN Manual - Inventory Management?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": false
+    },
+    {
+      "title": "LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual",
+      "source_path": "LOP/LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-MB 001  Alcohol Precipitation Test (APT) Manual?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 3678
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 893
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-MB 001  Alcohol Precipitation Test (APT) Manual?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1250
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1183
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-MB 001  Alcohol Precipitation Test (APT) Manual?",
+          "before": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1308
+          },
+          "after": {
+            "source_count": 24,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 882
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": false
+    },
+    {
+      "title": "LOP-CT 002 (V2) Urea (HPLC-UV) Manual",
+      "source_path": "LOP/LOP-CT 002 (V2) Urea (HPLC-UV) Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-CT 002  Urea (HPLC-UV) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 824
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1583
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-CT 002  Urea (HPLC-UV) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1506
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1582
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-CT 002  Urea (HPLC-UV) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1039
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual",
+      "source_path": "LOP/LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-MB 006  Sulphite Reducing Clostridia Spore Count Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 3889
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1934
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-MB 006  Sulphite Reducing Clostridia Spore Count Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1482
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 2253
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-MB 006  Sulphite Reducing Clostridia Spore Count Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 2201
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 671
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    }
+  ]
+}

@@ -340,12 +340,24 @@ function splitByPages(text: string): string[] {
 
 /** Patterns for numbered section headings like "1.0 PURPOSE", "3.2 Procedure", "Section 4:" */
 const NUMBERED_HEADING_RE =
-  /^(?:section\s+)?\d+(?:\.\d+)*\.?\s+[A-Z][A-Za-z\s,/&()-]+$/;
+  /^(?:section\s+)?\d+(?:\.\d+)*\.?\s+[A-Za-z][A-Za-z0-9\s,/&()\-:]+$/;
+
+const HEADING_KEYWORD_RE = /^(appendix|annex|schedule|section|table|figure|result\s+entry|manual\s+result\s+entry)\b/i;
+
+const INLINE_NOISE_PATTERNS = [
+  /CONTROLLED COPY/gi,
+  /IF THIS LINE IS GREEN/gi,
+  /THIS DOCUMENT IS UNCONTROLLED/gi,
+  /\bPage\s+\d+\s+of\s+\d+\b/gi,
+];
 
 /** All-caps line (at least 4 chars, not just numbers/punctuation) */
 function isAllCapsHeading(line: string): boolean {
   const trimmed = line.trim();
   if (trimmed.length < 4) return false;
+  const words = trimmed.split(/\s+/).filter(Boolean);
+  // Avoid promoting random one-word all-caps tokens like TEMP.
+  if (words.length < 2 && !HEADING_KEYWORD_RE.test(trimmed)) return false;
   // Must contain at least 2 letter characters
   const letters = trimmed.replace(/[^A-Za-z]/g, '');
   if (letters.length < 2) return false;
@@ -366,11 +378,54 @@ function isNoiseLine(line: string): boolean {
   return NOISE_PATTERNS.some(p => p.test(line.trim()));
 }
 
-/** Detect if a line is a heading */
-function isHeading(line: string): boolean {
-  const trimmed = line.trim();
+function stripInlineNoise(text: string): string {
+  let cleaned = text;
+  for (const pattern of INLINE_NOISE_PATTERNS) {
+    cleaned = cleaned.replace(pattern, ' ');
+  }
+  return cleaned.replace(/\s+/g, ' ').trim();
+}
+
+function normalizeNumberingSpacing(line: string): string {
+  // Repair OCR spacing around numbering: "13 . 2 . 1" -> "13.2.1"
+  return line.replace(/(\d)\s*\.\s*(?=\d)/g, '$1.');
+}
+
+function cleanStructuralLine(line: string): string {
+  return normalizeNumberingSpacing(stripInlineNoise(line));
+}
+
+function isSplitNumberingPrefix(line: string): boolean {
+  return /^(?:section\s+)?\d+(?:\.\d+)*\.?$/i.test(line.trim());
+}
+
+function isHeadingContinuation(line: string): boolean {
+  const trimmed = cleanStructuralLine(line);
   if (!trimmed) return false;
   if (isNoiseLine(trimmed)) return false;
+  if (/[:;]$/.test(trimmed)) return false;
+  if (/^[a-z]/.test(trimmed)) return false;
+  const words = trimmed.split(/\s+/).filter(Boolean);
+  if (words.length > 8) return false;
+  return /^[A-Za-z0-9/&()\-\s]+$/.test(trimmed);
+}
+
+function nextMeaningfulLine(lines: string[], from: number): { index: number; text: string } | null {
+  for (let i = from; i < lines.length; i++) {
+    const cleaned = cleanStructuralLine(lines[i]);
+    if (!cleaned) continue;
+    if (isNoiseLine(cleaned)) continue;
+    return { index: i, text: cleaned };
+  }
+  return null;
+}
+
+/** Detect if a line is a heading */
+function isHeading(line: string): boolean {
+  const trimmed = cleanStructuralLine(line.trim());
+  if (!trimmed) return false;
+  if (isNoiseLine(trimmed)) return false;
+  if (isSplitNumberingPrefix(trimmed)) return true;
   if (isAllCapsHeading(trimmed)) return true;
   if (NUMBERED_HEADING_RE.test(trimmed)) return true;
   return false;
@@ -387,6 +442,17 @@ const LIST_PATTERNS = [
 
 function isListItem(line: string): boolean {
   return LIST_PATTERNS.some((re) => re.test(line));
+}
+
+function isLikelyListIntro(line: string): boolean {
+  const trimmed = cleanStructuralLine(line);
+  if (!trimmed) return false;
+  if (/[:：]$/.test(trimmed)) return true;
+  return /\b(follow|steps|procedure|instructions|codes|items|options|checklist|result\s+entry)\b/i.test(trimmed);
+}
+
+function isListContinuationLine(line: string): boolean {
+  return /^\s{2,}\S/.test(line);
 }
 
 /**
@@ -407,9 +473,31 @@ function isTableBlock(lines: string[]): boolean {
   return alignedCount >= 3 && alignedCount / lines.length >= 0.5;
 }
 
+function isDelimitedTableBlock(lines: string[]): boolean {
+  const nonEmpty = lines.map((line) => cleanStructuralLine(line)).filter(Boolean);
+  if (nonEmpty.length < 2) return false;
+  const delimRe = /[|\t;]/;
+  const delimited = nonEmpty.filter((line) => delimRe.test(line));
+  if (delimited.length < 2) return false;
+
+  const columnCounts = delimited.map((line) => line.split(/[|\t;]/).map((part) => part.trim()).filter(Boolean).length);
+  const valid = columnCounts.filter((count) => count >= 2);
+  if (valid.length < 2) return false;
+
+  const first = valid[0];
+  return valid.every((count) => Math.abs(count - first) <= 1);
+}
+
+function cleanBodyLines(lines: string[]): string[] {
+  return lines
+    .map((line) => cleanStructuralLine(line))
+    .filter((line) => line.length > 0)
+    .filter((line) => !isNoiseLine(line));
+}
+
 /** Infer heading level from numbered patterns */
 function headingLevel(line: string): number {
-  const match = line.trim().match(/^(?:section\s+)?(\d+(?:\.\d+)*)/i);
+  const match = cleanStructuralLine(line).trim().match(/^(?:section\s+)?(\d+(?:\.\d+)*)/i);
   if (match) {
     const parts = match[1].split('.');
     return parts.length;
@@ -427,7 +515,7 @@ function detectSections(pages: string[]): ExtractedSection[] {
     let i = 0;
     while (i < lines.length) {
       const line = lines[i];
-      const trimmed = line.trim();
+      const trimmed = cleanStructuralLine(line.trim());
 
       // Skip empty lines
       if (!trimmed) {
@@ -437,11 +525,21 @@ function detectSections(pages: string[]): ExtractedSection[] {
 
       // --- Heading ---
       if (isHeading(trimmed)) {
+        let headingText = trimmed;
+        // Recover numbered headings split across lines, e.g. "13.2.1" + "MICROBIOLOGY TEST CODES".
+        if (isSplitNumberingPrefix(headingText)) {
+          const next = nextMeaningfulLine(lines, i + 1);
+          if (next && isHeadingContinuation(next.text)) {
+            headingText = `${headingText.replace(/\.$/, '')} ${next.text}`.trim();
+            i = next.index;
+          }
+        }
+
         sections.push({
-          title: trimmed,
-          content: trimmed,
+          title: headingText,
+          content: headingText,
           page: pageNum,
-          level: headingLevel(trimmed),
+          level: headingLevel(headingText),
           type: 'heading',
         });
         i++;
@@ -458,14 +556,18 @@ function detectSections(pages: string[]): ExtractedSection[] {
               !isHeading(lines[i].trim()) &&
               listLines.length > 0 &&
               !isListItem(lines[i].trim()) &&
-              /^\s{2,}/.test(lines[i])))
+              isListContinuationLine(lines[i])))
         ) {
           listLines.push(lines[i]);
           i++;
         }
+
+        const cleanedList = cleanBodyLines(listLines);
+        if (cleanedList.length === 0) continue;
+
         sections.push({
           title: null,
-          content: listLines.join('\n').trim(),
+          content: cleanedList.join('\n').trim(),
           page: pageNum,
           type: 'list',
         });
@@ -479,15 +581,46 @@ function detectSections(pages: string[]): ExtractedSection[] {
         lookahead.push(lines[j]);
         j++;
       }
-      if (isTableBlock(lookahead)) {
+      if (isTableBlock(lookahead) || isDelimitedTableBlock(lookahead)) {
+        const cleanedTable = cleanBodyLines(lookahead);
+        if (cleanedTable.length === 0) {
+          i = j;
+          continue;
+        }
+
         sections.push({
           title: null,
-          content: lookahead.join('\n').trim(),
+          content: cleanedTable.join('\n').trim(),
           page: pageNum,
           type: 'table',
         });
         i = j;
         continue;
+      }
+
+      // List intro + list block recovery: keep context line attached to list.
+      const next = nextMeaningfulLine(lines, i + 1);
+      if (isLikelyListIntro(trimmed) && next && isListItem(next.text)) {
+        const listLines: string[] = [trimmed];
+        i = next.index;
+        while (
+          i < lines.length &&
+          (isListItem(lines[i].trim()) || isListContinuationLine(lines[i]))
+        ) {
+          listLines.push(lines[i]);
+          i++;
+        }
+
+        const cleanedList = cleanBodyLines(listLines);
+        if (cleanedList.length > 0) {
+          sections.push({
+            title: null,
+            content: cleanedList.join('\n').trim(),
+            page: pageNum,
+            type: 'list',
+          });
+          continue;
+        }
       }
 
       // --- Paragraph: collect contiguous non-empty, non-heading, non-list lines ---
@@ -501,10 +634,11 @@ function detectSections(pages: string[]): ExtractedSection[] {
         paraLines.push(lines[i]);
         i++;
       }
-      if (paraLines.length > 0) {
+      const cleanedParagraph = cleanBodyLines(paraLines);
+      if (cleanedParagraph.length > 0) {
         sections.push({
           title: null,
-          content: paraLines.join('\n').trim(),
+          content: cleanedParagraph.join('\n').trim(),
           page: pageNum,
           type: 'paragraph',
         });
@@ -513,4 +647,9 @@ function detectSections(pages: string[]): ExtractedSection[] {
   }
 
   return sections;
+}
+
+// Exposed for focused structural extraction tests.
+export function detectSectionsForStructuralPass(pages: string[]): ExtractedSection[] {
+  return detectSections(pages);
 }

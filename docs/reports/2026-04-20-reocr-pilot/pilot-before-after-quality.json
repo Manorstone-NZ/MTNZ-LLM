@@ -1,0 +1,397 @@
+{
+  "generated_at": "2026-04-19T23:48:43.171Z",
+  "reprocess_runs": [
+    {
+      "title": "_EOP(Manual) Index (V17)",
+      "source_path": "EOP/_EOP(Manual) Index (V17).pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "SOP (Manual) Index (V23)",
+      "source_path": "Supporting/SOP (Manual) Index (V23).pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
+      "source_path": "LOP/LOP-CR 003 (V3) CRV Sample On-sending Process Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-CR 002 (V3) CRV Procedures Manual",
+      "source_path": "LOP/LOP-CR 002 (V3) CRV Procedures Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-GN 003 (V1) Spatial Distribution Check Manual",
+      "source_path": "LOP/LOP-GN 003 (V1) Spatial Distribution Check Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual",
+      "source_path": "LOP/LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+      "source_path": "LOP/LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "title": "LOP-QM 003 (V3) Key Technical Personnel Manual",
+      "source_path": "LOP/LOP-QM 003 (V3) Key Technical Personnel Manual.pdf",
+      "processed": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "before_ocr_summary": {
+    "native_clean": 66,
+    "ocr_clean": 186,
+    "ocr_mixed": 389,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 59,
+    "high_priority_candidates": 59
+  },
+  "after_ocr_summary": {
+    "native_clean": 68,
+    "ocr_clean": 186,
+    "ocr_mixed": 395,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 57,
+    "high_priority_candidates": 57
+  },
+  "per_document": [
+    {
+      "title": "_EOP(Manual) Index (V17)",
+      "source_path": "EOP/_EOP(Manual) Index (V17).pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 5,
+        "excluded_chunk_count": 2,
+        "excluded_ratio": 0.4,
+        "heading_chunk_count": "1",
+        "reasons": [
+          "OCR extracted",
+          "Moderate contamination (40%)",
+          "Flagged for review"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 1
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 1,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.4,
+        "chunk_count_delta": -4,
+        "excluded_chunk_count_delta": -2,
+        "heading_chunk_count_delta": -1,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "SOP (Manual) Index (V23)",
+      "source_path": "Supporting/SOP (Manual) Index (V23).pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 10,
+        "excluded_chunk_count": 4,
+        "excluded_ratio": 0.4,
+        "heading_chunk_count": "3",
+        "reasons": [
+          "OCR extracted",
+          "Moderate contamination (40%)",
+          "Flagged for review"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 2
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 1,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.4,
+        "chunk_count_delta": -9,
+        "excluded_chunk_count_delta": -4,
+        "heading_chunk_count_delta": -3,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
+      "source_path": "LOP/LOP-CR 003 (V3) CRV Sample On-sending Process Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 49,
+        "excluded_chunk_count": 17,
+        "excluded_ratio": 0.3469387755102041,
+        "heading_chunk_count": "15",
+        "reasons": [
+          "OCR extracted",
+          "Moderate contamination (35%)",
+          "Flagged for review"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 3
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 35,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3469,
+        "chunk_count_delta": -14,
+        "excluded_chunk_count_delta": -17,
+        "heading_chunk_count_delta": -15,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-CR 002 (V3) CRV Procedures Manual",
+      "source_path": "LOP/LOP-CR 002 (V3) CRV Procedures Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 71,
+        "excluded_chunk_count": 24,
+        "excluded_ratio": 0.3380281690140845,
+        "heading_chunk_count": "20",
+        "reasons": [
+          "OCR extracted",
+          "Moderate contamination (34%)",
+          "Flagged for review"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 4
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 59,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.338,
+        "chunk_count_delta": -12,
+        "excluded_chunk_count_delta": -24,
+        "heading_chunk_count_delta": -20,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-GN 003 (V1) Spatial Distribution Check Manual",
+      "source_path": "LOP/LOP-GN 003 (V1) Spatial Distribution Check Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 64,
+        "excluded_chunk_count": 21,
+        "excluded_ratio": 0.328125,
+        "heading_chunk_count": "9",
+        "reasons": [
+          "OCR extracted",
+          "Moderate contamination (33%)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 5
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 41,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3281,
+        "chunk_count_delta": -23,
+        "excluded_chunk_count_delta": -21,
+        "heading_chunk_count_delta": -9,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual",
+      "source_path": "LOP/LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 44,
+        "excluded_chunk_count": 14,
+        "excluded_ratio": 0.3181818181818182,
+        "heading_chunk_count": "3",
+        "reasons": [
+          "PDF native",
+          "Some issues (32% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 6
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 63,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3182,
+        "chunk_count_delta": 19,
+        "excluded_chunk_count_delta": -14,
+        "heading_chunk_count_delta": -3,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+      "source_path": "LOP/LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 63,
+        "excluded_chunk_count": 20,
+        "excluded_ratio": 0.31746031746031744,
+        "heading_chunk_count": "5",
+        "reasons": [
+          "PDF native",
+          "Some issues (32% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 7
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 104,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3175,
+        "chunk_count_delta": 41,
+        "excluded_chunk_count_delta": -20,
+        "heading_chunk_count_delta": -5,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    },
+    {
+      "title": "LOP-QM 003 (V3) Key Technical Personnel Manual",
+      "source_path": "LOP/LOP-QM 003 (V3) Key Technical Personnel Manual.pdf",
+      "before": {
+        "status": "ocr_mixed",
+        "quality_tier": "partial",
+        "chunk_count": 41,
+        "excluded_chunk_count": 13,
+        "excluded_ratio": 0.3170731707317073,
+        "heading_chunk_count": "6",
+        "reasons": [
+          "PDF native",
+          "Some issues (32% excluded)"
+        ],
+        "reprocess_candidate": true,
+        "reprocess_rank": 8
+      },
+      "after": {
+        "status": "ocr_clean",
+        "quality_tier": null,
+        "chunk_count": 66,
+        "excluded_chunk_count": 0,
+        "excluded_ratio": 0,
+        "heading_chunk_count": "0",
+        "reasons": [
+          "Clean quality tier (default)"
+        ],
+        "reprocess_candidate": false,
+        "reprocess_rank": null
+      },
+      "deltas": {
+        "excluded_ratio_delta": -0.3171,
+        "chunk_count_delta": 25,
+        "excluded_chunk_count_delta": -13,
+        "heading_chunk_count_delta": -6,
+        "status_changed": true,
+        "remains_reprocess_candidate": false
+      }
+    }
+  ]
+}

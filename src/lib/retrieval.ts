@@ -16,6 +16,7 @@ import {
   isCatalogueStyleQuery,
   isStructuredSourceType,
 } from './authoritativeSources';
+import { buildRegistryQueryExpansion, getRegistrySourceBoost } from './entityRegistry';
 import { extractInteractionEntityPair } from './queryIntent';
 
 const LIST_PRIORITY_REGEX = /\b(test\s*codes?|full list|show all|all tests?|list)\b/i;
@@ -31,7 +32,7 @@ const INTERACTION_CONTENT_REGEX =
 
 // Mechanism-focused interaction signal excludes system names to avoid false positives.
 const INTERACTION_MECHANISM_REGEX =
-  /\b(integration|interface|web\s*service|api|middleware|automatic\s*(?:data\s*)?entry|import|export|file\s*transfer|setup|configuration|connection|protocol|trigger|flow|exchange|result\s*entry)\b/i;
+  /\b(integration|interface|web\s*service|api|middleware|automatic\s*(?:data\s*)?entry|import|export|file\s*transfer|setup|configuration|connection|protocol|trigger|flow|exchange|result\s*entry|compile|transmit|queue|request|return)\b/i;
 
 const INTERACTION_SETUP_SECTION_REGEX =
   /\b(setup|interface|configuration|connection|integration|import|export|automatic|middleware|web\s*service|api|instrument)\b/i;
@@ -43,7 +44,7 @@ const INTERACTION_DEPENDENCY_REGEX =
   /\b(must|required|if|when|fail|fails|failed|reject|rejects|hold|retry|retries|configuration|setup|dependency|depends\s+on)\b/i;
 
 const INTERACTION_FALLBACK_HINTS =
-  'setup configuration automatic result entry import export web service api middleware connection protocol interface';
+  'setup configuration automatic result entry import export web service api middleware connection protocol interface compile transmit queue request return';
 
 export function expandQueryForStructuralLookup(query: string): string {
   const q = query.trim();
@@ -253,8 +254,34 @@ interface InteractionSelectionResult {
   };
 }
 
-export { classifyInteractionTier, computeTierScoreBonus, pickInteractionResults };
+export { classifyInteractionTier, computeTierScoreBonus, mergeInteractionSelections, pickInteractionResults };
 export type { InteractionSelectionResult };
+
+function mergeInteractionSelections(
+  primary: ScoredChunk[],
+  secondary: ScoredChunk[],
+  targetCount: number,
+  hardCap: number,
+  maxPerDocument: number,
+  maxLowSignal: number,
+  systemA?: string,
+  systemB?: string,
+): InteractionSelectionResult {
+  const merged = dedupeById(
+    [...primary, ...secondary],
+    (chunk) => chunk.score,
+  ).sort((a, b) => b.score - a.score);
+
+  return pickInteractionResults(
+    merged,
+    targetCount,
+    hardCap,
+    maxPerDocument,
+    maxLowSignal,
+    systemA,
+    systemB,
+  );
+}
 
 function pickInteractionResults(
   ranked: ScoredChunk[],
@@ -466,7 +493,7 @@ export async function hybridSearchWithMode(
     'canonical master authoritative reference table lookup list code mapping register matrix appendix';
   const interactionBiasHints =
     'integration interface web service automatic entry import export setup configuration middleware connection protocol trigger flow exchange sorter robot analyser instrument result entry';
-  const baseSearchQuery = useStructuralExpansion && prep.isStructural ? prep.expanded : query;
+  const baseSearchQuery = buildRegistryQueryExpansion(useStructuralExpansion && prep.isStructural ? prep.expanded : query);
   const interactionPairHints = interactionPair?.systemA && interactionPair?.systemB
     ? `${interactionPair.systemA} ${interactionPair.systemB}`
     : '';
@@ -624,6 +651,8 @@ export async function hybridSearchWithMode(
       }
     }
 
+    fusionScore *= getRegistrySourceBoost(query, entry);
+
     // Apply downrank penalty for chunks flagged as low-quality but not excluded
     if (entry.retrieval_downranked) {
       fusionScore *= downrankPenalty;
@@ -712,74 +741,9 @@ export async function hybridSearchWithMode(
       );
 
       if (mechanismResult.diagnostics.hasMechanismChunk && mechanismResult.selected.length > 0) {
-        const merged = dedupeById(
-          [
-            ...result.selected,
-            ...mechanismResult.selected.filter((m) => !result.selected.some((r) => r.id === m.id)),
-          ],
-          (chunk) => chunk.id,
-        );
-        const finalResult = pickInteractionResults(
-          merged,
-          interactionCap,
-          interactionHardCap,
-          interactionMaxPerDoc,
-          interactionMaxLowSignal,
-          interactionPair?.systemA,
-          interactionPair?.systemB,
-        );
-        console.log(
-          `[interaction-retrieval-mechanism-fallback-result] merged: Tier1=${finalResult.diagnostics.tier1Count}, Tier2=${finalResult.diagnostics.tier2Count}, mechanism=${finalResult.diagnostics.hasMechanismChunk}`,
-        );
-        return finalResult.selected;
-      }
-    }
-
-    // Hard requirement: if primary retrieval has results but no mechanism chunk, trigger mechanism-focused fallback
-    if (result.selected.length > 0 && !result.diagnostics.hasMechanismChunk) {
-      console.log(
-        `[interaction-retrieval-mechanism-fallback] No mechanism chunk in primary results. Triggering mechanism-focused fallback.`,
-      );
-
-      const mechanismFallbackHints = [
-        'integration mechanism',
-        'interface',
-        'web service',
-        'api',
-        'automatic entry',
-        'middleware',
-        'connection',
-        'protocol',
-        'data flow',
-        'exchange',
-        'trigger',
-        'setup',
-        'configuration',
-      ]
-        .join(' ');
-      const mechanismFallbackQuery = `${interactionPair?.systemA ?? ''} ${interactionPair?.systemB ?? ''} ${mechanismFallbackHints}`.trim();
-
-      const mechanismFallback = await hybridSearchWithMode(mechanismFallbackQuery, 'synthesis');
-      const mechanismResult = pickInteractionResults(
-        mechanismFallback,
-        Math.ceil(interactionCap / 2),
-        interactionHardCap,
-        interactionMaxPerDoc,
-        interactionMaxLowSignal,
-        interactionPair?.systemA,
-        interactionPair?.systemB,
-      );
-
-      if (mechanismResult.diagnostics.hasMechanismChunk && mechanismResult.selected.length > 0) {
-        const merged = dedupeById(
-          [
-            ...result.selected,
-            ...mechanismResult.selected.filter((m) => !result.selected.some((r) => r.id === m.id)),
-          ],
-          (chunk) => chunk.id,
-        );
-        const finalResult = pickInteractionResults(
-          merged,
+        const finalResult = mergeInteractionSelections(
+          result.selected,
+          mechanismResult.selected,
           interactionCap,
           interactionHardCap,
           interactionMaxPerDoc,

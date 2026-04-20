@@ -1,0 +1,867 @@
+{
+  "generated_at": "2026-04-19T21:18:46.630Z",
+  "cohort_definition": "Top 20 active Partial docs with High excluded chunk ratio",
+  "cohort_size": 20,
+  "per_document": [
+    {
+      "id": "74589900-da19-49c9-9084-4675f504bd65",
+      "title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
+      "source_type": "pdf",
+      "total_chunks": 34,
+      "included_chunks": 16,
+      "excluded_chunks": 18,
+      "excluded_ratio": 0.5294,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 6
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 4
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 4
+        },
+        {
+          "category": "broken_structure",
+          "count": 3
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "paragraph",
+          "count": 8
+        },
+        {
+          "section_type": "footer_header",
+          "count": 6
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "id": "a2b9416e-fe32-4db3-9d13-0d6bc1c13fd8",
+      "title": "1.0-Introduction V19.1",
+      "source_type": "pdf",
+      "total_chunks": 14,
+      "included_chunks": 7,
+      "excluded_chunks": 7,
+      "excluded_ratio": 0.5,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 3
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 2
+        },
+        {
+          "category": "list_reference",
+          "count": 1
+        },
+        {
+          "category": "broken_structure",
+          "count": 1
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "paragraph",
+          "count": 4
+        },
+        {
+          "section_type": "footer_header",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "81f0f5da-f4f0-4e98-8c08-9b2c60bdc66c",
+      "title": "LOP-SP 003 (V23) National Chemical Contaminants Programme Manual",
+      "source_type": "pdf",
+      "total_chunks": 48,
+      "included_chunks": 28,
+      "excluded_chunks": 20,
+      "excluded_ratio": 0.4167,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 9
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 8
+        },
+        {
+          "category": "broken_structure",
+          "count": 2
+        },
+        {
+          "category": "list_reference",
+          "count": 1
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "paragraph",
+          "count": 11
+        },
+        {
+          "section_type": "footer_header",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "id": "ff0a5526-e0a8-4303-af58-6eb940eacd5c",
+      "title": "LOP-SP 006 (V1) Bovine Adulteration Indicator Assay (BOV Test) Manual",
+      "source_type": "pdf",
+      "total_chunks": 48,
+      "included_chunks": 28,
+      "excluded_chunks": 20,
+      "excluded_ratio": 0.4167,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 8
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 6
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 5
+        },
+        {
+          "category": "broken_structure",
+          "count": 1
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 7
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 6
+        },
+        {
+          "section_type": "paragraph",
+          "count": 5
+        },
+        {
+          "section_type": "form_stub",
+          "count": 1
+        },
+        {
+          "section_type": "metadata_only",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "3b3aa12c-63f2-4673-a2c2-b9f988efc86a",
+      "title": "EOP 016 (V1) Centrifuge Manual",
+      "source_type": "pdf",
+      "total_chunks": 36,
+      "included_chunks": 21,
+      "excluded_chunks": 15,
+      "excluded_ratio": 0.4167,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 7
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 4
+        },
+        {
+          "category": "list_reference",
+          "count": 2
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 2
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 7
+        },
+        {
+          "section_type": "paragraph",
+          "count": 4
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "id": "84bd6ebe-070d-4796-bf9b-a86565d34232",
+      "title": "LOP-SP 008 (V1)  Routine Monitoring Of Tanker And Supplier Samples",
+      "source_type": "pdf",
+      "total_chunks": 66,
+      "included_chunks": 39,
+      "excluded_chunks": 27,
+      "excluded_ratio": 0.4091,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 13
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 6
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 5
+        },
+        {
+          "category": "list_reference",
+          "count": 2
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 13
+        },
+        {
+          "section_type": "paragraph",
+          "count": 8
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "id": "4cf91e32-de42-416d-9316-331f53ed2965",
+      "title": "EOP 018 (V1) Colony Counter Manual",
+      "source_type": "pdf",
+      "total_chunks": 44,
+      "included_chunks": 26,
+      "excluded_chunks": 18,
+      "excluded_ratio": 0.4091,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 9
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 3
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 3
+        },
+        {
+          "category": "list_reference",
+          "count": 3
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 9
+        },
+        {
+          "section_type": "paragraph",
+          "count": 6
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "108cf9f1-4ce2-42e9-a23c-07870a4bed45",
+      "title": "EOP 012 (V1) Thermoduric Pasteurisation Bath Manual",
+      "source_type": "pdf",
+      "total_chunks": 49,
+      "included_chunks": 29,
+      "excluded_chunks": 20,
+      "excluded_ratio": 0.4082,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 12
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 3
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 3
+        },
+        {
+          "category": "list_reference",
+          "count": 2
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 12
+        },
+        {
+          "section_type": "paragraph",
+          "count": 5
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "85a77815-4047-4031-bec7-af521a81134b",
+      "title": "EOP 010 (V1) Infrared Thermometer Manual",
+      "source_type": "pdf",
+      "total_chunks": 27,
+      "included_chunks": 16,
+      "excluded_chunks": 11,
+      "excluded_ratio": 0.4074,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 7
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 3
+        },
+        {
+          "category": "broken_structure",
+          "count": 1
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 7
+        },
+        {
+          "section_type": "paragraph",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "id": "1923d801-7eaa-4595-9cd2-cef0c6ec14ac",
+      "title": "2.0-Sample Selection V22",
+      "source_type": "pdf",
+      "total_chunks": 69,
+      "included_chunks": 41,
+      "excluded_chunks": 28,
+      "excluded_ratio": 0.4058,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 25
+        },
+        {
+          "category": "broken_structure",
+          "count": 2
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 1
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 25
+        },
+        {
+          "section_type": "paragraph",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "18eb98fc-86ed-4498-b465-8c4c52dd420b",
+      "title": "LOP-MB 001 (V5) Alcohol Precipitation Test (APT) Manual",
+      "source_type": "pdf",
+      "total_chunks": 42,
+      "included_chunks": 25,
+      "excluded_chunks": 17,
+      "excluded_ratio": 0.4048,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 8
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 3
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 3
+        },
+        {
+          "category": "broken_structure",
+          "count": 2
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 8
+        },
+        {
+          "section_type": "paragraph",
+          "count": 6
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "0403cc55-305e-4433-aa95-4c26d3aa343a",
+      "title": "EOP 008 (V2) RFID Aerial Table Manual",
+      "source_type": "pdf",
+      "total_chunks": 20,
+      "included_chunks": 12,
+      "excluded_chunks": 8,
+      "excluded_ratio": 0.4,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 6
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 2
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 6
+        },
+        {
+          "section_type": "paragraph",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "aa55983f-27cf-4832-97e6-1fa2ba6408d4",
+      "title": "Chromatography Manual (V6)",
+      "source_type": "pdf",
+      "total_chunks": 179,
+      "included_chunks": 108,
+      "excluded_chunks": 71,
+      "excluded_ratio": 0.3966,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 59
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 10
+        },
+        {
+          "category": "broken_structure",
+          "count": 2
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 46
+        },
+        {
+          "section_type": "paragraph",
+          "count": 12
+        },
+        {
+          "section_type": "revision_history",
+          "count": 11
+        },
+        {
+          "section_type": "metadata_only",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "0fdf5ed6-792f-4753-8e39-51966f3771c7",
+      "title": "EOP 006 (V3) Conductivity Meter Manual",
+      "source_type": "pdf",
+      "total_chunks": 31,
+      "included_chunks": 19,
+      "excluded_chunks": 12,
+      "excluded_ratio": 0.3871,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 4
+        },
+        {
+          "category": "broken_structure",
+          "count": 3
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 2
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 2
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "paragraph",
+          "count": 6
+        },
+        {
+          "section_type": "footer_header",
+          "count": 4
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "55c7efba-be0d-4426-ba78-57aab9be2f9b",
+      "title": "LOP-TI 002 (V4) TITAN Manual - Inventory Management",
+      "source_type": "pdf",
+      "total_chunks": 39,
+      "included_chunks": 24,
+      "excluded_chunks": 15,
+      "excluded_ratio": 0.3846,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 12
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 3
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 12
+        },
+        {
+          "section_type": "paragraph",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "f230c89d-dbd4-4dab-b4b6-9e678abc0a0b",
+      "title": "LOP-BS 001 (V1) BactoScan Testing ",
+      "source_type": "pdf",
+      "total_chunks": 47,
+      "included_chunks": 29,
+      "excluded_chunks": 18,
+      "excluded_ratio": 0.383,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 8
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 5
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 4
+        },
+        {
+          "category": "broken_structure",
+          "count": 1
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 8
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 5
+        },
+        {
+          "section_type": "paragraph",
+          "count": 4
+        },
+        {
+          "section_type": "form_stub",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "861c89eb-e413-4459-8367-3b43d7b5927b",
+      "title": "LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual",
+      "source_type": "pdf",
+      "total_chunks": 50,
+      "included_chunks": 31,
+      "excluded_chunks": 19,
+      "excluded_ratio": 0.38,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 11
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 5
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 2
+        },
+        {
+          "category": "broken_structure",
+          "count": 1
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 11
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 5
+        },
+        {
+          "section_type": "paragraph",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "91b0c1d1-4dfc-40a8-aa6f-7b50dc87ebac",
+      "title": "EOP 009 (V2) pH Meter Manual",
+      "source_type": "pdf",
+      "total_chunks": 48,
+      "included_chunks": 30,
+      "excluded_chunks": 18,
+      "excluded_ratio": 0.375,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 7
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 4
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 3
+        },
+        {
+          "category": "list_reference",
+          "count": 3
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 7
+        },
+        {
+          "section_type": "paragraph",
+          "count": 6
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 4
+        },
+        {
+          "section_type": "form_stub",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "bed749a0-ad85-4e19-b7cc-647b21cc2190",
+      "title": "EOP 021 (V1) DT80 Data Logger Manual",
+      "source_type": "pdf",
+      "total_chunks": 40,
+      "included_chunks": 25,
+      "excluded_chunks": 15,
+      "excluded_ratio": 0.375,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "metadata_block",
+          "count": 9
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 2
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 2
+        },
+        {
+          "category": "list_reference",
+          "count": 2
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "footer_header",
+          "count": 9
+        },
+        {
+          "section_type": "paragraph",
+          "count": 4
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "713d9d77-c876-4f07-9fce-b96e9388d246",
+      "title": "MilkTestNZ Chilly Bin Packing (V2)",
+      "source_type": "pdf",
+      "total_chunks": 16,
+      "included_chunks": 10,
+      "excluded_chunks": 6,
+      "excluded_ratio": 0.375,
+      "dominant_exclusion_patterns": [
+        {
+          "category": "broken_structure",
+          "count": 2
+        },
+        {
+          "category": "duplicate_boilerplate",
+          "count": 2
+        },
+        {
+          "category": "short_fragment_noise",
+          "count": 2
+        }
+      ],
+      "section_type_breakdown": [
+        {
+          "section_type": "paragraph",
+          "count": 4
+        },
+        {
+          "section_type": "boilerplate",
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "top_affected_document_families": [
+    {
+      "family": "LOP",
+      "excluded_chunks": 154
+    },
+    {
+      "family": "OTHER",
+      "excluded_chunks": 112
+    },
+    {
+      "family": "EOP 012",
+      "excluded_chunks": 20
+    },
+    {
+      "family": "EOP 009",
+      "excluded_chunks": 18
+    },
+    {
+      "family": "EOP 018",
+      "excluded_chunks": 18
+    },
+    {
+      "family": "EOP 016",
+      "excluded_chunks": 15
+    },
+    {
+      "family": "EOP 021",
+      "excluded_chunks": 15
+    },
+    {
+      "family": "EOP 006",
+      "excluded_chunks": 12
+    },
+    {
+      "family": "EOP 010",
+      "excluded_chunks": 11
+    },
+    {
+      "family": "EOP 008",
+      "excluded_chunks": 8
+    }
+  ],
+  "top_exclusion_categories": [
+    {
+      "category": "metadata_block",
+      "excluded_chunks": 223
+    },
+    {
+      "category": "short_fragment_noise",
+      "excluded_chunks": 69
+    },
+    {
+      "category": "duplicate_boilerplate",
+      "excluded_chunks": 49
+    },
+    {
+      "category": "broken_structure",
+      "excluded_chunks": 23
+    },
+    {
+      "category": "list_reference",
+      "excluded_chunks": 19
+    }
+  ],
+  "interpretation": {
+    "appears_over_excluded_categories": [
+      "short_procedure",
+      "table_reference",
+      "list_reference",
+      "broken_structure"
+    ],
+    "appears_correctly_excluded_categories": [
+      "duplicate_boilerplate",
+      "ocr_garbage",
+      "metadata_block",
+      "table_noise",
+      "short_fragment_noise",
+      "diagram_caption"
+    ]
+  }
+}

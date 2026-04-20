@@ -3,6 +3,7 @@ import {
   isCatalogueStyleQuery,
   isRulesStyleQuery,
 } from './authoritativeSources';
+import { extractRegistryInteractionPair } from './entityRegistry';
 
 export type QueryIntent =
   | 'standard'
@@ -30,16 +31,16 @@ const WHAT_EXISTS_REGEX = /\bwhat\b.*\b(are there|exist|exists|supported|tests?|
 // Matches questions about how two systems/components interact.
 // Requires both an interaction verb AND two identifiable entities (at least 2 words).
 const INTERACTION_VERB_REGEX =
-  /\b(interact(?:s|ion)?\s+with|connect(?:s|ion)?\s+to|integrat(?:e|es|ion)\s+with|integration\s+between|send(?:s)?\s+data\s+to|work(?:s)?\s+with|flow(?:s)?\s+(?:between|from|to)|data\s+flow\s+from|how\s+do(?:es)?\s+(?:results?|data|messages?)\s+get\s+(?:from|to|into)|relationship\s+between|communication\s+between|interface\s+(?:between|with)|decision\s+logic\s+between|fallback\s+(?:path|manual\s+path)|what\s+happens\s+if.*fails?|fail(?:ure|s)?\s+(?:between|in)|which\s+integrations?\s+use|how\s+(?:does|do|is|are).*(?:interact|connect|integrate|communicate|talk\s+to|link(?:ed)?\s+to|feed(?:s)?\s+into|trigger|exchange|fail|fallback))\b/i;
+  /\b(interact(?:s|ion)?\s+with|connect(?:s|ion)?\s+to|integrat(?:e|es|ion)\s+with|integration\s+between|send(?:s)?\s+data\s+to|work(?:s)?\s+with|flow(?:s)?\s+(?:between|from|to)|data\s+flow\s+from|how\s+do(?:es)?\s+(?:results?|data|messages?)\s+get\s+(?:from|to|into)|relationship\s+between|communication\s+between|interface\s+(?:between|with)|decision\s+logic\s+between|fallback\s+(?:path|manual\s+path)|what\s+happens\s+if.*fails?|fail(?:ure|s)?\s+(?:between|in)|which\s+integrations?\s+use|automatic\s+result\s+entry|operational\s+boundary|end\s+up\s+in\s+reports?|downstream\s+(?:billing|reporting|business\s+systems?|consumers?)|how\s+(?:does|do|is|are).*(?:interact|connect|integrate|communicate|talk\s+to|link(?:ed)?\s+to|feed(?:s)?\s+into|trigger|exchange|fail|fallback|prepare|propagate|transmit))\b/i;
 
 const INTERACTION_ENTITY_PAIR_REGEX =
   /\b[A-Za-z][A-Za-z0-9_-]+\b.*\b(?:and|with|to|between|from)\b.*\b[A-Za-z][A-Za-z0-9_-]+\b/i;
 
 const NON_INTERACTION_QUERY_REGEX =
-  /^\s*(what\s+is\b|define\b|list\b|show\b|show\s+me\b|what\s+tests?\b|what\s+test\s+types?\b|what\s+codes?\b)/i;
+  /^\s*(define\b|list\b|show\b|show\s+me\b|what\s+tests?\b|what\s+test\s+types?\b|what\s+codes?\b|what\s+is\s+(?!the\s+(?:data\s+flow|fallback|manual\s+path|failure\s+path|operational\s+boundary|relationship|interface|integration)\b))/i;
 
 const INTERACTION_PATTERN_QUERY_REGEX =
-  /\b(which\s+integrations?\s+use|web\s*service|api\s+mechanism|file[-\s]*based\s+exchange|manual\s+override|event[-\s]*driven)\b/i;
+  /\b(which\s+integrations?\s+use|web\s*service|api\s+mechanism|file[-\s]*based\s+exchange|manual\s+override|event[-\s]*driven|automatic\s+result\s+entry|result\s+exports?|downstream\s+reporting|downstream\s+billing|operational\s+boundary|data\s+flow|analytics?\s+platforms?|business\s+systems?|prepared\s+for\s+downstream|end\s+up\s+in\s+reports?|fallback\s+manual\s+path)\b/i;
 
 const SYSTEM_ALIASES: Array<{ regex: RegExp; canonical: string }> = [
   { regex: /\bmadcap\b/i, canonical: 'MADCAP' },
@@ -78,6 +79,11 @@ function normalizeEntity(entity: string): string {
 export function extractInteractionEntityPair(input: string): InteractionEntityPair | undefined {
   const q = input.trim();
   if (!q) return undefined;
+
+  const registryPair = extractRegistryInteractionPair(q);
+  if (registryPair) {
+    return registryPair;
+  }
 
   const foundAliases = SYSTEM_ALIASES
     .map((entry) => {
@@ -134,8 +140,8 @@ export function classifyQueryIntent(input: string): QueryIntentResult {
   const hasInteractionPatternQuery = INTERACTION_PATTERN_QUERY_REGEX.test(q);
   const isInteractionQuery =
     !hasNegativeInteractionPattern
-    && hasInteractionVerb
-    && (hasEntityPair || Boolean(extractedInteractionPair) || hasInteractionPatternQuery);
+    && (hasInteractionPatternQuery || (hasInteractionVerb
+    && (hasEntityPair || Boolean(extractedInteractionPair) || hasInteractionPatternQuery)));
 
   const signals: string[] = [];
   if (hasStructuralWord) signals.push('structural_word');

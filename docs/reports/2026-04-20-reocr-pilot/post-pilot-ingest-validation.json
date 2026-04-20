@@ -1,0 +1,564 @@
+{
+  "endpoint": "http://localhost:3000/api/docs",
+  "checks": {
+    "active_plus_inactive_reconciles": true,
+    "quality_reconciles": true,
+    "split_failed_present": true,
+    "table_default_active_only": true,
+    "table_default_latest_only": true,
+    "table_default_historical_off": true,
+    "default_scope_excludes_historical_rows": true,
+    "unclassified_present_when_needed": true,
+    "partial_docs_have_reasons": true,
+    "unclassified_docs_have_reasons": true,
+    "partial_reason_breakdown_present": true,
+    "partial_reason_counts_reconcile": true
+  },
+  "diagnostics": {
+    "quality_total": 136,
+    "active_docs": 136,
+    "total_document_versions": 650,
+    "active_plus_inactive_total": 650,
+    "api_diagnostics": {
+      "quality_total": 136,
+      "active_docs": 136,
+      "quality_reconciles": true,
+      "total_versions": 650,
+      "active_plus_inactive_reconciles": true,
+      "quality_reason_diagnostics": {
+        "partial_docs": 105,
+        "unclassified_docs": 29,
+        "partial_docs_with_reasons": 105,
+        "unclassified_docs_with_reasons": 29,
+        "partial_docs_have_reasons": true,
+        "unclassified_docs_have_reasons": true,
+        "partial_reason_counts_present": true
+      }
+    },
+    "quality_reason_diagnostics": {
+      "partial_docs": 105,
+      "unclassified_docs": 29,
+      "partial_docs_with_reasons": 105,
+      "unclassified_docs_with_reasons": 29,
+      "partial_docs_have_reasons": true,
+      "unclassified_docs_have_reasons": true,
+      "partial_reason_counts_present": true
+    },
+    "default_visible_rows_count": 136,
+    "raw_documents_count": 650,
+    "partial_docs": 105,
+    "partial_docs_with_reasons": 105,
+    "unclassified_docs": 29,
+    "unclassified_docs_with_reasons": 29,
+    "partial_reason_count_keys": 8,
+    "partial_reason_count_total": 201
+  },
+  "sample_partial_docs": [
+    {
+      "id": "486abfc4-f145-49fb-99c8-df3d6fa8ceab",
+      "title": "EOP 001 (V3) MilkoScan FT3 Manual",
+      "quality_tier": "partial",
+      "quality_reasons": [
+        "OCR used",
+        "Fallback extraction",
+        "Needs review"
+      ]
+    },
+    {
+      "id": "26794da7-e940-4351-9180-b3ec7517b54a",
+      "title": "EOP 002 (V3) HOBO Data Logger Manual",
+      "quality_tier": "partial",
+      "quality_reasons": [
+        "OCR used",
+        "Fallback extraction",
+        "Needs review"
+      ]
+    },
+    {
+      "id": "86ce51e6-a7ee-42e5-a2d0-00c478eeb2e8",
+      "title": "EOP 003 (V8) TRAW Manual",
+      "quality_tier": "partial",
+      "quality_reasons": [
+        "High excluded chunk ratio"
+      ]
+    },
+    {
+      "id": "24d8c500-c5bb-4fc6-9dde-0f2c7bde91ff",
+      "title": "EOP 004 (V3) Autotitrator Manual",
+      "quality_tier": "partial",
+      "quality_reasons": [
+        "OCR used",
+        "High excluded chunk ratio",
+        "Fallback extraction",
+        "Needs review"
+      ]
+    },
+    {
+      "id": "990d0d8a-6293-48a8-802f-0f4b294e46a5",
+      "title": "EOP 005 (V1) Plate Washer Manual",
+      "quality_tier": "partial",
+      "quality_reasons": [
+        "OCR used",
+        "High excluded chunk ratio",
+        "Fallback extraction"
+      ]
+    }
+  ],
+  "raw_health": {
+    "active_docs": 136,
+    "active_completed": 136,
+    "active_pending": 0,
+    "active_failed": 0,
+    "active_needs_review": 31,
+    "active_chunks_total": 10662,
+    "active_ocr_used": 36,
+    "active_fallback_extractions": 36,
+    "inactive_versions": 514,
+    "historical_failed": 13,
+    "active_good": 2,
+    "active_partial": 105,
+    "active_poor": 0,
+    "active_unclassified": 29,
+    "active_quarantined": 0,
+    "active_source_missing": 0,
+    "active_zero_text_docs": 0,
+    "active_avg_chunks_per_doc": 78.4,
+    "active_fallback_extraction_percent": 26.5,
+    "active_excluded_chunks_total": 2516,
+    "active_excluded_chunk_percent": 23.6,
+    "active_docs_with_structural_headings": 70,
+    "total_document_versions": 650,
+    "last_ingest_run": "2026-04-19T23:48:42.177Z",
+    "embedding_model": "text-embedding-nomic-embed-text-v1.5",
+    "db_size_mb": 324.73,
+    "diagnostics": {
+      "quality_total": 136,
+      "active_docs": 136,
+      "quality_reconciles": true,
+      "total_versions": 650,
+      "active_plus_inactive_reconciles": true,
+      "quality_reason_diagnostics": {
+        "partial_docs": 105,
+        "unclassified_docs": 29,
+        "partial_docs_with_reasons": 105,
+        "unclassified_docs_with_reasons": 29,
+        "partial_docs_have_reasons": true,
+        "unclassified_docs_have_reasons": true,
+        "partial_reason_counts_present": true
+      }
+    },
+    "metric_audit": {
+      "active_docs": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true"
+      },
+      "active_completed": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_status = 'completed'"
+      },
+      "active_pending": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_status = 'pending'"
+      },
+      "active_failed": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_status = 'failed'"
+      },
+      "active_needs_review": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND needs_review = true"
+      },
+      "active_chunks_total": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true (sum chunk_count)"
+      },
+      "active_ocr_used": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND ocr_used = true"
+      },
+      "active_fallback_extractions": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND extraction_method IN ('ocr','native_pdfjs')"
+      },
+      "inactive_versions": {
+        "source": "documents",
+        "scope": "historical_only",
+        "filter": "is_active = false"
+      },
+      "historical_failed": {
+        "source": "documents",
+        "scope": "historical_only",
+        "filter": "is_active = false AND extraction_status = 'failed'"
+      },
+      "active_good": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier = 'good'"
+      },
+      "active_partial": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier = 'partial'"
+      },
+      "active_poor": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier = 'poor'"
+      },
+      "active_unclassified": {
+        "source": "documents",
+        "scope": "active_only",
+        "filter": "is_active = true AND text_quality_tier IS NULL"
+      },
+      "total_document_versions": {
+        "source": "documents",
+        "scope": "all_versions",
+        "filter": "active_docs + inactive_versions"
+      }
+    },
+    "partial_reason_counts": {
+      "OCR used": 34,
+      "Fallback extraction": 34,
+      "Needs review": 31,
+      "High excluded chunk ratio": 55,
+      "Low structure confidence": 22,
+      "Weak headings": 9,
+      "Sparse text": 5,
+      "Low chunk density": 11
+    },
+    "good_reason_counts": {
+      "Weak headings": 2,
+      "Appendix-heavy / list-heavy": 1
+    },
+    "unclassified_reason_counts": {
+      "Unclassified inputs": 29,
+      "Weak headings": 18,
+      "Low chunk density": 6,
+      "High excluded chunk ratio": 3,
+      "Sparse text": 5,
+      "OCR used": 2,
+      "Fallback extraction": 2,
+      "Table-heavy": 7
+    },
+    "ocr_summary": {
+      "native_clean": 68,
+      "ocr_clean": 186,
+      "ocr_mixed": 395,
+      "ocr_noisy": 0,
+      "ocr_unusable": 1,
+      "total_reprocess_candidates": 57,
+      "high_priority_candidates": 57
+    },
+    "top_reprocess_candidates": [
+      {
+        "id": "e8e29a28-d874-41a3-9c70-b1d0ebd21004",
+        "title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
+        "filename": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual.pdf",
+        "source_path": "LOP/LOP-CR 003 (V3) CRV Sample On-sending Process Manual.pdf",
+        "folder": "LOP",
+        "source_type": "pdf",
+        "version_hash": "ad5a6a7847cfeefec50050448c8efe874b4c9544c35a4d3f624c5211bdbccc73",
+        "is_active": true,
+        "superseded_at": null,
+        "last_seen_at": "2026-04-19T23:48:38.129Z",
+        "document_date": null,
+        "chunk_count": 51,
+        "extraction_status": "completed",
+        "extraction_error": null,
+        "ocr_used": false,
+        "ocr_confidence": null,
+        "source_missing": false,
+        "processed_at": "2026-04-19T23:48:38.650Z",
+        "created_at": "2026-04-19T23:48:38.129Z",
+        "updated_at": "2026-04-19T23:48:38.651Z",
+        "search_text": "'003':4A,16A 'cr':3A,15A 'crv':6A,18A 'lop':2A,14A,25B 'lop-cr':1A,13A 'manual':12A 'manual.pdf':24A 'on-send':8A,20A 'process':11A,23A 'sampl':7A,19A 'send':10A,22A 'v3':5A,17A",
+        "title_normalized": "lopcr 003 v3 crv sample onsending process manual",
+        "pipeline_version": "v2",
+        "extraction_method": "native_pdf",
+        "text_quality_score": "0.757",
+        "text_quality_tier": "partial",
+        "quality_score_source": "native_extraction",
+        "needs_review": true,
+        "excluded_chunk_count": 23,
+        "boilerplate_chunk_count": 13,
+        "downranked_chunk_count": 1,
+        "quarantined": false,
+        "extraction_completeness_status": "complete",
+        "extraction_completeness_score": 2,
+        "extraction_completeness_reasons": [
+          "Text quality tier is partial",
+          "Low average characters per chunk"
+        ],
+        "missing_referenced_appendices": [],
+        "completeness_last_audited_at": "2026-04-19T23:48:38.651Z",
+        "heading_chunk_count": "11",
+        "table_chunk_count": "0",
+        "appendix_chunk_count": "0",
+        "list_chunk_count": "0",
+        "is_latest_version": true,
+        "quality_tier": "partial",
+        "quality_reasons": [
+          "High excluded chunk ratio",
+          "Needs review"
+        ],
+        "ocr_quality_status": "ocr_mixed",
+        "ocr_quality_reasons": [
+          "PDF native",
+          "Some issues (45% excluded)"
+        ],
+        "document_priority": "high",
+        "reprocess_candidate": true,
+        "reprocess_reason": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 45% excluded chunks",
+        "reprocess_rank": 1
+      },
+      {
+        "id": "7ab297f5-ae31-4d2a-a869-dce59fcf3fa5",
+        "title": "LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual",
+        "filename": "LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual.pdf",
+        "source_path": "LOP/LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual.pdf",
+        "folder": "LOP",
+        "source_type": "pdf",
+        "version_hash": "7ef0a0f6646bf523b7748bd94aab3955e35b03b1b13b9e9db4f3cc60582e4887",
+        "is_active": true,
+        "superseded_at": null,
+        "last_seen_at": "2026-04-19T23:48:40.495Z",
+        "document_date": null,
+        "chunk_count": 73,
+        "extraction_status": "completed",
+        "extraction_error": null,
+        "ocr_used": false,
+        "ocr_confidence": null,
+        "source_missing": false,
+        "processed_at": "2026-04-19T23:48:41.079Z",
+        "created_at": "2026-04-19T23:48:40.495Z",
+        "updated_at": "2026-04-19T23:48:41.080Z",
+        "search_text": "'003':4A,16A 'analysi':8A,20A 'compon':7A,19A 'cp':3A,15A 'ft3':11A,23A 'lop':2A,14A,25B 'lop-cp':1A,13A 'manual':12A 'manual.pdf':24A 'milk':6A,18A 'milkoscan':10A,22A 'v2':5A,17A 'via':9A,21A",
+        "title_normalized": "lopcp 003 v2 milk component analysis via milkoscan ft3 manual",
+        "pipeline_version": "v2",
+        "extraction_method": "native_pdf",
+        "text_quality_score": "0.778",
+        "text_quality_tier": "partial",
+        "quality_score_source": "native_extraction",
+        "needs_review": true,
+        "excluded_chunk_count": 30,
+        "boilerplate_chunk_count": 24,
+        "downranked_chunk_count": 3,
+        "quarantined": false,
+        "extraction_completeness_status": "complete",
+        "extraction_completeness_score": 2,
+        "extraction_completeness_reasons": [
+          "Text quality tier is partial",
+          "Low average characters per chunk"
+        ],
+        "missing_referenced_appendices": [],
+        "completeness_last_audited_at": "2026-04-19T23:48:41.080Z",
+        "heading_chunk_count": "3",
+        "table_chunk_count": "0",
+        "appendix_chunk_count": "0",
+        "list_chunk_count": "0",
+        "is_latest_version": true,
+        "quality_tier": "partial",
+        "quality_reasons": [
+          "High excluded chunk ratio",
+          "Needs review"
+        ],
+        "ocr_quality_status": "ocr_mixed",
+        "ocr_quality_reasons": [
+          "PDF native",
+          "Some issues (41% excluded)"
+        ],
+        "document_priority": "high",
+        "reprocess_candidate": true,
+        "reprocess_reason": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 41% excluded chunks",
+        "reprocess_rank": 2
+      },
+      {
+        "id": "63f0ffdb-c4ea-4c6f-b535-a0a6cd2f455b",
+        "title": "LOP-GN 003 (V1) Spatial Distribution Check Manual",
+        "filename": "LOP-GN 003 (V1) Spatial Distribution Check Manual.pdf",
+        "source_path": "LOP/LOP-GN 003 (V1) Spatial Distribution Check Manual.pdf",
+        "folder": "LOP",
+        "source_type": "pdf",
+        "version_hash": "c925c2a257ed0ad38e42476d7fadc47586e53efb2b9e3bf9dab05d6be6194f63",
+        "is_active": true,
+        "superseded_at": null,
+        "last_seen_at": "2026-04-19T23:48:39.808Z",
+        "document_date": null,
+        "chunk_count": 43,
+        "extraction_status": "completed",
+        "extraction_error": null,
+        "ocr_used": false,
+        "ocr_confidence": null,
+        "source_missing": false,
+        "processed_at": "2026-04-19T23:48:40.351Z",
+        "created_at": "2026-04-19T23:48:39.808Z",
+        "updated_at": "2026-04-19T23:48:40.353Z",
+        "search_text": "'003':4A,13A 'check':8A,17A 'distribut':7A,16A 'gn':3A,12A 'lop':2A,11A,19B 'lop-gn':1A,10A 'manual':9A 'manual.pdf':18A 'spatial':6A,15A 'v1':5A,14A",
+        "title_normalized": "lopgn 003 v1 spatial distribution check manual",
+        "pipeline_version": "v2",
+        "extraction_method": "native_pdf",
+        "text_quality_score": "0.769",
+        "text_quality_tier": "partial",
+        "quality_score_source": "native_extraction",
+        "needs_review": false,
+        "excluded_chunk_count": 16,
+        "boilerplate_chunk_count": 12,
+        "downranked_chunk_count": 2,
+        "quarantined": false,
+        "extraction_completeness_status": "complete",
+        "extraction_completeness_score": 1,
+        "extraction_completeness_reasons": [
+          "Text quality tier is partial"
+        ],
+        "missing_referenced_appendices": [],
+        "completeness_last_audited_at": "2026-04-19T23:48:40.352Z",
+        "heading_chunk_count": "5",
+        "table_chunk_count": "0",
+        "appendix_chunk_count": "0",
+        "list_chunk_count": "0",
+        "is_latest_version": true,
+        "quality_tier": "partial",
+        "quality_reasons": [
+          "High excluded chunk ratio"
+        ],
+        "ocr_quality_status": "ocr_mixed",
+        "ocr_quality_reasons": [
+          "PDF native",
+          "Some issues (37% excluded)"
+        ],
+        "document_priority": "high",
+        "reprocess_candidate": true,
+        "reprocess_reason": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 37% excluded chunks",
+        "reprocess_rank": 3
+      },
+      {
+        "id": "5639b3d1-b0db-4e99-92b5-eb227046ef2a",
+        "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+        "filename": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual.pdf",
+        "source_path": "LOP/LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual.pdf",
+        "folder": "LOP",
+        "source_type": "pdf",
+        "version_hash": "f4563a183029fb62ed510f39fd2691161a2c35116771e7fa6ebcba44c013aa0e",
+        "is_active": true,
+        "superseded_at": null,
+        "last_seen_at": "2026-04-19T23:48:41.267Z",
+        "document_date": null,
+        "chunk_count": 80,
+        "extraction_status": "completed",
+        "extraction_error": null,
+        "ocr_used": false,
+        "ocr_confidence": null,
+        "source_missing": false,
+        "processed_at": "2026-04-19T23:48:42.152Z",
+        "created_at": "2026-04-19T23:48:41.267Z",
+        "updated_at": "2026-04-19T23:48:42.155Z",
+        "search_text": "'005':4A,15A 'aerob':6A,17A 'count':8A,19A 'lop':2A,13A,23B 'lop-mb':1A,12A 'manual':11A 'manual.pdf':22A 'mb':3A,14A 'petrifilm':10A,21A 'plate':7A,18A 'v2':5A,16A 'via':9A,20A",
+        "title_normalized": "lopmb 005 v2 aerobic plate count via petrifilm manual",
+        "pipeline_version": "v2",
+        "extraction_method": "native_pdf",
+        "text_quality_score": "0.776",
+        "text_quality_tier": "partial",
+        "quality_score_source": "native_extraction",
+        "needs_review": false,
+        "excluded_chunk_count": 27,
+        "boilerplate_chunk_count": 22,
+        "downranked_chunk_count": 4,
+        "quarantined": false,
+        "extraction_completeness_status": "complete",
+        "extraction_completeness_score": 1,
+        "extraction_completeness_reasons": [
+          "Text quality tier is partial"
+        ],
+        "missing_referenced_appendices": [],
+        "completeness_last_audited_at": "2026-04-19T23:48:42.155Z",
+        "heading_chunk_count": "6",
+        "table_chunk_count": "0",
+        "appendix_chunk_count": "3",
+        "list_chunk_count": "0",
+        "is_latest_version": true,
+        "quality_tier": "partial",
+        "quality_reasons": [
+          "High excluded chunk ratio"
+        ],
+        "ocr_quality_status": "ocr_mixed",
+        "ocr_quality_reasons": [
+          "PDF native",
+          "Some issues (34% excluded)"
+        ],
+        "document_priority": "high",
+        "reprocess_candidate": true,
+        "reprocess_reason": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 34% excluded chunks",
+        "reprocess_rank": 4
+      },
+      {
+        "id": "5fe6005a-1242-458f-873c-aa04ea6e7680",
+        "title": "LOP-QM 001 (V9) Proficiency Testing Manual",
+        "filename": "LOP-QM 001 (V9) Proficiency Testing Manual.pdf",
+        "source_path": "LOP/LOP-QM 001 (V9) Proficiency Testing Manual.pdf",
+        "folder": "LOP",
+        "source_type": "pdf",
+        "version_hash": "180708139433011abc8e9ddbc77bab0ad03a362f915c00b9f051b871d07d9302",
+        "is_active": true,
+        "superseded_at": null,
+        "last_seen_at": "2026-04-19T22:26:04.901Z",
+        "document_date": null,
+        "chunk_count": 165,
+        "extraction_status": "completed",
+        "extraction_error": null,
+        "ocr_used": true,
+        "ocr_confidence": "0.96",
+        "source_missing": false,
+        "processed_at": "2026-04-19T22:26:16.480Z",
+        "created_at": "2026-04-19T22:26:04.901Z",
+        "updated_at": "2026-04-19T22:26:16.485Z",
+        "search_text": "'001':4A,12A 'lop':2A,10A,17B 'lop-qm':1A,9A 'manual':8A 'manual.pdf':16A 'profici':6A,14A 'qm':3A,11A 'test':7A,15A 'v9':5A,13A",
+        "title_normalized": "lopqm 001 v9 proficiency testing manual",
+        "pipeline_version": "v2",
+        "extraction_method": "ocr",
+        "text_quality_score": "0.766",
+        "text_quality_tier": "partial",
+        "quality_score_source": "ocr_output",
+        "needs_review": false,
+        "excluded_chunk_count": 52,
+        "boilerplate_chunk_count": 4,
+        "downranked_chunk_count": 1,
+        "quarantined": false,
+        "extraction_completeness_status": "complete",
+        "extraction_completeness_score": 1,
+        "extraction_completeness_reasons": [
+          "Text quality tier is partial"
+        ],
+        "missing_referenced_appendices": [],
+        "completeness_last_audited_at": "2026-04-19T22:26:16.484Z",
+        "heading_chunk_count": "43",
+        "table_chunk_count": "0",
+        "appendix_chunk_count": "1",
+        "list_chunk_count": "0",
+        "is_latest_version": true,
+        "quality_tier": "partial",
+        "quality_reasons": [
+          "OCR used",
+          "High excluded chunk ratio",
+          "Fallback extraction"
+        ],
+        "ocr_quality_status": "ocr_mixed",
+        "ocr_quality_reasons": [
+          "OCR extracted",
+          "Moderate contamination (32%)"
+        ],
+        "document_priority": "high",
+        "reprocess_candidate": true,
+        "reprocess_reason": "High-value document (LOP/EOP/manual); Moderate OCR contamination; 32% excluded chunks",
+        "reprocess_rank": 5
+      }
+    ]
+  }
+}

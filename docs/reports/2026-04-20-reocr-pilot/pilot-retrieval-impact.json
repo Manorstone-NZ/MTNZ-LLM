@@ -1,0 +1,446 @@
+{
+  "generated_at": "2026-04-19T23:53:14.098Z",
+  "method": "API chat SSE checks with practical procedure/calibration/quality queries per pilot doc",
+  "per_document": [
+    {
+      "title": "_EOP(Manual) Index (V17)",
+      "source_path": "EOP/_EOP(Manual) Index (V17).pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in _EOP(Manual) Index?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 3120
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in _EOP(Manual) Index?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": false,
+            "source_hits_for_doc": 0,
+            "answer_length": 1482
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1897
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in _EOP(Manual) Index?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "SOP (Manual) Index (V23)",
+      "source_path": "Supporting/SOP (Manual) Index (V23).pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in SOP (Manual) Index?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in SOP (Manual) Index?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 1661
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in SOP (Manual) Index?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
+      "source_path": "LOP/LOP-CR 003 (V3) CRV Sample On-sending Process Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-CR 003  CRV Sample On-sending Process Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2397
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 2414
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-CR 003  CRV Sample On-sending Process Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 564
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-CR 003  CRV Sample On-sending Process Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1348
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 6,
+            "answer_length": 68
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-CR 002 (V3) CRV Procedures Manual",
+      "source_path": "LOP/LOP-CR 002 (V3) CRV Procedures Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-CR 002  CRV Procedures Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 6,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-CR 002  CRV Procedures Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2095
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-CR 002  CRV Procedures Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2717
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": false
+    },
+    {
+      "title": "LOP-GN 003 (V1) Spatial Distribution Check Manual",
+      "source_path": "LOP/LOP-GN 003 (V1) Spatial Distribution Check Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-GN 003  Spatial Distribution Check Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 3475
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2199
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-GN 003  Spatial Distribution Check Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2164
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2864
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-GN 003  Spatial Distribution Check Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2028
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1580
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual",
+      "source_path": "LOP/LOP-CP 003 (V2) Milk Component Analysis (via MilkoScan FT3) Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-CP 003  Milk Component Analysis (via MilkoScan FT3) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 1450
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 2994
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-CP 003  Milk Component Analysis (via MilkoScan FT3) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 1916
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 2107
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-CP 003  Milk Component Analysis (via MilkoScan FT3) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 1307
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 68
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+      "source_path": "LOP/LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-MB 005  Aerobic Plate Count (via Petrifilm) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 2794
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "improved": false
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-MB 005  Aerobic Plate Count (via Petrifilm) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-MB 005  Aerobic Plate Count (via Petrifilm) Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 1,
+            "answer_length": 68
+          },
+          "improved": false
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    },
+    {
+      "title": "LOP-QM 003 (V3) Key Technical Personnel Manual",
+      "source_path": "LOP/LOP-QM 003 (V3) Key Technical Personnel Manual.pdf",
+      "checks": [
+        {
+          "query": "What is the end-to-end operating procedure in LOP-QM 003  Key Technical Personnel Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 4,
+            "answer_length": 864
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 6,
+            "answer_length": 878
+          },
+          "improved": true
+        },
+        {
+          "query": "What setup, calibration, or pre-check steps are required in LOP-QM 003  Key Technical Personnel Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 5,
+            "answer_length": 1683
+          },
+          "improved": true
+        },
+        {
+          "query": "What critical quality or safety checks are specified in LOP-QM 003  Key Technical Personnel Manual?",
+          "before": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 2,
+            "answer_length": 68
+          },
+          "after": {
+            "source_count": 8,
+            "appears_in_sources": true,
+            "source_hits_for_doc": 3,
+            "answer_length": 68
+          },
+          "improved": true
+        }
+      ],
+      "doc_level_retrieval_improved": true
+    }
+  ]
+}

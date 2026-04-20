@@ -2,8 +2,15 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f3f7f2;
+  --foreground: #233128;
+  --surface: #ffffff;
+  --surface-muted: #ebf1e8;
+  --brand: #4d8b00;
+  --brand-strong: #2f5d00;
+  --brand-soft: #dfedd1;
+  --accent: #0d6b3e;
+  --line: #cdd9c5;
 }
 
 @theme inline {
@@ -13,15 +20,36 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(90rem 45rem at 0% -10%, rgba(77, 139, 0, 0.16), transparent 60%),
+    radial-gradient(60rem 35rem at 100% 0%, rgba(13, 107, 62, 0.09), transparent 60%),
+    linear-gradient(180deg, #f8fbf6 0%, #eef4ea 45%, #f7faf5 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
 }
 
-body {
-  background: var(--background);
+.app-card {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: 0 12px 28px rgba(13, 50, 76, 0.08);
+}
+
+.app-pill {
+  border: 1px solid color-mix(in srgb, var(--brand) 35%, white);
+  background: color-mix(in srgb, var(--brand) 8%, white);
+  color: var(--brand-strong);
+}
+
+.app-input {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, white 92%, var(--brand-soft));
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-input:focus {
+  outline: none;
+  border-color: color-mix(in srgb, var(--brand) 65%, white);
+  box-shadow: 0 0 0 3px rgba(15, 96, 133, 0.15);
 }

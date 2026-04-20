@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-04-20T01:02:55Z",
+  "post_wave": "wave2",
+  "active_docs": 136,
+  "ocr_summary": {
+    "native_clean": 70,
+    "ocr_clean": 186,
+    "ocr_mixed": 413,
+    "ocr_noisy": 0,
+    "ocr_unusable": 1,
+    "total_reprocess_candidates": 54,
+    "high_priority_candidates": 54
+  },
+  "active_excluded_chunk_percent": 22.2,
+  "active_good": 2,
+  "active_partial": 105,
+  "active_poor": 0,
+  "active_unclassified": 29,
+  "runtime_smoke": {
+    "total_queries": 9,
+    "failed_queries": 0,
+    "all_acceptance_checks_pass": true
+  },
+  "ingest_reconciliation_ok": true
+}

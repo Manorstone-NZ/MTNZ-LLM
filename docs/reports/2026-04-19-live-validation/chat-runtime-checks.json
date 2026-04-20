@@ -1,49 +1,30 @@
 {
-  "generatedAt": "2026-04-19T00:16:29.331Z",
+  "generatedAt": "2026-04-20T04:37:53.243Z",
   "suites": {
     "canonical": [
       {
         "suite": "canonical",
         "question": "What MADCAP tests are there?",
-        "answer": "# MADCAP Test Types\n\nBased on the available sources, MADCAP contains an extensive catalogue of test types across multiple databases. The most authoritative source is the **MADCAP Test Type List**, which provides a comprehensive mapping of databases, test type numbers, and test names.\n\n## Test Type Structure\n\nMADCAP tests are organized by:\n- **Database Number and Name** (e.g., Database 20 = Fonterra, Database 863 = Tatua Dairy Co)\n- **Test Type Number** (numerical identifier)\n- **Test Name** (descriptive name)\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]\n\n---\n\n## Core Test Categories\n\n### **Microbiology Tests**\n\nEvery microbiology test has a specific test type number [Source: LOP-RR 001 (V7) Result Release Manual, 7.2 MICROBIOLOGY RESULT RELEASE]. Examples include:\n\n- **Test Type 2**: Bacterial Estimate-Bscan\n- **Test Type 3**: Standard Plate Count / Aerobic Plate Count\n- **Test Type 4**: Coliform Plate Count\n- **Test Type 5**: Thermoduric Plate Count\n- **Test Type 9**: Inhibitory Substances\n- **Test Type 12**: Blood Plate Investigation\n- **Test Type 23**: Environmental Thermodurics\n- **Test Type 35**: Sporeformers\n- **Test Type 36**: Bovine Milk Contamination (Test)\n- **Test Type 40**: QC failures (using QC Codes)\n- **Test Type 105**: Thermoduric Serial Dilutions\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)] [Source: LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY]\n\n### **Foreign Matter and Organoleptic Tests**\n\n- **Test Type 8**: Foreign Matter (Milk samples)\n- **Test Type 78**: Foreign Matter (Colostrum samples)\n- **Test Type 10**: Senses (Organoleptic Assessment)\n\n[Source: LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING] [Source: LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual, 1. Run a Result Listing Report in MADCAP for each company that requires senses testing on samples]\n\n### **Component/Composition Tests**\n\n- **Test Type 51**: Fat\n- **Test Type 52**: Protein\n- **Test Type 53**: Lactose\n- **Test Type 54**: Total Solids\n- **Test Type 55**: Casein\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]\n\n### **Freezing Point Tests**\n\n- **Test Type 11**: Freezing Point\n- **Test Type 27**: Freezing Point (CombiFoss)\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]\n\n### **Colostrum Quality Tests**\n\n- **Test Type 6**: IgG (Colostrum)\n- **Testing Program 106**: IgG (used for result entry)\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)] [Source: LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED]\n\n### **Fatty Acid Profile Tests**\n\nA comprehensive range of fatty acid tests across multiple databases (Fonterra, OCD-Waharoa, Tatua, Oceania, Synlait, Miraka):\n\n- **Test Type 235**: Fatty acid C14:0\n- **Test Type 236**: Fatty acid C16:0\n- **Test Type 237**: Fatty acid C18:0\n- **Test Type 238**: Fatty acid C18:1\n- **Test Type 240**: Polyunsaturated fatty acid\n- **Test Type 241**: Long chain fatty acid\n- **Test Type 242**: Monounsaturated fatty acid\n- **Test Type 243**: Saturated fatty acid\n- **Test Type 244**: Short chain fatty acid\n- **Test Type 245**: Trans fatty acid\n- **Test Type 246**: Medium Chain Fatty Acid\n- **Test Type 247**: Unsaturated Fatty Acid\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 14)]\n\n### **Specialty Tests**\n\n- **Test Type 62**: Beta-hydroxybutyrate (BHB) (Database 555 - Casual test database)\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 14)]\n\n---\n\n## Testing Programs\n\nMADCAP uses **Testing Programs** for instrument-based testing, distinct from test type numbers:\n\n- **Program 160**: Cow Combi (CombiFoss)\n- **Program 163**: Goat Combi (CombiFoss)\n- **Program 164**: Sheep Combi (CombiFoss)\n\n[Source: EOP 014 (V1) CombiFoss Manual, 1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as]\n\n---\n\n## Database Coverage\n\nThe MADCAP Test Type List spans multiple company/client databases including:\n\n- **Database 1**: SAITL Software Test Co (inactive)\n- **Database 20**: Fonterra\n- **Database 45**: Fresha Valley Processors\n- **Database 50**: NZ Dairy Goat Co-op\n- **Database 59**: OCD - Waharoa\n- **Database 100**: Small companies\n- **Database 357**: Westland\n- **Database 410**: Synlait\n- **Database 500**: Kiwi Dairies (South Island) (inactive)\n- **Database 555**: Casual test database\n- **Database 609**: Kiwi Dairies (North) (inactive)\n- **Database 737**: Miraka\n- **Database 818**: Oceania\n- **Database 863**: Tatua Dairy Co\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)] [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 14)]\n\n---\n\n## Test Selection Methods\n\nMADCAP supports multiple selection methodologies for farm samples:\n\n- **Random**: Specified number of selections within a time period\n- **Follow-up**: Triggered by specific result ranges, requiring clear results to complete regime\n- **Manual**: Specified selections for specific dates/periods\n- **1st collection**: Triggered based on days since last result filed for specified test type\n\n[Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 5.2 SELECTIONS]\n\n---\n\n## Notes on Completeness\n\nThe **MADCAP Test Type List** document contains the authoritative catalogue with the structure \"Database, Database Name, Test Type, Test Name, Comments\" spanning rows A1:E4172 [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]. The retrieved evidence shows representative samples across different test categories and databases, but the full catalogue contains thousands of test type entries across all active and inactive databases.",
+        "answer": "**MADCAP test‑type numbers that appear in the available documents**\n\n| Test type number | Common name / context (as described) | Source |\n|------------------|-------------------------------------|--------|\n| 8 | Milk – Foreign Matter (milk samples) | LOP‑MB 003 (V22) Foreign Matter Manual, 8.1 RESULT ENTRY |\n| 19 | Iodine (detected in routine monitoring) | LOP‑SP 008 (V1) Routine Monitoring Of Tanker And Supplier Samples, 11 RESPONSIBILITIES |\n| 30 | Aflatoxin (routine monitoring) | LOP‑SP 008 (V1) Routine Monitoring Of Tanker And Supplier Samples, 11 RESPONSIBILITIES |\n| 40 | QC failure – generic “QC reason” entry (used for most test types) | LOP‑MC 001 (V1) MADCAP Procedures Manual, 17.9 QC FAILURE CODES |\n| 78 | Colostrum – Foreign Matter (colostrum samples) | LOP‑MB 003 (V22) Foreign Matter Manual, 8.1 RESULT ENTRY |\n| 210 | Detergent Residue – Total QAC (routine monitoring) | LOP‑SP 008 (V1) Routine Monitoring Of Tanker And Supplier Samples, 11 RESPONSIBILITIES |\n| 211 | Detergent Residue – Total NPE (routine monitoring) | LOP‑SP 008 (V1) Routine Monitoring Of Tanker And Supplier Samples, 11 RESPONSIBILITIES |\n| 214 | Detergent Residue – Total NI (routine monitoring) | LOP‑SP 008 (V1) Routine Monitoring Of Tanker And Supplier Samples, 11 RESPONSIBILITIES |\n| 216 | Detergent Residue – Total ALKS (routine monitoring) | LOP‑SP 008 (V1) Routine Monitoring Of Tanker And Supplier Samples, 11 RESPONSIBILITIES |\n| 218 | Detergent Residue – Total ABS (routine monitoring) | LOP‑SP 008 (V1) Routine Monitoring Of Tanker And Supplier Samples, 11 RESPONSIBILITIES |\n\nThese are the test‑type identifiers explicitly referenced in the retrieved source chunks.  The list may not be exhaustive; other test types could exist but are not mentioned in the provided documents.\n\n[Source: LOP-MB 003 (V22) Foreign Matter Manual, 8.1 RESULT ENTRY] [Source: Titan Client Export, Sheet: Sheet1, A1:AX471 (part 29)]",
         "citationsInAnswer": [
-          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)",
-          "LOP-RR 001 (V7) Result Release Manual, 7.2 MICROBIOLOGY RESULT RELEASE",
-          "LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY",
-          "LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING",
-          "LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual, 1. Run a Result Listing Report in MADCAP for each company that requires senses testing on samples",
-          "LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED",
-          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 14)",
-          "EOP 014 (V1) CombiFoss Manual, 1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as",
-          "LOP-MC 001 (V1) MADCAP Procedures Manual, 5.2 SELECTIONS"
+          "LOP-MB 003 (V22) Foreign Matter Manual, 8.1 RESULT ENTRY",
+          "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 29)"
         ],
         "topSources": [
           {
-            "citation_label": "LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING",
+            "citation_label": "LOP-MB 003 (V22) Foreign Matter Manual, 8.1 RESULT ENTRY",
             "doc_title": "LOP-MB 003 (V22) Foreign Matter Manual",
-            "section_title": "8 CALCULATION AND REPORTING",
+            "section_title": "8.1 RESULT ENTRY",
             "source_type": "pdf"
           },
           {
-            "citation_label": "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 14)",
-            "doc_title": "MADCAP Test Type List",
-            "section_title": "Sheet1",
-            "source_type": "xlsx"
-          },
-          {
-            "citation_label": "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)",
-            "doc_title": "MADCAP Test Type List",
-            "section_title": "Sheet1",
-            "source_type": "xlsx"
-          },
-          {
-            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44)",
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 29)",
             "doc_title": "Titan Client Export",
             "section_title": "Sheet1",
             "source_type": "xlsx"
           },
           {
-            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)",
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 30)",
             "doc_title": "Titan Client Export",
             "section_title": "Sheet1",
             "source_type": "xlsx"
@@ -65,12 +46,24 @@
             "doc_title": "5.0-Inhibitory Substances V30",
             "section_title": "CONFIRMED RESULT ENTRY CODE",
             "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual, 7.2.1 MISSING TESTS",
+            "doc_title": "LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual",
+            "section_title": "7.2.1 MISSING TESTS",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual, 12.1 MANUALS",
+            "doc_title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
+            "section_title": "12.1 MANUALS",
+            "source_type": "pdf"
           }
         ],
         "sourceCount": 24,
         "flags": {
-          "hasMadcapTestTypeList": true,
-          "hasAppendix1321": true,
+          "hasMadcapTestTypeList": false,
+          "hasAppendix1321": false,
           "hasWeakBoilerplate": false
         },
         "checks": {
@@ -78,35 +71,21 @@
           "hasVisibleAnswerToken": true,
           "hasSources": true,
           "hasSourceCitations": true,
-          "hasCanonicalAuthoritySignal": true
+          "hasCanonicalAuthoritySignal": false
         },
         "failures": []
       },
       {
         "suite": "canonical",
         "question": "Show the full list of MADCAP test types.",
-        "answer": "# Complete MADCAP Test Type List\n\nBased on the retrieved evidence, the MADCAP Test Type List is maintained as a canonical structured spreadsheet. Below is the **consolidated list of all documented MADCAP test types** extracted from the authoritative source and supplemented by procedural references.\n\n---\n\n## Canonical Test Types from MADCAP Test Type List\n\nThe authoritative **MADCAP Test Type List** spreadsheet [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2); MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 3)] documents test types across multiple company databases. The following test types are confirmed:\n\n| Test Type | Test Name | Notes |\n|-----------|-----------|-------|\n| 2 | Bacterial Estimate - BactoScan | Used in multiple databases; some inactive |\n| 3 | Standard Plate Count / Aerobic Plate Count | Used across multiple companies |\n| 4 | Coliform Plate Count | Widely used for supplier samples |\n| 5 | Thermoduric Plate Count | Widely used for supplier samples |\n| 6 | IgG (Colostrum) | Colostrum screening test |\n| 8 | Foreign Matter | Milk samples [Source: LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING] |\n| 9 | Inhibitory Substances | Antibiotic/drug residue testing |\n| 10 | Senses (Organoleptic Assessment) | Sensory evaluation of milk quality |\n| 11 | Freezing Point | Used by some databases |\n| 12 | Blood Plate Investigation / Grade Investigation | Quality investigation test |\n| 13 | Somatic Cell Count | Cell count indicator of udder health |\n| 16 | RID Assay (Stolle) | Fonterra-specific test |\n| 17 | Sulphite Reducing Clostridia (SRC) | Spore count test [Source: LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES] |\n| 22 | DDE North Island / DDE | Direct Data Entry (some databases inactive) |\n| 23 | Environmental Thermodurics | Environmental contamination test (some inactive) |\n| 24 | Pseudomonas | Bacterial contamination test [Source: LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES] |\n| 25 | Thermoduric (48/72 Hour Screening) | Extended incubation thermoduric test |\n| 27 | Freezing Point (CombiFoss) | Automated freezing point via CombiFoss |\n| 32 | Aerobic Plate Count (via Petrifilm) | Petrifilm-specific APC test [Source: LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual, 8.2 RESULT REPORTING] |\n| 35 | Sporeformers | Spore-forming bacteria test (some databases inactive) |\n| 36 | Bovine Milk Contamination Test | Species contamination test |\n| 40 | QC Failures / QC Codes | Used to record quality control failures and missing test reasons [Source: LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual, 3. Once all results have been entered into MADCAP, inform the Result Release technician as each; LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY] |\n| 51 | Fat | Compositional analysis |\n| 52 | Protein | Compositional analysis |\n| 53 | Lactose | Compositional analysis |\n| 54 | Total Solids | Compositional analysis |\n| 55 | Casein | Compositional analysis (some databases inactive) |\n| 70 | Senses (Colostrum) | Fonterra-specific colostrum sensory test |\n| 72 | BactoScan (Colostrum) | Fonterra-specific colostrum bacterial count |\n| 78 | Foreign Matter (Colostrum) | Colostrum-specific foreign matter test [Source: LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING] |\n| 79 | Inhibitory Substance Colostrum | Fonterra-specific colostrum antibiotic test |\n| 84 | E. Coli Water Sample Test | Casual water sample testing [Source: LOP-SR 002 (V15) Receipt of Casual Samples Manual, 5. Find and select the required submission in the list, then click Next (alternatively, double click the] |\n| 105 | Thermoduric Serial Dilutions | Dilution-based thermoduric test [Source: LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY] |\n| 106 | IgG (Testing Program) | IgG screening program [Source: LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED] |\n\n---\n\n## Key Contextual Notes\n\n1. **Database-Specific Configuration**: Test types are configured at the company database level. The same test type number may be used across multiple companies (e.g., Test Type 4 = Coliform Plate Count for Westland, Tatua, Fonterra) [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 3)].\n\n2. **Inactive Test Types**: Some test types are marked as \"Database inactive\" for certain companies, indicating they are no longer actively used but remain in the system [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2); MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 3)].\n\n3. **Microbiology Test Codes**: The Result Release Manual provides a subset of microbiology-specific test types (3, 4, 5, 8, 9, 10, 12, 17, 24, 25) [Source: LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES].\n\n4. **Special Purpose Test Types**:\n   - **Test Type 40**: Reserved for QC failures and missing test reasons across multiple test categories [Source: LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual, 3. Once all results have been entered into MADCAP, inform the Result Release technician as each]\n   - **Test Type 105**: Used specifically for thermoduric serial dilution results [Source: LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY]\n   - **Test Type 84**: Dedicated to casual E. coli water sample testing [Source: LOP-SR 002 (V15) Receipt of Casual Samples Manual, 5. Find and select the required submission in the list, then click Next (alternatively, double click the]\n\n5. **Colostrum-Specific Test Types**: Test types 70, 72, 78, and 79 are designated for colostrum testing, separate from standard milk test types [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 3)].\n\n---\n\n## Coverage Statement\n\nThis list is derived from the canonical MADCAP Test Type List spreadsheet and cross-referenced with procedural manuals. The spreadsheet indicates it contains rows A1:E4172, suggesting a comprehensive catalogue. The evidence provided includes representative samples from this larger dataset. Test types may vary by company database, and the full operational scope includes both active and inactive configurations across all MTNZ client databases.",
+        "answer": "**MADCAP Test Types (number = name)**  \n\n| # | Test Type |\n|---|-----------|\n| 2 | Bacterial Estimate‑Bscan |\n| 3 | Aerobic Plate Count / Standard Plate Count (used for milk) |\n| 4 | Coliform Plate Count |\n| 5 | Thermoduric Plate Count / Thermodurics (48 hr screening) |\n| 6 | IgG (Colostrum) |\n| 8 | Foreign Matter |\n| 9 | Inhibitory Substances |\n| 10 | Senses |\n| 11 | Freezing Point |\n| 12 | Blood Plate Investigation / Grade Investigation |\n| 13 | Somatic Cell Count |\n| 15 | Qasm Assay Stolle / Rid Assay Stolle (same code for both) |\n| 16 | Qasm Assay Stolle / Rid Assay Stolle (duplicate code) |\n| 19 | DRC Casein Project Samples |\n| 20 | DRC Urea Project Samples |\n| 21 | DDE |\n| 23 | Environmental Thermodurics |\n| 25 | Thermodurics (48 hr screening) / Thermoduric Plate Count |\n| 27 | Freezing Point (Combifoss) |\n| 29 | Notif. Inhibitories |\n| 30–31 | (not listed in the provided data) |\n| 35 | Sporeformers |\n| 36 | Bovine Milk Contamination Test / Bovine Milk Contamination |\n| 40 | Quality Control Failure (QC) – used for QC codes |\n| 51 | Fat |\n| 52 | Protein |\n| 53 | Lactose |\n| 54 | Total Solids |\n| 55 | Casein |\n| 57–58 | (not listed) |\n| 78 | Colostrum test type for colostrum samples (per Foreign Matter manual) |\n| 84 | E. coli in Water |\n| 86–87 | Alcohol Precipitation (APT) at 75 % / 70 % |\n| 105 | Thermoduric Serial Dilution |\n| 509 | Fonterra Organic Inhibitory substances |\n\n**Notes & Sources**\n\n* The list is compiled from the two parts of the MADCAP Test Type List (Sources 1 & 2).  \n* Duplicate entries for some codes (e.g., 15/16, 25/5) reflect different test names used by different clients but share the same numeric code.  \n* Codes 78, 84, 86–87, 105 and 509 appear only in the combined data but are included for completeness.  \n* No evidence was found for test types numbered 30–31, 57–58 in the provided sources.  \n* The list is exhaustive for all test types referenced within the supplied chunks.\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)] [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]",
         "citationsInAnswer": [
-          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2); MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 3)",
-          "LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING",
-          "LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES",
-          "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual, 8.2 RESULT REPORTING",
-          "LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual, 3. Once all results have been entered into MADCAP, inform the Result Release technician as each; LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY",
-          "LOP-SR 002 (V15) Receipt of Casual Samples Manual, 5. Find and select the required submission in the list, then click Next (alternatively, double click the",
-          "LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY",
-          "LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED",
-          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 3)",
-          "LOP-OL 001 (V1) Organoleptic Assessment (Senses) Manual, 3. Once all results have been entered into MADCAP, inform the Result Release technician as each"
+          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)",
+          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)"
         ],
         "topSources": [
           {
-            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.2 MICROBIOLOGY RESULT RELEASE",
-            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
-            "section_title": "7.2 MICROBIOLOGY RESULT RELEASE",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 3)",
+            "citation_label": "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)",
             "doc_title": "MADCAP Test Type List",
             "section_title": "Sheet1",
             "source_type": "xlsx"
@@ -118,33 +97,39 @@
             "source_type": "xlsx"
           },
           {
-            "citation_label": "LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING",
-            "doc_title": "LOP-MB 003 (V22) Foreign Matter Manual",
-            "section_title": "8 CALCULATION AND REPORTING",
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44)",
+            "doc_title": "Titan Client Export",
+            "section_title": "Sheet1",
+            "source_type": "xlsx"
+          },
+          {
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)",
+            "doc_title": "Titan Client Export",
+            "section_title": "Sheet1",
+            "source_type": "xlsx"
+          },
+          {
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 13.2 TEST CODES",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "13.2 TEST CODES",
             "source_type": "pdf"
           },
           {
-            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES",
+            "citation_label": "LOP-MB 003 (V22) Foreign Matter Manual, 8.1 RESULT ENTRY",
+            "doc_title": "LOP-MB 003 (V22) Foreign Matter Manual",
+            "section_title": "8.1 RESULT ENTRY",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.1.1 RESULT RELEASE REPORTS",
             "doc_title": "LOP-RR 001 (V7) Result Release Manual",
-            "section_title": "13.2.1 MICROBIOLOGY TEST CODES",
+            "section_title": "7.1.1 RESULT RELEASE REPORTS",
             "source_type": "pdf"
           },
           {
             "citation_label": "LOP-MC 001 (V1) MADCAP Procedures Manual, 5.2 SELECTIONS",
             "doc_title": "LOP-MC 001 (V1) MADCAP Procedures Manual",
             "section_title": "5.2 SELECTIONS",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "5.0-Inhibitory Substances V30, CONFIRMED RESULT ENTRY CODE",
-            "doc_title": "5.0-Inhibitory Substances V30",
-            "section_title": "CONFIRMED RESULT ENTRY CODE",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "LOP-SR 002 (V15) Receipt of Casual Samples Manual, 7.3.1. REGISTRATION OF SAMPLES IN MADCAP",
-            "doc_title": "LOP-SR 002 (V15) Receipt of Casual Samples Manual",
-            "section_title": "7.3.1. REGISTRATION OF SAMPLES IN MADCAP",
             "source_type": "pdf"
           }
         ],
@@ -166,31 +151,12 @@
       {
         "suite": "canonical",
         "question": "What test codes are defined for MADCAP?",
-        "answer": "# MADCAP Test Codes\n\nBased on the retrieved evidence, MADCAP defines test codes (also called \"test types\" or \"test type numbers\") across multiple testing categories. The most authoritative structured source is the **MADCAP Test Type List** spreadsheet, which provides a comprehensive catalogue across multiple databases.\n\n## Canonical Microbiology Test Codes\n\nThe Result Release Manual provides an authoritative reference list of microbiology test codes [Source: LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES]:\n\n- **3** – APC/SPC (Aerobic Plate Count/Standard Plate Count)\n- **4** – Coliform\n- **5** – Thermoduric\n- **8** – Foreign Matter\n- **9** – Inhibitory substances\n- **10** – Senses\n- **12** – Grade Investigation\n- **17** – Sulphite Reducing Clostridia (SRC)\n- **24** – Pseudomonas\n- **25** – 48/72 Hour Screening\n\n## Extended Test Type Catalogue\n\nThe MADCAP Test Type List provides a comprehensive cross-database catalogue of test types used across multiple dairy company databases [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1); MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]:\n\n### Microbiological Test Types\n- **2** – Bacterial Estimate-Bscan\n- **3** – Standard Plate Count / Aerobic Plate Count\n- **4** – Coliform Plate Count\n- **5** – Thermoduric Plate Count\n- **6** – IgG (Colostrum)\n- **8** – Foreign Matter\n- **9** – Inhibitory Substances\n- **10** – Senses\n- **12** – Blood Plate Investigation\n- **15** – Qasm Assay Stolle\n- **16** – Rid Assay Stolle\n- **17** – (Sulphite Reducing Clostridia - from microbiology list)\n- **23** – Environmental Thermodurics\n- **24** – (Pseudomonas - from microbiology list)\n- **25** – Thermodurics (48 hr screening) / 48/72 Hour Screening\n- **32** – (Petrifilm APC results - from procedural evidence)\n- **35** – Sporeformers\n- **36** – Bovine Milk Contamination Test\n\n### Compositional Test Types\n- **11** – Freezing Point\n- **13** – Somatic Cell Count\n- **19** – DRC Casein Project Samples\n- **20** – DRC Urea Project Samples\n- **21** – DDE\n- **27** – Freezing Point (Combifoss)\n- **51** – Fat\n- **52** – Protein\n- **53** – Lactose\n- **54** – Total Solids\n- **55** – Casein\n\n### Specialty/Monitoring Test Types\n\nFrom specialty monitoring procedures [Source: LOP-SP 008 (V1) Routine Monitoring Of Tanker And Supplier Samples, 11 RESPONSIBILITIES]:\n\n- **19** – Iodine\n- **30** – Aflatoxin\n- **210** – Detergent Residue – Total QAC\n- **211** – Detergent Residue – Total NPE\n- **214** – Detergent Residue – Total NI\n- **216** – Detergent Residue – Total ALKS\n- **218** – Detergent Residue – Total ABS\n\n### Operational/QC Test Types\n\n- **40** – QC Failures (used across multiple test types to record quality control failure reasons) [Source: LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual, 8.2 RESULT REPORTING; LOP-MC 001 (V1) MADCAP Procedures Manual, 17.9 QC FAILURE CODES]\n- **78** – Foreign Matter (Colostrum samples specifically) [Source: LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING]\n- **84** – (E. coli water testing program - from procedural evidence) [Source: LOP-MB 002 (V28) Escherichia coli Detection in Water Manual, 7.3 RESULT INTERPRETATION]\n- **105** – Thermoduric Serial Dilutions [Source: LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY]\n\n## Database-Specific Assignment\n\nThe MADCAP Test Type List shows these test types are assigned across different company databases, including [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1); MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]:\n\n- Database 1 (SAITL Software Test Co) - inactive\n- Database 45 (Fresha Valley Processors)\n- Database 50 (NZ Dairy Goat Co-op)\n- Database 59 (OCD - Waharoa)\n- Database 100 (Small companies)\n- Database 357 (Westland)\n- Database 500 (Kiwi Dairies South Island) - inactive\n- Database 609 (Kiwi Dairies North) - inactive\n- Database 863 (Tatua Dairy Co)\n\n## Important Notes\n\n1. **Test type 40 is reserved system-wide for QC failure recording** and is used across multiple testing procedures to capture quality control issues with specific reason codes [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 17.9 QC FAILURE CODES].\n\n2. **Some test types have sample-specific variants**: For example, Foreign Matter uses test type 8 for milk samples but test type 78 for colostrum samples [Source: LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING].\n\n3. **Database status matters**: Several databases in the catalogue are marked \"Database inactive,\" indicating historical test type assignments that may no longer be operational [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)].\n\n4. The available sources provide strong evidence for the core microbiology and compositional test types, with procedural manuals confirming specialized and QC-related codes. The MADCAP Test Type List serves as the comprehensive system-wide reference.",
+        "answer": "**MADCAP Test Type Codes (as defined in the current documentation)**  \n\n| Test‑Type Number | Test Name (short) | Source |\n|------------------|-------------------|--------|\n| 2 | BactoScan | [Source 5] |\n| 3 | APC/SPC (Petrifilm) | [Source 5] |\n| 4 | Coliform | [Source 5] |\n| 5 | Thermoduric (Petrifilm) | [Source 5] |\n| 8 | Foreign Matter | [Source 5] |\n| 9 | Inhibitory substances | [Source 5] |\n|10 | Senses | [Source 5] |\n|12 | Grade Investigation | [Source 5] |\n|17 | Sulphite Reducing Clostridia (SRC) | [Source 5] |\n|24 | Pseudomonas | [Source 5] |\n|25 | 48/72‑Hour Screening | [Source 5] |\n|32 | APC/SPC (Petrifilm) – result entry | [Source 6] |\n|33 | APC/SPC Neat | [Source 5] |\n|34 | Coliform Neat | [Source 5] |\n|35 | Sporeformers | [Source 5] |\n|40 | Quality Control Failure (QC) | [Source 6], [Source 18] |\n|42 | BactoScan Alert | [Source 5] |\n|84 | E. coli in Water | [Source 5] |\n|86 | Alcohol Precipitation (APT) 75% | [Source 5] |\n|70 | Alcohol Precipitation (APT) 70% | [Source 5] |\n|105 | Thermoduric Serial Dilution | [Source 5] |\n|509 | Fonterra Organic Inhibitory substances | [Source 5] |\n\n**Additional test types that appear in the MADCAP Test Type List (database‑specific)**  \n\n| Database | Number | Test Name |\n|----------|--------|-----------|\n| SAITL Software Test Co | 3 | Aerobic Plate Count | [Source 1] |\n| SAITL Software Test Co | 5 | Thermoduric Plate Count | [Source 1] |\n| SAITL Software Test Co | 6 | IgG (Colostrum) | [Source 2] |\n| SAITL Software Test Co | 8 | Foreign Matter | [Source 1] |\n| SAITL Software Test Co | 9 | Inhibitory Substances | [Source 1] |\n| SAITL Software Test Co | 10 | Senses | [Source 1] |\n| SAITL Software Test Co | 11 | Freezing Point | [Source 1] |\n| SAITL Software Test Co | 12 | Blood Plate Investigation | [Source 1] |\n| SAITL Software Test Co | 13 | Somatic Cell Count | [Source 1] |\n| SAITL Software Test Co | 15 | Qasm Assay Stolle | [Source 1] |\n| SAITL Software Test Co | 16 | Rid Assay Stolle | [Source 1] |\n| SAITL Software Test Co | 19 | DRC Casein Project Samples | [Source 1] |\n| SAITL Software Test Co | 20 | DRC Urea Project Samples | [Source 1] |\n| SAITL Software Test Co | 21 | DDE | [Source 1] |\n| SAITL Software Test Co | 23 | Environmental Thermodurics | [Source 1] |\n| SAITL Software Test Co | 25 | Thermodurics (48 hr screening) | [Source 1] |\n| SAITL Software Test Co | 27 | Freezing Point (Combifoss) | [Source 1] |\n| SAITL Software Test Co | 29 | Notif. Inhibitories | [Source 1] |\n| SAITL Software Test Co | 30 | Aflatoxin (from LOP‑SP) | [Source 12] |\n| SAITL Software Test Co | 35 | Sporeformers | [Source 1] |\n| SAITL Software Test Co | 36 | Bovine Milk Contamination Test | [Source 2] |\n| SAITL Software Test Co | 38‑?? | (other codes not listed) | – |\n| Small companies | 3 | Standard Plate Count | [Source 1] |\n| Small companies | 12 | Blood Plate Investigation | [Source 1] |\n| Small companies | 15 | Qasm Assay Stolle | [Source 1] |\n| Small companies | 16 | Rid Assay Stolle | [Source 1] |\n| Small companies | 19 | DRC Casein Project Samples | [Source 1] |\n| Small companies | 20 | DRC Urea Project Samples | [Source 1] |\n| Small companies | 21 | DDE | [Source 1] |\n| Small companies | 23 | Environmental Thermodurics | [Source 1] |\n| Small companies | 25 | Thermodurics (48hr screening) | [Source 1] |\n| Small companies | 27 | Freezing Point (Combifoss) | [Source 1] |\n| Small companies | 29 | Notif. Inhibitories | [Source 1] |\n| Small companies | 35 | Sporeformers | [Source 1] |\n| Kiwi Dairies (North) | 11 | Freezing Point | [Source 1] |\n| Kiwi Dairies (North) | 25 | Thermodurics (48 hr screening) | [Source 1] |\n| Kiwi Dairies (North) | 5 | Thermoduric Plate Count | [Source 1] |\n| Kiwi Dairies (North) | 6 | IgG (Colostrum) | [Source 2] |\n| Kiwi Dairies (North) | 9 | Inhibitory Substances | [Source 2] |\n| Kiwi Dairies (North) | 10 | Senses | [Source 2] |\n| Kiwi Dairies (North) | 12 | Blood Plate Investigation | [Source 2] |\n| Kiwi Dairies (North) | 27 | Freezing Point (Combifoss) | [Source 2] |\n| Kiwi Dairies (North) | 53 | Lactose | [Source 2] |\n| Kiwi Dairies (North) | 54 | Total Solids | [Source 2] |\n| Kiwi Dairies (North) | 55 | Casein | [Source 2] |\n| Kiwi Dairies (South Island) | 8 | Foreign Matter | [Source 1] |\n| Kiwi Dairies (South Island) | 12 | Blood Plate Investigation | [Source 1] |\n| Kiwi Dairies (South Island) | 23 | Environmental Thermodurics | [Source 1] |\n| Kiwi Dairies (South Island) | 27 | Freezing Point (CombiFoss) | [Source 1] |\n| Kiwi Dairies (South Island) | 53 | Lactose | [Source 1] |\n| Kiwi Dairies (South Island) | 54 | Total Solids | [Source 1] |\n| Kiwi Dairies (South Island) | 10 | Senses | [Source 1] |\n| Kiwi Dairies (South Island) | 11 | Freezing Point | [Source 1] |\n| Tatua Dairy Co | 3 | Standard Plate Count | [Source 1] |\n| Tatua Dairy Co | 4 | Coliform Plate Count | [Source 2] |\n| Tatua Dairy Co | 5 | Thermoduric Plate Count | [Source 2] |\n| Tatua Dairy Co | 10 | Senses | [Source 2] |\n| Tatua Dairy Co | 12 | Blood Plate Investigation | [Source 2] |\n| Tatua Dairy Co | 53 | Lactose | [Source 2] |\n| Tatua Dairy Co | 54 | Total Solids | [Source 2] |\n| Fresha Valley Processors | 3 | Standard Plate Count | [Source 1] |\n| Fresha Valley Processors | 10 | Senses | [Source 2] |\n| Fresha Valley Processors | 53 | Lactose | [Source 2] |\n| Fresha Valley Processors | 54 | Total Solids | [Source 2] |\n| ... | (other companies list continues) | – |\n\n**Key points**\n\n* The core microbiology test codes used across all companies are numbers 2, 3, 4, 5, 8, 9, 10, 12, 17, 24, 25, 32, 33, 34, 35, 40, 42, 70, 84, 86, 105 and 509.  \n* Each database (company) has its own subset of test types that are active for that client; the “MADCAP Test Type List” documents (Sources 1 & 2) provide the full mapping.  \n* QC failures are always entered under test type 40 (Source 6, Source 18).  \n* For result entry of Petrifilm plates the test type is 32 (Source 6).  \n\nThese lists represent all test codes that are currently defined and used within MADCAP according to the available documentation.\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)] [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]",
         "citationsInAnswer": [
-          "LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES",
-          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1); MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)",
-          "LOP-SP 008 (V1) Routine Monitoring Of Tanker And Supplier Samples, 11 RESPONSIBILITIES",
-          "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual, 8.2 RESULT REPORTING; LOP-MC 001 (V1) MADCAP Procedures Manual, 17.9 QC FAILURE CODES",
-          "LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING",
-          "LOP-MB 002 (V28) Escherichia coli Detection in Water Manual, 7.3 RESULT INTERPRETATION",
-          "LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY",
-          "LOP-MC 001 (V1) MADCAP Procedures Manual, 17.9 QC FAILURE CODES",
-          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)"
+          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)",
+          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)"
         ],
         "topSources": [
-          {
-            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.2 MICROBIOLOGY RESULT RELEASE",
-            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
-            "section_title": "7.2 MICROBIOLOGY RESULT RELEASE",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44)",
-            "doc_title": "Titan Client Export",
-            "section_title": "Sheet1",
-            "source_type": "xlsx"
-          },
           {
             "citation_label": "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)",
             "doc_title": "MADCAP Test Type List",
@@ -204,10 +170,22 @@
             "source_type": "xlsx"
           },
           {
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44)",
+            "doc_title": "Titan Client Export",
+            "section_title": "Sheet1",
+            "source_type": "xlsx"
+          },
+          {
             "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)",
             "doc_title": "Titan Client Export",
             "section_title": "Sheet1",
             "source_type": "xlsx"
+          },
+          {
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 13.2 TEST CODES",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "13.2 TEST CODES",
+            "source_type": "pdf"
           },
           {
             "citation_label": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual, 8.2 RESULT REPORTING",
@@ -216,15 +194,15 @@
             "source_type": "pdf"
           },
           {
-            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.1.5 AMENDED REPORTS",
             "doc_title": "LOP-RR 001 (V7) Result Release Manual",
-            "section_title": "13.2.1 MICROBIOLOGY TEST CODES",
+            "section_title": "7.1.5 AMENDED REPORTS",
             "source_type": "pdf"
           },
           {
-            "citation_label": "LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING",
+            "citation_label": "LOP-MB 003 (V22) Foreign Matter Manual, 8.1 RESULT ENTRY",
             "doc_title": "LOP-MB 003 (V22) Foreign Matter Manual",
-            "section_title": "8 CALCULATION AND REPORTING",
+            "section_title": "8.1 RESULT ENTRY",
             "source_type": "pdf"
           }
         ],
@@ -246,26 +224,11 @@
       {
         "suite": "canonical",
         "question": "What is in Appendix 13.2.1?",
-        "answer": "Based on the available sources, **Appendix 13.2.1** contains **Microbiology Test Codes** used in the MADCAP system [Source: LOP-RR 001 (V7) Result Release Manual, 7.2 MICROBIOLOGY RESULT RELEASE].\n\nThe documented test codes in Appendix 13.2.1 are [Source: LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES]:\n\n- **APC/SPC** – Test code 3\n- **Coliform** – Test code 4\n- **Thermoduric** – Test code 5\n- **Foreign Matter** – Test code 8\n- **Inhibitory substances** – Test code 9\n- **Senses** – Test code 10\n- **Grade Investigation** – Test code 12\n- **Sulphite Reducing Clostridia (SRC)** – Test code 17\n- **Pseudomonas** – Test code 24\n- **48/72 Hour Screening** – Test code 25\n\n**Operational Context:**\nThese test type numbers are specific to MADCAP and are used during microbiology result release processes. Staff refer to this appendix when performing operations such as coliform and thermoduric releasing [Source: LOP-RR 001 (V7) Result Release Manual, 7.2 MICROBIOLOGY RESULT RELEASE].\n\nAdditional evidence from the MADCAP Test Type List confirms these test codes are deployed across multiple databases (e.g., Database 100 \"Small companies\", Database 863 \"Tatua Dairy Co\", and various other databases) [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)].\n\n**Cross-Reference:**\nOne casual sample procedure references test code 84 for E. Coli water sample tests, which is not listed in the Appendix 13.2.1 extract provided [Source: LOP-SR 002 (V15) Receipt of Casual Samples Manual, 5. Find and select the required submission in the list, then click Next (alternatively, double click the]. This suggests Appendix 13.2.1 may focus specifically on routine microbiology test codes rather than all MADCAP test types.",
+        "answer": "Appendix 13.2.1 lists the Microbiology test codes used in MADCAP, showing each **Test Type** and its corresponding **Test Type Number**. The table includes codes such as BactoScan (2), APC/SPC (3), Coliform (4), Thermoduric (5), Foreign Matter (8), Inhibitory substances (9), Senses (10), Grade Investigation (12), Sulphite Reducing Clostridia (SRC) (17), Pseudomonas (24), 48/72 Hour Screening (25) and the extended set for Petrifilm, APC/SPC Neat, Coliform Neat, Sporeformers, Quality Control Failure, BactoScan Alert, E. coli in Water and the various Alcohol Precipitation (APT) and Thermoduric Serial Dilution codes.  \n[Source: LOP‑RR 001 (V7) Result Release Manual, 13.2 TEST CODES]",
         "citationsInAnswer": [
-          "LOP-RR 001 (V7) Result Release Manual, 7.2 MICROBIOLOGY RESULT RELEASE",
-          "LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES",
-          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)",
-          "LOP-SR 002 (V15) Receipt of Casual Samples Manual, 5. Find and select the required submission in the list, then click Next (alternatively, double click the"
+          "LOP‑RR 001 (V7) Result Release Manual, 13.2 TEST CODES"
         ],
         "topSources": [
-          {
-            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)",
-            "doc_title": "Titan Client Export",
-            "section_title": "Sheet1",
-            "source_type": "xlsx"
-          },
-          {
-            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44)",
-            "doc_title": "Titan Client Export",
-            "section_title": "Sheet1",
-            "source_type": "xlsx"
-          },
           {
             "citation_label": "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)",
             "doc_title": "MADCAP Test Type List",
@@ -279,21 +242,33 @@
             "source_type": "xlsx"
           },
           {
-            "citation_label": "LOP-QM 005 (V1) Uncertainty of Measurement Manual, 7.13.2.1 CREAM ILCPS",
-            "doc_title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
-            "section_title": "7.13.2.1 CREAM ILCPS",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "LOP-QM 005 (V1) Uncertainty of Measurement Manual, 7.13.2.1 CREAM ILCPS",
-            "doc_title": "LOP-QM 005 (V1) Uncertainty of Measurement Manual",
-            "section_title": "7.13.2.1 CREAM ILCPS",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 13.2.1 MICROBIOLOGY TEST CODES",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 13.2 TEST CODES",
             "doc_title": "LOP-RR 001 (V7) Result Release Manual",
-            "section_title": "13.2.1 MICROBIOLOGY TEST CODES",
+            "section_title": "13.2 TEST CODES",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44)",
+            "doc_title": "Titan Client Export",
+            "section_title": "Sheet1",
+            "source_type": "xlsx"
+          },
+          {
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)",
+            "doc_title": "Titan Client Export",
+            "section_title": "Sheet1",
+            "source_type": "xlsx"
+          },
+          {
+            "citation_label": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual, 3. Label the Petrifilm sheets with the sample ID and dilution factor in the top portion of the film,",
+            "doc_title": "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual",
+            "section_title": "3. Label the Petrifilm sheets with the sample ID and dilution factor in the top portion of the film,",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-SP 002 (V4) Titratable Acidity Manual, 13.2.1 PROCEDURE FOR REPLENISHING THE SODIUM HYDROXIDE SOLUTION.",
+            "doc_title": "LOP-SP 002 (V4) Titratable Acidity Manual",
+            "section_title": "13.2.1 PROCEDURE FOR REPLENISHING THE SODIUM HYDROXIDE SOLUTION.",
             "source_type": "pdf"
           },
           {
@@ -323,41 +298,12 @@
       {
         "suite": "rules",
         "question": "What operational rules and validation conditions for MADCAP are described across the corpus?",
-        "answer": "# MADCAP Operational Rules and Validation Conditions\n\n## Direct Answer\n\nThe corpus contains a **distributed operational rule model** for MADCAP (Milk Analysis, Data Capture & Processing) spanning system configuration, sample classification, data entry protocols, result entry procedures, and release conditions. Rather than a single formal specification, operational rules are embedded across procedures manuals, test-specific protocols, instrument operating procedures, and sample receipt workflows.\n\n## Rule Model by Category\n\n### 1. System Configuration and Data Partitioning Rules\n\n**Database Architecture:**\n- MADCAP uses 3-digit database codes to separate dairy company data [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 1 PRINCIPLE]\n- Database 020: Fonterra\n- Database 100: Small companies (also handles Green Valley Dairies groups 58-59 and Fonterra Rail Milk groups 90-92)\n- Active databases verified in test type configurations [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)]\n\n**Product Differentiation:**\n- Two sample types enforced: Colostrum and Raw Milk [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 1 PRINCIPLE]\n- Users must change to required database AND product before operations\n- Product type must be explicitly selected for colostrum result release [Source: LOP-RR 001 (V7) Result Release Manual, 4 HEALTH AND SAFETY]\n\n**Sample Classification:**\n- Farm Samples: Bulk milk samples collected on farm\n- User-defined Samples: Casual samples, Tanker samples (fit-to-unload)\n- System Samples [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 1 PRINCIPLE]\n\n### 2. Sample Classification and Eligibility Rules\n\n**Tanker Acceptance Samples:**\n- Must use \"Tanker Acceptance\" sample type (not \"Casual Samples\") in dropdown\n- Database: 555\n- Required tests: BactoScan, Inhibitory Substances, and FEI [Source: LOP-SR 002 (V15) Receipt of Casual Samples Manual, 1. Check samples against the submission form]\n\n**Colostrum vs. Milk Test Type Assignment:**\n- Milk samples → Test Type 8 (Foreign Matter)\n- Colostrum samples → Test Type 78 (Foreign Matter)\n- Product type must match: \"1 Colostrum\" product for database 380 [Source: LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING]\n\n### 3. Data Entry and Formatting Rules\n\n**Numeric Result Requirement:**\n- MADCAP requires numeric results to be entered for all tests\n- This rule applies universally to: Coliform counts, Thermoduric counts, and other microbiological tests\n- Lower and upper reporting limits applied during customer reporting, not at entry [Source: LOP-MB 007 (V3) Coliform Plate Count Manual, 7.5.4 COUNTING GUIDELINES; LOP-MB 008 (V2) Thermoduric Plate Count Manual, 7.6.5 COUNTING GUIDELINES]\n\n**Entry Mode Selection:**\n- Automatic data entry sessions available for instrument integration\n- Manual entry mode required for references and proficiency samples [Source: LOP-QM 001 (V9) Proficiency Testing Manual, 2. Set MADCAP to manual entry]\n\n### 4. Result Entry and Adjustment Rules\n\n**Farm Sample Entry Protocols:**\n- New results: Section 4.1.2.2 of LOP-MC 001\n- Adjustments to existing results: Section 4.2.3 of LOP-MC 001\n- Applies to: Thermoduric counts, Coliform counts, Pseudomonas counts, IgG screening [Source: LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY; LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY; LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS]\n\n**Casual Sample Entry Protocols:**\n- New results: Section 4.1.2.6 of LOP-MC 001\n- Adjustments to existing results: Section 4.2.5 of LOP-MC 001 [Source: LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY; LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS]\n\n**Hold Messages:**\n- Email requests entered as holds in MADCAP\n- Documented in Hold Messages section of LOP-MC 001 [Source: LOP-SR 002 (V15) Receipt of Casual Samples Manual, 7.10.1 ENTERING THE REQUESTS]\n\n### 5. Instrument and Program-Specific Rules\n\n**CombiFoss Reference Requirements:**\n- Reference values must be entered into MADCAP before use\n- Applies to: cow, goat, and sheep references\n- Procedure: Section 4.1.2.4 (Site Samples) of LOP-MC 001 [Source: EOP 014 (V1) CombiFoss Manual, 7.6.10 ENTERING A NEW REFERENCE VALUE]\n\n**Reference Startup Protocol:**\n- Queue reference code three times in entry session\n- Analyzer and program configured according to MADCAP Setup section 7.2.1 [Source: EOP 014 (V1) CombiFoss Manual, 7.2.2 MILKOSCAN REFERENCE STARTUP]\n\n**Colony Counter Integration:**\n- Open automatic data entry session per LOP-MC 001 Automatic Result Entry section [Source: EOP 018 (V1) Colony Counter Manual, 7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP]\n\n**IgG Screening Parameters:**\n- Date: Supply Date\n- Testing Program: 106 IgG\n- Manual entry via Section 4.1.2.2 (Farm Samples) [Source: LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED]\n\n### 6. Selection and Scheduling Rules\n\n**Farm Sample Selection Methods:**\n- **Random**: Specified number of selections within time period\n- **Follow-up**: Triggered by result range; requires specified number of clear results to fulfill regime\n- **Manual**: Specified selections for specific date/time period\n- **1st collection**: Triggered by days since last result for specified test type [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 5.2 SELECTIONS]\n\n### 7. Release and Reporting Rules\n\n**Result Extraction Requirement:**\n- Results extracted from MADCAP via Result Release reports\n- Reference: LOP-MC 001 Running A Report section and Result Details section\n- Spiderman toolbar button available as shortcut [Source: LOP-RR 001 (V7) Result Release Manual, 3. Results need to be extracted from MADCAP]\n\n**Result Verification Protocol (Foreign Matter):**\n- Run Result Listing report after entry\n- **Milk samples**: Database-specific, Tests 8 and 10, date range from Supply date to Today\n- **Colostrum samples**: Product \"1 Colostrum\", Database 380 [Source: LOP-MB 003 (V22) Foreign Matter Manual, 8.2 RESULT VERIFICATION]\n\n**Test Type Assignment:**\n- Every test has specific test type number\n- Test codes documented in Appendix 13.2\n- Regional/site release uses Fonterra Supplier Group Codes (Appendix 13.1) [Source: LOP-RR 001 (V7) Result Release Manual, 4 HEALTH AND SAFETY]\n\n**Multi-Database Filing:**\n- Automatic result entry can file samples from different databases without database switching [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 1 PRINCIPLE]\n\n### 8. Test Type Configuration Rules\n\n**Database-Test Type Matrix:**\nEvidence shows specific test type assignments across active and inactive databases:\n- Database 863 (Tatua): Test types 25, 35, 3, 4, 10, 5 (all active)\n- Database 45 (Fresha Valley): Test types 11, 10, 3, 53, 54 (all active)\n- Database 100 (Small companies): Test types 12, 15, 16, 19, 20, 21, 23, 25, 27, 29, 35, 10, 5, 3, 36, 51-54\n- Inactive databases (1, 500, 609) retain historical test type configurations [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1), (part 2)]\n\n## Operational Implications\n\n**Procedural Dependencies:**\n- MADCAP operations require continuous cross-reference to LOP-MC 001 master procedures for: automatic/manual result entry, result adjustment, hold management, report generation, and result release\n- Test-specific manuals defer to LOP-MC 001 for standardized data handling\n\n**Quality Control Integration:**\n- Reference sample handling requires MADCAP entry before operational use\n- Result verification via report generation is mandatory for critical tests (foreign matter)\n- Follow-up regimes enforce quality thresholds through automated selection rules\n\n**Client Segmentation:**\n- Tier 9 classification evident in client export (Mahoe Cheese, Marja Van Loon, Mars Manufacturing, Massey University, etc.) [Source: Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44), (part 11)]\n- Database separation ensures data isolation between competing dairy companies\n\n## Evidence Note\n\nThis synthesis consolidates distributed rule evidence from 10+ procedural documents. The MADCAP system implements operational rules through a combination of database configuration, documented procedures (primarily LOP-MC 001 as master reference), test-specific protocols, and instrument integration workflows rather than a single formal specification document. Major rule categories are well-supported; no significant evidence gaps identified for core operational domains.",
+        "answer": "**Direct answer**\n\nMADCAP’s operational rules and validation conditions are spread across multiple documents.  Key requirements include: (1) mandatory selection of the correct database and product before any action; (2) numeric result entry with optional reporting limits for direct plating methods; (3) automatic prompts for reference/pilot start‑ups when required by the analyser; (4) defined sample selection methods (random, follow‑up, manual, 1st collection); and (5) a two‑step release process where results are extracted from MADCAP, compiled, and then released.  These rules cover database configuration, sample classification, result entry, reference handling, selection logic and release workflow.  \n\n---\n\n### Rule model (grouped)\n\n| Category | Key rules & validation conditions | Source |\n|----------|----------------------------------|--------|\n| **System configuration and data partitioning** | • Each dairy company has a 3‑digit database code; user must switch to the correct database and product before any operation. <br>• MADCAP products differentiate sample types (e.g., Colostrum, Raw Milk). <br>• Automatic result entry can file samples from multiple databases without switching. | [Source 5] |\n| **Sample classification** | • Samples are classified as Farm, User‑defined (casual), or System samples. <br>• Casual sample handling requires a specific “Tanker Acceptance” type (L OP‑SR 002). | [Source 5], [Source 18] |\n| **Result entry & formatting** | • Numeric results only; for direct plating, any result can be entered as limits are applied during reporting. <br>• Reference codes must be queued three times in MADCAP when a reference startup is required. | [Source 11], [Source 6] |\n| **Reference and pilot start‑up** | • MADCAP automatically prompts for reference/pilot startup; user must perform the required action. <br>• Reference code queued in entry session for milk type (EOP 014). | [Source 6], [Source 20] |\n| **Sample selection logic** | • MADCAP can select farm samples by: <br> • Random (fixed number within a period) <br> • Follow‑up regime triggered by result ranges <br> • Manual (specific date/time) <br> • 1st collection based on days since last result for a test type. | [Source 21] |\n| **Result release workflow** | • After entry, results must be extracted from MADCAP for inclusion in external reports. <br>• Once released, compile results following the procedure outlined in MADCAP procedures manual. | [Source 9], [Source 15] |\n| **Validation of sample data** | • Sample IDs and counts must match the submission form before batch creation (L OP‑SR 002). | [Source 18] |\n| **Manual entry procedures** | • For farm and casual samples, manual result entry follows specific sections (e.g., 4.1.2.2 for farm, 4.1.2.6 for casual). | [Source 10] |\n| **Counting guidelines** | • Lower and upper reporting limits are applied automatically; any numeric value can be entered for direct plating. | [Source 11], [Source 13] |\n\n---\n\n### Operational implications\n\n1. **Database selection** – Operators must always verify the active database/product before any entry or report generation; failure to do so can mis‑assign data.  \n2. **Reference handling** – When a new analyser or test is introduced, the reference startup prompt must be answered and reference codes queued to ensure calibration.  \n3. **Result entry** – Numeric entry is mandatory; manual entry for farm vs casual samples follows distinct sections, so training should emphasize the correct section.  \n4. **Selection methods** – The chosen selection method (random, follow‑up, manual, 1st collection) determines which samples are queued for testing; incorrect configuration can lead to sampling bias.  \n5. **Release** – Extraction and compilation steps are required before results can be sent to clients; skipping these steps will result in incomplete or inaccurate reports.\n\nThese rules collectively define how MADCAP is configured, how samples are managed and entered, and how results are validated and released.\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)] [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]",
         "citationsInAnswer": [
-          "LOP-MC 001 (V1) MADCAP Procedures Manual, 1 PRINCIPLE",
           "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)",
-          "LOP-RR 001 (V7) Result Release Manual, 4 HEALTH AND SAFETY",
-          "LOP-SR 002 (V15) Receipt of Casual Samples Manual, 1. Check samples against the submission form",
-          "LOP-MB 003 (V22) Foreign Matter Manual, 8 CALCULATION AND REPORTING",
-          "LOP-MB 007 (V3) Coliform Plate Count Manual, 7.5.4 COUNTING GUIDELINES; LOP-MB 008 (V2) Thermoduric Plate Count Manual, 7.6.5 COUNTING GUIDELINES",
-          "LOP-QM 001 (V9) Proficiency Testing Manual, 2. Set MADCAP to manual entry",
-          "LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY; LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY; LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS",
-          "LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY; LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS",
-          "LOP-SR 002 (V15) Receipt of Casual Samples Manual, 7.10.1 ENTERING THE REQUESTS",
-          "EOP 014 (V1) CombiFoss Manual, 7.6.10 ENTERING A NEW REFERENCE VALUE",
-          "EOP 014 (V1) CombiFoss Manual, 7.2.2 MILKOSCAN REFERENCE STARTUP",
-          "EOP 018 (V1) Colony Counter Manual, 7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP",
-          "LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED",
-          "LOP-MC 001 (V1) MADCAP Procedures Manual, 5.2 SELECTIONS",
-          "LOP-RR 001 (V7) Result Release Manual, 3. Results need to be extracted from MADCAP",
-          "LOP-MB 003 (V22) Foreign Matter Manual, 8.2 RESULT VERIFICATION",
-          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1), (part 2)",
-          "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44), (part 11)"
+          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)"
         ],
         "topSources": [
-          {
-            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44)",
-            "doc_title": "Titan Client Export",
-            "section_title": "Sheet1",
-            "source_type": "xlsx"
-          },
-          {
-            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)",
-            "doc_title": "Titan Client Export",
-            "section_title": "Sheet1",
-            "source_type": "xlsx"
-          },
           {
             "citation_label": "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)",
             "doc_title": "MADCAP Test Type List",
@@ -371,27 +317,39 @@
             "source_type": "xlsx"
           },
           {
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44)",
+            "doc_title": "Titan Client Export",
+            "section_title": "Sheet1",
+            "source_type": "xlsx"
+          },
+          {
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)",
+            "doc_title": "Titan Client Export",
+            "section_title": "Sheet1",
+            "source_type": "xlsx"
+          },
+          {
             "citation_label": "LOP-MC 001 (V1) MADCAP Procedures Manual, 1 PRINCIPLE",
             "doc_title": "LOP-MC 001 (V1) MADCAP Procedures Manual",
             "section_title": "1 PRINCIPLE",
             "source_type": "pdf"
           },
           {
-            "citation_label": "LOP-MB 007 (V3) Coliform Plate Count Manual, 7.5.4 COUNTING GUIDELINES",
-            "doc_title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
-            "section_title": "7.5.4 COUNTING GUIDELINES",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY",
-            "doc_title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
-            "section_title": "8.2.2 MANUAL RESULT ENTRY",
+            "citation_label": "EOP 014 (V1) CombiFoss Manual, 3. Following the instructions outlined as outlined in LOP-MC 001 MADCAP Procedures Manual,",
+            "doc_title": "EOP 014 (V1) CombiFoss Manual",
+            "section_title": "3. Following the instructions outlined as outlined in LOP-MC 001 MADCAP Procedures Manual,",
             "source_type": "pdf"
           },
           {
             "citation_label": "LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS - REPORTING INTO MADCAP",
             "doc_title": "LOP-MB 010 (V2) Pseudomonas Count Manual",
             "section_title": "8.2.1 ROUTINE SUPPLIERS - REPORTING INTO MADCAP",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY",
+            "doc_title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+            "section_title": "8.2.2 MANUAL RESULT ENTRY",
             "source_type": "pdf"
           }
         ],
@@ -413,45 +371,12 @@
       {
         "suite": "rules",
         "question": "Summarise the MADCAP-related validation conditions, entry requirements, release criteria, and exceptions across the manuals.",
-        "answer": "# MADCAP Validation Conditions, Entry Requirements, Release Criteria, and Exceptions\n\n## Direct Answer\n\nMADCAP operates as a distributed rule system where validation conditions, entry requirements, and release criteria are defined across multiple laboratory procedures, equipment operation manuals, and test-specific protocols. The system enforces numeric result entry requirements, database-specific test type configurations, multi-stage manual and automatic entry workflows, adjustment protocols for existing results, and specific release compilation procedures.\n\n---\n\n## Consolidated Rule Model\n\n### 1. System Configuration and Data Partitioning Rules\n\n**Database Partitioning Structure**\n- MADCAP operates with multiple segregated databases, each with specific test type assignments [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)]\n- Active databases include: Database 45 (Fresha Valley Processors), 50 (NZ Dairy Goat Co-op), 59 (OCD - Waharoa), 100 (Small companies), 357 (Westland), 863 (Tatua Dairy Co) [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1) & (part 2)]\n- Inactive databases flagged: Database 1 (SAITL Software Test Co), 500 (Kiwi Dairies South Island), 609 (Kiwi Dairies North) [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1) & (part 2)]\n\n**Server Infrastructure Rules**\n- File import processes must be performed while logged into MADCAP server (MTNZMcap01) depending on Manual Selection Import Directory parameter configuration [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 17.8.3 IMPORTING A FILE]\n\n**Client Configuration**\n- Client records contain tiered classification (Tier 9 designation) with active/hold status flags [Source: Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11) & (part 44)]\n- Auto-email permissions controlled at client level [Source: Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)]\n\n---\n\n### 2. Test Type and Database Assignment Rules\n\n**Test Type Distribution by Database**\n- Database-specific test type assignments enforced across 50+ test types [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1) & (part 2)]\n- Examples of active test type assignments:\n  - Test Type 3 (Standard Plate Count): Databases 863, 45, 50, 100 [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]\n  - Test Type 11 (Freezing Point): Database 45 [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)]\n  - Test Type 25 (Thermodurics 48hr screening): Databases 863, 100 [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)]\n  - Test Type 53-54 (Lactose/Total Solids): Databases 863, 45, 59, 357, 100 [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]\n\n**Instrument-Specific Test Programs**\n- Test Type 106 (IgG) designated for CombiFoss instrument [Source: LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED]\n- Test Type 32 designated for Petrifilm Aerobic Plate Count [Source: LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual, 8.2 RESULT REPORTING]\n\n---\n\n### 3. Data Entry and Formatting Rules\n\n**Mandatory Numeric Entry Requirement**\n- MADCAP requires numeric results for all entries; non-numeric values prohibited [Source: LOP-MB 007 (V3) Coliform Plate Count Manual, 7.5.4 COUNTING GUIDELINES]\n- Lower and upper reporting limits handled at customer reporting stage, not at data entry [Source: LOP-MB 007 (V3) Coliform Plate Count Manual, 7.5.4 COUNTING GUIDELINES; LOP-MB 008 (V2) Thermoduric Plate Count Manual, 7.6.5 COUNTING GUIDELINES]\n- Any numeric result value accepted at entry stage; range enforcement deferred to reporting layer [Source: LOP-MB 008 (V2) Thermoduric Plate Count Manual, 7.6.5 COUNTING GUIDELINES]\n\n**Entry Mode Rules**\n- **Manual Entry Workflow**: Distinct procedures defined in LOP-MC 001 for farm samples (Section 4.1.2.2) and casual samples (Section 4.1.2.6) [Source: LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY; LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY; LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS - REPORTING INTO MADCAP]\n- **Automatic Entry Workflow**: Requires session initialization following LOP-MC 001 Automatic Result Entry procedures [Source: EOP 018 (V1) Colony Counter Manual, 7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP; EOP 020 (V2) BactoScan FC Manual]\n- **Site Sample Entry**: Special category for reference material entry (Section 4.1.2.4) [Source: EOP 014 (V1) CombiFoss Manual, 7.6.10 ENTERING A NEW REFERENCE VALUE]\n\n---\n\n### 4. Result Adjustment and Modification Rules\n\n**Adjustment Protocol for Existing Results**\n- When result already exists, adjustment procedure required rather than new entry [Source: LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY; LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY; LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS - REPORTING INTO MADCAP]\n- Farm sample adjustments: LOP-MC 001 Section 4.2.3 [Source: LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY; LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY; LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS - REPORTING INTO MADCAP]\n- Casual sample adjustments: LOP-MC 001 Section 4.2.5 [Source: LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY; LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS - REPORTING INTO MADCAP]\n\n**File Import Procedures**\n- Results imported from external files with file selection interface [Source: LOP-MB 003 (V22) Foreign Matter Manual, 8.1.1 SUPPLIER SAMPLES]\n- File import triggers automatic result assignment to samples in MADCAP [Source: LOP-MB 003 (V22) Foreign Matter Manual, 8.1.1 SUPPLIER SAMPLES]\n\n---\n\n### 5. Instrument and Application Integration Rules\n\n**RFID Scanner Integration**\n- ID Scanner setup required following LOP-MC 001 procedures for automatic entry sessions [Source: EOP 020 (V2) BactoScan FC Manual]\n\n**CombiFoss Instrument Rules**\n- Reference samples queued three times into entry session [Source: EOP 014 (V1) CombiFoss Manual, 7.2.2 MILKOSCAN REFERENCE STARTUP]\n- Reference value entry required before new cow/goat/sheep reference use to enable limit application [Source: EOP 014 (V1) CombiFoss Manual, 7.6.10 ENTERING A NEW REFERENCE VALUE]\n\n**BactoScan Integration**\n- Requires Application Launcher initialization and parameter-based automatic result entry setup [Source: EOP 020 (V2) BactoScan FC Manual]\n\n**Colony Counter Integration**\n- Control Vision testing program setup requires automatic data entry session initialization [Source: EOP 018 (V1) Colony Counter Manual, 7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP]\n\n---\n\n### 6. Hold Messages and Sample Management Rules\n\n**Hold Entry Protocol**\n- Email-received requests entered as holds in MADCAP using LOP-MC 001 Hold Messages procedures [Source: LOP-SR 002 (V15) Receipt of Casual Samples Manual, 7.10.1 ENTERING THE REQUESTS]\n\n**Sample Verification**\n- Sample entry verification performed using Reports/User Defined/Sample Listing toolbar path [Source: LOP-SR 002 (V15) Receipt of Casual Samples Manual, 7.7.3 SAMPLE LISTING REPORT FOR SILO SAMPLES]\n\n---\n\n### 7. Release and Reporting Rules\n\n**Result Extraction for Reporting**\n- Results extracted using LOP-MC 001 Running A Report section and Result Details section [Source: LOP-RR 001 (V7) Result Release Manual]\n- Toolbar shortcut (Spiderman button) available for report execution [Source: LOP-RR 001 (V7) Result Release Manual]\n\n**Release Compilation Process**\n- Confirmed interim positive samples: Release followed by result compilation using LOP-MC 001 Result File Compilation and Transmission sections [Source: LOP-RR 001 (V7) Result Release Manual, 7.2.2.1 RELEASING CONFIRMED INTERIM POSITIVE SAMPLES]\n- Results copied from MADCAP to customer reports after extraction [Source: LOP-RR 001 (V7) Result Release Manual]\n\n**IgG-Specific Release Protocol**\n- Manual result entry with date (Supply Date) and Testing Program 106 designation [Source: LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED]\n- Release continues via Section 8.1 steps 4-5 procedures [Source: LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED]\n\n---\n\n## Operational Implications\n\n**Distributed Rule Architecture**: The MADCAP system implements a distributed validation model where rules are defined across laboratory operating procedures (LOP), equipment operating procedures (EOP), and test-specific manuals rather than consolidated in a single specification document. This requires procedure cross-referencing during execution.\n\n**Dual Entry Pathway**: The system supports parallel manual and automatic entry workflows with distinct validation paths, requiring operators to select appropriate procedures based on sample type (farm/casual/site) and entry mode.\n\n**Deferred Validation Model**: Core numeric entry validation is mandatory at input, while range-based reporting limits are enforced at the customer reporting layer, enabling flexible result entry while maintaining output control.\n\n**Cross-Document Dependencies**: All test-specific manuals defer detailed entry, adjustment, and release procedures to the master LOP-MC 001 MADCAP Procedures Manual, creating a hub-and-spoke rule dependency structure.\n\n---\n\n## Evidence Notes\n\nThe retrieved corpus does not contain the complete LOP-MC 001 MADCAP Procedures Manual (only section 17.8.3 is present), which is the primary reference document for detailed entry, adjustment, hold message, report generation, compilation, and transmission procedures cited across all test-specific manuals. The rule model above consolidates all grounded validation conditions, entry requirements, and release criteria from the available evidence, with explicit acknowledgment that detailed procedural steps (section 4.x series, section 17.8.1, etc.) are referenced but not fully retrieved.",
+        "answer": "**Direct answer**\n\nMADCAP entry, validation and release are governed by a set of distributed rules that require: (1) selecting the correct database/product, (2) entering a numeric result (or a value within lower/upper limits for direct plating), (3) using the procedures in LOP‑MC 001 for manual or automatic data entry, (4) extracting results from MADCAP for reporting, and (5) compiling released results per the same LOP‑MC 001 procedure. Exceptions are limited to cases where reporting limits override raw values (direct plating) and to non‑numeric data that must be converted or omitted.\n\n---\n\n### 1. Rule model\n\n| Category | Key rules & conditions | Sources |\n|----------|------------------------|---------|\n| **System configuration & data partitioning** | • MADCAP contains separate “Databases” per dairy company (3‑digit code) and “Products” for sample types. <br>• User must change to the required database/product before any operation; automatic entry can bypass this for selected samples. | [Source 24] |\n| **Sample classification** | • “Farm Samples” for bulk milk; user‑defined samples for casual or other types. <br>• Sample type determines which manual applies (e.g., coliform, thermoduric). | [Source 24] |\n| **Data entry & formatting** | • All results entered into MADCAP must be numeric. <br>• For direct plating methods, lower/upper reporting limits are applied; any result can be entered. <br>• Manual entry follows LOP‑MC 001 procedures: Farm samples – Section 4.1.2.2; Casual samples – Section 4.1.2.6. <br>• Automatic entry sessions are started via LOP‑MC 001 (e.g., Colony Counter Manual). | [Source 16], [Source 21], [Source 8], [Source 9], [Source 11] |\n| **Validation conditions** | • MADCAP will reject non‑numeric entries. <br>• Lower/upper limits are enforced only for reporting; raw data can exceed limits in direct plating. | [Source 16], [Source 21] |\n| **Release & reporting** | • Results must be extracted from MADCAP for inclusion in external reports. <br>• After release, compile results following LOP‑MC 001 procedures. | [Source 13], [Source 15] |\n| **Exception handling** | • Direct plating methods allow entry of any numeric value; limits are applied only at reporting. <br>• No explicit exception for missing data, but non‑numeric entries are blocked. | [Source 16] |\n| **Supporting manuals** | • Many sample‑specific manuals (Coliform, Thermoduric, Pseudomonas, Aerobic Plate Count, Foreign Matter) all reference LOP‑MC 001 for entry and reporting. | [Source 5], [Source 6], [Source 7], [Source 10], [Source 12], [Source 18] |\n| **Other procedural links** | • Titan Client Export and other client lists are used to map samples to databases but do not alter entry rules. | [Source 1], [Source 2], [Source 3], [Source 4] |\n\n---\n\n### 2. Operational implications\n\n1. **Before entry** – log into the MADCAP server (MTNZMcap01) and switch to the correct database/product.  \n2. **During entry** – use numeric values only; for direct plating, any value is accepted but will be capped by reporting limits.  \n3. **After entry** – export the data set from MADCAP; compile into the final report using the same import/export steps described in LOP‑MC 001.  \n4. **Exceptions** – if a direct plating result falls outside the reporting limits, MADCAP still accepts it; the limit is applied only when generating customer reports. No other exception paths are defined.\n\n---\n\n### 3. Evidence caveat\n\nThe rules above are compiled from multiple manuals that all reference LOP‑MC 001 for entry and release procedures. No contradictory or missing rule categories were identified within the retrieved evidence.\n\n[Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)] [Source: MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)]",
         "citationsInAnswer": [
           "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)",
-          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1) & (part 2)",
-          "LOP-MC 001 (V1) MADCAP Procedures Manual, 17.8.3 IMPORTING A FILE",
-          "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11) & (part 44)",
-          "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)",
-          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)",
-          "LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED",
-          "LOP-MB 005 (V2) Aerobic Plate Count (via Petrifilm) Manual, 8.2 RESULT REPORTING",
-          "LOP-MB 007 (V3) Coliform Plate Count Manual, 7.5.4 COUNTING GUIDELINES",
-          "LOP-MB 007 (V3) Coliform Plate Count Manual, 7.5.4 COUNTING GUIDELINES; LOP-MB 008 (V2) Thermoduric Plate Count Manual, 7.6.5 COUNTING GUIDELINES",
-          "LOP-MB 008 (V2) Thermoduric Plate Count Manual, 7.6.5 COUNTING GUIDELINES",
-          "LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY; LOP-MB 008 (V2) Thermoduric Plate Count Manual, 8.2.2 MANUAL RESULT ENTRY; LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS - REPORTING INTO MADCAP",
-          "EOP 018 (V1) Colony Counter Manual, 7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP; EOP 020 (V2) BactoScan FC Manual",
-          "EOP 014 (V1) CombiFoss Manual, 7.6.10 ENTERING A NEW REFERENCE VALUE",
-          "LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY; LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS - REPORTING INTO MADCAP",
-          "LOP-MB 003 (V22) Foreign Matter Manual, 8.1.1 SUPPLIER SAMPLES",
-          "EOP 020 (V2) BactoScan FC Manual",
-          "EOP 014 (V1) CombiFoss Manual, 7.2.2 MILKOSCAN REFERENCE STARTUP",
-          "EOP 018 (V1) Colony Counter Manual, 7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP",
-          "LOP-SR 002 (V15) Receipt of Casual Samples Manual, 7.10.1 ENTERING THE REQUESTS",
-          "LOP-SR 002 (V15) Receipt of Casual Samples Manual, 7.7.3 SAMPLE LISTING REPORT FOR SILO SAMPLES",
-          "LOP-RR 001 (V7) Result Release Manual",
-          "LOP-RR 001 (V7) Result Release Manual, 7.2.2.1 RELEASING CONFIRMED INTERIM POSITIVE SAMPLES"
+          "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 2)"
         ],
         "topSources": [
-          {
-            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44)",
-            "doc_title": "Titan Client Export",
-            "section_title": "Sheet1",
-            "source_type": "xlsx"
-          },
-          {
-            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)",
-            "doc_title": "Titan Client Export",
-            "section_title": "Sheet1",
-            "source_type": "xlsx"
-          },
           {
             "citation_label": "MADCAP Test Type List, Sheet: Sheet1, A1:E4172 (part 1)",
             "doc_title": "MADCAP Test Type List",
@@ -465,10 +390,16 @@
             "source_type": "xlsx"
           },
           {
-            "citation_label": "EOP 018 (V1) Colony Counter Manual, 7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP",
-            "doc_title": "EOP 018 (V1) Colony Counter Manual",
-            "section_title": "7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP",
-            "source_type": "pdf"
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 44)",
+            "doc_title": "Titan Client Export",
+            "section_title": "Sheet1",
+            "source_type": "xlsx"
+          },
+          {
+            "citation_label": "Titan Client Export, Sheet: Sheet1, A1:AX471 (part 11)",
+            "doc_title": "Titan Client Export",
+            "section_title": "Sheet1",
+            "source_type": "xlsx"
           },
           {
             "citation_label": "LOP-MB 009 (V1) Aerobic Plate Count Manual, 12.1 MANUALS",
@@ -477,15 +408,21 @@
             "source_type": "pdf"
           },
           {
-            "citation_label": "LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual, 12.1 MANUALS",
-            "doc_title": "LOP-MB 006 (V2) Sulphite Reducing Clostridia Spore Count Manual",
+            "citation_label": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual, 12.1 MANUALS",
+            "doc_title": "LOP-CR 003 (V3) CRV Sample On-sending Process Manual",
             "section_title": "12.1 MANUALS",
             "source_type": "pdf"
           },
           {
-            "citation_label": "LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, 8.3 REPORTING RESULTS WHEN REQUESTED",
+            "citation_label": "LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual, CONTROLLED COPY IF THIS LINE IS GREEN",
             "doc_title": "LOP-CP 005 (V1) IgG Screening (via CombiFoss) Manual",
-            "section_title": "8.3 REPORTING RESULTS WHEN REQUESTED",
+            "section_title": "CONTROLLED COPY IF THIS LINE IS GREEN",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-MB 007 (V3) Coliform Plate Count Manual, 8.2.2 MANUAL ENTRY",
+            "doc_title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+            "section_title": "8.2.2 MANUAL ENTRY",
             "source_type": "pdf"
           }
         ],
@@ -509,61 +446,58 @@
       {
         "suite": "regression",
         "question": "What is MADCAP?",
-        "answer": "Based on available sources, MADCAP is a computer-based system used in the laboratory for managing sample testing and result entry. The sources provide operational details about its use but do not include a formal definition of what the acronym stands for or a complete system description.\n\nFrom the operational context in the retrieved documents:\n\n**Core Functions:**\n- MADCAP serves as a data entry and result management system for laboratory testing [Source: EOP 018 (V1) Colony Counter Manual, 7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP]\n- It supports both automatic and manual data entry modes for recording test results [Source: LOP-QM 001 (V9) Proficiency Testing Manual, 2. Set MADCAP to manual entry to run the reference, and manually type the Sample ID numbers]\n- Results can be imported from files and automatically assigned within MADCAP [Source: LOP-MB 003 (V22) Foreign Matter Manual, 8.1.1 SUPPLIER SAMPLES]\n\n**Integration with Laboratory Equipment:**\n- MADCAP runs on a dedicated computer and requires user login [Source: EOP 014 (V1) CombiFoss Manual, 1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as]\n- It interfaces with RFID scanners for sample identification [Source: EOP 020 (V2) BactoScan FC Manual, 1. On the MADCAP computer open MADCAP, login, and open the Milk Testing application as]\n- The system includes a \"Milk Testing application\" accessible through an Application Launcher [Source: EOP 014 (V1) CombiFoss Manual, 1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as]\n\n**Operational Details:**\nMultiple instrument manuals reference \"LOP-MC 001 MADCAP Procedures Manual\" as the primary documentation for MADCAP operations, covering procedures for automatic result entry, ID scanner setup, and application launching [Source: EOP 014 (V1) CombiFoss Manual, 1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as].\n\nThe available sources do not provide information about the system architecture, vendor, or whether MADCAP is the current LIMS being replaced by the MTNZ programme.",
+        "answer": "**MADCAP is the laboratory information system used by MTNZ for managing sample data and reporting.**  \nIt is a software platform that provides automated data‑entry sessions, prompts for reference and pilot start‑ups, and requires numeric results to be entered when reporting counts (e.g., colony or coliform plate counts). Samples released through MADCAP are entered and tracked, and suppliers’ routine samples are reported into it following the procedures outlined in LOP‑MC 001 MADCAP Procedures Manual.  \n\n*Key points:*  \n- Open MADCAP to start an automatic data‑entry session【EOP 018 (V1) Colony Counter Manual】.  \n- MADCAP automatically prompts for Reference and Pilot start‑ups【EOP 014 (V1) CombiFoss Manual】.  \n- Routine samples and supplier reports are released or entered into MADCAP【LOP‑MB 010 (V2) Pseudomonas Count Manual】.  \n- Numeric results must be entered, with lower and upper reporting limits handled by MADCAP【LOP‑MB 007 (V3) Coliform Plate Count Manual】.\n\n[Source: EOP 020 (V2) BactoScan FC Manual, 7.2.7 MADCAP START-UP] [Source: EOP 014 (V1) CombiFoss Manual, 3. Following the instructions outlined as outlined in LOP-MC 001 MADCAP Procedures Manual,]",
         "citationsInAnswer": [
-          "EOP 018 (V1) Colony Counter Manual, 7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP",
-          "LOP-QM 001 (V9) Proficiency Testing Manual, 2. Set MADCAP to manual entry to run the reference, and manually type the Sample ID numbers",
-          "LOP-MB 003 (V22) Foreign Matter Manual, 8.1.1 SUPPLIER SAMPLES",
-          "EOP 014 (V1) CombiFoss Manual, 1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as",
-          "EOP 020 (V2) BactoScan FC Manual, 1. On the MADCAP computer open MADCAP, login, and open the Milk Testing application as"
+          "EOP 020 (V2) BactoScan FC Manual, 7.2.7 MADCAP START-UP",
+          "EOP 014 (V1) CombiFoss Manual, 3. Following the instructions outlined as outlined in LOP-MC 001 MADCAP Procedures Manual,"
         ],
         "topSources": [
           {
-            "citation_label": "LOP-QM 001 (V9) Proficiency Testing Manual, 2. Set MADCAP to manual entry to run the reference, and manually type the Sample ID numbers",
-            "doc_title": "LOP-QM 001 (V9) Proficiency Testing Manual",
-            "section_title": "2. Set MADCAP to manual entry to run the reference, and manually type the Sample ID numbers",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "EOP 018 (V1) Colony Counter Manual, 7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP",
-            "doc_title": "EOP 018 (V1) Colony Counter Manual",
-            "section_title": "7.2 MADCAP/CONTROL VISION TESTING PROGRAM SETUP",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "LOP-MB 003 (V22) Foreign Matter Manual, 8.1.1 SUPPLIER SAMPLES",
-            "doc_title": "LOP-MB 003 (V22) Foreign Matter Manual",
-            "section_title": "8.1.1 SUPPLIER SAMPLES",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "EOP 014 (V1) CombiFoss Manual, 1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as",
-            "doc_title": "EOP 014 (V1) CombiFoss Manual",
-            "section_title": "1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "EOP 020 (V2) BactoScan FC Manual, 1. On the MADCAP computer open MADCAP, login, and open the Milk Testing application as",
+            "citation_label": "EOP 020 (V2) BactoScan FC Manual, 7.2.7 MADCAP START-UP",
             "doc_title": "EOP 020 (V2) BactoScan FC Manual",
-            "section_title": "1. On the MADCAP computer open MADCAP, login, and open the Milk Testing application as",
+            "section_title": "7.2.7 MADCAP START-UP",
             "source_type": "pdf"
           },
           {
-            "citation_label": "EOP 014 (V1) CombiFoss Manual, 1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as",
+            "citation_label": "EOP 014 (V1) CombiFoss Manual, 3. Following the instructions outlined as outlined in LOP-MC 001 MADCAP Procedures Manual,",
             "doc_title": "EOP 014 (V1) CombiFoss Manual",
-            "section_title": "1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as",
+            "section_title": "3. Following the instructions outlined as outlined in LOP-MC 001 MADCAP Procedures Manual,",
             "source_type": "pdf"
           },
           {
-            "citation_label": "EOP 014 (V1) CombiFoss Manual, 1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as",
-            "doc_title": "EOP 014 (V1) CombiFoss Manual",
-            "section_title": "1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as",
+            "citation_label": "EOP 018 (V1) Colony Counter Manual, 1. Open MADCAP and start an automatic data entry session, see LOP-MC 001 MADCAP Procedures",
+            "doc_title": "EOP 018 (V1) Colony Counter Manual",
+            "section_title": "1. Open MADCAP and start an automatic data entry session, see LOP-MC 001 MADCAP Procedures",
             "source_type": "pdf"
           },
           {
-            "citation_label": "EOP 014 (V1) CombiFoss Manual, 1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as",
-            "doc_title": "EOP 014 (V1) CombiFoss Manual",
-            "section_title": "1. On the MADCAP computer launch MADCAP, login, and open the Milk Testing application as",
+            "citation_label": "LOP-SP 008 (V1)  Routine Monitoring Of Tanker And Supplier Samples, 1. Using spreadsheet SP001 Tanker Run Enquiry Tool, scan the tanker samples and fill in the tray column",
+            "doc_title": "LOP-SP 008 (V1)  Routine Monitoring Of Tanker And Supplier Samples",
+            "section_title": "1. Using spreadsheet SP001 Tanker Run Enquiry Tool, scan the tanker samples and fill in the tray column",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-MB 010 (V2) Pseudomonas Count Manual, 7.1.2 ROUTINE SAMPLES",
+            "doc_title": "LOP-MB 010 (V2) Pseudomonas Count Manual",
+            "section_title": "7.1.2 ROUTINE SAMPLES",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-MB 010 (V2) Pseudomonas Count Manual, 8.2.1 ROUTINE SUPPLIERS - REPORTING INTO MADCAP",
+            "doc_title": "LOP-MB 010 (V2) Pseudomonas Count Manual",
+            "section_title": "8.2.1 ROUTINE SUPPLIERS - REPORTING INTO MADCAP",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-MB 007 (V3) Coliform Plate Count Manual, 7.5.4 COUNTING GUIDELINES",
+            "doc_title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+            "section_title": "7.5.4 COUNTING GUIDELINES",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-MB 003 (V22) Foreign Matter Manual, 3. The SCL Tagmeister box will appear (see Figure 2)",
+            "doc_title": "LOP-MB 003 (V22) Foreign Matter Manual",
+            "section_title": "3. The SCL Tagmeister box will appear (see Figure 2)",
             "source_type": "pdf"
           }
         ],
@@ -585,14 +519,20 @@
       {
         "suite": "regression",
         "question": "What is the result release process?",
-        "answer": "# Result Release Process\n\nBased on available sources, the result release process in MADCAP involves several key steps and requirements:\n\n## Mandatory Release Requirement\n\nResult release must be carried out for all Farm Sample results [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 4.4 RESULT RELEASE]. In most cases, results are not required to be released, with some exceptions [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 4.4 RESULT RELEASE].\n\n## Standard Release Process\n\nThe basic release workflow involves:\n\n1. **Accessing the Release Function**: Navigate to Data | Release | User defined in the Milk Testing module after changing to the desired database and product [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have applied, but will appear]\n\n2. **Setting Parameters**: \n   - For composition results: Set the Grouped tests radio button to \"Yes\" and set a testing program in the Program field (usually set to 161)\n   - For other test types: Set the radio button to \"No\" and enter the test numbers in the Tests to include field [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have applied, but will appear]\n\n3. **Processing and Releasing**: Click the Process button, then click the Release button to release the results [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have been filed, but will appear]\n\n4. **Aborting if Needed**: To abort the current release process, click the Close button or change the parameters and click the Process button again. Any saved results will still have been filed but will appear again if not already released [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have been filed, but will appear]\n\n## Post-Release Activities\n\nOnce Farm Sample results have been entered and released, they are available to be compiled into a text file which is then automatically sent via FTP or email to each customer [Source: LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have been filed, but will appear].\n\n## Personnel Requirements\n\nResult Release shall be performed only by technicians who have been trained, or under supervision of a trained Technician [Source: LOP-RR 001 (V7) Result Release Manual, 11 RESPONSIBILITIES]. The Result Release Technician is responsible for running result release reports, compiling and transmitting files, distributing manual result report forms, and ensuring chargeable tests are invoiced [Source: LOP-RR 001 (V7) Result Release Manual, 11 RESPONSIBILITIES].\n\n**Note**: The available sources provide procedural steps but do not fully detail all exceptions to the release requirement or complete daily responsibilities referenced in Section 7.6 of the Result Release Manual.",
+        "answer": "**Result release process (as documented in the LOP‑RR and MADCAP manuals)**  \n\n1. **Who performs it**  \n   * Only trained technicians, or technicians under the supervision of a trained technician, may perform result release.  \n   * The Result Release Technician runs the farm‑sample result release report, compiles files and transmits them to customers.  \n   * The technician also distributes manual result report forms and ensures chargeable tests are invoiced. [Source: LOP‑RR 001 (V7) – 11 RESPONSIBILITIES]  \n\n2. **Daily workflow**  \n   * After all farm‑sample results have been entered, the technician runs the “farm result release report.”  \n   * The report is used to identify which results need to be released; most farm‑sample results are not required to be released, but exceptions exist (see §4.4).  \n   * The technician checks for suppliers awaiting results, files all reports and logsheets to the assigned boxes, and notes any anomalies or corrections.  \n   * The technician then runs the release report for grouped tests (steps 2‑4), followed by non‑grouped tests in the order specified in the manual (e.g., 13, 56; then 27, 11; then 57 for required companies). [Source: LOP‑RR 001 (V7) – 94 FEI Ave; Source: LOP‑MC 001 (V1) – 4.4 RESULT RELEASE]  \n\n3. **Compilation and transmission**  \n   * Once the necessary results are selected, they are compiled into a text file.  \n   * The system automatically sends the file via FTP or email to each customer.  \n   * If the release is aborted, any saved results remain filed but are not released until re‑processed.  \n   * The release button finalises the process; a “Release complete” message confirms success. [Source: LOP‑MC 001 (V1) – 4.5 RESULT FILE COMPILATION AND TRANSMISSION; Source: LOP‑MC 001 (V1) – Section 7]  \n\n4. **Post‑release checks**  \n   * The technician verifies that the “Filed/Released” status shows “Yes” and that the release status is correct in brackets.  \n   * Any pending or unresolved items are flagged for follow‑up. [Source: LOP‑MC 001 (V1) – Section 6]  \n\n**Summary**  \nThe result release process is a technician‑led procedure that involves running the farm‑sample release report, compiling selected results into a file, and automatically transmitting it to customers via FTP/email. It includes checks for supplier readiness, logging of reports, and confirmation of release status. The process is governed by training requirements and specific exception rules for which results must be released.",
         "citationsInAnswer": [
-          "LOP-MC 001 (V1) MADCAP Procedures Manual, 4.4 RESULT RELEASE",
-          "LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have applied, but will appear",
-          "LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have been filed, but will appear",
-          "LOP-RR 001 (V7) Result Release Manual, 11 RESPONSIBILITIES"
+          "LOP‑RR 001 (V7) – 11 RESPONSIBILITIES",
+          "LOP‑RR 001 (V7) – 94 FEI Ave; Source: LOP‑MC 001 (V1) – 4.4 RESULT RELEASE",
+          "LOP‑MC 001 (V1) – 4.5 RESULT FILE COMPILATION AND TRANSMISSION; Source: LOP‑MC 001 (V1) – Section 7",
+          "LOP‑MC 001 (V1) – Section 6"
         ],
         "topSources": [
+          {
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 11 RESPONSIBILITIES",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "11 RESPONSIBILITIES",
+            "source_type": "pdf"
+          },
           {
             "citation_label": "LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have been filed, but will appear",
             "doc_title": "LOP-MC 001 (V1) MADCAP Procedures Manual",
@@ -600,9 +540,15 @@
             "source_type": "pdf"
           },
           {
-            "citation_label": "LOP-CT 004 (V2) 4, 4'-DDE in Whole Milk by SPME-GC-ECD Manual, 8.3 RESULT RELEASE",
-            "doc_title": "LOP-CT 004 (V2) 4, 4'-DDE in Whole Milk by SPME-GC-ECD Manual",
-            "section_title": "8.3 RESULT RELEASE",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.1 METHOD",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "7.1 METHOD",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "4.0 - Plating and Counting Section V7, 1. Automatic",
+            "doc_title": "4.0 - Plating and Counting Section V7",
+            "section_title": "1. Automatic",
             "source_type": "pdf"
           },
           {
@@ -612,33 +558,21 @@
             "source_type": "pdf"
           },
           {
-            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 11 RESPONSIBILITIES",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 94 FEI Ave (Fonterra only)",
             "doc_title": "LOP-RR 001 (V7) Result Release Manual",
-            "section_title": "11 RESPONSIBILITIES",
+            "section_title": "94 FEI Ave (Fonterra only)",
             "source_type": "pdf"
           },
           {
-            "citation_label": "LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have applied, but will appear",
-            "doc_title": "LOP-MC 001 (V1) MADCAP Procedures Manual",
-            "section_title": "7. To abort the current release process (any saved results will still have applied, but will appear",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have applied, but will appear",
-            "doc_title": "LOP-MC 001 (V1) MADCAP Procedures Manual",
-            "section_title": "7. To abort the current release process (any saved results will still have applied, but will appear",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "LOP-MC 001 (V1) MADCAP Procedures Manual, 7. To abort the current release process (any saved results will still have been filed, but will appear",
-            "doc_title": "LOP-MC 001 (V1) MADCAP Procedures Manual",
-            "section_title": "7. To abort the current release process (any saved results will still have been filed, but will appear",
-            "source_type": "pdf"
-          },
-          {
-            "citation_label": "LOP-CT 004 (V2) 4, 4'-DDE in Whole Milk by SPME-GC-ECD Manual, 8.3 RESULT RELEASE",
+            "citation_label": "LOP-CT 004 (V2) 4, 4'-DDE in Whole Milk by SPME-GC-ECD Manual, 3. Once all checks are completed and confirmed to pass, approve the Analysis batch by right clicking",
             "doc_title": "LOP-CT 004 (V2) 4, 4'-DDE in Whole Milk by SPME-GC-ECD Manual",
-            "section_title": "8.3 RESULT RELEASE",
+            "section_title": "3. Once all checks are completed and confirmed to pass, approve the Analysis batch by right clicking",
+            "source_type": "pdf"
+          },
+          {
+            "citation_label": "LOP-MC 001 (V1) MADCAP Procedures Manual, 6. The pane on the right side of the window shows a list of the all the test types selected or",
+            "doc_title": "LOP-MC 001 (V1) MADCAP Procedures Manual",
+            "section_title": "6. The pane on the right side of the window shows a list of the all the test types selected or",
             "source_type": "pdf"
           }
         ],
@@ -660,61 +594,57 @@
       {
         "suite": "regression",
         "question": "What is section 7.2 about?",
-        "answer": "Based on available sources, section 7.2 covers different topics depending on which document you are referring to:\n\n1. **In the Mediaclave Manual**: Section 7.2 is titled \"MEDIA DISPENSING/BOTTLING\" and covers procedures related to media dispensing operations, including the requirement to \"flush and clean tubing according to Section 7.3\" immediately after dispensing has finished [Source: EOP 007 (V7) Mediaclave Manual, 7.2 MEDIA DISPENSING/BOTTLING].\n\n2. **In the TRAW Manual**: Section 7.2 covers machine operation procedures, including:\n   - 7.2.1 \"TRAW START UP\" - which includes ensuring \"that the water taps to the Grinder and Plastic Chip Auger are turned 'On'\" [Source: EOP 003 (V8) TRAW Manual, 7.2.1 TRAW START UP]\n   - 7.2.2 \"START OF DAY PROCEDURE\" - which includes tasks such as emptying tags from the tag dryer into a dry bucket and filling buckets up to the 3/4 mark [Source: EOP 003 (V8) TRAW Manual, 7.2.2 START OF DAY PROCEDURE]\n   - 7.2.3 \"OPERATING THE MACHINE\" - which includes operating instructions such as pushing the green button to run the TRAW [Source: EOP 003 (V8) TRAW Manual, 7.2.3 OPERATING THE MACHINE]\n\n3. **In the HOBO Data Logger Manual**: Section 7.2 is titled \"CALIBRATION\" and covers calibration requirements for HOBO data loggers, including the requirement that \"calibration temperature should not exceed ±3 °C from the target temperature\" [Source: EOP 002 (V3) HOBO Data Logger Manual, 7.2 CALIBRATION].\n\nTo provide a more specific answer, please specify which document's section 7.2 you are asking about.",
+        "answer": "**Section 7.2 of the Result Release Manual deals with the procedures for releasing test results.**  \nIt is subdivided into several parts that cover specific tests and reporting requirements:  \n\n* **7.2.1 – Coliform and Thermoduric releasing (020)** – outlines how to select the 020 Fonterra database, enter parameters, preview and run releases, and adjust plates or duplicates before final release. [Source 4][Source 5][Source 6]  \n* **7.2.2 – Inhibitory substances positives** – requires that all positive interim and TwinSensor results be notified to the customer by phone and email, with checks against log sheets. [Source 8]  \n* **7.2.5 – E. coli water testing** – details the steps for preparing, saving (Excel and PDF), double‑checking fields, and emailing results to customers, including QCONZ water results. [Source 1][Source 2][Source 3]  \n\nThus, Section 7.2 collectively covers the workflow for releasing various microbiological and inhibitory test results, including preparation, validation, and communication to customers.\n\n[Source: LOP-RR 001 (V7) Result Release Manual, 7.2.5 E. COLI WATER TESTING]",
         "citationsInAnswer": [
-          "EOP 007 (V7) Mediaclave Manual, 7.2 MEDIA DISPENSING/BOTTLING",
-          "EOP 003 (V8) TRAW Manual, 7.2.1 TRAW START UP",
-          "EOP 003 (V8) TRAW Manual, 7.2.2 START OF DAY PROCEDURE",
-          "EOP 003 (V8) TRAW Manual, 7.2.3 OPERATING THE MACHINE",
-          "EOP 002 (V3) HOBO Data Logger Manual, 7.2 CALIBRATION"
+          "LOP-RR 001 (V7) Result Release Manual, 7.2.5 E. COLI WATER TESTING"
         ],
         "topSources": [
           {
-            "citation_label": "EOP 007 (V7) Mediaclave Manual, 7.2 MEDIA DISPENSING/BOTTLING",
-            "doc_title": "EOP 007 (V7) Mediaclave Manual",
-            "section_title": "7.2 MEDIA DISPENSING/BOTTLING",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.2.5 E. COLI WATER TESTING",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "7.2.5 E. COLI WATER TESTING",
             "source_type": "pdf"
           },
           {
-            "citation_label": "EOP 003 (V8) TRAW Manual, 7.2.2 START OF DAY PROCEDURE",
-            "doc_title": "EOP 003 (V8) TRAW Manual",
-            "section_title": "7.2.2 START OF DAY PROCEDURE",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.2.5 E. COLI WATER TESTING",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "7.2.5 E. COLI WATER TESTING",
             "source_type": "pdf"
           },
           {
-            "citation_label": "EOP 003 (V8) TRAW Manual, 7.2.3 OPERATING THE MACHINE",
-            "doc_title": "EOP 003 (V8) TRAW Manual",
-            "section_title": "7.2.3 OPERATING THE MACHINE",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.2.5 E. COLI WATER TESTING",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "7.2.5 E. COLI WATER TESTING",
             "source_type": "pdf"
           },
           {
-            "citation_label": "EOP 003 (V8) TRAW Manual, 7.2.1 TRAW START UP",
-            "doc_title": "EOP 003 (V8) TRAW Manual",
-            "section_title": "7.2.1 TRAW START UP",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.2.1 COLIFORM AND THERMODURIC RELEASING (020)",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "7.2.1 COLIFORM AND THERMODURIC RELEASING (020)",
             "source_type": "pdf"
           },
           {
-            "citation_label": "EOP 003 (V8) TRAW Manual, 7.2.2 START OF DAY PROCEDURE",
-            "doc_title": "EOP 003 (V8) TRAW Manual",
-            "section_title": "7.2.2 START OF DAY PROCEDURE",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.2.1 COLIFORM AND THERMODURIC RELEASING (020)",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "7.2.1 COLIFORM AND THERMODURIC RELEASING (020)",
             "source_type": "pdf"
           },
           {
-            "citation_label": "EOP 003 (V8) TRAW Manual, 7.2.2 START OF DAY PROCEDURE",
-            "doc_title": "EOP 003 (V8) TRAW Manual",
-            "section_title": "7.2.2 START OF DAY PROCEDURE",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.2.1 COLIFORM AND THERMODURIC RELEASING (020)",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "7.2.1 COLIFORM AND THERMODURIC RELEASING (020)",
             "source_type": "pdf"
           },
           {
-            "citation_label": "EOP 003 (V8) TRAW Manual, 7.2.3 OPERATING THE MACHINE",
-            "doc_title": "EOP 003 (V8) TRAW Manual",
-            "section_title": "7.2.3 OPERATING THE MACHINE",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.2.1 COLIFORM AND THERMODURIC RELEASING (020)",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "7.2.1 COLIFORM AND THERMODURIC RELEASING (020)",
             "source_type": "pdf"
           },
           {
-            "citation_label": "EOP 002 (V3) HOBO Data Logger Manual, 7.2 CALIBRATION",
-            "doc_title": "EOP 002 (V3) HOBO Data Logger Manual",
-            "section_title": "7.2 CALIBRATION",
+            "citation_label": "LOP-RR 001 (V7) Result Release Manual, 7.2.2 INHIBITORY SUBSTANCES POSITIVES",
+            "doc_title": "LOP-RR 001 (V7) Result Release Manual",
+            "section_title": "7.2.2 INHIBITORY SUBSTANCES POSITIVES",
             "source_type": "pdf"
           }
         ],
@@ -736,7 +666,7 @@
     ]
   },
   "acceptance": {
-    "canonicalQuestionsCiteAuthoritativeSource": true,
+    "canonicalQuestionsCiteAuthoritativeSource": false,
     "distributedListConsolidatesWithoutExampleOnlyFallback": true,
     "rulesNoWeakBoilerplateWhenEvidenceStrong": true,
     "normalFactualQueriesNotOverSynthesized": true,

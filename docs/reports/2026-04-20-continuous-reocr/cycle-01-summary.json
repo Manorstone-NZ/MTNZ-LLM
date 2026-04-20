@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-04-20T05:15:57.202Z",
+  "cycle": 1,
+  "doc_count": 10,
+  "average_excluded_ratio_delta": -0.2528,
+  "retrieval_improvement_rate": 0.8,
+  "material_improvement_docs": 10,
+  "retrieval_improved_docs": 8,
+  "low_priority_share": 0,
+  "safety_checks": {
+    "no_spike_in_junk_chunks": true,
+    "no_obvious_source_spam": true,
+    "ingest_dashboard_reconciliation_ok": true
+  },
+  "stop_decision": {
+    "should_stop": false,
+    "reasons": []
+  }
+}

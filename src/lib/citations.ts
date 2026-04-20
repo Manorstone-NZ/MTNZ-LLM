@@ -163,3 +163,51 @@ export function validateCitations(answer: string, providedLabels: string[]): {
 
   return { valid, invalid };
 }
+
+export function buildReferencesSuffix(labels: string[]): string {
+  const unique = Array.from(
+    new Set(labels.map((label) => label.trim()).filter((label) => label.length > 0)),
+  );
+
+  if (unique.length === 0) return '';
+
+  return `\n\nReferences:\n${unique
+    .map((label) => `- [Source: ${label}]`)
+    .join('\n')}`;
+}
+
+export function normalizeAnswerWithReferences(
+  answer: string,
+  options?: {
+    fallbackLabels?: string[];
+    noEvidenceMessage?: string;
+  },
+): { answerText: string; references: string[] } {
+  const sourceRegex = /\[Source:\s*([^\]]+)\]/g;
+  const capturedLabels: string[] = [];
+
+  let match: RegExpExecArray | null;
+  while ((match = sourceRegex.exec(answer)) !== null) {
+    const label = match[1]?.trim();
+    if (label) capturedLabels.push(label);
+  }
+
+  const cleaned = answer
+    .replace(/\s*\[Source:\s*[^\]]+\]/g, '')
+    .replace(/\s+([.,;:!?])/g, '$1')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+
+  const noEvidenceMessage = options?.noEvidenceMessage ?? '';
+  const refs = capturedLabels.length > 0
+    ? capturedLabels
+    : (cleaned && !cleaned.includes(noEvidenceMessage) ? (options?.fallbackLabels ?? []) : []);
+
+  const suffix = buildReferencesSuffix(refs);
+  const answerText = suffix ? `${cleaned}${suffix}` : cleaned;
+
+  return {
+    answerText,
+    references: Array.from(new Set(refs.map((x) => x.trim()).filter((x) => x.length > 0))),
+  };
+}

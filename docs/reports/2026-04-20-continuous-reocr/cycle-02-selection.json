@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-04-20T05:15:57.447Z",
+  "cycle": 2,
+  "batch_size": 10,
+  "selected_documents": [
+    {
+      "title": "LOP-MB 004 (V1) Maintenance and Control of Reference Organisms",
+      "source_path": "LOP/LOP-MB 004 (V1) Maintenance and Control of Reference Organisms.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2171,
+      "document_priority": "high",
+      "reprocess_rank": 38,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-MB 008 (V2) Thermoduric Plate Count Manual",
+      "source_path": "LOP/LOP-MB 008 (V2) Thermoduric Plate Count Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2136,
+      "document_priority": "high",
+      "reprocess_rank": 39,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-MB 007 (V3) Coliform Plate Count Manual",
+      "source_path": "LOP/LOP-MB 007 (V3) Coliform Plate Count Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2132,
+      "document_priority": "high",
+      "reprocess_rank": 40,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-CT 001 (V5) Immunoglobulin (IgG) (HPLC-UV) Manual",
+      "source_path": "LOP/LOP-CT 001 (V5) Immunoglobulin (IgG) (HPLC-UV) Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2037,
+      "document_priority": "high",
+      "reprocess_rank": 41,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-RM 001 (V36) Reference Material Preparation Manual",
+      "source_path": "LOP/LOP-RM 001 (V36) Reference Material Preparation Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.201,
+      "document_priority": "high",
+      "reprocess_rank": 42,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "EOP 011 (V1) Autoclave Manual",
+      "source_path": "EOP/EOP 011 (V1) Autoclave Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.2,
+      "document_priority": "high",
+      "reprocess_rank": 43,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-SR 001 (V10) Receipt of Non-Casual Samples",
+      "source_path": "LOP/LOP-SR 001 (V10) Receipt of Non-Casual Samples.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.1848,
+      "document_priority": "high",
+      "reprocess_rank": 45,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    },
+    {
+      "title": "LOP-MC 001 (V1) MADCAP Procedures Manual",
+      "source_path": "LOP/LOP-MC 001 (V1) MADCAP Procedures Manual.pdf",
+      "ocr_quality_status": "ocr_mixed",
+      "excluded_ratio": 0.1814,
+      "document_priority": "high",
+      "reprocess_rank": 48,
+      "reprocess_reasons": "High-value document (LOP/EOP/manual); Moderate OCR contamination"
+    }
+  ]
+}

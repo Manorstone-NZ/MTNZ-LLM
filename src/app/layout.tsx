@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Space_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
-const geistSans = Geist({
+const manrope = Manrope({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const spaceMono = Space_Mono({
   variable: "--font-geist-mono",
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
@@ -26,26 +27,42 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${manrope.variable} ${spaceMono.variable} h-full antialiased`}
     >
-      <body className="h-full flex flex-col bg-slate-950 text-slate-100">
-        <nav className="flex items-center justify-between px-4 py-2.5 border-b border-slate-800 bg-slate-900">
-          <Link href="/" className="text-sm font-semibold tracking-tight text-slate-100">
-            IDD Knowledge Chat
-          </Link>
-          <div className="flex items-center gap-4 text-sm">
-            <Link
-              href="/"
-              className="text-slate-400 hover:text-slate-100 transition-colors"
-            >
-              Chat
+      <body className="h-full flex flex-col text-foreground">
+        <nav className="sticky top-0 z-20 border-b border-[color:var(--line)] bg-white/85 backdrop-blur-lg">
+          <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3">
+            <Link href="/" className="flex items-center gap-3">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-[color:var(--brand)] text-sm font-extrabold text-white shadow-sm">
+                MT
+              </span>
+              <span>
+                <span className="block text-sm font-semibold tracking-tight text-[color:var(--brand-strong)]">
+                  IDD Knowledge Chat
+                </span>
+                <span className="block text-[11px] text-slate-500">MilkTest-style Knowledge Workspace</span>
+              </span>
             </Link>
-            <Link
-              href="/ingest"
-              className="text-slate-400 hover:text-slate-100 transition-colors"
-            >
-              Documents
-            </Link>
+            <div className="flex items-center gap-2 text-sm sm:gap-3">
+              <Link
+                href="/"
+                className="app-pill rounded-full px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-[color:var(--brand-soft)] sm:text-sm"
+              >
+                Chat
+              </Link>
+              <Link
+                href="/ingest"
+                className="app-pill rounded-full px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-[color:var(--brand-soft)] sm:text-sm"
+              >
+                Documents
+              </Link>
+              <Link
+                href="/help"
+                className="app-pill rounded-full px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-[color:var(--brand-soft)] sm:text-sm"
+              >
+                Help
+              </Link>
+            </div>
           </div>
         </nav>
         <main className="flex-1 flex flex-col min-h-0">{children}</main>

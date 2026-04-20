@@ -21,6 +21,7 @@ const NUMBERED_STEP_PATTERNS = [
   /^\s*[a-z][.)]\s/m,
   /^\s*[ivx]+[.)]\s/m,
   /^\s*Step\s+\d+/im,
+  /^\s*[-*•]\s+/m,
 ];
 
 const IMPERATIVE_VERBS = new Set([
@@ -28,13 +29,19 @@ const IMPERATIVE_VERBS = new Set([
   'measure', 'incubate', 'centrifuge', 'pipette', 'transfer', 'label',
   'mix', 'prepare', 'wash', 'clean', 'dry', 'store', 'seal', 'open',
   'close', 'press', 'click', 'select', 'enter', 'navigate', 'save',
-  'submit', 'approve', 'reject',
+  'submit', 'approve', 'reject', 'run', 'start', 'stop', 'load',
+  'calibrate', 'review', 'scan', 'print',
 ]);
 
 const REVISION_HEADING = /revision|amendment|version\s+history|change\s+history|document\s+history/i;
 const APPENDIX_HEADING = /appendix|annex/i;
 const METADATA_HEADING = /document\s+control|approval|distribution|authoris/i;
 const NOTE_HEADING = /note|reference|see also/i;
+const OCR_GARBAGE_PATTERN = /([\uFFFD]{2,}|\?{4,}|\b[0OIl]{8,}\b)/;
+const TABLE_DELIMITER_PATTERN = /[,|\t;]/;
+const TABLE_REFERENCE_SIGNAL = /\b(code|codes|parameter|result|results|method|test|limit|range|unit|setting|calibration|reference|description)\b/i;
+const LIST_REFERENCE_SIGNAL = /\b(code|codes|parameter|result|results|method|test|limit|range|unit|setting|table|appendix|reference)\b/i;
+const PROCEDURAL_SIGNAL = /\b(open|select|enter|click|run|verify|check|start|stop|load|save|submit|record|confirm|navigate|calibrate|review|scan|print)\b/i;
 
 // --- Helpers ---
 
@@ -68,6 +75,52 @@ function isContentEmpty(content: string): boolean {
 
 function matchesAnyPattern(text: string, patterns: RegExp[]): boolean {
   return patterns.some(p => p.test(text));
+}
+
+function isLikelyOcrGarbage(content: string): boolean {
+  const text = content.trim();
+  if (!text) return true;
+  if (OCR_GARBAGE_PATTERN.test(text)) return true;
+  const alnum = (text.match(/[a-z0-9]/gi) ?? []).length;
+  const symbols = (text.match(/[^\sa-z0-9]/gi) ?? []).length;
+  if (alnum === 0) return true;
+  return symbols / (alnum + symbols) > 0.55;
+}
+
+function isReferenceTable(content: string): boolean {
+  const lines = content.split('\n').map(line => line.trim()).filter(Boolean);
+  if (lines.length < 2) return false;
+  const first = lines[0];
+  const second = lines[1] ?? '';
+  const hasGridLikeLayout = TABLE_DELIMITER_PATTERN.test(first) || TABLE_DELIMITER_PATTERN.test(second);
+  if (!hasGridLikeLayout) return false;
+  return TABLE_REFERENCE_SIGNAL.test(content);
+}
+
+function isReferenceList(content: string): boolean {
+  const trimmed = content.trim();
+  const isBulletOrList = /^[-*•]/.test(trimmed) || /^\d+[.)]/.test(trimmed);
+  if (!isBulletOrList) return false;
+  return LIST_REFERENCE_SIGNAL.test(content);
+}
+
+function hasMeaningfulBodyBeyondFooter(content: string): boolean {
+  const lines = content
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .filter((line) => !FOOTER_HEADER_PATTERNS.some((p) => p.test(line)))
+    .filter((line) => !/authori[sz]ed by|version\s+\d+|quality manager/i.test(line));
+  if (lines.length === 0) return false;
+
+  const body = lines.join(' ');
+  const bodyTokens = tokenCount(body);
+  if (bodyTokens < 5) return false;
+
+  if (PROCEDURAL_SIGNAL.test(body)) return true;
+  if (/^[-*•]/m.test(body)) return true;
+  if (TABLE_REFERENCE_SIGNAL.test(body)) return true;
+  return bodyTokens >= 10;
 }
 
 // --- Heading stack ---
@@ -111,6 +164,7 @@ function buildNormalisedSection(
   matchedRule: string,
   excluded: boolean,
   downranked: boolean,
+  exclusionTag?: string,
 ): NormalisedSection {
   return {
     ...section,
@@ -124,6 +178,7 @@ function buildNormalisedSection(
       classification: sectionType,
       confidence,
       matched_rule: matchedRule,
+      ...(exclusionTag ? { exclusion_tag: exclusionTag } : {}),
     },
   };
 }
@@ -132,7 +187,7 @@ function buildNormalisedSection(
 
 export function classifySections(
   sections: ExtractedSection[],
-  documentTitle: string,
+  _documentTitle: string,
 ): NormalisedSection[] {
   const result: NormalisedSection[] = [];
   let headingStack: HeadingContext[] = [];
@@ -147,10 +202,32 @@ export function classifySections(
 
     // --- Rule 1: footer_header ---
     if (matchesAnyPattern(content, FOOTER_HEADER_PATTERNS)) {
+      if (hasMeaningfulBodyBeyondFooter(content)) {
+        result.push(buildNormalisedSection(
+          section, 'instruction_block', 0.72,
+          'Footer/header marker detected but retained because chunk contains meaningful procedural body text',
+          false, false,
+          'broken_structure',
+        ));
+        continue;
+      }
+
       result.push(buildNormalisedSection(
         section, 'footer_header', 0.9,
         'Content matches known footer/header pattern (watermark, page number, controlled copy)',
         true, false,
+        'metadata_block',
+      ));
+      continue;
+    }
+
+    // --- Rule 1b: OCR garbage / unreadable fragments ---
+    if (isLikelyOcrGarbage(content)) {
+      result.push(buildNormalisedSection(
+        section, 'metadata_only', 0.9,
+        'Content appears to be OCR garbage or symbol-dominant noise',
+        true, false,
+        'ocr_garbage',
       ));
       continue;
     }
@@ -166,6 +243,7 @@ export function classifySections(
         section, 'form_stub', 0.9,
         'Heading contains FORMS/SPREADSHEETS and content is empty or N/A',
         true, false,
+        'metadata_block',
       ));
       continue;
     }
@@ -174,6 +252,7 @@ export function classifySections(
         section, 'form_stub', 0.9,
         'Under appendix/forms/spreadsheets heading with N/A or minimal content',
         true, false,
+        'metadata_block',
       ));
       continue;
     }
@@ -202,10 +281,23 @@ export function classifySections(
 
     // --- Rule 5: table ---
     if (section.type === 'table') {
+      const tableReference = isReferenceTable(content);
       result.push(buildNormalisedSection(
         section, 'table', 0.95,
-        'Extraction type was table',
+        tableReference ? 'Table content appears to contain useful code/parameter/result reference data' : 'Table content appears to be low-information grid noise',
+        !tableReference, false,
+        tableReference ? 'table_reference' : 'table_noise',
+      ));
+      continue;
+    }
+
+    // --- Rule 5b: list reference blocks ---
+    if (section.type === 'list' && isReferenceList(content)) {
+      result.push(buildNormalisedSection(
+        section, 'note', 0.8,
+        'List content appears to be useful procedural/reference bullets',
         false, false,
+        'list_reference',
       ));
       continue;
     }
@@ -246,6 +338,7 @@ export function classifySections(
         section, 'metadata_only', 0.8,
         'Under document control/approval/distribution/authorisation heading',
         false, true,
+        'metadata_block',
       ));
       continue;
     }

@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 async function testQuery(question: string) {
   console.log(`\nTesting: "${question}"\n`);
 
@@ -30,7 +28,7 @@ async function testQuery(question: string) {
       for (const line of lines) {
         if (line.startsWith('event:') && line.includes('data:')) {
           const eventMatch = line.match(/event:\s*(\w+)/);
-          const dataMatch = line.match(/data:\s*(.+)/s);
+          const dataMatch = line.match(/data:\s*([\s\S]+)/);
           if (eventMatch && dataMatch) {
             const event = eventMatch[1];
             try {
@@ -73,3 +71,5 @@ const queries = [
     await testQuery(q);
   }
 })();
+
+export {};
